@@ -546,3 +546,40 @@ main {
         font-size: 1rem;
     }
 }
+
+/* ============================================
+   NAV CTA BUTTON (Like Rachel's "Shop Products")
+   ============================================ */
+
+.nav-cta {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background: #fff;
+    color: var(--teal);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
+}
+
+.nav-cta:hover {
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
+}
+
+@media (max-width: 768px) {
+    .nav-cta {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-cta {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
