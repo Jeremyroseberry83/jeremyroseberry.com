@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaking | Jeremy Roseberry</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <h1>Jeremy Roseberry</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="speaking.html">Speaking</a></li>
+            <li><a href="ebooks.html">Ebooks</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="page-section">
+            <h1>Speaking</h1>
+            <div class="accent-line"></div>
+
+            <p>Most financial conferences are the same: excellent speakers delivering sterile content. Great data. No meaning. I do something different.</p>
+
+            <p>I deliver <strong>7–9 minute keynotes and talks</strong> designed for opening sessions or post-lunch resets. Each talk is built around a story—not a case study or chart, but a real story about why we build, why culture matters, or why the numbers only make sense if they serve something bigger.</p>
+
+            <h2>Speaking Topics</h2>
+
+            <div style="background: #fff; padding: 2rem; margin: 2rem 0; border-radius: 6px; border-left: 4px solid #c9a961;">
+                <h3 style="color: #1a3a52; font-size: 1.3rem; margin-bottom: 0.5rem;">Stories That Stick</h3>
+                <p>Why meaning beats metrics. The role of story in leadership and culture. Why the best organizations are built by people who remember why they started.</p>
+            </div>
+
+            <div style="background: #fff; padding: 2rem; margin: 2rem 0; border-radius: 6px; border-left: 4px solid #c9a961;">
+                <h3 style="color: #1a3a52; font-size: 1.3rem; margin-bottom: 0.5rem;">Real Success</h3>
+                <p>The cost of faking it. Why brilliant people chase things that don't matter. How to know when you're running toward something vs. running away from something.</p>
+            </div>
+
+            <div style="background: #fff; padding: 2rem; margin: 2rem 0; border-radius: 6px; border-left: 4px solid #c9a961;">
+                <h3 style="color: #1a3a52; font-size: 1.3rem; margin-bottom: 0.5rem;">The Maturity Gap</h3>
+                <p>Everyone needs an adult somewhere. The eight areas where even successful people remain children. How to recognize where you're immature—and find the mentor who can help.</p>
+            </div>
+
+            <h2>Book Jeremy</h2>
+            <p>For speaking inquiries, conference bookings, or to explore collaboration, fill out the form below and we'll connect.</p>
+        </section>
+
+        <!-- BOOKING FORM -->
+        <section class="form-section">
+            <h2>Speaking Inquiry Form</h2>
+            <p>Tell us about your event and what you're looking to accomplish.</p>
+
+            <form name="speaking-inquiry" method="POST" data-netlify="true">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company / Organization</label>
+                    <input type="text" id="company" name="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="event-type">Event Type *</label>
+                    <select id="event-type" name="event-type" required>
+                        <option value="">Select an event type</option>
+                        <option value="conference">Conference</option>
+                        <option value="corporate-retreat">Corporate Retreat</option>
+                        <option value="leadership-summit">Leadership Summit</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-date">Expected Event Date</label>
+                    <input type="date" id="event-date" name="event-date">
+                </div>
+
+                <div class="form-group">
+                    <label for="audience-size">Audience Size (approximate)</label>
+                    <select id="audience-size" name="audience-size">
+                        <option value="">Select size</option>
+                        <option value="50-100">50-100 people</option>
+                        <option value="100-250">100-250 people</option>
+                        <option value="250-500">250-500 people</option>
+                        <option value="500+">500+ people</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="topic">Preferred Topic</label>
+                    <select id="topic" name="topic">
+                        <option value="">Select a topic</option>
+                        <option value="stories-that-stick">Stories That Stick</option>
+                        <option value="real-success">Real Success</option>
+                        <option value="maturity-gap">The Maturity Gap</option>
+                        <option value="other">Other / Open to Recommendations</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about your event *</label>
+                    <textarea id="message" name="message" required placeholder="What challenges does your audience face? What impact are you hoping to create?"></textarea>
+                </div>
+
+                <button type="submit" class="cta-button cta-button-gold" style="width: 100%; padding: 1rem;">Send Inquiry</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jeremy Roseberry. All rights reserved.</p>
+    </footer>
+</body>
+</html>

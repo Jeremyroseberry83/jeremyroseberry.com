@@ -1,14 +1,15 @@
 /* ============================================
    JEREMY ROSEBERRY LEADERSHIP PLATFORM
-   Rachel Cruze Inspired Theme
+   Dark Navy + Gold Theme
    ============================================ */
 
 :root {
-    --teal: #2c5f6f;
-    --teal-light: #3a7a8c;
-    --cream: #f5f3f0;
-    --text-dark: #333;
-    --gold: #d4a574;
+    --navy: #1a3a52;
+    --charcoal: #2a2a2a;
+    --gold: #c9a961;
+    --gold-light: #e8dcc8;
+    --cream: #f8f7f3;
+    --text-dark: #2a2a2a;
     --border: #e0ddd5;
 }
 
@@ -16,10 +17,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
 }
 
 body {
@@ -38,7 +35,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 2rem;
-    background: var(--teal);
+    background: var(--navy);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
@@ -87,87 +84,54 @@ nav a:hover::after {
 }
 
 /* ============================================
-   HERO SECTION - RACHEL CRUZE STYLE
+   HERO SECTION
    ============================================ */
 
 .hero-banner {
     display: grid;
-    grid-template-columns: 45% 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 2rem;
-    padding: 0;
-    background: var(--teal);
+    gap: 3rem;
+    padding: 4rem 2rem;
+    background: var(--navy);
     color: #fff;
-    min-height: 600px;
 }
 
 .hero-image {
     position: relative;
-    overflow: hidden;
-    height: 100%;
 }
 
 .hero-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    margin: 0 auto;
     display: block;
 }
 
-.hero-content {
-    padding: 3rem 3rem 3rem 0;
-}
-
 .hero-content h2 {
-    font-size: 3.5rem;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
     font-weight: 700;
     color: #fff;
-    font-style: italic;
 }
 
 .hero-content p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: rgba(255,255,255,0.95);
+    color: rgba(255,255,255,0.9);
     margin-bottom: 2rem;
 }
 
 .hero-content .subtext {
-    font-size: 0.85rem;
-    color: #fff;
+    font-size: 0.9rem;
+    color: var(--gold);
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     margin-bottom: 1rem;
-}
-
-/* ============================================
-   SOCIAL ICONS (HERO)
-   ============================================ */
-
-.social-icons {
-    display: flex;
-    gap: 1.2rem;
-    margin-top: 2rem;
-}
-
-.social-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background: var(--teal-light);
-    border-radius: 50%;
-    color: #fff;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-size: 1.3rem;
-}
-
-.social-icon:hover {
-    background: var(--gold);
-    transform: translateY(-3px);
 }
 
 /* ============================================
@@ -183,7 +147,7 @@ nav a:hover::after {
 
 .story-section h3 {
     font-size: 2.2rem;
-    color: var(--teal);
+    color: var(--navy);
     margin-bottom: 2rem;
     text-align: center;
     font-weight: 700;
@@ -201,7 +165,7 @@ nav a:hover::after {
 }
 
 .story-highlight {
-    color: var(--teal);
+    color: var(--gold);
     font-weight: 600;
 }
 
@@ -224,7 +188,7 @@ nav a:hover::after {
 
 .featured-content h3 {
     font-size: 0.85rem;
-    color: var(--teal);
+    color: var(--gold);
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 1rem;
@@ -233,7 +197,7 @@ nav a:hover::after {
 
 .featured-content h4 {
     font-size: 2rem;
-    color: var(--teal);
+    color: var(--navy);
     margin-bottom: 1rem;
     font-weight: 700;
 }
@@ -252,25 +216,25 @@ nav a:hover::after {
 .cta-button {
     display: inline-block;
     padding: 0.9rem 2rem;
-    background: var(--teal);
+    background: var(--navy);
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
     font-weight: 600;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    border: 2px solid var(--teal);
+    border: 2px solid var(--navy);
     cursor: pointer;
 }
 
 .cta-button:hover {
     background: transparent;
-    color: var(--teal);
+    color: var(--navy);
 }
 
 .cta-button-gold {
     background: var(--gold);
-    color: #fff;
+    color: var(--navy);
     border-color: var(--gold);
 }
 
@@ -290,7 +254,7 @@ nav a:hover::after {
 
 .timeline-section h3 {
     font-size: 2.2rem;
-    color: var(--teal);
+    color: var(--navy);
     margin-bottom: 3rem;
     text-align: center;
     font-weight: 700;
@@ -310,7 +274,7 @@ nav a:hover::after {
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     text-align: center;
-    border-top: 3px solid var(--teal);
+    border-top: 3px solid var(--gold);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -321,14 +285,14 @@ nav a:hover::after {
 
 .timeline-card .year {
     font-size: 2rem;
-    color: var(--teal);
+    color: var(--gold);
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
 
 .timeline-card .title {
     font-size: 1.1rem;
-    color: var(--teal);
+    color: var(--navy);
     font-weight: 600;
     line-height: 1.5;
 }
@@ -338,7 +302,7 @@ nav a:hover::after {
    ============================================ */
 
 footer {
-    background: var(--teal);
+    background: var(--navy);
     color: #fff;
     text-align: center;
     padding: 2rem;
@@ -363,7 +327,7 @@ footer p {
 
 .form-section h2 {
     font-size: 2rem;
-    color: var(--teal);
+    color: var(--navy);
     margin-bottom: 0.5rem;
     font-weight: 700;
 }
@@ -381,7 +345,7 @@ footer p {
 .form-group label {
     display: block;
     font-weight: 600;
-    color: var(--teal);
+    color: var(--navy);
     margin-bottom: 0.5rem;
     font-size: 0.95rem;
 }
@@ -402,8 +366,8 @@ footer p {
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: var(--teal);
-    box-shadow: 0 0 0 3px rgba(44, 95, 111, 0.1);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
 }
 
 .form-group textarea {
@@ -427,14 +391,14 @@ main {
 
 .page-section h1 {
     font-size: 2.5rem;
-    color: var(--teal);
+    color: var(--navy);
     margin-bottom: 1rem;
     font-weight: 700;
 }
 
 .page-section h2 {
     font-size: 1.8rem;
-    color: var(--teal);
+    color: var(--navy);
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-weight: 700;
@@ -455,14 +419,18 @@ main {
     text-align: center;
 }
 
-.text-teal {
-    color: var(--teal);
+.text-gold {
+    color: var(--gold);
+}
+
+.text-navy {
+    color: var(--navy);
 }
 
 .divider {
     width: 60px;
     height: 3px;
-    background: var(--teal);
+    background: var(--gold);
     margin: 1.5rem auto;
 }
 
@@ -471,7 +439,7 @@ main {
     width: 100%;
     max-width: 80px;
     height: 2px;
-    background: var(--teal);
+    background: var(--gold);
     margin: 1rem 0;
 }
 
@@ -487,19 +455,16 @@ main {
 
     .hero-banner {
         grid-template-columns: 1fr;
-        min-height: auto;
-    }
-
-    .hero-image {
-        max-height: 300px;
-    }
-
-    .hero-content {
         padding: 2rem;
+        gap: 2rem;
     }
 
     .hero-content h2 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
+    }
+
+    .hero-image img {
+        max-width: 300px;
     }
 
     .story-section,
@@ -533,16 +498,10 @@ main {
     }
 
     .hero-content h2 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
-    .social-icons {
-        gap: 0.8rem;
-    }
-
-    .social-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+    .hero-image img {
+        max-width: 250px;
     }
 }
