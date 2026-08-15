@@ -181,8 +181,18 @@ const BAND_TONES = {
   primary: PRIMARY,
   deep: PRIMARY_DEEP,
   ink: INK,
-  taupe: TAUPE
+  taupe: TAUPE,
+  gold: SECONDARY
 };
+
+/**
+ * Gold is the one band tone light enough that white type fails on it — white
+ * on #c9a961 is 2.25:1, under the floor even at display size. So the band
+ * flips its whole ink set to navy (5.3:1) and swaps the gold CTA for the navy
+ * one, since a gold button on a gold ground is not a button. Any future light
+ * tone should be added here rather than special-cased at the call site.
+ */
+const LIGHT_TONES = new Set(['gold']);
 
 export function PageTopBand({ eyebrow, title, subtitle, watermark, image, tone = 'ink', cta, onCta }) {
   const wash = BAND_TONES[tone] || INK;
@@ -190,8 +200,16 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, tone =
     [PRIMARY]: '26,58,82',
     [PRIMARY_DEEP]: '18,41,59',
     [INK]: '42,42,42',
-    [TAUPE]: '107,107,107'
+    [TAUPE]: '107,107,107',
+    [SECONDARY]: '201,169,97'
   }[wash] || '42,42,42';
+
+  const light = LIGHT_TONES.has(tone);
+  const ink = light ? PRIMARY : '#ffffff';
+  const eyebrowInk = light ? PRIMARY_DEEP : SECONDARY;
+  // Solid rather than 82% on light tones: navy at 82% over gold falls to
+  // 3.21:1, under the floor for 18px body text. Full strength is 5.27:1.
+  const subInk = light ? PRIMARY : 'rgba(255,255,255,0.82)';
 
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: wash }}>
@@ -250,21 +268,21 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, tone =
             where the image sits behind a vertical wash instead. */}
         <div className={image ? 'w-full md:w-7/12' : undefined}>
           {eyebrow && (
-            <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11, marginBottom: 18 }}>
+            <p className="eyebrow-wide" style={{ color: eyebrowInk, fontSize: 11, marginBottom: 18 }}>
               {eyebrow}
             </p>
           )}
-          <h1 className="display" style={{ color: '#ffffff', fontSize: 'clamp(2.4rem, 6vw, 4.4rem)', maxWidth: '16ch' }}>
+          <h1 className="display" style={{ color: ink, fontSize: 'clamp(2.4rem, 6vw, 4.4rem)', maxWidth: '16ch' }}>
             {title}
           </h1>
           {subtitle && (
-            <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 18, lineHeight: 1.7, maxWidth: '46ch', marginTop: 22 }}>
+            <p style={{ color: subInk, fontSize: 18, lineHeight: 1.7, maxWidth: '46ch', marginTop: 22 }}>
               {subtitle}
             </p>
           )}
           {cta && (
             <div style={{ marginTop: 32 }}>
-              <Button variant="gold" onClick={onCta}>
+              <Button variant={light ? 'navy' : 'gold'} onClick={onCta}>
                 {cta}
               </Button>
             </div>
