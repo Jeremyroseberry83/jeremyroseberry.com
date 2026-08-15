@@ -93,7 +93,7 @@ export default function Site() {
       case 'books':
         return <BooksPage onContactClick={openContact} />;
       case 'entrepreneur':
-        return <EntrepreneurPage onContactClick={openContact} />;
+        return <EntrepreneurPage onContactClick={openContact} onNavigate={handleNavClick} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }
