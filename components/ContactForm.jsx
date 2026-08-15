@@ -121,8 +121,13 @@ export default function ContactForm({ onClose, initialType, initialMessage }) {
               <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 12 }}>
                 Booking enquiry
               </p>
+              {/* "Let's connect" rather than "Let's find a date": this modal
+                  also handles podcast, press and content enquiries, and a
+                  date-shaped headline quietly tells three of those five people
+                  they are in the wrong place. The eyebrow above still names
+                  the function, so the ask stays clear. */}
               <h2 className="display" style={{ color: '#ffffff', fontSize: 28 }}>
-                Let’s find a date
+                Let’s connect
               </h2>
             </>
           )}
