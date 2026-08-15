@@ -30,7 +30,7 @@ export default function Translate() {
   }, []);
 
   return (
-    // Icon-only, deliberately secondary to "Get in touch" — a language
+    // Icon-only, deliberately secondary to the booking button — a language
     // switcher is a utility, not the primary action. The chrome lives on our
     // own wrapper, not on Google's .goog-te-gadget-simple, which only exists
     // once its script has loaded.

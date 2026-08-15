@@ -3,7 +3,12 @@ import { ArrowUpRight } from 'lucide-react';
 import { PageTopBand, SectionHead, BookingCTA, Button, SECONDARY, SLATE, MUTED, BG } from './ui';
 
 /**
- * The content archive.
+ * "Helpful Stuff" — the content archive.
+ *
+ * The sub-focus of the site, and the reason someone who is not ready to book
+ * still has a reason to stay. It is not a dead end: the page closes by
+ * pointing back at the booking ask, because every piece here is material a
+ * keynote is built from.
  *
  * Posts live in this array rather than a CMS on purpose: at this volume a CMS
  * is a monthly bill and a second login to forget. When the archive passes
@@ -13,43 +18,39 @@ import { PageTopBand, SectionHead, BookingCTA, Button, SECONDARY, SLATE, MUTED, 
  * Each entry:
  *   { title, kind, date, blurb, url }
  *   kind — 'Essay' | 'Episode' | 'Video' | 'Talk'
- *   url  — external link, or leave blank for "coming soon" styling
+ *   url  — external link; leave blank and the row renders without a link
  */
 const POSTS = [];
 
 const KINDS = ['All', 'Essay', 'Episode', 'Video', 'Talk'];
 
-export default function StoriesPage({ onContactClick }) {
+export default function HelpfulPage({ onContactClick }) {
   const [filter, setFilter] = React.useState('All');
-
   const visible = filter === 'All' ? POSTS : POSTS.filter((p) => p.kind === filter);
 
   return (
     <div>
       <PageTopBand
-        eyebrow="Stories"
+        eyebrow="Helpful stuff"
         title="Notes from the middle"
-        subtitle="Short pieces, episodes and talks on leadership, mindset and the mechanics of building something. The same material the keynotes are built from."
+        subtitle="Essays, episodes and talks on leadership, mindset and the mechanics of building something. The same material the keynotes are built from — free, no gate, no funnel."
         watermark="Notes"
       />
 
       <section className="py-16 md:py-28 px-6" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-6xl mx-auto">
           {POSTS.length === 0 ? (
-            /* ============================================================
-               Empty state. It says what is coming and still asks for
-               something, rather than being a dead end with "coming soon"
-               and no way forward.
-               ============================================================ */
+            /* Empty state that still asks for something, rather than a dead
+               end reading "coming soon" with nowhere to go. */
             <div style={{ maxWidth: '58ch' }}>
               <SectionHead
                 eyebrow="Just getting started"
                 title="The archive opens soon"
-                intro="First pieces are being written now — on the honest middle, on leading without the answer, and on what a decade of building actually taught versus what it looked like from outside."
+                intro="First pieces are being written now — on the honest middle, on leading without the answer, and on what a decade of building actually taught versus what it looked like from the outside."
               />
               <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.8, marginTop: 24, marginBottom: 32 }}>
-                Want them as they publish? Say so and you will be on the short list — no sequence, no
-                daily email, just the new thing when there is a new thing.
+                Want them as they publish? Say so and you are on the short list. No sequence, no daily
+                email — just the new thing when there is a new thing.
               </p>
               <Button variant="navy" onClick={() => onContactClick && onContactClick('Content')}>
                 Send me new pieces
@@ -131,17 +132,12 @@ export default function StoriesPage({ onContactClick }) {
             title="The talks come from here"
             intro="Every keynote starts as one of these. If a piece lands with you, it can be built out into a session for your room."
           />
-          <div className="mt-10 flex justify-center">
-            <Button variant="navy" onClick={() => onContactClick && onContactClick('Speaking')}>
-              Talk about an event
-            </Button>
-          </div>
         </div>
       </section>
 
       <BookingCTA
         onContactClick={onContactClick}
-        context="Content"
+        context="Speaking"
         title="Want this in front of your audience?"
         body="The written pieces and the stage material are the same ideas in different rooms. Tell me which room you are filling."
       />

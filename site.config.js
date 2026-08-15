@@ -51,18 +51,23 @@ module.exports = {
     GRAY_ACCENT: '#999999'
   },
 
-  // `id` must match a case in pages/index.jsx renderPage().
+  // Two pages, deliberately. `id` must match a case in pages/index.jsx
+  // renderPage().
+  //
+  // "Let's Meet" is the whole sales and booking case in one scroll — how to
+  // book, what he speaks about, the podcast pitch, and the bio. "Helpful
+  // Stuff" is the content archive that feeds it. A visitor who is not ready
+  // to book has exactly one other place to go, and that place still ends in
+  // the booking ask.
   nav: [
-    { name: 'Speaking', id: 'speaking' },
-    { name: 'Podcasts', id: 'podcasts' },
-    { name: 'Stories', id: 'stories' },
-    { name: 'About', id: 'about' }
+    { name: "Let's Meet", id: 'meet' },
+    { name: 'Helpful Stuff', id: 'helpful' }
   ],
 
   // Booking is the entire point of this site. One label, used on every primary
   // button, so the ask is identical everywhere the visitor looks.
   cta: {
-    primary: 'Book Jeremy',
+    primary: 'Book To Speak',
     secondary: 'Check availability'
   },
 

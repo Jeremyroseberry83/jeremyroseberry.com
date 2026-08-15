@@ -3,10 +3,8 @@ import Head from 'next/head';
 import { Menu, X, Mail } from 'lucide-react';
 import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
-import SpeakingPage from '../components/SpeakingPage';
-import PodcastsPage from '../components/PodcastsPage';
-import StoriesPage from '../components/StoriesPage';
-import AboutPage from '../components/AboutPage';
+import MeetPage from '../components/MeetPage';
+import HelpfulPage from '../components/HelpfulPage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
 import { Button } from '../components/ui';
@@ -28,25 +26,15 @@ const META = {
     description:
       'Keynotes, event hosting and podcast conversations on leadership, mindset and what building a business actually costs. Book Jeremy Roseberry.'
   },
-  speaking: {
-    title: `Book ${company.name} to speak — Keynotes & Hosting`,
+  meet: {
+    title: `Book ${company.name} — Keynotes, Hosting & Podcasts`,
     description:
-      'Signature keynotes on mindset, leadership and the honest middle of building a business. Formats, topics and availability for event organisers.'
+      'Signature keynotes on mindset, leadership and the honest middle of building a business. Topics, formats, bios and availability for event organisers and podcast producers.'
   },
-  podcasts: {
-    title: `${company.name} — Podcast Guest & Media`,
-    description:
-      'Book Jeremy Roseberry as a podcast guest. Conversation topics, press kit, headshots and bios for producers.'
-  },
-  stories: {
-    title: `Stories & Notes — ${company.name}`,
+  helpful: {
+    title: `Helpful Stuff — ${company.name}`,
     description:
       'Essays, episodes and talks on leadership, mindset and the mechanics of building something worth building.'
-  },
-  about: {
-    title: `About ${company.name} — Entrepreneur, Speaker, Host`,
-    description:
-      'Operator first, speaker second. Background, current ventures, and copy-and-paste bios for event programs.'
   }
 };
 
@@ -83,14 +71,10 @@ export default function Site() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'speaking':
-        return <SpeakingPage onContactClick={openContact} />;
-      case 'podcasts':
-        return <PodcastsPage onContactClick={openContact} />;
-      case 'stories':
-        return <StoriesPage onContactClick={openContact} />;
-      case 'about':
-        return <AboutPage onContactClick={openContact} />;
+      case 'meet':
+        return <MeetPage onContactClick={openContact} />;
+      case 'helpful':
+        return <HelpfulPage onContactClick={openContact} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }

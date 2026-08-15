@@ -9,6 +9,14 @@ funnel that feeds them. Every page ends in the same booking ask, and every
 primary button on the site says the same words. If a change makes the booking
 ask harder to find, it is the wrong change.
 
+## Three pages, on purpose
+
+| Route | Job |
+|---|---|
+| **Home** | One full-screen hero. No sections, no footer. The only ways out are the nav and one button, so an undecided visitor has to make a choice instead of scrolling past the ask. |
+| **Let's Meet** | The whole sales and booking case in one scroll. Long on purpose — an organiser who is genuinely evaluating reads all of it; splitting it into four short pages would just add three chances to leave. |
+| **Helpful Stuff** | The content archive. The reason someone not ready to book still has somewhere to go — and it closes by pointing back at the booking ask. |
+
 ## Assets still needed
 
 The build references these paths. Until the files exist, those spots render as
@@ -32,19 +40,19 @@ Images are rendered grayscale in CSS, so colour originals are fine to drop in.
 Search the project for `[` to find every bracketed placeholder. The ones that
 matter most, in order of what they cost:
 
-1. **`components/AboutPage.jsx`** — the whole biography is bracketed. Nobody
-   books a speaker whose About page is generic. The specific setback matters
-   more than the specific win.
-2. **`components/ui.jsx` → `Testimonials`** — every page passes an empty array,
-   so no testimonials render anywhere. For a speaker this is the single
-   highest-converting block on the site. Three real quotes from past organisers
-   is the most valuable hour of work available here.
-3. **`components/SpeakingPage.jsx` → `TALKS`** — three signature talks are
-   drafted from the brand positioning. They read well, but they need Jeremy's
-   sign-off before an organiser sees them.
-4. **`components/PodcastsPage.jsx` → `APPEARANCES`** — empty, and handled with
-   an honest empty state rather than fake logos.
-5. **`components/StoriesPage.jsx` → `POSTS`** — empty, with an empty state that
+1. **`components/MeetPage.jsx` → the bio section** — the whole biography is
+   bracketed. Nobody books a speaker whose background reads generic, and the
+   specific setback matters more than the specific win.
+2. **`components/MeetPage.jsx` → `TESTIMONIALS`** — empty, so nothing renders.
+   For a speaker this is the single highest-converting block on the site.
+   Three real quotes from past organisers is the most valuable hour of work
+   available anywhere in this repo.
+3. **`components/MeetPage.jsx` → `TALKS`** — three signature talks are drafted
+   from the brand positioning. They read well, but they need Jeremy's sign-off
+   before an organiser sees them.
+4. **`components/MeetPage.jsx` → `STATS`** — empty. Only fill with numbers he
+   would happily defend from the stage.
+5. **`components/HelpfulPage.jsx` → `POSTS`** — empty, with an empty state that
    still asks for something rather than dead-ending.
 6. **`site.config.js` → `social`** — blank entries are skipped rather than
    rendering dead links. Fill them in as accounts go live.
@@ -62,8 +70,10 @@ on the page.
 - `components/ui.jsx` — the shared design system (Button, SectionHead,
   PageTopBand, TopicCards, BookingCTA, Testimonials…)
 - `components/HomePage.jsx` — one full-viewport hero, nothing else, no footer
-- `components/SpeakingPage.jsx`, `PodcastsPage.jsx`, `StoriesPage.jsx`,
-  `AboutPage.jsx` — the four inner pages
+- `components/MeetPage.jsx` — **"Let's Meet"**: the entire booking case in one
+  scroll — how to book, the talks, formats and logistics, why him, the podcast
+  pitch, and the bio with copy-paste assets
+- `components/HelpfulPage.jsx` — **"Helpful Stuff"**: the content archive
 - `components/ContactForm.jsx` — the booking enquiry modal (Netlify Forms)
 - `styles/globals.css` — brand tokens, type classes, hero geometry, motion
 
@@ -103,9 +113,10 @@ on the page.
 
 This is a single-route app — pages swap in React state, so the whole site is
 one URL. That means an organiser cannot send a colleague a direct link to the
-speaking page, and Google only ever indexes one page. **Converting to real
-routes (`/speaking`, `/podcasts`, `/about`) is the highest-value SEO and
-sharing change available here.** It is a structural change, not a config tweak.
+booking page, and Google only ever indexes one page. **Converting to real
+routes (`/lets-meet`, `/helpful-stuff`) is the highest-value SEO and sharing
+change available here.** It is a structural change, not a config tweak — but
+with only two inner pages it is now a small one.
 
 ## Local development
 
