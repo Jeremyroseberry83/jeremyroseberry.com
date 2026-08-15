@@ -3,7 +3,6 @@ import {
   PageTopBand,
   SectionHead,
   Testimonials,
-  TopicCards,
   BookingCTA,
   Button,
   SECONDARY,
@@ -15,37 +14,6 @@ import {
 } from './ui';
 import { cta } from '../site.config';
 
-/**
- * The four things underneath every decision, in the order Jeremy puts them.
- * The order IS the content — Finances last is the whole argument — so if these
- * are ever reordered, the eyebrow labels need rewriting too.
- */
-const PILLARS = [
-  {
-    eyebrow: 'Principle',
-    title: 'Faith',
-    body:
-      'God is first. Church is the center of our world, and our creativity and influence in every sphere flows from it.'
-  },
-  {
-    eyebrow: 'Foundation',
-    title: 'Family',
-    body:
-      'Married 18 years to Kourtney. Two teenagers. They teach me more about leadership than any conference. Family stability is the ultimate competitive advantage.'
-  },
-  {
-    eyebrow: 'Practice',
-    title: 'Fitness',
-    body:
-      'Stewarding my body. Physical discipline mirrors mental discipline — how you show up for your body tells me how you’ll show up for a partnership.'
-  },
-  {
-    eyebrow: 'Stewardship',
-    title: 'Finances',
-    body:
-      'Money just makes you more of who you already are. It does not rule my family — but every now and then it buys happiness, and it buys radical generosity.'
-  }
-];
 
 /**
  * The talk catalogue.
@@ -196,25 +164,6 @@ export default function SpeakingPage({ onContactClick }) {
         cta={cta.primary}
         onCta={() => onContactClick && onContactClick('Speaking')}
       />
-
-      {/* ============================================================
-          MY FOUNDATION
-          Sits directly under the banner: an organiser deciding whether to
-          put someone on their stage is deciding about the person before
-          the product, so the values come before the talk list.
-          ============================================================ */}
-      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: '#ffffff' }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            eyebrow="This is me"
-            title="My Foundation"
-            intro="Four things sit underneath every call I make. The order is the point."
-          />
-          <div className="mt-14">
-            <TopicCards cards={PILLARS} />
-          </div>
-        </div>
-      </section>
 
       {/* SIGNATURE TALKS */}
       <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>

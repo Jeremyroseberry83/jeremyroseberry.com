@@ -3,6 +3,7 @@ import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import {
   PageTopBand,
   SectionHead,
+  TopicCards,
   BookingCTA,
   Button,
   SECONDARY,
@@ -67,6 +68,37 @@ const displayUrl = (url) => url.replace(/^https?:\/{2}/, '').replace(/^www\./, '
  * operating. Access Global is filed there on that reading (Strategic Partner,
  * not operator); move it back to `capital` if the day-to-day says otherwise.
  */
+/**
+ * The four things underneath every decision, in the order Jeremy puts them.
+ * The order IS the content — Finances last is the whole argument — so if these
+ * are ever reordered, the eyebrow labels need rewriting too.
+ */
+const PILLARS = [
+  {
+    eyebrow: 'Principle',
+    title: 'Faith',
+    body:
+      'God is first. Church is the center of our world, and our creativity and influence in every sphere flows from it.'
+  },
+  {
+    eyebrow: 'Foundation',
+    title: 'Family',
+    body:
+      'Married 18 years to Kourtney. Two teenagers. They teach me more about leadership than any conference. Family stability is the ultimate competitive advantage.'
+  },
+  {
+    eyebrow: 'Practice',
+    title: 'Fitness',
+    body:
+      'Stewarding my body. Physical discipline mirrors mental discipline — how you show up for your body tells me how you’ll show up for a partnership.'
+  },
+  {
+    eyebrow: 'Stewardship',
+    title: 'Finances',
+    body:
+      'Money just makes you more of who you already are. It does not rule my family — but every now and then it buys happiness, and it buys radical generosity.'
+  }
+];
 const DISCIPLINES = [
   { key: 'people', name: 'People', blurb: 'The speaking and the writing. The one platform that is not a company.' },
   { key: 'addvalue', name: 'Add Value', blurb: 'Advisory seats where the job is judgement and relationships, not headcount.' },
@@ -207,7 +239,26 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
       />
 
       {/* ============================================================
-          1 — MY WHY
+          1 — MY FOUNDATION
+          Sits directly under the banner: an organiser deciding whether to
+          put someone on their stage is deciding about the person before
+          the product, so the values come before the talk list.
+          ============================================================ */}
+      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>
+        <div className="max-w-6xl mx-auto">
+          <SectionHead
+            eyebrow="This is me"
+            title="My Foundation"
+            intro="Four things sit underneath every call I make. The order is the point."
+          />
+          <div className="mt-14">
+            <TopicCards cards={PILLARS} />
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          2 — MY WHY
           The taxonomy and the argument, which used to be two sections
           making the same point, are now one.
           ============================================================ */}
@@ -288,7 +339,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
       </section>
 
       {/* ============================================================
-          2 — THE PORTFOLIO, ONE AT A TIME
+          3 — THE PORTFOLIO, ONE AT A TIME
           ============================================================ */}
       <section className="px-6 py-16 md:py-28" style={{ backgroundColor: BG }}>
         <div className="max-w-6xl mx-auto">
@@ -413,7 +464,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
       </section>
 
       {/* ============================================================
-          3 — SCALE
+          4 — SCALE
           Gold ground, navy figures, brown labels, white rule.
 
           Colour note: white type was asked for here and is used only for the
@@ -460,7 +511,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
       </section>
 
       {/* ============================================================
-          4 — THE LINE TO REMEMBER
+          5 — THE LINE TO REMEMBER
           Kept as a single display line rather than three panels, now that
           the argument itself lives at the top of the page.
           ============================================================ */}
