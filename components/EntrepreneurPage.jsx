@@ -121,19 +121,6 @@ const VENTURES = [
       'Chief Operating Officer. I run the operating side: the governance, the membership standard, and the execution behind every gathering — including the inaugural voyage.'
   },
   {
-    // DRAFT COPY — grounded in the venture name (4IR) and the Seco Bio link.
-    // Correct the sector detail if the mandate is broader than deep tech.
-    name: 'Four IR Ventures',
-    role: 'Co-founder, Chief Business Officer',
-    discipline: 'operations',
-    url: 'https://secobio.com',
-    thumb: '/images/ventures/four-ir-ventures.jpg',
-    description:
-      'Venture building at the edge of the Fourth Industrial Revolution — backing deep-technology companies and getting them from laboratory result to commercial reality. Seco Bio is the first.',
-    value:
-      'Co-founder and Chief Business Officer. I build the commercial side: partnerships, capital, and the path from first conversation to first revenue.'
-  },
-  {
     name: 'Roseberry Capital',
     role: 'Founder',
     discipline: 'capital',
@@ -190,6 +177,19 @@ const VENTURES = [
     description:
       'Lifestyle services and luxury home concierge for distinguished clientele. Recurring revenue model, acquisition-ready framework.',
     value: 'Built by Kourtney. Scaled from 8 to 20+ clients. Turnkey systems. Ready to scale.'
+  },
+  {
+    // DRAFT COPY — grounded in the venture name (4IR) and the Seco Bio link.
+    // Correct the sector detail if the mandate is broader than deep tech.
+    name: '4 IR Group',
+    role: 'Co-founder, Chief Business Officer',
+    discipline: 'operations',
+    url: 'https://secobio.com',
+    thumb: '/images/ventures/four-ir-ventures.jpg',
+    description:
+      'Venture building at the edge of the Fourth Industrial Revolution — backing deep-technology companies and getting them from laboratory result to commercial reality. Seco Bio is the first.',
+    value:
+      'Co-founder and Chief Business Officer. I build the commercial side: partnerships, capital, and the path from first conversation to first revenue.'
   }
 ];
 
@@ -213,16 +213,12 @@ const SCALE = [
 ];
 
 export default function EntrepreneurPage({ onContactClick, onNavigate }) {
-  // The rail follows the discipline order above rather than the order the
-  // ventures happen to be declared in, so the two halves of the page tell the
-  // same story instead of contradicting each other.
-  const ordered = React.useMemo(
-    () =>
-      DISCIPLINES.flatMap((d) => VENTURES.filter((v) => v.discipline === d.key)).concat(
-        VENTURES.filter((v) => !DISCIPLINES.some((d) => d.key === v.discipline))
-      ),
-    []
-  );
+  // The rail runs in declaration order. It used to sort by discipline so the
+  // two halves of the page matched, but the running order is now set
+  // deliberately rather than derived — so reordering the rail means moving a
+  // block in VENTURES above, and nothing else. Each venture still carries its
+  // `discipline`, which is what the panel's eyebrow and the My Why counts read.
+  const ordered = VENTURES;
 
   const [active, setActive] = React.useState(ordered[0].name);
   const current = ordered.find((v) => v.name === active) || ordered[0];
