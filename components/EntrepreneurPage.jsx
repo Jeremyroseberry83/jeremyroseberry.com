@@ -245,7 +245,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
             maxWidth="62ch"
             eyebrow="This is me"
             title="My Foundation"
-            intro="This is my four-legged stool. Faith, family, fitness, finances — in that order, and every leg load-bearing. Pull one and the whole thing tips. Most people who look like they are coming apart for no obvious reason are just short a leg. Everything else I build sits on top of these four."
+            intro="This is my four-legged stool. Faith, family, fitness, finances — in that order, and every leg load-bearing. Pull one and the whole thing tips. If I ever look like I am coming apart — or just off — it is because one of these four is off, and I need to recalibrate my rhythms before I try to fix anything else. Everything I build sits on top of these four."
           />
           <div className="mt-14">
             <TopicCards cards={PILLARS} />
