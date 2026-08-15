@@ -72,10 +72,13 @@ module.exports = {
   },
 
   // Blank entries are skipped by the footer social row — better than shipping
-  // dead links. Fill each in as the account goes live.
+  // dead links. Fill each in as the account goes live. Keys must match those
+  // in SOCIAL_ICONS in pages/index.jsx, and these URLs are also what the
+  // Person schema in pages/_document.jsx publishes as `sameAs`, which is how
+  // search engines tie the site and the profiles into one identity.
   social: {
-    linkedin: '',
-    instagram: '',
+    linkedin: 'https://www.linkedin.com/in/jeremy-roseberry-8264891a1/',
+    instagram: 'https://www.instagram.com/jeremyroseberry_/',
     youtube: '',
     x: ''
   },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, Mic, Volume2, Star, Play, Headphones } from 'lucide-react';
+import { Download, Mic, Volume2, Star, Play, Headphones, Music, Youtube, Radio } from 'lucide-react';
 import { PageTopBand, SectionHead, BookingCTA, Button, SECONDARY, SECONDARY_DEEP, SLATE, MUTED, INK, BG } from './ui';
 
 /**
@@ -32,14 +32,26 @@ const STATS = [];
 
 const STAT_ICONS = { download: Download, mic: Mic, volume: Volume2, star: Star };
 
-/** Set `url` on each platform once the show is listed there. */
+/**
+ * Set `url` on each platform once the show is listed there.
+ *
+ * PLACEHOLDER MARKS: these tiles use each platform's brand colour with a
+ * generic glyph and the name set in this site's own typeface. They are NOT the
+ * platforms' logos and are not meant to pass as them — an approximated
+ * trademark drawn from memory comes out wrong, and a wrong logo reads worse
+ * than no logo. Every platform publishes official badge artwork free (Apple
+ * Podcasts Identity Guidelines, Spotify Branding, YouTube Brand Resources,
+ * iHeart, Amazon Music, Pandora). Download the badges for the platforms the
+ * show actually lands on, drop them in /public/images/platforms/, and add a
+ * `badge` path here — the tile will use it in place of the glyph.
+ */
 const PLATFORMS = [
-  { name: 'Apple Podcasts', url: '' },
-  { name: 'Spotify', url: '' },
-  { name: 'YouTube', url: '' },
-  { name: 'iHeartRadio', url: '' },
-  { name: 'Amazon Music', url: '' },
-  { name: 'Pandora', url: '' }
+  { name: 'Apple Podcasts', url: '', color: '#9933CC', icon: Mic },
+  { name: 'Spotify', url: '', color: '#1DB954', icon: Music },
+  { name: 'YouTube', url: '', color: '#FF0000', icon: Youtube },
+  { name: 'iHeartRadio', url: '', color: '#C6002B', icon: Radio },
+  { name: 'Amazon Music', url: '', color: '#25D1DA', icon: Headphones },
+  { name: 'Pandora', url: '', color: '#3668FF', icon: Play }
 ];
 
 const EPISODES = [
@@ -359,27 +371,33 @@ export default function BooksPage({ onContactClick }) {
               {PLATFORMS.map((p) => {
                 const live = Boolean(p.url);
                 const Tag = live ? 'a' : 'div';
+                const Glyph = p.icon;
                 return (
                   <Tag
                     key={p.name}
                     {...(live ? { href: p.url, target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    className="flex items-center justify-center text-center px-4 py-4"
+                    className="flex items-center gap-3 px-4 py-4"
                     style={{
                       backgroundColor: '#ffffff',
-                      borderTop: `2px solid ${live ? SECONDARY : '#e2e2e2'}`,
                       border: '1px solid #e2e2e2',
-                      borderTopWidth: 2,
-                      borderTopColor: live ? SECONDARY : '#dcdcdc',
+                      borderLeft: `3px solid ${p.color}`,
                       color: SLATE,
                       fontSize: 13,
                       fontWeight: 600,
-                      letterSpacing: '0.06em',
-                      textTransform: 'uppercase',
+                      letterSpacing: '0.03em',
                       minHeight: 66,
-                      opacity: live ? 1 : 0.55
+                      opacity: live ? 1 : 0.72,
+                      transition: 'box-shadow 160ms ease, opacity 160ms ease'
+                    }}
+                    onMouseOver={(e) => {
+                      if (live) e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.10)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.boxShadow = 'none';
                     }}
                   >
-                    {p.name}
+                    <Glyph size={20} strokeWidth={1.9} style={{ color: p.color, flexShrink: 0 }} />
+                    <span>{p.name}</span>
                   </Tag>
                 );
               })}
