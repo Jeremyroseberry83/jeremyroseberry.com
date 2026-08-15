@@ -192,7 +192,7 @@ export default function SpeakingPage({ onContactClick }) {
         title="Signature Talks"
         subtitle="Keynotes, workshops, fireside conversations. Built for your room."
         image="/images/headers/speaking.jpg"
-        tone="gold"
+        tone="ink"
         cta={cta.primary}
         onCta={() => onContactClick && onContactClick('Speaking')}
       />

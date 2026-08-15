@@ -186,11 +186,15 @@ const BAND_TONES = {
 };
 
 /**
- * Gold is the one band tone light enough that white type fails on it — white
- * on #c9a961 is 2.25:1, under the floor even at display size. So the band
- * flips its whole ink set to navy (5.3:1) and swaps the gold CTA for the navy
- * one, since a gold button on a gold ground is not a button. Any future light
- * tone should be added here rather than special-cased at the call site.
+ * Light band tones. Currently unused — the gold Speaking banner was tried and
+ * reverted to charcoal — but kept because the handling is the non-obvious part
+ * and would otherwise be rediscovered from scratch.
+ *
+ * Gold is light enough that white type fails on it: white on #c9a961 is
+ * 2.25:1, under the floor even at display size. A tone listed here flips the
+ * band's whole ink set to navy (5.3:1) and swaps the gold CTA for the navy
+ * one, since a gold button on a gold ground is not a button. Add any future
+ * light tone here rather than special-casing it at the call site.
  */
 const LIGHT_TONES = new Set(['gold']);
 
