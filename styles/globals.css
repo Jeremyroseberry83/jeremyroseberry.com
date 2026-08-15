@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #3d4654;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Google Translate widget — trim Google's default chrome and fold it into
+   the nav's icon button instead of Google's bare icon+link. The widget
+   renders as .goog-te-gadget-simple (SIMPLE layout). Every layer below uses
+   position:absolute/inset:0 rather than width/height:100% — Google's own
+   span wrapper around its <a> collapses to 0-height content, which breaks
+   percentage-based sizing on the anchor below it and makes the button
+   render but not actually be clickable. Don't "simplify" this back to
+   width/height:100% without retesting a real click. */
+.translate-widget .goog-te-gadget {
+  font-size: 0 !important;
+  color: transparent !important;
+  position: absolute !important;
+  inset: 0 !important;
+}
+.translate-widget .goog-te-gadget .goog-te-combo {
+  font-size: 13px;
+  color: #3d4654;
+  border: 1px solid #dce3f7;
+  border-radius: 4px;
+  padding: 6px 8px;
+  background: #fff;
+}
+.translate-widget .goog-logo-link {
+  display: none !important;
+}
+.translate-widget .goog-te-gadget-simple {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+.translate-widget .goog-te-gadget-icon {
+  display: none !important;
+}
+.translate-widget .goog-te-gadget-simple > span {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+}
+.translate-widget .goog-te-gadget-simple a {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  text-decoration: none !important;
+}
+.translate-widget .goog-te-gadget-simple a span {
+  /* Text is rendered by our own always-visible icon instead — Google's
+     "Select Language" text was too easy to miss/mis-render. */
+  color: transparent !important;
+  font-size: 0 !important;
+}
+body {
+  top: 0 !important; /* cancel Google's injected banner offset */
+}
+.skiptranslate iframe {
+  display: none !important;
+}
+
+/* Hero overlay: holds back so page footage/copy lands first. */
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-reveal {
+  opacity: 0;
+  animation: heroReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
+}
+@keyframes scrollCue {
+  0%, 100% { transform: translate(-50%, 0);  opacity: 1; }
+  50%      { transform: translate(-50%, 8px); opacity: 0.35; }
+}
+.scroll-cue span { animation: scrollCue 1.9s ease-in-out infinite; }
+
+/* Video modal: soft fade-in instead of popping in abruptly. */
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.modal-fade-in {
+  animation: modalFadeIn 1s ease forwards;
+}
+
+/* Respect users who ask for reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal { opacity: 1; animation: none; }
+  .scroll-cue span { animation: none; }
+  .modal-fade-in { opacity: 1; animation: none; }
+}
+
+/* Process chevrons point right across a row on desktop. Stacked on mobile a
+   sideways notch reads as a rendering error, so square them off. */
+@media (max-width: 767px) {
+  .process-chevron { clip-path: none !important; }
+}

@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Browsers refuse media served with the wrong content type.
+[[headers]]
+  for = "/videos/*.mov"
+  [headers.values]
+    Content-Type = "video/quicktime"
+
+[[headers]]
+  for = "/videos/*.mp4"
+  [headers.values]
+    Content-Type = "video/mp4"
