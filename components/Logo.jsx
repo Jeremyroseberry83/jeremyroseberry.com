@@ -33,12 +33,11 @@ export default function Logo({ tone = 'dark', size = 'md', framed = false }) {
   const thinColor = isDark ? colors.GRAY_LIGHT : colors.SECONDARY;
   const boldColor = isDark ? '#ffffff' : colors.TAUPE;
 
-  // `framed` sets the lockup in a cream plate with a gold rule around it.
-  // On the home page the header background is the hero artwork's own mid-gray,
-  // and gold measures barely 1.2:1 against that — the wordmark would simply
-  // vanish. Rather than recolour the mark for one page, the plate gives it the
-  // light ground it was designed for, and doubles as the boxed treatment from
-  // the brand mockup.
+  // `framed` sets the lockup in a cream plate with a gold rule around it —
+  // the boxed treatment from the brand mockup. Currently unused: it was added
+  // to rescue the logo from a dark header background, and reads as a sticker
+  // when the bar behind it is already light. Kept because it is the right
+  // treatment for placing the lockup on a photograph or a dark ground.
   const frame = framed
     ? {
         backgroundColor: colors.BG,

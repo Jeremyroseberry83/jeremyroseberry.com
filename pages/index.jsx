@@ -74,25 +74,33 @@ export default function Site() {
 
   const isHome = currentPage === 'home';
 
-  // HOME: the bar reproduces the top edge of the hero artwork so it reads as a
-  // continuation of the image rather than a lid on top of it. The three stops
-  // and the two breakpoints below are measured from the artwork's own top row
-  // of pixels — light gray to 41.1%, taupe to 79.9%, light gray to the edge,
-  // which is exactly where the wedge and the return slash cut across. If the
-  // artwork is ever re-exported with different geometry, re-sample it rather
-  // than eyeballing these numbers.
+  // The bar is cream on every page.
   //
-  // Consequences that drove the rest of the header design: white type is only
-  // 2.6:1 on that gray but 7:1 on the taupe, so the nav items are grouped to
-  // the right where the taupe is; and gold is barely 1.2:1 on the gray, so the
-  // logo gets a cream plate instead of sitting directly on it.
-  const HERO_TOP_GRAY = '#9e9c9d';
-  const HERO_TOP_TAUPE = '#665e5b';
-  const homeNavBg = `linear-gradient(90deg, ${HERO_TOP_GRAY} 0 41.1%, ${HERO_TOP_TAUPE} 41.1% 79.9%, ${HERO_TOP_GRAY} 79.9% 100%)`;
-
-  // INNER PAGES: plain cream.
+  // An earlier version painted the home bar with the artwork's own top-edge
+  // colours (gray to 41.1%, taupe to 79.9%, gray out) so it read as a
+  // continuation of the image. It was abandoned for a reason worth recording,
+  // because it looks like an obvious idea and someone will try it again:
+  //
+  //   No single text colour is legible on both bands. On the gray only dark
+  //   type clears 4.5:1 (white is 2.6:1, gold 1.2:1); on the taupe only light
+  //   type does (charcoal is 2.1:1). That is survivable only if you know which
+  //   band the nav sits in — and you don't. The nav group is right-aligned
+  //   inside a max-width container, so its left edge moves with viewport
+  //   width and crosses the 41.1% boundary somewhere around 1024–1100px.
+  //   Whatever colour you pick, there is a window where the links disappear.
+  //
+  // The logo plate was a patch on the same problem and read as a sticker.
+  // Cream everywhere is legible at every width, matches the inner pages, and
+  // still keys to the artwork through the accent rule below.
   const navBg = colors.BG;
   const navDark = false;
+
+  // The one blend cue that costs nothing: a rule under the bar in the
+  // artwork's taupe, spanning exactly the 41.1%–79.9% band where the wedge
+  // sits in the image below. Measured from the artwork's top row of pixels —
+  // re-sample rather than eyeball if it is ever re-exported.
+  const HERO_TOP_TAUPE = '#665e5b';
+  const homeNavRule = `linear-gradient(90deg, transparent 0 41.1%, ${HERO_TOP_TAUPE} 41.1% 79.9%, transparent 79.9% 100%)`;
 
   const handleNavClick = (pageId) => {
     setCurrentPage(pageId);
@@ -150,18 +158,25 @@ export default function Site() {
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: isHome ? homeNavBg : navBg,
-          borderBottom: isHome ? 'none' : `1px solid rgba(42,42,42,0.10)`,
+          background: navBg,
+          borderBottom: `1px solid rgba(42,42,42,0.10)`,
           boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.10)' : 'none'
         }}
       >
+        {/* Blend cue — lines the bar up with the wedge in the artwork below. */}
+        {isHome && (
+          <span
+            aria-hidden="true"
+            style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 4, background: homeNavRule }}
+          />
+        )}
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
           <button
             onClick={() => handleNavClick('home')}
             style={{ background: 'none', border: 'none', padding: 0 }}
             aria-label={`${company.name} — home`}
           >
-            <Logo tone={navDark ? 'dark' : 'light'} framed={isHome} />
+            <Logo tone={navDark ? 'dark' : 'light'} />
           </button>
 
           {/* On home the links and actions are one right-aligned group so they
@@ -170,8 +185,8 @@ export default function Site() {
           <div className={`hidden lg:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
-              const idle = isHome ? 'rgba(255,255,255,0.86)' : colors.TAUPE;
-              const on = isHome ? '#ffffff' : colors.PRIMARY;
+              const idle = colors.TAUPE;
+              const on = colors.PRIMARY;
               return (
                 <button
                   key={item.id}
