@@ -84,12 +84,19 @@ export default function Site() {
   // group is right-aligned inside a max-width container, so its left edge
   // crosses that 41.1% boundary somewhere around 1024–1100px. Whatever colour
   // you choose, there is a window of viewport widths where the links vanish.
-  // PRIMARY_DEEP rather than PRIMARY so the bar reads as the same navy as the
-  // tagline badge in the hero rather than a lighter block sitting above it.
-  // The badge uses this exact value too — matching them by variable rather
-  // than by eye is what stops them drifting apart again.
-  const navBg = colors.PRIMARY_DEEP;
-  const navDark = true;
+  // Off-white bar on every page. Settled.
+  //
+  // Trade-off, recorded so it is a known cost rather than a surprise: the
+  // "Jeremy" half of the wordmark is gold, and gold on #f5f5f5 measures about
+  // 2:1. That is fine for a logo — wordmarks are exempt from the text
+  // minimums, and "Roseberry" carries the name at 5.4:1 — but it does mean the
+  // gold reads as a tint rather than as type. SECONDARY_DEEP (#a8873f) is the
+  // same hue at 3.5:1 if it ever needs to be firmer.
+  //
+  // Everything else on the bar is comfortable: navy monogram 8.9:1, taupe
+  // links 5.4:1, navy active links 8.9:1.
+  const navBg = colors.BG;
+  const navDark = false;
 
   const handleNavClick = (pageId) => {
     setCurrentPage(pageId);
@@ -146,7 +153,7 @@ export default function Site() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
           background: navBg,
-          boxShadow: scrolled ? '0 2px 14px rgba(0,0,0,0.28)' : 'none'
+          boxShadow: scrolled ? '0 2px 12px rgba(0,0,0,0.12)' : 'none'
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
@@ -164,8 +171,8 @@ export default function Site() {
           <div className={`hidden lg:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
-              const idle = 'rgba(255,255,255,0.82)';
-              const on = '#ffffff';
+              const idle = colors.TAUPE;
+              const on = colors.PRIMARY;
               return (
                 <button
                   key={item.id}
@@ -203,7 +210,7 @@ export default function Site() {
           <button
             className="lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{ color: navDark ? '#ffffff' : colors.SLATE, background: 'none', border: 'none' }}
+            style={{ color: colors.SLATE, background: 'none', border: 'none' }}
             aria-label="Menu"
             aria-expanded={mobileMenuOpen}
           >

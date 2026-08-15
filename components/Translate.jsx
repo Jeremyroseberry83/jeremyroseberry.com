@@ -45,10 +45,10 @@ export default function Translate() {
         width: 36,
         height: 36,
         flexShrink: 0,
-        background: 'rgba(255,255,255,0.10)',
-        border: '1px solid rgba(153,153,153,0.5)',
+        background: '#ffffff',
+        border: '1px solid #d9d9d9',
         borderRadius: '50%',
-        color: '#999999'
+        color: '#6b6b6b'
       }}
     >
       {/* Google's own gadget renders here, invisible but clickable, filling the button. */}
