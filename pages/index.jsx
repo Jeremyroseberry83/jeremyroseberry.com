@@ -54,14 +54,16 @@ export default function Site() {
 
   const isHome = currentPage === 'home';
 
-  // Home keeps a solid charcoal nav bar and the artwork starts below it. The
-  // top edge of the hero graphic is light gray, so white nav type laid over it
-  // is unreadable, and a dark scrim to fix that would visibly dirty the image.
+  // Home gets a solid WHITE nav bar and the artwork starts below it, never
+  // under it. Two reasons: white type laid over the graphic's light-gray
+  // left side washes out (and a scrim heavy enough to fix that would dirty
+  // the top of the image), and white picks up that same light-gray tone so
+  // the bar reads as part of the composition rather than a lid on top of it.
   //
   // Inner pages open on the dark PageTopBand, so the nav is transparent until
   // the reader scrolls, then flips to white.
-  const navBg = isHome ? colors.INK : scrolled ? '#ffffff' : 'transparent';
-  const navDark = isHome || !scrolled;
+  const navBg = isHome || scrolled ? '#ffffff' : 'transparent';
+  const navDark = !isHome && !scrolled;
 
   const handleNavClick = (pageId) => {
     setCurrentPage(pageId);
@@ -116,7 +118,7 @@ export default function Site() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
           backgroundColor: navBg,
-          boxShadow: !isHome && scrolled ? '0 1px 3px rgba(0,0,0,0.08)' : 'none'
+          boxShadow: isHome || scrolled ? '0 1px 3px rgba(0,0,0,0.08)' : 'none'
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">

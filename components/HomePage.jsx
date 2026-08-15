@@ -34,9 +34,9 @@ export default function HomePage({ onContactClick }) {
     <section className="relative" style={{ backgroundColor: INK }}>
       {/* ---------- Desktop / tablet ----------
           Sits below the nav rather than under it. The artwork's top edge is
-          light gray, so white nav type laid over it is unreadable and a dark
-          scrim to fix that would visibly dirty the top of the image. A solid
-          charcoal nav bar above the artwork keeps both clean. */}
+          light gray, so nav type laid over it washes out and a scrim heavy
+          enough to fix that would dirty the top of the image. The white nav
+          bar above it picks up the same light-gray tone instead. */}
       <div className="hidden md:block relative" style={{ width: '100%', aspectRatio: '16 / 9', marginTop: 76 }}>
         <img
           src="/images/hero-honest-stories.jpg"
