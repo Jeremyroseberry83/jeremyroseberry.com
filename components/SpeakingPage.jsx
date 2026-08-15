@@ -158,7 +158,10 @@ export default function SpeakingPage({ onContactClick }) {
         eyebrow="Speaking"
         title="Signature Talks"
         subtitle="Keynotes, workshops, fireside conversations. Built for your room."
-        watermark="Speak"
+        image="/images/headers/speaking.jpg"
+        tone="ink"
+        cta={cta.primary}
+        onCta={() => onContactClick && onContactClick('Speaking')}
       />
 
       <section className="py-16 md:py-28 px-6" style={{ backgroundColor: '#ffffff' }}>

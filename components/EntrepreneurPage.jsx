@@ -187,7 +187,8 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
         eyebrow="Entrepreneur"
         title="Building Across Seven Platforms"
         subtitle="Capital. Operations. Real Estate. People."
-        watermark="Build"
+        image="/images/headers/entrepreneur.jpg"
+        tone="taupe"
       />
 
       {/* ============================================================

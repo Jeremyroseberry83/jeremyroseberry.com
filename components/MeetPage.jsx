@@ -1,5 +1,6 @@
 import React from 'react';
 import { PageTopBand, SectionHead, TopicCards, BookingCTA, SECONDARY, SLATE, MUTED, BG } from './ui';
+import InstagramRail from './InstagramRail';
 
 /**
  * "Let's Meet" — the values and background page.
@@ -37,7 +38,8 @@ export default function MeetPage({ onContactClick }) {
         eyebrow="Let’s meet"
         title="The Foundation"
         subtitle="Faith, family, fitness. How I make decisions."
-        watermark="Meet"
+        image="/images/headers/meet.jpg"
+        tone="primary"
       />
 
       {/* ============================================================
@@ -66,7 +68,7 @@ export default function MeetPage({ onContactClick }) {
 
         <div className="relative max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-12 gap-10 md:gap-8 items-end">
-            <div className="md:col-span-7 py-16 md:py-28">
+            <div className="md:col-span-8 py-16 md:py-28">
               <h2
                 className="display"
                 style={{ color: SLATE, fontSize: 'clamp(2.2rem, 5vw, 3.6rem)', marginBottom: 14 }}
@@ -96,34 +98,11 @@ export default function MeetPage({ onContactClick }) {
                   way to lose a booking committee that checks. */}
             </div>
 
-            <div className="md:col-span-5 flex justify-center md:justify-end" style={{ paddingBottom: 64 }}>
-              {/* Framed rather than cut out, for now. The offset gold rule is
-                  the same device used on every other photograph on the site,
-                  so a framed portrait still reads as part of the system.
-                  Swap the src when the new headshots land — the frame and the
-                  4:5 box stay as they are. */}
-              <div style={{ position: 'relative', width: '100%', maxWidth: 420 }}>
-                <span
-                  aria-hidden="true"
-                  style={{ position: 'absolute', right: -14, top: -14, width: '52%', height: 3, backgroundColor: SECONDARY }}
-                />
-                <span
-                  aria-hidden="true"
-                  style={{ position: 'absolute', right: -14, top: -14, width: 3, height: '32%', backgroundColor: SECONDARY }}
-                />
-                <div style={{ aspectRatio: '4 / 5', overflow: 'hidden', backgroundColor: '#d9d9d9' }}>
-                  <img
-                    src="/images/jeremy-portrait.jpg"
-                    alt="Jeremy Roseberry"
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: 'center 20%', filter: 'grayscale(100%)' }}
-                  />
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
+
+      <InstagramRail />
 
       {/* THE THREE PILLARS */}
       <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>

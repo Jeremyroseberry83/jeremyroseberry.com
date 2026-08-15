@@ -1,6 +1,6 @@
 import React from 'react';
 import { Download, Mic, Volume2, Star, Play, Headphones, Music, Youtube, Radio } from 'lucide-react';
-import { PageTopBand, SectionHead, BookingCTA, Button, SECONDARY, SECONDARY_DEEP, SLATE, MUTED, INK, BG } from './ui';
+import { PageTopBand, SectionHead, BookingCTA, Button, SECONDARY, SECONDARY_DEEP, PRIMARY, PRIMARY_DEEP, SLATE, MUTED, INK, BG } from './ui';
 
 /**
  * "Books & Podcast" — the content platform.
@@ -168,7 +168,8 @@ export default function BooksPage({ onContactClick }) {
         eyebrow="Books & podcast"
         title="Four Levels of Success"
         subtitle="Adulting. Kicking Off Bottom. Why Lying Works."
-        watermark="Books"
+        image="/images/headers/books.jpg"
+        tone="deep"
       />
 
       {/* ============================================================
@@ -431,8 +432,13 @@ export default function BooksPage({ onContactClick }) {
 
       {/* ============================================================
           EPISODE LIST
+          Every row is a play control, not a paragraph. A podcast list that
+          you read rather than press does not feel like a podcast — the
+          circular button is the affordance that says "this is audio".
+          Rows with no URL keep the same shape and go quiet rather than
+          disappearing, so the layout does not reflow when episodes land.
           ============================================================ */}
-      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: INK }}>
+      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: PRIMARY_DEEP }}>
         <div className="max-w-6xl mx-auto">
           <SectionHead
             dark
@@ -441,44 +447,80 @@ export default function BooksPage({ onContactClick }) {
             intro="Short episodes. Real stories. Built to complement the books and give you ideas worth thinking about."
           />
 
-          <div className="mt-14 space-y-px" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
-            {EPISODES.map((ep, i) => (
-              <article key={ep.title} className="grid md:grid-cols-12 gap-6 p-7 md:p-9" style={{ backgroundColor: INK }}>
-                <div className="md:col-span-1">
-                  <span className="display" style={{ color: SECONDARY, fontSize: 16, letterSpacing: '0.1em' }}>
+          <div className="mt-14 space-y-3">
+            {EPISODES.map((ep, i) => {
+              const live = Boolean(ep.links.listen || ep.links.watch);
+              const Row = live ? 'a' : 'div';
+              return (
+                <Row
+                  key={ep.title}
+                  {...(live
+                    ? { href: ep.links.listen || ep.links.watch, target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
+                  className="group flex items-center gap-5 md:gap-7 p-5 md:p-6"
+                  style={{
+                    backgroundColor: PRIMARY,
+                    border: '1px solid rgba(255,255,255,0.10)',
+                    transition: 'background-color 180ms ease, border-color 180ms ease, transform 180ms ease'
+                  }}
+                  onMouseOver={(e) => {
+                    if (!live) return;
+                    e.currentTarget.style.backgroundColor = '#1f4666';
+                    e.currentTarget.style.borderColor = SECONDARY;
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = PRIMARY;
+                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.10)';
+                  }}
+                >
+                  {/* Play control */}
+                  <span
+                    aria-hidden="true"
+                    className="flex items-center justify-center flex-shrink-0"
+                    style={{
+                      width: 56,
+                      height: 56,
+                      borderRadius: '50%',
+                      backgroundColor: live ? SECONDARY : 'transparent',
+                      border: live ? 'none' : '1.5px solid rgba(255,255,255,0.28)',
+                      color: live ? SLATE : 'rgba(255,255,255,0.42)'
+                    }}
+                  >
+                    <Play size={20} fill={live ? SLATE : 'none'} strokeWidth={live ? 0 : 1.8} style={{ marginLeft: 3 }} />
+                  </span>
+
+                  <span className="display flex-shrink-0 hidden sm:block" style={{ color: SECONDARY, fontSize: 15, letterSpacing: '0.12em' }}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                </div>
-                <div className="md:col-span-7">
-                  <h3 className="display" style={{ color: '#ffffff', fontSize: 'clamp(1.2rem, 2.2vw, 1.6rem)', marginBottom: 8 }}>
-                    {ep.title}
-                  </h3>
-                  <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 15, lineHeight: 1.7 }}>{ep.description}</p>
-                </div>
-                <div className="md:col-span-4 flex flex-col md:items-end gap-3">
-                  <span className="eyebrow-wide" style={{ color: 'rgba(255,255,255,0.5)', fontSize: 10 }}>
-                    {ep.length} · in {ep.book}
+
+                  <span className="flex-1 min-w-0">
+                    <span className="display block" style={{ color: '#ffffff', fontSize: 'clamp(1.1rem, 2vw, 1.45rem)', marginBottom: 5 }}>
+                      {ep.title}
+                    </span>
+                    <span className="block" style={{ color: 'rgba(255,255,255,0.68)', fontSize: 14.5, lineHeight: 1.6 }}>
+                      {ep.description}
+                    </span>
                   </span>
-                  {ep.links.listen || ep.links.watch ? (
-                    <div className="flex flex-wrap gap-2 md:justify-end">
-                      {ep.links.listen && (
-                        <Button variant="ghost" size="sm" href={ep.links.listen}>
-                          Listen
-                        </Button>
-                      )}
-                      {ep.links.watch && (
-                        <Button variant="ghost" size="sm" href={ep.links.watch}>
-                          Watch
-                        </Button>
-                      )}
-                    </div>
-                  ) : (
-                    <span style={{ color: 'rgba(255,255,255,0.42)', fontSize: 13 }}>Recording soon</span>
-                  )}
-                </div>
-              </article>
-            ))}
+
+                  <span className="flex-shrink-0 text-right">
+                    <span className="eyebrow-wide block" style={{ color: 'rgba(255,255,255,0.55)', fontSize: 10, marginBottom: 6 }}>
+                      {ep.length}
+                    </span>
+                    <span
+                      className="block"
+                      style={{ color: live ? SECONDARY : 'rgba(255,255,255,0.38)', fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}
+                    >
+                      {live ? 'Play' : 'Soon'}
+                    </span>
+                  </span>
+                </Row>
+              );
+            })}
           </div>
+
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13, marginTop: 20 }}>
+            Each episode expands on a chapter — the book it belongs to is noted on the card once it is live.
+          </p>
         </div>
       </section>
 

@@ -162,21 +162,71 @@ export function SectionHead({ eyebrow, title, intro, dark, align = 'left', maxWi
 }
 
 /**
- * PageTopBand — the page-opening treatment for every non-home page: charcoal
- * ground, the same diagonal wedge as the home hero, oversized watermark, title.
+ * PageTopBand — the banner that opens every non-home page.
  *
- * Deliberately NOT a photo hero. A personal brand rarely has four different
- * strong photographs, and a weak stock image at the top of a page costs more
- * credibility than a confident typographic band buys.
+ * Structure: photograph across the full band, with a colour wash weighted to
+ * the text side so the type always has a solid ground under it regardless of
+ * what the photograph is doing. The wash is opaque at the text edge and
+ * clears by roughly two-thirds across, which is what lets one component carry
+ * four different images without any of them needing to be shot for it.
+ *
+ * `tone` sets that wash colour and is the only thing that varies page to
+ * page — navy, charcoal, deep navy, taupe. Using the palette rather than a
+ * per-page hex is what stops four banners becoming four brands.
+ *
+ * With no `image` it falls back to the original typographic band, so any page
+ * that has no photograph worth using still opens correctly.
  */
-export function PageTopBand({ eyebrow, title, subtitle, watermark }) {
+const BAND_TONES = {
+  primary: PRIMARY,
+  deep: PRIMARY_DEEP,
+  ink: INK,
+  taupe: TAUPE
+};
+
+export function PageTopBand({ eyebrow, title, subtitle, watermark, image, tone = 'ink', cta, onCta }) {
+  const wash = BAND_TONES[tone] || INK;
+  const rgb = {
+    [PRIMARY]: '26,58,82',
+    [PRIMARY_DEEP]: '18,41,59',
+    [INK]: '42,42,42',
+    [TAUPE]: '107,107,107'
+  }[wash] || '42,42,42';
+
   return (
-    <section className="relative overflow-hidden" style={{ backgroundColor: INK }}>
-      <div
-        className="hero-wedge absolute inset-y-0 right-0 hidden md:block"
-        style={{ width: '52%', backgroundColor: TAUPE, opacity: 0.34 }}
-      />
-      {watermark && (
+    <section className="relative overflow-hidden" style={{ backgroundColor: wash }}>
+      {image ? (
+        <>
+          <img
+            src={image}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: 'center' }}
+          />
+          {/* Opaque under the type, clearing across the photograph. The extra
+              vertical pass keeps the bottom edge readable on tall phones,
+              where the horizontal gradient alone leaves the copy on bare
+              image. */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(90deg, rgba(${rgb},0.97) 0%, rgba(${rgb},0.93) 34%, rgba(${rgb},0.62) 62%, rgba(${rgb},0.18) 100%)`
+            }}
+          />
+          <div
+            className="absolute inset-0 md:hidden"
+            style={{ background: `linear-gradient(180deg, rgba(${rgb},0.55) 0%, rgba(${rgb},0.92) 70%)` }}
+          />
+        </>
+      ) : (
+        <div
+          className="hero-wedge absolute inset-y-0 right-0 hidden md:block"
+          style={{ width: '52%', backgroundColor: TAUPE, opacity: 0.34 }}
+        />
+      )}
+
+      {watermark && !image && (
         <span
           aria-hidden="true"
           className="watermark absolute"
@@ -194,21 +244,32 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark }) {
 
       <div
         className="relative max-w-6xl mx-auto px-6"
-        style={{ paddingTop: 'clamp(130px, 17vw, 190px)', paddingBottom: 'clamp(56px, 8vw, 84px)' }}
+        style={{ paddingTop: 'clamp(130px, 16vw, 180px)', paddingBottom: 'clamp(56px, 8vw, 88px)' }}
       >
-        {eyebrow && (
-          <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11, marginBottom: 18 }}>
-            {eyebrow}
-          </p>
-        )}
-        <h1 className="display" style={{ color: '#ffffff', fontSize: 'clamp(2.6rem, 7vw, 5rem)', maxWidth: '16ch' }}>
-          {title}
-        </h1>
-        {subtitle && (
-          <p style={{ color: 'rgba(255,255,255,0.76)', fontSize: 18, lineHeight: 1.7, maxWidth: '54ch', marginTop: 24 }}>
-            {subtitle}
-          </p>
-        )}
+        {/* Half-width beside the photograph on desktop, full width on a phone
+            where the image sits behind a vertical wash instead. */}
+        <div className={image ? 'w-full md:w-7/12' : undefined}>
+          {eyebrow && (
+            <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11, marginBottom: 18 }}>
+              {eyebrow}
+            </p>
+          )}
+          <h1 className="display" style={{ color: '#ffffff', fontSize: 'clamp(2.4rem, 6vw, 4.4rem)', maxWidth: '16ch' }}>
+            {title}
+          </h1>
+          {subtitle && (
+            <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 18, lineHeight: 1.7, maxWidth: '46ch', marginTop: 22 }}>
+              {subtitle}
+            </p>
+          )}
+          {cta && (
+            <div style={{ marginTop: 32 }}>
+              <Button variant="gold" onClick={onCta}>
+                {cta}
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
