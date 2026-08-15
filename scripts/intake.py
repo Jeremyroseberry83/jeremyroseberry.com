@@ -17,15 +17,26 @@ chore — no renaming into nested folders, no worrying about format, size or
 compression. Files that do not match a known name are listed and left alone.
 """
 import sys, pathlib
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageDraw, ImageFilter
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 INBOX = ROOT / 'public/images/_incoming'
 
-# slug -> (destination, longest-edge px, mode)
-#   mode 'cover'   = crop to the exact aspect implied by `size` (w, h)
-#   mode 'contain' = fit inside the box, keep transparency (logos)
+# slug -> (destination, size, mode)
+#   'cover'   crop to the exact aspect in `size`
+#   'contain' fit inside the box, keep transparency (logos)
+#   'banner'  portrait -> wide banner. A straight cover-crop of a tall
+#             portrait to 2400x840 keeps a thin band across the chest and
+#             cuts the head off, so this instead scales a head-and-torso
+#             band to full banner height, sets it right of centre, and
+#             fills the left with a blurred extension of the same frame
+#             for the type to sit on. Same treatment used for the podcast
+#             card, where it was built by hand.
 JOBS = {
+    'header-meet':         ('images/headers/meet.jpg',         (2400, 840), 'banner'),
+    'header-speaking':     ('images/headers/speaking.jpg',     (2400, 840), 'banner'),
+    'header-entrepreneur': ('images/headers/entrepreneur.jpg', (2400, 840), 'banner'),
+    'header-books':        ('images/headers/books.jpg',        (2400, 840), 'banner'),
     'jeremy-tuxedo':        ('images/jeremy-tuxedo.jpg',                    (1800, 1125), 'cover'),
     'access-global':        ('images/ventures/access-global.jpg',           (900, 560),   'cover'),
     'access-global-logo':   ('images/logos/access-global.png',              (600, 600),   'contain'),
@@ -44,12 +55,36 @@ for n in range(1, 13):
 EXT = {'.jpg', '.jpeg', '.png', '.heic', '.heif', '.webp', '.tif', '.tiff'}
 
 
+def banner(im, size):
+    W, H = size
+    band = im.crop((0, int(im.height * 0.02), im.width, int(im.height * 0.02) + int(im.height * 0.62)))
+    scale = H / band.height
+    fig = band.resize((max(1, int(band.width * scale)), H), Image.LANCZOS)
+
+    canvas = band.resize((W, H), Image.LANCZOS).filter(ImageFilter.GaussianBlur(46))
+
+    # Feather the figure's left edge into that backdrop; a hard vertical join
+    # reads as a compositing mistake.
+    mask = Image.new('L', fig.size, 255)
+    md = ImageDraw.Draw(mask)
+    feather = min(320, fig.width // 2)
+    for i in range(feather):
+        md.line([(i, 0), (i, fig.height)], fill=int(255 * (i / feather)))
+    mask = mask.filter(ImageFilter.GaussianBlur(24))
+
+    canvas.paste(fig, (W - fig.width + int(fig.width * 0.10), 0), mask)
+    return canvas
+
+
 def process(src, dest_rel, size, mode):
     dest = ROOT / 'public' / dest_rel
     dest.parent.mkdir(parents=True, exist_ok=True)
     im = Image.open(src)
     im = ImageOps.exif_transpose(im)          # honour camera rotation
-    if mode == 'cover':
+    if mode == 'banner':
+        im = banner(im.convert('RGB'), size)
+        im.save(dest, 'JPEG', quality=87, optimize=True, progressive=True)
+    elif mode == 'cover':
         im = ImageOps.fit(im.convert('RGB'), size, Image.LANCZOS, centering=(0.5, 0.4))
         im.save(dest, 'JPEG', quality=86, optimize=True, progressive=True)
     else:
