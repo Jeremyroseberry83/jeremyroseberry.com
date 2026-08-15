@@ -197,15 +197,6 @@ export default function SpeakingPage({ onContactClick }) {
         onCta={() => onContactClick && onContactClick('Speaking')}
       />
 
-      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: '#ffffff' }}>
-        <div className="max-w-4xl mx-auto">
-          <p style={{ color: MUTED, fontSize: 19, lineHeight: 1.8 }}>
-            Each of these adapts to your theme and your audience. If none is quite right, say what you
-            you are going for and I will build something for it.
-          </p>
-        </div>
-      </section>
-
       {/* SIGNATURE TALKS */}
       <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>
         <div className="max-w-6xl mx-auto">
