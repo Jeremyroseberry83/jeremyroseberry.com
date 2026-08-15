@@ -49,10 +49,12 @@ import {
  * palette. Replace any with a real photograph at the same 900x560 proportion —
  * `scripts/intake.py` does the conversion and sizing.
  *
- * `logo` is optional. When set, it is laid over the thumbnail on a scrim so a
- * real company mark can sit on a real photograph without either fighting the
- * other. Leave it empty and the thumbnail carries the panel alone. Logos want
- * a transparent PNG; run them through the same intake script.
+ * `logo` is the source mark, kept here for reference and for the thumbnail
+ * generator — the logo is composited INTO the thumbnail (centred in its top
+ * half) rather than overlaid at render time, so a mark and its wordmark can be
+ * sized against each other once rather than fighting a photograph every time.
+ * Regenerate thumbnails after changing a logo. Logos want a transparent PNG;
+ * run them through scripts/intake.py.
  */
 const displayUrl = (url) => url.replace(/^https?:\/{2}/, '').replace(/^www\./, '').replace(/\/$/, '');
 
@@ -268,23 +270,6 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
                       className="w-full h-full object-cover"
                       style={{ objectPosition: 'center 42%' }}
                     />
-                    {current.logo && (
-                      <>
-                        {/* Scrim only under the logo, so a mark stays legible
-                            on a photograph without dimming the whole image. */}
-                        <span
-                          aria-hidden="true"
-                          className="absolute inset-0"
-                          style={{ background: `linear-gradient(90deg, rgba(18,41,59,0.80) 0%, rgba(18,41,59,0.35) 46%, transparent 72%)` }}
-                        />
-                        <img
-                          src={current.logo}
-                          alt={`${current.name} logo`}
-                          className="absolute"
-                          style={{ left: 28, bottom: 22, height: 'clamp(38px, 5vw, 58px)', width: 'auto' }}
-                        />
-                      </>
-                    )}
                   </div>
                 )}
 
@@ -361,7 +346,6 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px mt-14" style={{ backgroundColor: '#e2e2e2' }}>
             {DISCIPLINES.map((d, i) => {
-              const count = VENTURES.filter((v) => v.discipline === d.key).length;
               const isPeople = d.key === 'people';
               return (
                 <div
@@ -396,30 +380,29 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
                     {d.blurb}
                   </p>
 
+                  {/* Just an arrow. The counts and the "this is the speaking"
+                      label were doing the same job as the cards themselves and
+                      made the row read as four different kinds of thing. The
+                      People card keeps its arrow clickable through to
+                      Speaking; the rest are direction, not controls, so they
+                      are hidden from assistive tech. */}
                   <div style={{ marginTop: 'auto' }}>
-                    {count > 0 ? (
-                      <span className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 10 }}>
-                        {count} {count === 1 ? 'company' : 'companies'}
-                      </span>
-                    ) : (
+                    {isPeople ? (
                       <button
                         type="button"
                         onClick={() => onNavigate && onNavigate('speaking')}
-                        className="eyebrow-wide"
-                        style={{
-                          background: 'none',
-                          border: 'none',
-                          padding: 0,
-                          color: SECONDARY,
-                          fontSize: 10,
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: 8
-                        }}
+                        aria-label="Go to Speaking"
+                        style={{ background: 'none', border: 'none', padding: 0, color: SECONDARY, display: 'inline-flex' }}
                       >
-                        This is the speaking
-                        <ArrowRight size={13} />
+                        <ArrowRight size={22} strokeWidth={1.8} />
                       </button>
+                    ) : (
+                      <ArrowRight
+                        size={22}
+                        strokeWidth={1.8}
+                        aria-hidden="true"
+                        style={{ color: SECONDARY_DEEP }}
+                      />
                     )}
                   </div>
                 </div>
