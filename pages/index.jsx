@@ -52,10 +52,16 @@ export default function Site() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Every page opens on a dark ground (the hero, or PageTopBand), so an
-  // unscrolled nav sits on dark and a scrolled nav sits on white.
-  const overHero = !scrolled;
   const isHome = currentPage === 'home';
+
+  // Home keeps a solid charcoal nav bar and the artwork starts below it. The
+  // top edge of the hero graphic is light gray, so white nav type laid over it
+  // is unreadable, and a dark scrim to fix that would visibly dirty the image.
+  //
+  // Inner pages open on the dark PageTopBand, so the nav is transparent until
+  // the reader scrolls, then flips to white.
+  const navBg = isHome ? colors.INK : scrolled ? '#ffffff' : 'transparent';
+  const navDark = isHome || !scrolled;
 
   const handleNavClick = (pageId) => {
     setCurrentPage(pageId);
@@ -109,8 +115,8 @@ export default function Site() {
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          backgroundColor: overHero ? 'transparent' : '#ffffff',
-          boxShadow: overHero ? 'none' : '0 1px 3px rgba(0,0,0,0.08)'
+          backgroundColor: navBg,
+          boxShadow: !isHome && scrolled ? '0 1px 3px rgba(0,0,0,0.08)' : 'none'
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -119,7 +125,7 @@ export default function Site() {
             style={{ background: 'none', border: 'none', padding: 0 }}
             aria-label={`${company.name} — home`}
           >
-            <Logo tone={overHero ? 'dark' : 'light'} />
+            <Logo tone={navDark ? 'dark' : 'light'} />
           </button>
 
           <div className="hidden md:flex items-center gap-9">
@@ -137,7 +143,7 @@ export default function Site() {
                     fontWeight: 600,
                     letterSpacing: '0.16em',
                     textTransform: 'uppercase',
-                    color: overHero
+                    color: navDark
                       ? isActive
                         ? '#ffffff'
                         : 'rgba(255,255,255,0.78)'
@@ -170,7 +176,7 @@ export default function Site() {
           <button
             className="md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{ color: overHero ? '#ffffff' : colors.SLATE, background: 'none', border: 'none' }}
+            style={{ color: navDark ? '#ffffff' : colors.SLATE, background: 'none', border: 'none' }}
             aria-label="Menu"
             aria-expanded={mobileMenuOpen}
           >
