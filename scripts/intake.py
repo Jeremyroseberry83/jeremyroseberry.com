@@ -47,10 +47,6 @@ JOBS = {
     'jeremy-speaking':      ('images/jeremy-speaking.jpg',                  (1800, 1200), 'cover'),
     'hero-mobile':          ('images/hero-honest-stories-mobile.jpg',       (1080, 1350), 'cover'),
 }
-# instagram-01 … instagram-12 -> images/instagram/NN.jpg
-for n in range(1, 13):
-    JOBS[f'instagram-{n:02d}'] = (f'images/instagram/{n:02d}.jpg', (900, 900), 'cover')
-
 EXT = {'.jpg', '.jpeg', '.png', '.heic', '.heif', '.webp', '.tif', '.tiff'}
 
 

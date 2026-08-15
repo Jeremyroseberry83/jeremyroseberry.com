@@ -211,7 +211,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
         <div className="max-w-6xl mx-auto">
           <SectionHead
             eyebrow="The portfolio"
-            title="Love My Work"
+            title="I Love My Work"
             intro="This is where I try, fail, learn and repeat — live operating businesses, which is why my material keeps changing."
           />
 
