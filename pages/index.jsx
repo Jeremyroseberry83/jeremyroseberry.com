@@ -84,18 +84,12 @@ export default function Site() {
   // group is right-aligned inside a max-width container, so its left edge
   // crosses that 41.1% boundary somewhere around 1024–1100px. Whatever colour
   // you choose, there is a window of viewport widths where the links vanish.
-  const navBg = colors.PRIMARY;
+  // PRIMARY_DEEP rather than PRIMARY so the bar reads as the same navy as the
+  // tagline badge in the hero rather than a lighter block sitting above it.
+  // The badge uses this exact value too — matching them by variable rather
+  // than by eye is what stops them drifting apart again.
+  const navBg = colors.PRIMARY_DEEP;
   const navDark = true;
-
-  // Accent rule under the bar, spanning exactly the 41.1%–79.9% band where the
-  // wedge sits in the artwork below. Measured from the artwork's top row of
-  // pixels — re-sample rather than eyeball if it is ever re-exported.
-  //
-  // Gold rather than the artwork's taupe: taupe on navy is 1.87:1 and would
-  // simply not be visible. With a navy bar the rule can no longer pretend to
-  // be a continuation of the image anyway, so its job is now to be a brand
-  // accent that happens to line up — and for that it has to be seen.
-  const homeNavRule = `linear-gradient(90deg, transparent 0 41.1%, ${colors.SECONDARY} 41.1% 79.9%, transparent 79.9% 100%)`;
 
   const handleNavClick = (pageId) => {
     setCurrentPage(pageId);
@@ -152,17 +146,9 @@ export default function Site() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
           background: navBg,
-          borderBottom: `1px solid rgba(255,255,255,0.12)`,
           boxShadow: scrolled ? '0 2px 14px rgba(0,0,0,0.28)' : 'none'
         }}
       >
-        {/* Blend cue — lines the bar up with the wedge in the artwork below. */}
-        {isHome && (
-          <span
-            aria-hidden="true"
-            style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 3, background: homeNavRule }}
-          />
-        )}
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
           <button
             onClick={() => handleNavClick('home')}

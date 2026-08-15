@@ -29,7 +29,10 @@ export default function Logo({ tone = 'dark', size = 'md', framed = false }) {
 
   const scale = size === 'sm' ? 0.82 : size === 'lg' ? 1.25 : 1;
 
-  const monogramColor = isDark ? colors.SECONDARY : colors.PRIMARY;
+  // White on dark, navy on light. Gold was tried for the monogram on the dark
+  // bar and reads warm against a cool navy; white keeps the mark crisp and
+  // lets the gold live on the CTA button alone, where it does the most work.
+  const monogramColor = isDark ? '#ffffff' : colors.PRIMARY;
   const thinColor = isDark ? colors.GRAY_LIGHT : colors.SECONDARY;
   const boldColor = isDark ? '#ffffff' : colors.TAUPE;
 

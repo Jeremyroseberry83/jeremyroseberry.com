@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, PRIMARY, SECONDARY, INK } from './ui';
+import { Button, PRIMARY_DEEP, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
 
 /**
@@ -67,7 +67,7 @@ export default function HomePage({ onContactClick }) {
             className="hero-reveal-3"
             style={{
               display: 'inline-block',
-              backgroundColor: PRIMARY,
+              backgroundColor: PRIMARY_DEEP,
               color: '#ffffff',
               fontSize: '1.32vw',
               fontWeight: 600,
@@ -125,7 +125,7 @@ export default function HomePage({ onContactClick }) {
             className="hero-reveal-3"
             style={{
               display: 'inline-block',
-              backgroundColor: PRIMARY,
+              backgroundColor: PRIMARY_DEEP,
               color: '#ffffff',
               fontSize: 10.5,
               fontWeight: 600,
