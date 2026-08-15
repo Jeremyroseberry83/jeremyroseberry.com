@@ -14,19 +14,27 @@ import { PageTopBand, SectionHead, BookingCTA, SECONDARY, SECONDARY_DEEP, SLATE,
  * copy — those cards render short rather than printing a bracket on a live
  * page. Fill the blank strings in and the lines appear. Search this file for
  * `''` to find what is outstanding.
+ *
+ * `url` holds the FULL address including protocol and any path, because not
+ * every venture sits at its own root — Premiere Home Watch lives under
+ * roseberryproperties.com. The visible label is derived from it by stripping
+ * the protocol and any "www.", so the card shows a clean domain while the link
+ * still goes exactly where it should.
  */
+const displayUrl = (url) => url.replace(/^https?:\/{2}/, '').replace(/^www\./, '').replace(/\/$/, '');
+
 const VENTURES = [
   {
     name: 'Avestix Frontier',
     role: 'Chief Operating Officer',
-    url: 'avestix.com',
+    url: 'https://avestix.com',
     description: '',
     value: ''
   },
   {
     name: 'Roseberry Properties',
     role: 'Founder',
-    url: 'roseberryproperties.com',
+    url: 'https://roseberryproperties.com',
     description:
       'Referral-only residential and commercial real estate serving high-net-worth buyers and investors across South Florida and beyond.',
     value:
@@ -35,7 +43,7 @@ const VENTURES = [
   {
     name: 'Premiere Home Watch',
     role: 'Founder',
-    url: 'premierhomewatch.com',
+    url: 'https://roseberryproperties.com/premierehomewatch',
     description:
       'Luxury home concierge service for high-net-worth owners. Recurring revenue model. Acquisition-ready framework.',
     value: 'Built by Kourtney. Scaled from 8 to 20+ clients. Turnkey systems. Ready to scale.'
@@ -43,9 +51,7 @@ const VENTURES = [
   {
     name: 'Roseberry Capital',
     role: 'Founder',
-    // Heads-up: the contact address on this site is @roseberrycapital.NET.
-    // This card says .com. Confirm which one is live.
-    url: 'roseberrycapital.com',
+    url: 'https://www.privateinvestorcircle.com/',
     description: 'Capital advisory and allocation platform.',
     value:
       'Direct relationships with sponsors, allocators, and capital partners across 25 countries. Sector agnostic. Relational capital focused.'
@@ -53,14 +59,14 @@ const VENTURES = [
   {
     name: 'Private Investor Circle',
     role: 'Founder',
-    url: 'privateinvestorcircle.com',
+    url: 'https://www.privateinvestorcircle.com/',
     description: '',
     value: ''
   },
   {
     name: 'Access Global',
     role: 'Strategic Partner',
-    url: 'accessglobal.co',
+    url: 'https://accessglobal.co',
     description:
       '30-country private markets platform. Alternative investments: CRE, private credit, infrastructure, and more. Sector agnostic. Network of partners with shared values and standards.',
     value:
@@ -69,7 +75,7 @@ const VENTURES = [
   {
     name: 'Four IR Ventures',
     role: 'Co-founder, Chief Business Officer',
-    url: 'secobio.com',
+    url: 'https://secobio.com',
     description: '',
     value: ''
   }
@@ -80,7 +86,7 @@ function VentureCard({ venture, index }) {
   const Wrapper = url ? 'a' : 'div';
   return (
     <Wrapper
-      {...(url ? { href: `https://${url}`, target: '_blank', rel: 'noopener noreferrer' } : {})}
+      {...(url ? { href: url, target: '_blank', rel: 'noopener noreferrer' } : {})}
       className="p-8 md:p-9 flex flex-col"
       style={{ backgroundColor: '#ffffff' }}
     >
@@ -112,7 +118,7 @@ function VentureCard({ venture, index }) {
       )}
 
       {url && (
-        <p style={{ color: SECONDARY_DEEP, fontSize: 13, marginTop: 18, letterSpacing: '0.02em' }}>{url}</p>
+        <p style={{ color: SECONDARY_DEEP, fontSize: 13, marginTop: 18, letterSpacing: '0.02em' }}>{displayUrl(url)}</p>
       )}
     </Wrapper>
   );
@@ -140,8 +146,8 @@ export default function EntrepreneurPage({ onContactClick }) {
         <div className="max-w-6xl mx-auto">
           <SectionHead
             eyebrow="The portfolio"
-            title="Still in the arena"
-            intro="The talks are not a retirement act. Everything below is live operating work, which is why the material keeps changing."
+            title="Love My Work"
+            intro="This is where I try, fail, learn and repeat — live operating businesses, which is why my material keeps changing."
           />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px mt-14" style={{ backgroundColor: '#e2e2e2' }}>
