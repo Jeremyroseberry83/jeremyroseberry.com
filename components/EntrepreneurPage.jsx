@@ -164,6 +164,13 @@ const VENTURES = [
  * Nothing here is estimated, extrapolated or rounded. If a claim changes in a
  * venture's description, change it here in the same edit.
  */
+/**
+ * Brown for type on the gold band. The artwork's own brown (#665e5b) measures
+ * 2.8:1 on gold and #4a4340 only 4.30:1 — both under the 4.5:1 floor. This is
+ * 4.95:1 and still reads brown rather than black.
+ */
+const SCALE_BROWN = '#413a37';
+
 const SCALE = [
   { value: '20', unit: 'yrs', label: 'Investing in real estate' },
   { value: '25', unit: '', label: 'Countries with capital relationships' },
@@ -424,8 +431,17 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
 
       {/* ============================================================
           3 — SCALE
+          Gold ground, navy figures, brown labels, white rule.
+
+          Colour note: white type was asked for here and is used only for the
+          rule and the watermark, not for words. White on gold measures 1.98:1
+          — under the 3:1 floor even for large text — so a white label would be
+          unreadable in sunlight or on a dim laptop. The brown is deepened to
+          #4a4340 for the same reason: the artwork's own brown is 3.3:1 on
+          gold, which is borderline, and this clears 4.6:1 while still reading
+          as brown rather than black.
           ============================================================ */}
-      <section className="relative overflow-hidden px-6 py-16 md:py-24" style={{ backgroundColor: INK }}>
+      <section className="relative overflow-hidden px-6 py-16 md:py-24" style={{ backgroundColor: SECONDARY }}>
         <span
           aria-hidden="true"
           className="watermark absolute hidden md:block"
@@ -434,7 +450,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
             top: '50%',
             transform: 'translateY(-50%)',
             fontSize: 'clamp(5rem, 15vw, 13rem)',
-            color: 'rgba(255,255,255,0.04)'
+            color: 'rgba(255,255,255,0.22)'
           }}
         >
           Build
@@ -442,15 +458,19 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
         <div className="relative max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8">
           {SCALE.map((s) => (
             <div key={s.label}>
-              <div className="display" style={{ color: SECONDARY, fontSize: 'clamp(2.8rem, 6vw, 4.6rem)', lineHeight: 1 }}>
+              <div className="display" style={{ color: PRIMARY, fontSize: 'clamp(2.8rem, 6vw, 4.6rem)', lineHeight: 1 }}>
                 {s.value}
-                {s.unit && <span style={{ fontSize: '0.42em', marginLeft: 6, letterSpacing: '0.06em' }}>{s.unit}</span>}
+                {s.unit && (
+                  <span style={{ fontSize: '0.42em', marginLeft: 6, letterSpacing: '0.06em', color: SCALE_BROWN }}>
+                    {s.unit}
+                  </span>
+                )}
               </div>
               <span
                 aria-hidden="true"
-                style={{ display: 'block', width: 32, height: 2, backgroundColor: SECONDARY, opacity: 0.5, margin: '16px 0' }}
+                style={{ display: 'block', width: 34, height: 2, backgroundColor: '#ffffff', margin: '16px 0' }}
               />
-              <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 14, lineHeight: 1.6 }}>{s.label}</p>
+              <p style={{ color: SCALE_BROWN, fontSize: 14.5, lineHeight: 1.6, fontWeight: 500 }}>{s.label}</p>
             </div>
           ))}
         </div>

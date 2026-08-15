@@ -197,12 +197,9 @@ export default function ContactForm({ onClose, initialType, initialMessage }) {
                   <input id="bk-org" type="text" name="organisation" value={form.organisation} onChange={change} style={field} />
                 </div>
 
-                {/* Optional qualifiers. Marked optional out loud, because an
-                    organiser who does not yet have a date should not feel
-                    disqualified from sending the form. */}
-                <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 10, marginBottom: 14 }}>
-                  If you know it — all optional
-                </p>
+                {/* Optional qualifiers. No caption: the fields are visibly
+                    unmarked while name/email/message carry `required`, which
+                    already tells a browser and a reader which is which. */}
                 <div className="grid sm:grid-cols-3 gap-4" style={{ marginBottom: 20 }}>
                   <div>
                     <label htmlFor="bk-date" style={label}>
