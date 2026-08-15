@@ -160,6 +160,92 @@ export default function BooksPage({ onContactClick }) {
       />
 
       {/* ============================================================
+          THE BOOKS — alternating cover / copy
+          ============================================================ */}
+      {BOOKS.map((book, i) => {
+        const flip = i % 2 === 1;
+        const liveLinks = Object.entries(book.links).filter(([, url]) => url);
+        return (
+          <section
+            key={book.title}
+            className={`px-6 ${i === 0 ? 'pt-20 md:pt-28 pb-16 md:pb-28' : 'py-16 md:py-28'}`}
+            style={{ backgroundColor: i % 2 === 0 ? '#ffffff' : BG }}
+          >
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+              <div className={flip ? 'md:order-2' : ''}>
+                <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 10, marginBottom: 14 }}>
+                  Book {String(i + 1).padStart(2, '0')} · {book.type}
+                </p>
+                <h2
+                  className="display"
+                  style={{ color: SLATE, fontSize: 'clamp(2rem, 4.4vw, 3.2rem)', marginBottom: 20 }}
+                >
+                  {book.title}
+                </h2>
+                <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.8, marginBottom: 28 }}>{book.blurb}</p>
+
+                <p style={{ color: SLATE, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>In this book, you’ll:</p>
+                <ul className="space-y-4" style={{ marginBottom: 32 }}>
+                  {book.points.map((pt) => (
+                    <li key={pt} className="flex gap-4">
+                      <span
+                        aria-hidden="true"
+                        style={{ color: SECONDARY, flexShrink: 0, fontSize: 17, fontWeight: 700, lineHeight: 1.5 }}
+                      >
+                        ✓
+                      </span>
+                      <span style={{ color: MUTED, fontSize: 16, lineHeight: 1.75 }}>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {liveLinks.length > 0 ? (
+                  <div className="flex flex-wrap gap-3">
+                    {liveLinks.map(([key, url], n) => (
+                      <Button key={key} variant={n === 0 ? 'gold' : 'quiet'} href={url}>
+                        {LABELS[key]}
+                      </Button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex flex-wrap items-center gap-4">
+                    <span
+                      style={{
+                        fontSize: 10,
+                        fontWeight: 700,
+                        letterSpacing: '0.16em',
+                        textTransform: 'uppercase',
+                        color: '#ffffff',
+                        backgroundColor: MUTED,
+                        padding: '6px 12px'
+                      }}
+                    >
+                      Forthcoming {book.year}
+                    </span>
+                    <Button
+                      variant="quiet"
+                      onClick={() => onContactClick && onContactClick('Content', `Tell me when “${book.title}” is out.`)}
+                    >
+                      Tell me when it’s out
+                    </Button>
+                  </div>
+                )}
+              </div>
+
+              <div className={`flex justify-center ${flip ? 'md:order-1 md:justify-start' : 'md:justify-end'}`}>
+                <img
+                  src={book.cover}
+                  alt={`${book.title} — cover`}
+                  loading="lazy"
+                  style={{ display: 'block', width: '100%', maxWidth: 360, height: 'auto' }}
+                />
+              </div>
+            </div>
+          </section>
+        );
+      })}
+
+      {/* ============================================================
           STATS BAR — hidden until the numbers are real. See the note at
           the top of this file.
           ============================================================ */}
@@ -189,16 +275,6 @@ export default function BooksPage({ onContactClick }) {
         </section>
       )}
 
-      <section className="py-16 md:py-24 px-6" style={{ backgroundColor: '#ffffff' }}>
-        <div className="max-w-4xl mx-auto">
-          <p style={{ color: MUTED, fontSize: 19, lineHeight: 1.8 }}>
-            A four-year series on real leadership, real success, and why most people never get there.
-            Available in ebook, audiobook, and paperback. Built to give away at speaking events, share
-            with your team, or read alone.
-          </p>
-        </div>
-      </section>
-
       {/* ============================================================
           LATEST EPISODE + SUBSCRIBE
           ============================================================ */}
@@ -209,13 +285,22 @@ export default function BooksPage({ onContactClick }) {
           <div className="lg:col-span-7">
             <div className="relative overflow-hidden" style={{ backgroundColor: INK, aspectRatio: '16 / 10' }}>
               <img
-                src="/images/hero-honest-stories.jpg"
+                src="/images/jeremy-navy-card.jpg"
                 alt=""
                 aria-hidden="true"
                 className="absolute inset-0 w-full h-full object-cover"
-                style={{ objectPosition: 'center', opacity: 0.5 }}
+                style={{ objectPosition: 'center' }}
               />
-              <div className="absolute inset-0" style={{ backgroundColor: 'rgba(26,58,82,0.62)' }} />
+              {/* Left-weighted wash: the figure sits on the right of that
+                  composite, so the gradient darkens the left where the type
+                  goes and leaves his face alone. */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    'linear-gradient(90deg, rgba(18,41,59,0.96) 0%, rgba(18,41,59,0.86) 42%, rgba(18,41,59,0.35) 78%, rgba(18,41,59,0.12) 100%)'
+                }}
+              />
 
               <div className="relative h-full flex flex-col justify-center p-8 md:p-12">
                 <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 14 }}>
@@ -281,12 +366,17 @@ export default function BooksPage({ onContactClick }) {
                     className="flex items-center justify-center text-center px-4 py-4"
                     style={{
                       backgroundColor: '#ffffff',
-                      border: `1px solid ${live ? '#e2e2e2' : '#ececec'}`,
-                      color: live ? SLATE : '#b4b4b4',
+                      borderTop: `2px solid ${live ? SECONDARY : '#e2e2e2'}`,
+                      border: '1px solid #e2e2e2',
+                      borderTopWidth: 2,
+                      borderTopColor: live ? SECONDARY : '#dcdcdc',
+                      color: SLATE,
                       fontSize: 13,
                       fontWeight: 600,
-                      letterSpacing: '0.04em',
-                      minHeight: 62
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                      minHeight: 66,
+                      opacity: live ? 1 : 0.55
                     }}
                   >
                     {p.name}
@@ -373,92 +463,6 @@ export default function BooksPage({ onContactClick }) {
           </div>
         </div>
       </section>
-
-      {/* ============================================================
-          THE BOOKS — alternating cover / copy
-          ============================================================ */}
-      {BOOKS.map((book, i) => {
-        const flip = i % 2 === 1;
-        const liveLinks = Object.entries(book.links).filter(([, url]) => url);
-        return (
-          <section
-            key={book.title}
-            className="py-16 md:py-28 px-6"
-            style={{ backgroundColor: i % 2 === 0 ? '#ffffff' : BG }}
-          >
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-              <div className={flip ? 'md:order-2' : ''}>
-                <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 10, marginBottom: 14 }}>
-                  Book {String(i + 1).padStart(2, '0')} · {book.type}
-                </p>
-                <h2
-                  className="display"
-                  style={{ color: SLATE, fontSize: 'clamp(2rem, 4.4vw, 3.2rem)', marginBottom: 20 }}
-                >
-                  {book.title}
-                </h2>
-                <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.8, marginBottom: 28 }}>{book.blurb}</p>
-
-                <p style={{ color: SLATE, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>In this book, you’ll:</p>
-                <ul className="space-y-4" style={{ marginBottom: 32 }}>
-                  {book.points.map((pt) => (
-                    <li key={pt} className="flex gap-4">
-                      <span
-                        aria-hidden="true"
-                        style={{ color: SECONDARY, flexShrink: 0, fontSize: 17, fontWeight: 700, lineHeight: 1.5 }}
-                      >
-                        ✓
-                      </span>
-                      <span style={{ color: MUTED, fontSize: 16, lineHeight: 1.75 }}>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {liveLinks.length > 0 ? (
-                  <div className="flex flex-wrap gap-3">
-                    {liveLinks.map(([key, url], n) => (
-                      <Button key={key} variant={n === 0 ? 'gold' : 'quiet'} href={url}>
-                        {LABELS[key]}
-                      </Button>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="flex flex-wrap items-center gap-4">
-                    <span
-                      style={{
-                        fontSize: 10,
-                        fontWeight: 700,
-                        letterSpacing: '0.16em',
-                        textTransform: 'uppercase',
-                        color: '#ffffff',
-                        backgroundColor: MUTED,
-                        padding: '6px 12px'
-                      }}
-                    >
-                      Forthcoming {book.year}
-                    </span>
-                    <Button
-                      variant="quiet"
-                      onClick={() => onContactClick && onContactClick('Content', `Tell me when “${book.title}” is out.`)}
-                    >
-                      Tell me when it’s out
-                    </Button>
-                  </div>
-                )}
-              </div>
-
-              <div className={`flex justify-center ${flip ? 'md:order-1 md:justify-start' : 'md:justify-end'}`}>
-                <img
-                  src={book.cover}
-                  alt={`${book.title} — cover`}
-                  loading="lazy"
-                  style={{ display: 'block', width: '100%', maxWidth: 360, height: 'auto' }}
-                />
-              </div>
-            </div>
-          </section>
-        );
-      })}
 
       <BookingCTA
         onContactClick={onContactClick}

@@ -460,7 +460,7 @@ export function BookingCTA({ onContactClick, title = 'Let’s get a date on the 
         </h2>
         <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 17, lineHeight: 1.75, maxWidth: '52ch', margin: '0 auto 36px' }}>
           {body ||
-            'Tell me the date, the room, and what you need the audience to walk out believing. You get a reply from me personally, not an assistant.'}
+            'Tell me about the event — the date, the room, roughly who is in it. You get a reply from me personally, not an assistant.'}
         </p>
         <div className="flex flex-wrap gap-3 justify-center">
           <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick(context || 'Speaking')}>

@@ -8,6 +8,7 @@ import {
   SECONDARY,
   SECONDARY_DEEP,
   PRIMARY,
+  PRIMARY_DEEP,
   SLATE,
   MUTED,
   INK,
@@ -21,49 +22,62 @@ import {
  * REDESIGN RATIONALE (read before flattening this back into a card grid):
  *
  * Seven equally-weighted cards is a wall. A reader scans two, realises the
- * rest look identical, and leaves with no impression at all — which is the
- * opposite of what this page is for. Three changes fix that:
+ * rest look identical, and leaves with no impression at all — the opposite of
+ * what this page is for. Three changes fix that:
  *
- *  1. SEVEN BECOMES FOUR. The page's own subtitle already names the taxonomy
- *     — Capital, Operations, Real Estate, People — so the ventures are sorted
- *     into it. Four buckets is a number a reader can hold; seven is not. The
- *     fourth discipline, People, has no company under it on purpose: it is the
- *     speaking and writing work, which turns the taxonomy into the argument
- *     the whole site is making and hands the reader back to the booking page.
+ *  1. SEVEN BECOME FIVE DISCIPLINES, under the page's own question. The
+ *     taxonomy and the "why these businesses" argument were two sections
+ *     making the same point, so they are now one. The first discipline,
+ *     People, has no company under it on purpose: it is the speaking and
+ *     writing, which turns the taxonomy into the argument the whole site is
+ *     making and hands the reader back to the booking page.
  *
- *  2. THE LIST BECOMES SOMETHING YOU DRIVE. One venture is shown at a time,
- *     chosen from a rail. The reader controls the pace, each venture gets the
- *     whole panel instead of a ninth of the screen, and Roseberry Capital and
- *     Private Investor Circle sitting under one discipline reads as related
- *     rather than as the same card printed twice.
+ *  2. THE LIST BECOMES SOMETHING YOU DRIVE. One venture at a time, chosen
+ *     from a rail, each getting the full panel instead of a seventh of the
+ *     screen — and Roseberry Capital and Private Investor Circle sitting
+ *     under one discipline reads as related rather than duplicated.
  *
- *  3. THE NUMBERS GET A BAND. Every figure in it is Jeremy's own claim from
- *     his supplied copy — nothing is computed, inferred or rounded up here.
+ *  3. THE NUMBERS GET A BAND. Every figure is Jeremy's own claim from his
+ *     supplied copy — nothing computed, inferred or rounded up.
  *
  * `url` holds the FULL address including protocol and path, because not every
  * venture sits at its own root — Premiere Home Watch lives under
- * roseberryproperties.com. The visible label strips the protocol, any "www."
- * and a trailing slash.
+ * roseberryproperties.com. The visible label strips protocol, "www." and a
+ * trailing slash.
+ *
+ * `thumb` images in /images/ventures are GENERATED placeholders in the brand
+ * palette. Replace any of them with a real logo lockup or a photograph of the
+ * work at the same 900x560 proportion — the filename is the only contract.
  */
 const displayUrl = (url) => url.replace(/^https?:\/{2}/, '').replace(/^www\./, '').replace(/\/$/, '');
 
+/**
+ * Order is deliberate and is the argument the page makes: People first,
+ * Capital last — the same hierarchy as the Let's Meet page, so the two agree
+ * rather than contradict.
+ *
+ * "Add Value" holds seats where the contribution is advisory rather than
+ * operating. Access Global is filed there on that reading (Strategic Partner,
+ * not operator); move it back to `capital` if the day-to-day says otherwise.
+ */
 const DISCIPLINES = [
-  { key: 'capital', name: 'Capital', blurb: 'Advisory, allocation, and the rooms where allocators actually meet founders.' },
-  { key: 'operations', name: 'Operations', blurb: 'Running the business day to day — the unglamorous part that decides the outcome.' },
+  { key: 'people', name: 'People', blurb: 'The speaking and the writing. The one platform that is not a company.' },
+  { key: 'addvalue', name: 'Add Value', blurb: 'Advisory seats where the job is judgement and relationships, not headcount.' },
   { key: 'realestate', name: 'Real Estate', blurb: 'Two decades of investing, acquisitions, and service businesses built around ownership.' },
-  { key: 'people', name: 'People', blurb: 'The speaking and the writing. The one platform that is not a company.' }
+  { key: 'operations', name: 'Ops', blurb: 'Running the business day to day — the unglamorous part that decides the outcome.' },
+  { key: 'capital', name: 'Capital', blurb: 'Allocation, and the rooms where allocators actually meet founders.' }
 ];
 
 const VENTURES = [
   {
     // DRAFT COPY — written to the shape of the role, not from inside knowledge
     // of Avestix's mandate. Sharpen the first sentence with what the firm
-    // actually invests in; the second sentence is the part that sells and is
-    // already true of any COO seat.
+    // actually invests in; the second is already true of any COO seat.
     name: 'Avestix Frontier',
     role: 'Chief Operating Officer',
     discipline: 'operations',
     url: 'https://avestix.com',
+    thumb: '/images/ventures/avestix-frontier.jpg',
     description:
       'An alternative investment platform. I run the operating side of the house — the process, the systems and the execution that sit underneath the investment strategy.',
     value:
@@ -76,6 +90,7 @@ const VENTURES = [
     role: 'Co-founder, Chief Business Officer',
     discipline: 'operations',
     url: 'https://secobio.com',
+    thumb: '/images/ventures/four-ir-ventures.jpg',
     description:
       'Venture building at the edge of the Fourth Industrial Revolution — backing deep-technology companies and getting them from laboratory result to commercial reality. Seco Bio is the first.',
     value:
@@ -86,17 +101,19 @@ const VENTURES = [
     role: 'Founder',
     discipline: 'capital',
     url: 'https://luma.com/PrivateInvestorCircle',
+    thumb: '/images/ventures/roseberry-capital.jpg',
     description: 'Capital advisory and allocation platform.',
     value:
       'Direct relationships with sponsors, allocators, and capital partners across 25 countries. Sector agnostic. Relational capital focused.'
   },
   {
     // DRAFT COPY — grounded in the Luma events listing. Adjust the cadence and
-    // the room size once those are settled.
+    // room size once those are settled.
     name: 'Private Investor Circle',
     role: 'Founder',
     discipline: 'capital',
     url: 'https://www.privateinvestorcircle.com/',
+    thumb: '/images/ventures/private-investor-circle.jpg',
     description:
       'A curated circle of investors, allocators and founders who meet in person. Small rooms, real conversations, and none of the pitch theatre that makes most capital events a waste of an evening.',
     value:
@@ -105,8 +122,9 @@ const VENTURES = [
   {
     name: 'Access Global',
     role: 'Strategic Partner',
-    discipline: 'capital',
+    discipline: 'addvalue',
     url: 'https://accessglobal.co',
+    thumb: '/images/ventures/access-global.jpg',
     description:
       '30-country private markets platform. Alternative investments: CRE, private credit, infrastructure, and more. Sector agnostic. Network of partners with shared values and standards.',
     value:
@@ -117,6 +135,7 @@ const VENTURES = [
     role: 'Founder',
     discipline: 'realestate',
     url: 'https://roseberryproperties.com',
+    thumb: '/images/ventures/roseberry-properties.jpg',
     description:
       'Referral-only residential and commercial real estate serving high-net-worth buyers and investors across South Florida and beyond.',
     value:
@@ -127,6 +146,7 @@ const VENTURES = [
     role: 'Founder',
     discipline: 'realestate',
     url: 'https://roseberryproperties.com/premierehomewatch',
+    thumb: '/images/ventures/premiere-home-watch.jpg',
     description:
       'Luxury home concierge service for high-net-worth owners. Recurring revenue model. Acquisition-ready framework.',
     value: 'Built by Kourtney. Scaled from 8 to 20+ clients. Turnkey systems. Ready to scale.'
@@ -146,8 +166,19 @@ const SCALE = [
 ];
 
 export default function EntrepreneurPage({ onContactClick, onNavigate }) {
-  const [active, setActive] = React.useState(VENTURES[2].name); // open on Roseberry Capital
-  const current = VENTURES.find((v) => v.name === active) || VENTURES[0];
+  // The rail follows the discipline order above rather than the order the
+  // ventures happen to be declared in, so the two halves of the page tell the
+  // same story instead of contradicting each other.
+  const ordered = React.useMemo(
+    () =>
+      DISCIPLINES.flatMap((d) => VENTURES.filter((v) => v.discipline === d.key)).concat(
+        VENTURES.filter((v) => !DISCIPLINES.some((d) => d.key === v.discipline))
+      ),
+    []
+  );
+
+  const [active, setActive] = React.useState(ordered[0].name);
+  const current = ordered.find((v) => v.name === active) || ordered[0];
   const currentDiscipline = DISCIPLINES.find((d) => d.key === current.discipline);
 
   return (
@@ -160,42 +191,48 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
       />
 
       {/* ============================================================
-          1 — THE FOUR DISCIPLINES
-          Seven things a reader cannot hold, reduced to four they can.
-          The fourth has no company under it and says so.
+          1 — WHY THESE BUSINESSES
+          The taxonomy and the argument, which used to be two sections
+          making the same point, are now one.
           ============================================================ */}
-      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: '#ffffff' }}>
+      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-6xl mx-auto">
-          <p style={{ color: MUTED, fontSize: 19, lineHeight: 1.8, maxWidth: '52ch', marginBottom: 56 }}>
-            How I create value. Where I focus. What drives each business.
-          </p>
+          <SectionHead
+            eyebrow="The through-line"
+            title="Why These Businesses?"
+            intro="Each one flows from the same conviction: real value comes from connecting people, solving problems, and building with integrity. Whether it’s capital, operations, real estate, or people development — the principle is the same."
+          />
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px" style={{ backgroundColor: '#e2e2e2' }}>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px mt-14" style={{ backgroundColor: '#e2e2e2' }}>
             {DISCIPLINES.map((d, i) => {
               const count = VENTURES.filter((v) => v.discipline === d.key).length;
               const isPeople = d.key === 'people';
               return (
                 <div
                   key={d.key}
-                  className="p-8 flex flex-col"
-                  style={{ backgroundColor: isPeople ? PRIMARY : '#ffffff', minHeight: 250 }}
+                  className="p-7 flex flex-col"
+                  style={{ backgroundColor: isPeople ? PRIMARY : '#ffffff', minHeight: 264 }}
                 >
                   <span
                     className="display"
-                    style={{ color: SECONDARY, fontSize: 15, letterSpacing: '0.14em', marginBottom: 20 }}
+                    style={{ color: SECONDARY, fontSize: 15, letterSpacing: '0.14em', marginBottom: 18 }}
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <h3
                     className="display"
-                    style={{ color: isPeople ? '#ffffff' : SLATE, fontSize: 'clamp(1.5rem, 2.6vw, 2rem)', marginBottom: 14 }}
+                    style={{
+                      color: isPeople ? '#ffffff' : SLATE,
+                      fontSize: 'clamp(1.4rem, 2.1vw, 1.75rem)',
+                      marginBottom: 12
+                    }}
                   >
                     {d.name}
                   </h3>
                   <p
                     style={{
                       color: isPeople ? 'rgba(255,255,255,0.82)' : MUTED,
-                      fontSize: 15,
+                      fontSize: 14.5,
                       lineHeight: 1.7,
                       marginBottom: 20
                     }}
@@ -238,7 +275,6 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
 
       {/* ============================================================
           2 — THE PORTFOLIO, ONE AT A TIME
-          A rail the reader drives, rather than a grid they skim.
           ============================================================ */}
       <section className="px-6 py-16 md:py-28" style={{ backgroundColor: BG }}>
         <div className="max-w-6xl mx-auto">
@@ -251,7 +287,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
           <div className="grid md:grid-cols-12 gap-px mt-14" style={{ backgroundColor: '#e2e2e2' }}>
             {/* Rail */}
             <div className="md:col-span-5" style={{ backgroundColor: '#ffffff' }}>
-              {VENTURES.map((v, i) => {
+              {ordered.map((v, i) => {
                 const on = v.name === active;
                 return (
                   <button
@@ -263,7 +299,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
                     style={{
                       background: 'none',
                       border: 'none',
-                      borderBottom: i === VENTURES.length - 1 ? 'none' : '1px solid #ececec',
+                      borderBottom: i === ordered.length - 1 ? 'none' : '1px solid #ececec',
                       borderLeft: `3px solid ${on ? SECONDARY : 'transparent'}`,
                       backgroundColor: on ? BG : 'transparent',
                       transition: 'background-color 160ms ease, border-color 160ms ease'
@@ -275,10 +311,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
                     >
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <span
-                      className="display"
-                      style={{ color: on ? SLATE : TAUPE, fontSize: 18, lineHeight: 1.15 }}
-                    >
+                    <span className="display" style={{ color: on ? SLATE : TAUPE, fontSize: 18, lineHeight: 1.15 }}>
                       {v.name}
                     </span>
                   </button>
@@ -286,80 +319,87 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
               })}
             </div>
 
-            {/* Detail panel */}
-            <div className="md:col-span-7 relative overflow-hidden" style={{ backgroundColor: INK }}>
+            {/* Detail panel — navy, with the venture's thumbnail across the top */}
+            <div className="md:col-span-7 relative overflow-hidden" style={{ backgroundColor: PRIMARY }}>
               <div
                 className="hero-wedge absolute inset-y-0 right-0 hidden md:block"
-                style={{ width: '52%', backgroundColor: TAUPE, opacity: 0.26 }}
+                style={{ width: '52%', backgroundColor: PRIMARY_DEEP, opacity: 0.55 }}
               />
-              <div className="relative p-8 md:p-12" style={{ minHeight: 420 }}>
-                <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 16 }}>
-                  {currentDiscipline ? currentDiscipline.name : 'Portfolio'}
-                </p>
 
-                <h3
-                  className="display"
-                  style={{ color: '#ffffff', fontSize: 'clamp(1.9rem, 4vw, 2.9rem)', marginBottom: 10 }}
-                >
-                  {current.name}
-                </h3>
-                <p style={{ color: 'rgba(255,255,255,0.62)', fontSize: 15, marginBottom: 28 }}>{current.role}</p>
-
-                {current.description ? (
-                  <p style={{ color: 'rgba(255,255,255,0.84)', fontSize: 17, lineHeight: 1.8, marginBottom: 28 }}>
-                    {current.description}
-                  </p>
-                ) : (
-                  /* Honest empty state rather than a bracketed placeholder on a
-                     live page. Fill `description` in and this disappears. */
-                  <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 16, lineHeight: 1.8, marginBottom: 28, fontStyle: 'italic' }}>
-                    Overview coming shortly.
-                  </p>
-                )}
-
-                {current.value && (
-                  <div style={{ borderLeft: `3px solid ${SECONDARY}`, paddingLeft: 20, marginBottom: 32 }}>
-                    <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 10 }}>
-                      What I bring
-                    </p>
-                    <p style={{ color: 'rgba(255,255,255,0.84)', fontSize: 16, lineHeight: 1.75 }}>{current.value}</p>
+              <div className="relative">
+                {current.thumb && (
+                  <div style={{ width: '100%', aspectRatio: '900 / 360', overflow: 'hidden' }}>
+                    <img
+                      key={current.thumb}
+                      src={current.thumb}
+                      alt=""
+                      aria-hidden="true"
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: 'center 42%' }}
+                    />
                   </div>
                 )}
 
-                {current.url && (
-                  <a
-                    href={current.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 10,
-                      color: SECONDARY,
-                      fontSize: 14,
-                      fontWeight: 600,
-                      letterSpacing: '0.04em',
-                      borderBottom: `1px solid ${SECONDARY}`,
-                      paddingBottom: 4
-                    }}
+                <div className="p-8 md:p-12">
+                  <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 16 }}>
+                    {currentDiscipline ? currentDiscipline.name : 'Portfolio'}
+                  </p>
+
+                  <h3
+                    className="display"
+                    style={{ color: '#ffffff', fontSize: 'clamp(1.8rem, 3.6vw, 2.7rem)', marginBottom: 10 }}
                   >
-                    {displayUrl(current.url)}
-                    <ArrowUpRight size={16} />
-                  </a>
-                )}
+                    {current.name}
+                  </h3>
+                  <p style={{ color: 'rgba(255,255,255,0.66)', fontSize: 15, marginBottom: 26 }}>{current.role}</p>
+
+                  {current.description && (
+                    <p style={{ color: 'rgba(255,255,255,0.86)', fontSize: 17, lineHeight: 1.8, marginBottom: 26 }}>
+                      {current.description}
+                    </p>
+                  )}
+
+                  {current.value && (
+                    <div style={{ borderLeft: `3px solid ${SECONDARY}`, paddingLeft: 20, marginBottom: 30 }}>
+                      <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 10 }}>
+                        What I bring
+                      </p>
+                      <p style={{ color: 'rgba(255,255,255,0.86)', fontSize: 16, lineHeight: 1.75 }}>{current.value}</p>
+                    </div>
+                  )}
+
+                  {current.url && (
+                    <a
+                      href={current.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 10,
+                        color: SECONDARY,
+                        fontSize: 14,
+                        fontWeight: 600,
+                        letterSpacing: '0.04em',
+                        borderBottom: `1px solid ${SECONDARY}`,
+                        paddingBottom: 4
+                      }}
+                    >
+                      {displayUrl(current.url)}
+                      <ArrowUpRight size={16} />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
 
-          <p style={{ color: MUTED, fontSize: 13, marginTop: 16 }}>
-            Select a company to read more.
-          </p>
+          <p style={{ color: MUTED, fontSize: 13, marginTop: 16 }}>Select a company to read more.</p>
         </div>
       </section>
 
       {/* ============================================================
           3 — SCALE
-          Oversized figures. Every one is quoted from the copy above.
           ============================================================ */}
       <section className="relative overflow-hidden px-6 py-16 md:py-24" style={{ backgroundColor: INK }}>
         <span
@@ -380,9 +420,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
             <div key={s.label}>
               <div className="display" style={{ color: SECONDARY, fontSize: 'clamp(2.8rem, 6vw, 4.6rem)', lineHeight: 1 }}>
                 {s.value}
-                {s.unit && (
-                  <span style={{ fontSize: '0.42em', marginLeft: 6, letterSpacing: '0.06em' }}>{s.unit}</span>
-                )}
+                {s.unit && <span style={{ fontSize: '0.42em', marginLeft: 6, letterSpacing: '0.06em' }}>{s.unit}</span>}
               </div>
               <span
                 aria-hidden="true"
@@ -395,39 +433,20 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
       </section>
 
       {/* ============================================================
-          4 — THE THROUGH-LINE
-          Three words, three panels. This is the line to remember, so it
-          gets the whole section rather than a sentence at the end of one.
+          4 — THE LINE TO REMEMBER
+          Kept as a single display line rather than three panels, now that
+          the argument itself lives at the top of the page.
           ============================================================ */}
-      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: '#ffffff' }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            eyebrow="The through-line"
-            title="Why These Businesses?"
-            intro="Each one flows from the same conviction: real value comes from connecting people, solving problems, and building with integrity. Whether it’s capital, operations, real estate, or people development — the principle is the same."
-          />
-
-          <div className="grid md:grid-cols-3 gap-px mt-14" style={{ backgroundColor: '#e2e2e2' }}>
-            {[
-              { word: 'Relationships', body: 'Trust compounds. The deal after this one comes from how you handled this one.' },
-              { word: 'Economics', body: 'The numbers have to work. Conviction without arithmetic is just enthusiasm.' },
-              { word: 'Execution', body: 'Everything above is theory until somebody does the unglamorous work on a Tuesday.' }
-            ].map((c, i) => (
-              <div key={c.word} className="p-9" style={{ backgroundColor: i === 1 ? INK : '#ffffff' }}>
-                <h3
-                  className="display"
-                  style={{ color: i === 1 ? SECONDARY : PRIMARY, fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)', marginBottom: 16 }}
-                >
-                  {c.word}
-                </h3>
-                <p style={{ color: i === 1 ? 'rgba(255,255,255,0.78)' : MUTED, fontSize: 16, lineHeight: 1.75 }}>
-                  {c.body}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-14 flex flex-wrap gap-3">
+      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: '#ffffff' }}>
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="display" style={{ color: PRIMARY, fontSize: 'clamp(1.8rem, 5vw, 3.4rem)', marginBottom: 14 }}>
+            Relationships. <span style={{ color: SECONDARY }}>Economics.</span> Execution.
+          </p>
+          <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.8, maxWidth: '54ch', margin: '0 auto 34px' }}>
+            Trust compounds, the numbers have to work, and none of it counts until somebody does the
+            unglamorous part on a Tuesday.
+          </p>
+          <div className="flex flex-wrap gap-3 justify-center">
             <Button variant="navy" onClick={() => onNavigate && onNavigate('speaking')}>
               See the speaking
             </Button>

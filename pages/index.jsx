@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { Menu, X, Mail } from 'lucide-react';
+import { Menu, X, Mail, Instagram, Linkedin, Youtube, Twitter } from 'lucide-react';
 import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
 import MeetPage from '../components/MeetPage';
@@ -22,6 +22,14 @@ import { company, colors, cta, nav as navItems, social } from '../site.config';
  * routes (/speaking, /podcasts) is the single highest-value SEO change
  * available on this site — it is a structural change, not a config tweak.
  */
+/** Keys must match those in site.config.js `social`. */
+const SOCIAL_ICONS = {
+  instagram: Instagram,
+  linkedin: Linkedin,
+  youtube: Youtube,
+  x: Twitter
+};
+
 const META = {
   home: {
     title: `${company.name} — Keynote Speaker, Host & Entrepreneur`,
@@ -66,9 +74,23 @@ export default function Site() {
 
   const isHome = currentPage === 'home';
 
-  // Cream bar on every page and every scroll state. Off-white rather than pure
-  // white: it picks up the light-gray left side of the hero artwork, so the
-  // bar settles into the composition instead of sitting on it as a bright lid.
+  // HOME: the bar reproduces the top edge of the hero artwork so it reads as a
+  // continuation of the image rather than a lid on top of it. The three stops
+  // and the two breakpoints below are measured from the artwork's own top row
+  // of pixels — light gray to 41.1%, taupe to 79.9%, light gray to the edge,
+  // which is exactly where the wedge and the return slash cut across. If the
+  // artwork is ever re-exported with different geometry, re-sample it rather
+  // than eyeballing these numbers.
+  //
+  // Consequences that drove the rest of the header design: white type is only
+  // 2.6:1 on that gray but 7:1 on the taupe, so the nav items are grouped to
+  // the right where the taupe is; and gold is barely 1.2:1 on the gray, so the
+  // logo gets a cream plate instead of sitting directly on it.
+  const HERO_TOP_GRAY = '#9e9c9d';
+  const HERO_TOP_TAUPE = '#665e5b';
+  const homeNavBg = `linear-gradient(90deg, ${HERO_TOP_GRAY} 0 41.1%, ${HERO_TOP_TAUPE} 41.1% 79.9%, ${HERO_TOP_GRAY} 79.9% 100%)`;
+
+  // INNER PAGES: plain cream.
   const navBg = colors.BG;
   const navDark = false;
 
@@ -128,23 +150,28 @@ export default function Site() {
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          backgroundColor: navBg,
-          borderBottom: `1px solid rgba(42,42,42,0.10)`,
+          background: isHome ? homeNavBg : navBg,
+          borderBottom: isHome ? 'none' : `1px solid rgba(42,42,42,0.10)`,
           boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.10)' : 'none'
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
           <button
             onClick={() => handleNavClick('home')}
             style={{ background: 'none', border: 'none', padding: 0 }}
             aria-label={`${company.name} — home`}
           >
-            <Logo tone={navDark ? 'dark' : 'light'} />
+            <Logo tone={navDark ? 'dark' : 'light'} framed={isHome} />
           </button>
 
-          <div className="hidden lg:flex items-center gap-6">
+          {/* On home the links and actions are one right-aligned group so they
+              stay over the taupe band, where white type clears 7:1. On inner
+              pages they keep their own spacing on the cream bar. */}
+          <div className={`hidden lg:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
+              const idle = isHome ? 'rgba(255,255,255,0.86)' : colors.TAUPE;
+              const on = isHome ? '#ffffff' : colors.PRIMARY;
               return (
                 <button
                   key={item.id}
@@ -157,7 +184,7 @@ export default function Site() {
                     fontWeight: 600,
                     letterSpacing: '0.16em',
                     textTransform: 'uppercase',
-                    color: isActive ? colors.PRIMARY : colors.TAUPE,
+                    color: isActive ? on : idle,
                     borderBottom: `2px solid ${isActive ? colors.SECONDARY : 'transparent'}`,
                     transition: 'color 0.2s, border-color 0.2s'
                   }}
@@ -172,9 +199,7 @@ export default function Site() {
                 </button>
               );
             })}
-          </div>
 
-          <div className="hidden lg:flex items-center gap-4">
             <Translate />
             <Button variant="gold" size="sm" onClick={() => openContact('Speaking')}>
               {cta.primary}
@@ -304,24 +329,43 @@ export default function Site() {
               </a>
             </div>
 
+            {/* Social. Each icon renders only when site.config.js has a URL for
+                it, so an account that does not exist yet leaves no dead link
+                behind — and adding one later needs no code change. */}
             {socialLinks.length > 0 && (
-              <div className="flex justify-center gap-6 mb-6">
-                {socialLinks.map(([key, url]) => (
-                  <a
-                    key={key}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      color: 'rgba(255,255,255,0.7)',
-                      fontSize: 12,
-                      letterSpacing: '0.14em',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    {key}
-                  </a>
-                ))}
+              <div className="flex justify-center gap-3 mb-7">
+                {socialLinks.map(([key, url]) => {
+                  const Icon = SOCIAL_ICONS[key];
+                  return (
+                    <a
+                      key={key}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={key.charAt(0).toUpperCase() + key.slice(1)}
+                      className="flex items-center justify-center"
+                      style={{
+                        width: 42,
+                        height: 42,
+                        border: '1px solid rgba(255,255,255,0.28)',
+                        color: 'rgba(255,255,255,0.85)',
+                        transition: 'background-color 180ms ease, border-color 180ms ease, color 180ms ease'
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.backgroundColor = colors.SECONDARY;
+                        e.currentTarget.style.borderColor = colors.SECONDARY;
+                        e.currentTarget.style.color = colors.SLATE;
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.28)';
+                        e.currentTarget.style.color = 'rgba(255,255,255,0.85)';
+                      }}
+                    >
+                      {Icon ? <Icon size={18} strokeWidth={1.7} /> : key}
+                    </a>
+                  );
+                })}
               </div>
             )}
 

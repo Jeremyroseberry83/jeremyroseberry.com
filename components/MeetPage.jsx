@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageTopBand, SectionHead, TopicCards, BookingCTA, SECONDARY, SLATE, MUTED, INK, BG } from './ui';
+import { PageTopBand, SectionHead, TopicCards, BookingCTA, SECONDARY, SLATE, MUTED, BG } from './ui';
 
 /**
  * "Let's Meet" — the values and background page.
@@ -96,12 +96,30 @@ export default function MeetPage({ onContactClick }) {
                   way to lose a booking committee that checks. */}
             </div>
 
-            <div className="md:col-span-5 flex justify-center md:justify-end">
-              <img
-                src="/images/jeremy-cutout.png"
-                alt="Jeremy Roseberry"
-                style={{ display: 'block', width: '100%', maxWidth: 460, height: 'auto' }}
-              />
+            <div className="md:col-span-5 flex justify-center md:justify-end" style={{ paddingBottom: 64 }}>
+              {/* Framed rather than cut out, for now. The offset gold rule is
+                  the same device used on every other photograph on the site,
+                  so a framed portrait still reads as part of the system.
+                  Swap the src when the new headshots land — the frame and the
+                  4:5 box stay as they are. */}
+              <div style={{ position: 'relative', width: '100%', maxWidth: 420 }}>
+                <span
+                  aria-hidden="true"
+                  style={{ position: 'absolute', right: -14, top: -14, width: '52%', height: 3, backgroundColor: SECONDARY }}
+                />
+                <span
+                  aria-hidden="true"
+                  style={{ position: 'absolute', right: -14, top: -14, width: 3, height: '32%', backgroundColor: SECONDARY }}
+                />
+                <div style={{ aspectRatio: '4 / 5', overflow: 'hidden', backgroundColor: '#d9d9d9' }}>
+                  <img
+                    src="/images/jeremy-portrait.jpg"
+                    alt="Jeremy Roseberry"
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center 20%', filter: 'grayscale(100%)' }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -121,62 +139,11 @@ export default function MeetPage({ onContactClick }) {
         </div>
       </section>
 
-      {/* Typographic on purpose, no photograph. This section argues Jeremy can
-          hold a room, and the only image that supports that claim is a real
-          on-stage shot. See the shoot brief in README.md. */}
-      <section className="relative overflow-hidden py-16 md:py-28 px-6" style={{ backgroundColor: INK }}>
-        <div
-          className="hero-wedge absolute inset-y-0 right-0 hidden md:block"
-          style={{ width: '48%', backgroundColor: '#6b6b6b', opacity: 0.28 }}
-        />
-        <span
-          aria-hidden="true"
-          className="watermark absolute hidden md:block"
-          style={{
-            right: '-2%',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            fontSize: 'clamp(5rem, 14vw, 12rem)',
-            color: 'rgba(255,255,255,0.045)'
-          }}
-        >
-          Honest
-        </span>
-
-        <div className="relative max-w-6xl mx-auto">
-          <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11, marginBottom: 20 }}>
-            Why book Jeremy
-          </p>
-          <blockquote
-            className="display"
-            style={{ color: '#ffffff', fontSize: 'clamp(1.9rem, 4.6vw, 3.5rem)', maxWidth: '20ch', marginBottom: 44 }}
-          >
-            The talk people remember is the one where somebody finally said the quiet part out loud.
-          </blockquote>
-          <span
-            aria-hidden="true"
-            style={{ display: 'block', width: 54, height: 3, backgroundColor: SECONDARY, marginBottom: 36 }}
-          />
-          <div className="grid md:grid-cols-2 gap-10 md:gap-16" style={{ maxWidth: 940 }}>
-            <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 17, lineHeight: 1.8 }}>
-              Most business talks are a highlight reel with a lesson bolted on the end. That is not what
-              moves a room. People lean in when the person on stage is honest about the part that did
-              not work — the payroll nearly missed, the call got wrong, the year they wanted out.
-            </p>
-            <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 17, lineHeight: 1.8 }}>
-              That honesty is the whole method. It earns attention in the first ninety seconds, and it
-              makes the practical part land, because by then the audience believes the person saying it
-              has actually been there.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <BookingCTA
         onContactClick={onContactClick}
         context="Speaking"
         title="Tell me about your event."
-        body="Date, city, audience, and what you need them to walk out believing. That is enough to get started — I will come back with availability and a plan."
+        body="Date, city, audience — whatever you have so far. That is enough to get started, and I will come back with availability and a plan."
       />
     </div>
   );

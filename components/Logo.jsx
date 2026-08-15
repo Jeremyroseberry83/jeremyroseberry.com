@@ -24,7 +24,7 @@ import { colors, company } from '../site.config';
  *
  * On the dark bar the original spec still applies: #d9d9d9 thin, white bold.
  */
-export default function Logo({ tone = 'dark', size = 'md' }) {
+export default function Logo({ tone = 'dark', size = 'md', framed = false }) {
   const isDark = tone === 'dark';
 
   const scale = size === 'sm' ? 0.82 : size === 'lg' ? 1.25 : 1;
@@ -33,9 +33,23 @@ export default function Logo({ tone = 'dark', size = 'md' }) {
   const thinColor = isDark ? colors.GRAY_LIGHT : colors.SECONDARY;
   const boldColor = isDark ? '#ffffff' : colors.TAUPE;
 
+  // `framed` sets the lockup in a cream plate with a gold rule around it.
+  // On the home page the header background is the hero artwork's own mid-gray,
+  // and gold measures barely 1.2:1 against that — the wordmark would simply
+  // vanish. Rather than recolour the mark for one page, the plate gives it the
+  // light ground it was designed for, and doubles as the boxed treatment from
+  // the brand mockup.
+  const frame = framed
+    ? {
+        backgroundColor: colors.BG,
+        border: `1px solid ${colors.SECONDARY}`,
+        padding: `${11 * scale}px ${17 * scale}px`
+      }
+    : null;
+
   return (
     <span
-      style={{ display: 'inline-flex', alignItems: 'center', gap: 11 * scale }}
+      style={{ display: 'inline-flex', alignItems: 'center', gap: 11 * scale, ...frame }}
       aria-label={company.name}
     >
       <span

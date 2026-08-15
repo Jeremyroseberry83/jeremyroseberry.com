@@ -226,7 +226,7 @@ export default function ContactForm({ onClose, initialType, initialMessage }) {
 
                 <div style={{ marginBottom: 24 }}>
                   <label htmlFor="bk-msg" style={label}>
-                    What do you need the room to walk out believing?
+                    Tell me more
                   </label>
                   <textarea
                     id="bk-msg"
@@ -235,7 +235,7 @@ export default function ContactForm({ onClose, initialType, initialMessage }) {
                     required
                     value={form.message}
                     onChange={change}
-                    placeholder="A sentence is plenty."
+                    placeholder="The event, the date, the audience — whatever you have. A couple of lines is plenty."
                     style={{ ...field, resize: 'vertical' }}
                   />
                 </div>

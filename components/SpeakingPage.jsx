@@ -2,7 +2,6 @@ import React from 'react';
 import {
   PageTopBand,
   SectionHead,
-  NumberStrip,
   Testimonials,
   BookingCTA,
   Button,
@@ -14,28 +13,6 @@ import {
   BG
 } from './ui';
 import { cta } from '../site.config';
-
-const FORMATS = [
-  { title: 'Keynote', body: '45–60 minutes, main stage, any room size. The most common booking.' },
-  { title: 'Workshop', body: '90 minutes to half day, capped around 40 people so the room can actually talk.' },
-  { title: 'Host / emcee', body: 'Full-day or multi-day. Agenda control, transitions, panels, energy between sessions.' },
-  { title: 'Fireside', body: '30–45 minutes interviewed on stage, or moderating your headline guest.' }
-];
-
-const LOGISTICS = [
-  {
-    h: 'Travel',
-    p: 'Based in South Florida, available nationally and internationally. Travel handled on your side or billed at cost — whichever is simpler for your finance team.'
-  },
-  {
-    h: 'Lead time',
-    p: 'Most dates confirm six to twelve weeks out. Short-notice replacements are worth asking about — it is a call, not a form.'
-  },
-  {
-    h: 'What you get',
-    p: 'A pre-event call, a talk shaped to your theme, promotional assets for your channels, and a reply from me personally rather than an assistant.'
-  }
-];
 
 /**
  * The talk catalogue.
@@ -188,34 +165,8 @@ export default function SpeakingPage({ onContactClick }) {
         <div className="max-w-4xl mx-auto">
           <p style={{ color: MUTED, fontSize: 19, lineHeight: 1.8 }}>
             Each of these adapts to your theme and your audience. If none is quite right, say what you
-            need the room to walk out believing and I will build something for it.
+            you are going for and I will build something for it.
           </p>
-        </div>
-      </section>
-
-      {/* FORMATS + LOGISTICS */}
-      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: INK }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            dark
-            eyebrow="Formats"
-            title="How the session can run"
-            intro="Every format below has been run before. If your agenda needs something between two of them, that is usually fine — ask."
-          />
-          <div className="mt-14">
-            <NumberStrip items={FORMATS} dark />
-          </div>
-
-          <div className="mt-14 grid md:grid-cols-3 gap-8">
-            {LOGISTICS.map((item) => (
-              <div key={item.h}>
-                <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 12 }}>
-                  {item.h}
-                </p>
-                <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 15, lineHeight: 1.75 }}>{item.p}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -311,7 +262,7 @@ export default function SpeakingPage({ onContactClick }) {
         onContactClick={onContactClick}
         context="Speaking"
         title="Ready to book?"
-        body="Tell me about your event and what you need the room to walk out believing."
+        body="Tell me about your event and what you are hoping people take away."
       />
     </div>
   );
