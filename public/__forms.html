@@ -6,17 +6,25 @@
   </head>
   <body>
     <!--
-      Netlify scans deployed HTML at build time to register forms. Next.js
-      renders the real contact modal on the client, so Netlify never sees it.
+      Netlify registers forms by scanning deployed HTML at build time. Next.js
+      renders the real booking modal on the client, so Netlify never sees it.
       This static file exists purely so the form gets registered; nobody visits it.
-      The React modal (components/ContactForm.jsx) POSTs to the same form-name —
-      if you rename FORM_NAME there, update it here too.
+
+      components/ContactForm.jsx POSTs to the same form-name with exactly these
+      field names. If you add, rename or remove a field there, mirror it here —
+      Netlify drops unknown fields silently, so a mismatch looks like a working
+      form that quietly loses half of every enquiry.
     -->
-    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input type="hidden" name="form-name" value="contact" />
+    <form name="booking" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="booking" />
       <input type="text" name="bot-field" />
       <input type="text" name="type" />
+      <input type="text" name="name" />
       <input type="email" name="email" />
+      <input type="text" name="organisation" />
+      <input type="text" name="eventDate" />
+      <input type="text" name="location" />
+      <input type="text" name="audience" />
       <textarea name="message"></textarea>
     </form>
   </body>

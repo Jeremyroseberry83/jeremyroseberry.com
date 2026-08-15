@@ -1,0 +1,82 @@
+import React from 'react';
+import { colors, company } from '../site.config';
+
+/**
+ * Logo — the JR monogram plus the linear "JEREMY ROSEBERRY" wordmark,
+ * rebuilt in type rather than shipped as a PNG.
+ *
+ * Why type and not the image file: a text lockup stays razor sharp at every
+ * density, recolors itself for dark and light grounds, costs no extra network
+ * request, and the name is readable by search engines and screen readers.
+ * The PNG is still on disk at /images/jr-monogram.png for social/OG previews
+ * and the favicon, which do need a raster file.
+ *
+ * The monogram is set in Jost (a geometric Futura-like face) at Light with
+ * negative tracking, which is the closest a real font gets to the drawn
+ * J/R ligature in the original mark.
+ *
+ * CONTRAST NOTE — the brief specified Jeremy in #d9d9d9 and Roseberry in
+ * #6b6b6b. On the dark nav those are used exactly. On a white ground #d9d9d9
+ * is 1.35:1 against white, which is invisible to most people and unusable for
+ * anyone with low vision, so the light-ground variant steps "Jeremy" down to
+ * the brand's own accent gray and keeps the identical thin/bold relationship.
+ * #6b6b6b for "Roseberry" is 5.7:1 on white and is used exactly as specified.
+ */
+export default function Logo({ tone = 'dark', size = 'md' }) {
+  const isDark = tone === 'dark';
+
+  const scale = size === 'sm' ? 0.82 : size === 'lg' ? 1.25 : 1;
+
+  const monogramColor = isDark ? colors.SECONDARY : colors.PRIMARY;
+  const thinColor = isDark ? colors.GRAY_LIGHT : colors.GRAY_ACCENT;
+  const boldColor = isDark ? '#ffffff' : colors.TAUPE;
+
+  return (
+    <span
+      style={{ display: 'inline-flex', alignItems: 'center', gap: 11 * scale }}
+      aria-label={company.name}
+    >
+      <span
+        aria-hidden="true"
+        style={{
+          fontFamily: "'Jost', 'Futura', 'Century Gothic', sans-serif",
+          fontWeight: 300,
+          fontSize: 30 * scale,
+          lineHeight: 1,
+          letterSpacing: '-0.07em',
+          color: monogramColor,
+          transition: 'color 250ms ease',
+          paddingRight: 2 * scale
+        }}
+      >
+        {company.initials}
+      </span>
+
+      {/* Hairline divider — keeps the monogram reading as a mark rather than
+          as the first two letters of the name. */}
+      <span
+        aria-hidden="true"
+        style={{
+          width: 1,
+          height: 22 * scale,
+          backgroundColor: isDark ? 'rgba(255,255,255,0.28)' : 'rgba(42,42,42,0.18)',
+          transition: 'background-color 250ms ease'
+        }}
+      />
+
+      <span
+        aria-hidden="true"
+        style={{
+          fontSize: 13 * scale,
+          letterSpacing: '0.19em',
+          lineHeight: 1,
+          textTransform: 'uppercase',
+          whiteSpace: 'nowrap'
+        }}
+      >
+        <span style={{ fontWeight: 200, color: thinColor, transition: 'color 250ms ease' }}>Jeremy </span>
+        <span style={{ fontWeight: 700, color: boldColor, transition: 'color 250ms ease' }}>Roseberry</span>
+      </span>
+    </span>
+  );
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Mail } from 'lucide-react';
-import { PRIMARY, PRIMARY_DEEP, SLATE, MUTED, SECONDARY } from './ui';
+import { Button, SECONDARY, SECONDARY_DEEP, SLATE, MUTED, PRIMARY, INK } from './ui';
 import { company } from '../site.config';
 
 // Netlify needs the payload url-encoded, not JSON.
@@ -9,12 +9,32 @@ const encode = (data) =>
     .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
     .join('&');
 
-const FORM_NAME = 'contact';
+const FORM_NAME = 'booking';
+
+/**
+ * The booking enquiry form.
+ *
+ * Field discipline: name, email and message are required and nothing else is.
+ * Every additional required field measurably costs enquiries, and the details
+ * below (date, city, audience) are things an organiser volunteers happily when
+ * they are optional — and abandons the form over when they are not.
+ *
+ * IMPORTANT: Netlify registers forms by scanning static HTML at build time and
+ * never sees this React component. public/__forms.html carries a hidden copy
+ * with the same form name and the same field names. Change a field here and
+ * you must change it there, or submissions silently vanish.
+ */
+const ENQUIRY_TYPES = ['Speaking', 'Hosting / emcee', 'Podcast', 'Availability', 'Press', 'Content', 'Other'];
 
 export default function ContactForm({ onClose, initialType, initialMessage }) {
   const [form, setForm] = useState({
-    type: initialType || 'General',
+    type: ENQUIRY_TYPES.includes(initialType) ? initialType : 'Speaking',
+    name: '',
     email: '',
+    organisation: '',
+    eventDate: '',
+    location: '',
+    audience: '',
     message: initialMessage || ''
   });
   const [state, setState] = useState('idle'); // idle | sending | done | error
@@ -38,148 +58,219 @@ export default function ContactForm({ onClose, initialType, initialMessage }) {
 
   const field = {
     width: '100%',
-    padding: '13px 15px',
-    borderRadius: 10,
-    border: '1px solid #DCE3F7',
+    padding: '12px 14px',
+    borderRadius: 2,
+    border: '1px solid #d9d9d9',
     color: SLATE,
     fontSize: 15,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    fontFamily: 'inherit'
+  };
+
+  const label = {
+    display: 'block',
+    fontSize: 11,
+    fontWeight: 600,
+    letterSpacing: '0.14em',
+    textTransform: 'uppercase',
+    color: MUTED,
+    marginBottom: 8
   };
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center z-50 p-4"
-      style={{ backgroundColor: 'rgba(20,28,40,0.55)' }}
+      className="fixed inset-0 flex items-center justify-center z-50 p-4 modal-fade-in"
+      style={{ backgroundColor: 'rgba(20,20,20,0.72)' }}
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Booking enquiry"
     >
       <div
-        className="bg-white rounded-2xl max-w-lg w-full p-10 relative"
-        style={{ maxHeight: '92vh', overflowY: 'auto' }}
+        className="bg-white w-full relative"
+        style={{ maxWidth: 620, maxHeight: '92vh', overflowY: 'auto' }}
         onClick={(e) => e.stopPropagation()}
       >
-        <button onClick={onClose} className="absolute top-6 right-6" style={{ color: MUTED }} aria-label="Close">
-          <X size={22} />
-        </button>
+        {/* Charcoal header — carries the brand into the one screen where the
+            visitor has actually decided to do something. */}
+        <div className="relative overflow-hidden" style={{ backgroundColor: INK, padding: '30px 34px' }}>
+          <span
+            aria-hidden="true"
+            style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 3, backgroundColor: SECONDARY }}
+          />
+          <button
+            onClick={onClose}
+            className="absolute"
+            style={{ top: 20, right: 20, color: 'rgba(255,255,255,0.65)', background: 'none', border: 'none' }}
+            aria-label="Close"
+          >
+            <X size={22} />
+          </button>
 
-        {state === 'done' ? (
-          <div className="text-center py-6">
-            <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6" style={{ backgroundColor: '#E1F4EE' }}>
-              <span style={{ color: SECONDARY, fontSize: 26 }}>✓</span>
-            </div>
-            <h2 className="font-bold mb-3" style={{ color: SLATE, fontSize: 22 }}>
-              Thanks — we'll come back to you.
-            </h2>
-            <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.7 }}>
-              [Set expectations, e.g. "Within two business days."]
-            </p>
-            <button
-              onClick={onClose}
-              className="mt-8 px-7 py-3 rounded-full text-white text-sm font-semibold"
-              style={{ background: `linear-gradient(90deg, ${PRIMARY} 0%, ${PRIMARY_DEEP} 100%)` }}
-            >
-              Close
-            </button>
-          </div>
-        ) : (
-          <>
-            <h2 className="font-bold mb-8" style={{ color: SLATE, fontSize: 24, letterSpacing: '-0.02em' }}>
-              Let's talk.
-            </h2>
-
-            {/* Netlify detects this form at BUILD time by scanning static HTML,
-                not this React component — you need a matching plain <form> in
-                public/__forms.html with the same name + fields, or Netlify
-                Forms won't work. See that file for the template. */}
-            <form
-              name={FORM_NAME}
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              onSubmit={submit}
-              className="space-y-5"
-            >
-              <input type="hidden" name="form-name" value={FORM_NAME} />
-              <p className="hidden">
-                <label>
-                  Leave blank: <input name="bot-field" onChange={change} />
-                </label>
+          {state === 'done' ? (
+            <>
+              <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 12 }}>
+                Received
               </p>
+              <h2 className="display" style={{ color: '#ffffff', fontSize: 28 }}>
+                Thank you
+              </h2>
+            </>
+          ) : (
+            <>
+              <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 12 }}>
+                Booking enquiry
+              </p>
+              <h2 className="display" style={{ color: '#ffffff', fontSize: 28 }}>
+                Let’s find a date
+              </h2>
+            </>
+          )}
+        </div>
 
-              <div>
-                <label className="block font-semibold mb-2" style={{ color: SLATE, fontSize: 13 }}>
-                  I'm reaching out about
-                </label>
-                <select name="type" value={form.type} onChange={change} style={field}>
-                  <option>General</option>
-                  <option>Press</option>
-                  <option>Other</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block font-semibold mb-2" style={{ color: SLATE, fontSize: 13 }}>
-                  Your email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  value={form.email}
-                  onChange={change}
-                  placeholder="you@company.com"
-                  style={field}
-                />
-              </div>
-
-              <div>
-                <label className="block font-semibold mb-2" style={{ color: SLATE, fontSize: 13 }}>
-                  Anything else
-                </label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  value={form.message}
-                  onChange={change}
-                  placeholder="Optional."
-                  style={{ ...field, resize: 'none' }}
-                />
-              </div>
-
-              {state === 'error' && (
-                <p style={{ color: '#B4232B', fontSize: 14 }}>
-                  Something went wrong. Email{' '}
-                  <a href={`mailto:${company.email}`} style={{ textDecoration: 'underline' }}>
-                    {company.email}
-                  </a>{' '}
-                  directly and we'll pick it up.
+        <div style={{ padding: '32px 34px 36px' }}>
+          {state === 'done' ? (
+            <div>
+              <p style={{ color: SLATE, fontSize: 17, lineHeight: 1.75, marginBottom: 16 }}>
+                That has come straight through to me — not to an inbox somebody else checks.
+              </p>
+              <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.75, marginBottom: 28 }}>
+                You will hear back within one business day. If it is urgent, or the date is close, email{' '}
+                <a href={`mailto:${company.email}`} style={{ color: SECONDARY_DEEP, textDecoration: 'underline' }}>
+                  {company.email}
+                </a>{' '}
+                directly and mark it urgent.
+              </p>
+              <Button variant="navy" onClick={onClose}>
+                Close
+              </Button>
+            </div>
+          ) : (
+            <>
+              <form name={FORM_NAME} method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={submit}>
+                <input type="hidden" name="form-name" value={FORM_NAME} />
+                <p className="hidden">
+                  <label>
+                    Leave blank: <input name="bot-field" onChange={change} />
+                  </label>
                 </p>
-              )}
 
-              <button
-                type="submit"
-                disabled={state === 'sending'}
-                className="w-full py-3.5 rounded-full text-white font-semibold"
-                style={{
-                  background: `linear-gradient(90deg, ${PRIMARY} 0%, ${PRIMARY_DEEP} 100%)`,
-                  opacity: state === 'sending' ? 0.65 : 1,
-                  fontSize: 15
-                }}
-              >
-                {state === 'sending' ? 'Sending…' : 'Send'}
-              </button>
-            </form>
+                <div style={{ marginBottom: 20 }}>
+                  <label htmlFor="bk-type" style={label}>
+                    This is about
+                  </label>
+                  <select id="bk-type" name="type" value={form.type} onChange={change} style={field}>
+                    {ENQUIRY_TYPES.map((t) => (
+                      <option key={t}>{t}</option>
+                    ))}
+                  </select>
+                </div>
 
-            <div className="mt-8 pt-7" style={{ borderTop: '1px solid #E4E8F2' }}>
-              <p className="mb-4" style={{ color: MUTED, fontSize: 13 }}>
-                Prefer email?
-              </p>
-              <a href={`mailto:${company.email}`} className="inline-flex items-center gap-2.5" style={{ color: PRIMARY, fontSize: 14 }}>
-                <Mail size={15} strokeWidth={1.8} />
-                {company.email}
-              </a>
-            </div>
-          </>
-        )}
+                <div className="grid sm:grid-cols-2 gap-4" style={{ marginBottom: 20 }}>
+                  <div>
+                    <label htmlFor="bk-name" style={label}>
+                      Your name
+                    </label>
+                    <input id="bk-name" type="text" name="name" required value={form.name} onChange={change} style={field} />
+                  </div>
+                  <div>
+                    <label htmlFor="bk-email" style={label}>
+                      Email
+                    </label>
+                    <input
+                      id="bk-email"
+                      type="email"
+                      name="email"
+                      required
+                      value={form.email}
+                      onChange={change}
+                      placeholder="you@company.com"
+                      style={field}
+                    />
+                  </div>
+                </div>
+
+                <div style={{ marginBottom: 20 }}>
+                  <label htmlFor="bk-org" style={label}>
+                    Organisation or event
+                  </label>
+                  <input id="bk-org" type="text" name="organisation" value={form.organisation} onChange={change} style={field} />
+                </div>
+
+                {/* Optional qualifiers. Marked optional out loud, because an
+                    organiser who does not yet have a date should not feel
+                    disqualified from sending the form. */}
+                <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 10, marginBottom: 14 }}>
+                  If you know it — all optional
+                </p>
+                <div className="grid sm:grid-cols-3 gap-4" style={{ marginBottom: 20 }}>
+                  <div>
+                    <label htmlFor="bk-date" style={label}>
+                      Date
+                    </label>
+                    <input id="bk-date" type="text" name="eventDate" value={form.eventDate} onChange={change} placeholder="Mar 2027" style={field} />
+                  </div>
+                  <div>
+                    <label htmlFor="bk-loc" style={label}>
+                      City
+                    </label>
+                    <input id="bk-loc" type="text" name="location" value={form.location} onChange={change} placeholder="Miami" style={field} />
+                  </div>
+                  <div>
+                    <label htmlFor="bk-aud" style={label}>
+                      Audience
+                    </label>
+                    <input id="bk-aud" type="text" name="audience" value={form.audience} onChange={change} placeholder="250" style={field} />
+                  </div>
+                </div>
+
+                <div style={{ marginBottom: 24 }}>
+                  <label htmlFor="bk-msg" style={label}>
+                    What do you need the room to walk out believing?
+                  </label>
+                  <textarea
+                    id="bk-msg"
+                    name="message"
+                    rows={4}
+                    required
+                    value={form.message}
+                    onChange={change}
+                    placeholder="A sentence is plenty."
+                    style={{ ...field, resize: 'vertical' }}
+                  />
+                </div>
+
+                {state === 'error' && (
+                  <p style={{ color: '#b4232b', fontSize: 14, marginBottom: 18 }}>
+                    Something went wrong sending that. Email{' '}
+                    <a href={`mailto:${company.email}`} style={{ textDecoration: 'underline' }}>
+                      {company.email}
+                    </a>{' '}
+                    and it will get picked up.
+                  </p>
+                )}
+
+                <Button variant="gold" type="submit" full size="lg" disabled={state === 'sending'}>
+                  {state === 'sending' ? 'Sending…' : 'Send enquiry'}
+                </Button>
+
+                <p style={{ color: MUTED, fontSize: 13, lineHeight: 1.65, marginTop: 14, textAlign: 'center' }}>
+                  Replies come from Jeremy personally, usually within one business day.
+                </p>
+              </form>
+
+              <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid #e2e2e2' }}>
+                <a
+                  href={`mailto:${company.email}`}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: PRIMARY, fontSize: 14, fontWeight: 600 }}
+                >
+                  <Mail size={15} />
+                  Prefer email? {company.email}
+                </a>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

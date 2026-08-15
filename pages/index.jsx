@@ -1,21 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { Menu, X, Mail } from 'lucide-react';
+import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
-import ProductPage from '../components/ProductPage';
-import PartnersPage from '../components/PartnersPage';
+import SpeakingPage from '../components/SpeakingPage';
+import PodcastsPage from '../components/PodcastsPage';
+import StoriesPage from '../components/StoriesPage';
 import AboutPage from '../components/AboutPage';
 import ContactForm from '../components/ContactForm';
-import VideoModal from '../components/VideoModal';
 import Translate from '../components/Translate';
-import { company, colors, nav as navItems } from '../site.config';
+import { Button } from '../components/ui';
+import { company, colors, cta, nav as navItems, social } from '../site.config';
+
+/**
+ * Per-page metadata. This is a single-route app (one URL, pages swap in
+ * state), so these titles improve the browser tab and back-button experience
+ * but do NOT give each page its own indexable URL.
+ *
+ * Worth knowing: an organiser cannot link a colleague straight to the
+ * speaking page, and Google only ever indexes one page. Converting to real
+ * routes (/speaking, /podcasts) is the single highest-value SEO change
+ * available on this site — it is a structural change, not a config tweak.
+ */
+const META = {
+  home: {
+    title: `${company.name} — Keynote Speaker, Host & Entrepreneur`,
+    description:
+      'Keynotes, event hosting and podcast conversations on leadership, mindset and what building a business actually costs. Book Jeremy Roseberry.'
+  },
+  speaking: {
+    title: `Book ${company.name} to speak — Keynotes & Hosting`,
+    description:
+      'Signature keynotes on mindset, leadership and the honest middle of building a business. Formats, topics and availability for event organisers.'
+  },
+  podcasts: {
+    title: `${company.name} — Podcast Guest & Media`,
+    description:
+      'Book Jeremy Roseberry as a podcast guest. Conversation topics, press kit, headshots and bios for producers.'
+  },
+  stories: {
+    title: `Stories & Notes — ${company.name}`,
+    description:
+      'Essays, episodes and talks on leadership, mindset and the mechanics of building something worth building.'
+  },
+  about: {
+    title: `About ${company.name} — Entrepreneur, Speaker, Host`,
+    description:
+      'Operator first, speaker second. Background, current ventures, and copy-and-paste bios for event programs.'
+  }
+};
 
 export default function Site() {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const [contactContext, setContactContext] = useState(null);
-  const [showVideo, setShowVideo] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -25,7 +64,10 @@ export default function Site() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Every page opens on a dark ground (the hero, or PageTopBand), so an
+  // unscrolled nav sits on dark and a scrolled nav sits on white.
   const overHero = !scrolled;
+  const isHome = currentPage === 'home';
 
   const handleNavClick = (pageId) => {
     setCurrentPage(pageId);
@@ -41,110 +83,92 @@ export default function Site() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'product':  return <ProductPage onNavigate={handleNavClick} />;
-      case 'partners': return <PartnersPage onContactClick={openContact} />;
-      case 'about':    return <AboutPage onContactClick={openContact} />;
-      default:         return <HomePage onContactClick={openContact} onWatchFilm={() => setShowVideo(true)} onNavigate={handleNavClick} />;
+      case 'speaking':
+        return <SpeakingPage onContactClick={openContact} />;
+      case 'podcasts':
+        return <PodcastsPage onContactClick={openContact} />;
+      case 'stories':
+        return <StoriesPage onContactClick={openContact} />;
+      case 'about':
+        return <AboutPage onContactClick={openContact} />;
+      default:
+        return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }
   };
+
+  const meta = META[currentPage] || META.home;
+  const socialLinks = Object.entries(social).filter(([, url]) => url);
 
   return (
     <div className="min-h-screen bg-white">
       <Head>
-        <title>{company.name} — [Your headline]</title>
-        <meta name="description" content="[One-sentence description of what you do, for search results and social previews.]" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
         <link rel="canonical" href={`https://${company.domain}`} />
 
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="profile" />
         <meta property="og:site_name" content={company.name} />
         <meta property="og:url" content={`https://${company.domain}`} />
-        <meta property="og:title" content={`${company.name} — [Your headline]`} />
-        <meta property="og:description" content="[One-sentence description of what you do, for search results and social previews.]" />
-        <meta property="og:image" content={`https://${company.domain}/images/hero-poster.jpg`} />
-        <meta property="og:image:width" content="1920" />
-        <meta property="og:image:height" content="1080" />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:image" content={`https://${company.domain}/images/og-card.jpg`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${company.name} — [Your headline]`} />
-        <meta name="twitter:description" content="[One-sentence description of what you do, for search results and social previews.]" />
-        <meta name="twitter:image" content={`https://${company.domain}/images/hero-poster.jpg`} />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={`https://${company.domain}/images/og-card.jpg`} />
       </Head>
 
       <nav
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          backgroundColor: overHero ? 'transparent' : '#FFFFFF',
-          boxShadow: overHero ? 'none' : '0 1px 3px rgba(0,0,0,0.06)'
+          backgroundColor: overHero ? 'transparent' : '#ffffff',
+          boxShadow: overHero ? 'none' : '0 1px 3px rgba(0,0,0,0.08)'
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => handleNavClick('home')}
-              className="flex items-center gap-3 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
-              aria-label={`${company.name} home`}
-            >
-              {/* Both variants render from mount and crossfade via opacity — swapping
-                  the `src` directly caused a flicker while the other file loaded.
-                  Replace /public/images/logo-white.png and logo-dark.png with your own. */}
-              <div style={{ position: 'relative', height: 34, width: 28, flexShrink: 0 }}>
-                <img
-                  src="/images/logo-white.png"
-                  alt={company.name}
-                  style={{ position: 'absolute', inset: 0, height: 34, width: 28, display: 'block', opacity: overHero ? 1 : 0, transition: 'opacity 250ms ease' }}
-                />
-                <img
-                  src="/images/logo-dark.png"
-                  alt=""
-                  aria-hidden="true"
-                  style={{ position: 'absolute', inset: 0, height: 34, width: 28, display: 'block', opacity: overHero ? 0 : 1, transition: 'opacity 250ms ease' }}
-                />
-              </div>
-              <div>
-                <div
-                  className="text-lg font-bold"
-                  style={{ color: overHero ? '#FFFFFF' : colors.PRIMARY, letterSpacing: '0.08em', lineHeight: 1 }}
-                >
-                  {company.name.toUpperCase()}
-                </div>
-                <div
-                  style={{
-                    fontSize: '9px',
-                    fontWeight: 600,
-                    letterSpacing: '1.2px',
-                    textTransform: 'uppercase',
-                    color: overHero ? 'rgba(255,255,255,0.8)' : colors.SLATE,
-                    lineHeight: 1
-                  }}
-                >
-                  {company.tagline}
-                </div>
-              </div>
-            </button>
-          </div>
+        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+          <button
+            onClick={() => handleNavClick('home')}
+            style={{ background: 'none', border: 'none', padding: 0 }}
+            aria-label={`${company.name} — home`}
+          >
+            <Logo tone={overHero ? 'dark' : 'light'} />
+          </button>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-9">
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
-              const activeUnderline = overHero ? 'rgba(255,255,255,0.95)' : colors.PRIMARY;
-              const hoverColor = overHero ? 'rgba(255,255,255,0.7)' : colors.PRIMARY;
               return (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className="text-sm font-semibold transition-colors"
                   style={{
-                    color: overHero
-                      ? isActive ? '#FFFFFF' : 'rgba(255,255,255,0.75)'
-                      : isActive ? colors.PRIMARY : colors.MUTED,
+                    background: 'none',
+                    border: 'none',
+                    padding: '4px 0',
+                    fontSize: 12,
+                    fontWeight: 600,
+                    letterSpacing: '0.16em',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
-                    paddingBottom: '4px',
-                    borderBottom: `2px solid ${isActive ? activeUnderline : 'transparent'}`,
+                    color: overHero
+                      ? isActive
+                        ? '#ffffff'
+                        : 'rgba(255,255,255,0.78)'
+                      : isActive
+                      ? colors.PRIMARY
+                      : colors.MUTED,
+                    borderBottom: `2px solid ${isActive ? colors.SECONDARY : 'transparent'}`,
                     transition: 'color 0.2s, border-color 0.2s'
                   }}
-                  onMouseOver={(e) => { if (!isActive) e.currentTarget.style.borderBottomColor = hoverColor; }}
-                  onMouseOut={(e) => { if (!isActive) e.currentTarget.style.borderBottomColor = 'transparent'; }}
+                  onMouseOver={(e) => {
+                    if (!isActive) e.currentTarget.style.borderBottomColor = colors.SECONDARY;
+                  }}
+                  onMouseOut={(e) => {
+                    if (!isActive) e.currentTarget.style.borderBottomColor = 'transparent';
+                  }}
                 >
                   {item.name}
                 </button>
@@ -154,61 +178,81 @@ export default function Site() {
 
           <div className="hidden md:flex items-center gap-4">
             <Translate />
-            <button
-              onClick={openContact}
-              className="px-6 py-2.5 text-sm font-semibold text-white rounded-full"
-              style={{ background: `linear-gradient(90deg, ${colors.PRIMARY} 0%, ${colors.PRIMARY_DEEP} 100%)` }}
-            >
-              Get in touch
-            </button>
+            <Button variant="gold" size="sm" onClick={() => openContact('Speaking')}>
+              {cta.primary}
+            </Button>
           </div>
 
           <button
             className="md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{ color: overHero ? '#FFFFFF' : colors.SLATE }}
+            style={{ color: overHero ? '#ffffff' : colors.SLATE, background: 'none', border: 'none' }}
             aria-label="Menu"
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t" style={{ borderColor: '#DCE3F7' }}>
-            <div className="px-6 py-4 flex flex-col gap-4">
+          <div className="md:hidden" style={{ backgroundColor: colors.INK, borderTop: `3px solid ${colors.SECONDARY}` }}>
+            <div className="px-6 py-6 flex flex-col gap-5">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className="text-sm font-medium text-left"
-                  style={{ color: colors.SLATE }}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    textAlign: 'left',
+                    fontSize: 15,
+                    fontWeight: 600,
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    color: currentPage === item.id ? colors.SECONDARY : '#ffffff'
+                  }}
                 >
                   {item.name}
                 </button>
               ))}
-              <Translate />
-              <button
-                onClick={() => { openContact(); setMobileMenuOpen(false); }}
-                className="px-4 py-2.5 text-sm font-semibold text-white rounded-full w-full"
-                style={{ background: `linear-gradient(90deg, ${colors.PRIMARY} 0%, ${colors.PRIMARY_DEEP} 100%)` }}
+              <div style={{ paddingTop: 6 }}>
+                <Translate />
+              </div>
+              <Button
+                variant="gold"
+                full
+                onClick={() => {
+                  openContact('Speaking');
+                  setMobileMenuOpen(false);
+                }}
               >
-                Get in touch
-              </button>
+                {cta.primary}
+              </Button>
             </div>
           </div>
         )}
       </nav>
 
-      <main style={{ paddingTop: 0 }}>{renderPage()}</main>
+      <main>{renderPage()}</main>
 
-      {currentPage !== 'home' && (
+      {/* Floating booking button on every page except home. Home deliberately
+          has exactly one button and the nav — nothing else to click. */}
+      {!isHome && (
         <button
-          onClick={openContact}
-          className="fixed bottom-8 right-8 p-4 rounded-full text-white shadow-lg z-40"
-          style={{ background: `linear-gradient(135deg, ${colors.PRIMARY} 0%, ${colors.PRIMARY_DEEP} 100%)` }}
-          aria-label="Get in touch"
+          onClick={() => openContact('Speaking')}
+          className="fixed bottom-7 right-7 z-40"
+          style={{
+            backgroundColor: colors.SECONDARY,
+            color: colors.SLATE,
+            border: 'none',
+            padding: 16,
+            borderRadius: '50%',
+            boxShadow: '0 6px 24px rgba(0,0,0,0.28)'
+          }}
+          aria-label={cta.primary}
         >
-          <Mail size={24} />
+          <Mail size={22} />
         </button>
       )}
 
@@ -219,50 +263,76 @@ export default function Site() {
           initialMessage={contactContext?.message}
         />
       )}
-      {showVideo && <VideoModal onClose={() => setShowVideo(false)} />}
 
-      <footer
-        className="py-10 px-6"
-        style={{
-          background: `linear-gradient(120deg, ${colors.SECONDARY_DEEP} 0%, ${colors.SECONDARY} 100%)`,
-          color: 'white',
-          borderTop: `3px solid ${colors.SECONDARY}`
-        }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <div
-            className="flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between text-center md:text-left"
-            style={{
-              flexWrap: 'wrap',
-              gap: '1.5rem',
-              paddingBottom: '1.25rem',
-              marginBottom: '1.25rem',
-              borderBottom: '1px solid rgba(255,255,255,0.2)'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <img src="/images/logo-white.png" alt="" style={{ height: 26, width: 'auto' }} />
-              <div>
-                <div style={{ fontWeight: 700, fontSize: 14, letterSpacing: '0.5px' }}>{company.name.toUpperCase()}</div>
-                <div style={{ fontSize: 12, opacity: 0.65 }}>{company.tagline}</div>
+      {/* No footer on the home page — the hero is the whole page, and the only
+          ways forward are the nav and the single button. */}
+      {!isHome && (
+        <footer className="px-6 py-12" style={{ backgroundColor: colors.INK, borderTop: `3px solid ${colors.SECONDARY}` }}>
+          <div className="max-w-7xl mx-auto">
+            <div
+              className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left"
+              style={{ paddingBottom: 22, marginBottom: 22, borderBottom: '1px solid rgba(255,255,255,0.16)' }}
+            >
+              <Logo tone="dark" />
+
+              <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      padding: 0,
+                      color: 'rgba(255,255,255,0.72)',
+                      fontSize: 12,
+                      fontWeight: 600,
+                      letterSpacing: '0.14em',
+                      textTransform: 'uppercase'
+                    }}
+                  >
+                    {item.name}
+                  </button>
+                ))}
               </div>
+
+              <a
+                href={`mailto:${company.email}`}
+                className="inline-flex items-center gap-2"
+                style={{ color: colors.SECONDARY, fontSize: 14 }}
+              >
+                <Mail size={15} />
+                {company.email}
+              </a>
             </div>
 
-            <a
-              href={`mailto:${company.email}`}
-              className="flex items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity"
-              style={{ fontSize: 13 }}
-            >
-              <Mail size={14} strokeWidth={1.8} />
-              {company.email}
-            </a>
-          </div>
+            {socialLinks.length > 0 && (
+              <div className="flex justify-center gap-6 mb-6">
+                {socialLinks.map(([key, url]) => (
+                  <a
+                    key={key}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: 'rgba(255,255,255,0.7)',
+                      fontSize: 12,
+                      letterSpacing: '0.14em',
+                      textTransform: 'uppercase'
+                    }}
+                  >
+                    {key}
+                  </a>
+                ))}
+              </div>
+            )}
 
-          <div className="text-xs text-center" style={{ opacity: 0.5 }}>
-            © {new Date().getFullYear()} {company.name}. Privacy · Terms
+            <div className="text-center" style={{ color: 'rgba(255,255,255,0.45)', fontSize: 12 }}>
+              © {new Date().getFullYear()} {company.name}. All rights reserved.
+            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      )}
     </div>
   );
 }

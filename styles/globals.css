@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Brand tokens. These mirror site.config.js — anything written in plain CSS
+   (rather than an inline style computed in JS) pulls from here so the two
+   can't drift. If you change a hex, change it in site.config.js too. */
+:root {
+  --navy: #1a3a52;
+  --navy-deep: #12293b;
+  --navy-light: #eaeff4;
+  --gold: #c9a961;
+  --gold-deep: #a8873f;
+  --gold-light: #f7f1e3;
+  --charcoal: #2a2a2a;
+  --taupe: #6b6b6b;
+  --gray-light: #d9d9d9;
+  --gray-accent: #999999;
+  --cream: #f5f5f5;
+
+  /* Oswald is the condensed display face that matches the HONEST STORIES
+     lockup. Inter carries everything a human actually reads at length —
+     a condensed face at body size is a legibility tax, not a brand asset. */
+  --font-display: 'Oswald', 'Haettenschweiler', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,12 +37,11 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
-  color: #3d4654;
+  color: var(--charcoal);
 }
 
 button {
@@ -31,29 +54,144 @@ a {
   text-decoration: none;
 }
 
+/* ============================================================
+   Brand type
+   ============================================================ */
+
+/* The heavy condensed display lockup — HONEST STORIES, section headlines,
+   the oversized stat figures. Always uppercase; Oswald's lowercase is not
+   what this brand looks like. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 0.92;
+}
+
+/* The wide-tracked line above a display headline — MINDSET MOTIVATION.
+   The tracking is the whole effect; don't reduce it. */
+.eyebrow-wide {
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   Hero geometry — the diagonal panel from the brand graphic.
+   Drawn in CSS rather than baked into an image so it stays crisp,
+   reflows on mobile, and the headline stays real selectable text.
+   ============================================================ */
+
+/* The taupe wedge that cuts across the right side. clip-path percentages
+   are relative to the element box, so this keeps its angle at any width. */
+.hero-wedge {
+  clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* The lighter slash that sits on top of the wedge at the far right. */
+.hero-slash {
+  clip-path: polygon(62% 0, 100% 0, 100% 100%, 20% 100%);
+}
+
+/* Below the md breakpoint the wedge becomes a straight horizontal band —
+   a diagonal across a narrow phone screen reads as a rendering glitch. */
+@media (max-width: 767px) {
+  .hero-wedge,
+  .hero-slash {
+    clip-path: none;
+  }
+}
+
+/* Hero height. Declared three times on purpose — each line overrides the last
+   only in browsers that understand its unit. 100svh is the "small viewport"
+   height, which excludes mobile browser chrome; plain 100vh on a phone is
+   taller than the visible area and pushes the CTA under the fold. */
+.hero-shell {
+  min-height: 620px;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+/* Oversized ROSEBERRY watermark behind the hero. Deliberately near-invisible:
+   it is texture, not information, and it must never compete with the H1. */
+.watermark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.78;
+  letter-spacing: 0.02em;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Motion
+   ============================================================ */
+
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
+
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* Staggered so the eyebrow, headline, and CTA land in reading order rather
+   than all at once. */
+.hero-reveal   { opacity: 0; animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards; }
+.hero-reveal-2 { opacity: 0; animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.30s forwards; }
+.hero-reveal-3 { opacity: 0; animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.48s forwards; }
+.hero-reveal-4 { opacity: 0; animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.66s forwards; }
+
+@keyframes scrollCue {
+  0%, 100% { transform: translate(-50%, 0);  opacity: 1; }
+  50%      { transform: translate(-50%, 8px); opacity: 0.35; }
+}
+.scroll-cue span { animation: scrollCue 1.9s ease-in-out infinite; }
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.modal-fade-in { animation: modalFadeIn 0.5s ease forwards; }
+
+/* Respect users who ask for reduced motion. Every animated element needs an
+   entry here, or reduced-motion users get a permanently invisible headline. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal,
+  .hero-reveal-2,
+  .hero-reveal-3,
+  .hero-reveal-4 { opacity: 1; animation: none; }
+  .scroll-cue span { animation: none; }
+  .modal-fade-in { opacity: 1; animation: none; }
+  html { scroll-behavior: auto; }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.6s ease-out forwards;
+/* ============================================================
+   Focus visibility — keyboard users must be able to see where they are.
+   Gold on both light and dark grounds is the one job gold does well.
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
 }
 
-/* Google Translate widget — trim Google's default chrome and fold it into
-   the nav's icon button instead of Google's bare icon+link. The widget
-   renders as .goog-te-gadget-simple (SIMPLE layout). Every layer below uses
-   position:absolute/inset:0 rather than width/height:100% — Google's own
-   span wrapper around its <a> collapses to 0-height content, which breaks
-   percentage-based sizing on the anchor below it and makes the button
-   render but not actually be clickable. Don't "simplify" this back to
-   width/height:100% without retesting a real click. */
+/* ============================================================
+   Google Translate widget — trim Google's default chrome and fold it into
+   the nav's icon button. The widget renders as .goog-te-gadget-simple
+   (SIMPLE layout). Every layer below uses position:absolute/inset:0 rather
+   than width/height:100% — Google's own span wrapper around its <a>
+   collapses to 0-height content, which breaks percentage-based sizing on the
+   anchor below it and makes the button render but not actually be clickable.
+   Don't "simplify" this back to width/height:100% without retesting a real
+   click.
+   ============================================================ */
 .translate-widget .goog-te-gadget {
   font-size: 0 !important;
   color: transparent !important;
@@ -62,8 +200,8 @@ a {
 }
 .translate-widget .goog-te-gadget .goog-te-combo {
   font-size: 13px;
-  color: #3d4654;
-  border: 1px solid #dce3f7;
+  color: var(--charcoal);
+  border: 1px solid var(--gray-light);
   border-radius: 4px;
   padding: 6px 8px;
   background: #fff;
@@ -95,8 +233,6 @@ a {
   text-decoration: none !important;
 }
 .translate-widget .goog-te-gadget-simple a span {
-  /* Text is rendered by our own always-visible icon instead — Google's
-     "Select Language" text was too easy to miss/mis-render. */
   color: transparent !important;
   font-size: 0 !important;
 }
@@ -105,41 +241,4 @@ body {
 }
 .skiptranslate iframe {
   display: none !important;
-}
-
-/* Hero overlay: holds back so page footage/copy lands first. */
-@keyframes heroReveal {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero-reveal {
-  opacity: 0;
-  animation: heroReveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
-}
-@keyframes scrollCue {
-  0%, 100% { transform: translate(-50%, 0);  opacity: 1; }
-  50%      { transform: translate(-50%, 8px); opacity: 0.35; }
-}
-.scroll-cue span { animation: scrollCue 1.9s ease-in-out infinite; }
-
-/* Video modal: soft fade-in instead of popping in abruptly. */
-@keyframes modalFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-.modal-fade-in {
-  animation: modalFadeIn 1s ease forwards;
-}
-
-/* Respect users who ask for reduced motion. */
-@media (prefers-reduced-motion: reduce) {
-  .hero-reveal { opacity: 1; animation: none; }
-  .scroll-cue span { animation: none; }
-  .modal-fade-in { opacity: 1; animation: none; }
-}
-
-/* Process chevrons point right across a row on desktop. Stacked on mobile a
-   sideways notch reads as a rendering error, so square them off. */
-@media (max-width: 767px) {
-  .process-chevron { clip-path: none !important; }
 }
