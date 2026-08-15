@@ -19,7 +19,7 @@ const VENTURES = [
   {
     name: 'Avestix Frontier',
     role: 'Chief Operating Officer',
-    url: 'avestixfrontier.com',
+    url: 'avestix.com',
     description: '',
     value: ''
   },
@@ -35,9 +35,6 @@ const VENTURES = [
   {
     name: 'Premiere Home Watch',
     role: 'Founder',
-    // Heads-up: the venture name reads "Premiere" but this domain is
-    // "premier" — confirm which is correct before this goes in front of a
-    // client, and make the two match.
     url: 'premierhomewatch.com',
     description:
       'Luxury home concierge service for high-net-worth owners. Recurring revenue model. Acquisition-ready framework.',
@@ -72,7 +69,7 @@ const VENTURES = [
   {
     name: 'Four IR Ventures',
     role: 'Co-founder, Chief Business Officer',
-    url: 'fourir.ventures',
+    url: 'secobio.com',
     description: '',
     value: ''
   }
