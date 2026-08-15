@@ -18,9 +18,13 @@ export default function Document() {
           rel="stylesheet"
         />
 
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" type="image/png" href="/images/jr-monogram.png" sizes="512x512" />
-        <link rel="apple-touch-icon" href="/images/jr-monogram.png" />
+        {/* favicon.ico carries 16/32/48/64/128/256. The small sizes are not
+            plain downscales — the monogram's hairline strokes fall under a
+            pixel at tab size, so those frames are drawn with the strokes
+            thickened. Regenerate all of them together if the mark changes. */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="/images/favicon-512.png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
         {/* Person schema. This is what lets Google show the knowledge-panel
             style result for a name search, and what event organisers' tooling
