@@ -223,9 +223,10 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
       <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>
         <div className="max-w-6xl mx-auto">
           <SectionHead
+            maxWidth="62ch"
             eyebrow="This is me"
             title="My Foundation"
-            intro="Four things sit underneath every call I make. The order is the point."
+            intro="This is my four-legged stool. Faith, family, fitness, finances — in that order, and every leg load-bearing. Pull one and the whole thing tips. Most people who look like they are coming apart for no obvious reason are just short a leg. Everything else I build sits on top of these four."
           />
           <div className="mt-14">
             <TopicCards cards={PILLARS} />
