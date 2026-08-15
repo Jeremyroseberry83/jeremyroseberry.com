@@ -1,5 +1,6 @@
 import React from 'react';
 import { Download, Mic, Volume2, Star, Play, Headphones, Music, Youtube, Radio } from 'lucide-react';
+import InstagramRail from './InstagramRail';
 import { PageTopBand, SectionHead, BookingCTA, Button, SECONDARY, SECONDARY_DEEP, PRIMARY, PRIMARY_DEEP, SLATE, MUTED, INK, BG } from './ui';
 
 /**
@@ -523,6 +524,8 @@ export default function BooksPage({ onContactClick }) {
           </p>
         </div>
       </section>
+
+      <InstagramRail />
 
       <BookingCTA
         onContactClick={onContactClick}

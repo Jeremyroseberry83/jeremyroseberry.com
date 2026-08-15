@@ -376,8 +376,12 @@ export function NumberStrip({ items, dark }) {
  * borders where cards meet.
  */
 export function TopicCards({ cards, dark }) {
+  // Column count follows the data: three cards read best as thirds, four as
+  // quarters. Hardcoding three left a four-card set with an orphan on its own
+  // row.
+  const cols = cards.length === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3';
   return (
-    <div className="grid md:grid-cols-3 gap-px" style={{ backgroundColor: dark ? 'rgba(255,255,255,0.14)' : '#e2e2e2' }}>
+    <div className={`grid ${cols} gap-px`} style={{ backgroundColor: dark ? 'rgba(255,255,255,0.14)' : '#e2e2e2' }}>
       {cards.map((c, i) => (
         <div key={c.title} className="p-9" style={{ backgroundColor: i === 0 ? PRIMARY : dark ? INK : '#ffffff' }}>
           {c.eyebrow && (

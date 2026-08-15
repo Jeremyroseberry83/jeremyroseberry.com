@@ -53,12 +53,11 @@ module.exports = {
 
   // `id` must match a case in pages/index.jsx renderPage().
   //
-  // Order note: Speaking is the page that actually takes bookings, and it sits
-  // second. Let's Meet is the values/bio page. If enquiries come in slower than
-  // expected, moving Speaking to first is the cheapest thing to test — it is a
-  // one-line reorder here.
+  // Three pages, Speaking first. The standalone bio page was cut and its two
+  // useful parts moved rather than deleted: the introduction and the four
+  // pillars now sit on Speaking, where an organiser already is; the Instagram
+  // rail sits on Books & Podcast with the rest of the content.
   nav: [
-    { name: "Let's Meet", id: 'meet' },
     { name: 'Speaking', id: 'speaking' },
     { name: 'Books & Podcast', id: 'books' },
     { name: 'Entrepreneur', id: 'entrepreneur' }

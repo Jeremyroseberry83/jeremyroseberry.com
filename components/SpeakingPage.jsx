@@ -3,6 +3,7 @@ import {
   PageTopBand,
   SectionHead,
   Testimonials,
+  TopicCards,
   BookingCTA,
   Button,
   SECONDARY,
@@ -13,6 +14,38 @@ import {
   BG
 } from './ui';
 import { cta } from '../site.config';
+
+/**
+ * The four things underneath every decision, in the order Jeremy puts them.
+ * The order IS the content — Finances last is the whole argument — so if these
+ * are ever reordered, the eyebrow labels need rewriting too.
+ */
+const PILLARS = [
+  {
+    eyebrow: 'Principle',
+    title: 'Faith',
+    body:
+      'God is first. Church is the center of our world, and our creativity and influence in every sphere flows from it.'
+  },
+  {
+    eyebrow: 'Foundation',
+    title: 'Family',
+    body:
+      'Married 18 years to Kourtney. Two teenagers. They teach me more about leadership than any conference. Family stability is the ultimate competitive advantage.'
+  },
+  {
+    eyebrow: 'Practice',
+    title: 'Fitness',
+    body:
+      'Stewarding my body. Physical discipline mirrors mental discipline — how you show up for your body tells me how you’ll show up for a partnership.'
+  },
+  {
+    eyebrow: 'Stewardship',
+    title: 'Finances',
+    body:
+      'Money just makes you more of who you already are. It does not rule my family — but every now and then it buys happiness, and it buys radical generosity.'
+  }
+];
 
 /**
  * The talk catalogue.
@@ -254,6 +287,62 @@ export default function SpeakingPage({ onContactClick }) {
             <Button variant="navy" onClick={() => onContactClick && onContactClick('Speaking')}>
               {cta.primary}
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          WHO IS ON YOUR STAGE
+          Moved here when the standalone bio page was cut. It sits after
+          the talks on purpose: an organiser wants to know what they are
+          buying before they care who is selling it.
+          ============================================================ */}
+      <section className="relative overflow-hidden px-6" style={{ backgroundColor: '#ffffff' }}>
+        <span
+          aria-hidden="true"
+          className="watermark absolute hidden lg:block"
+          style={{ right: '4%', top: '10%', fontSize: 'clamp(6rem, 13vw, 12rem)', color: 'rgba(42,42,42,0.035)' }}
+        >
+          Roseberry
+        </span>
+
+        <div className="relative max-w-6xl mx-auto py-16 md:py-28">
+          <div className="md:w-8/12">
+            <h2 className="display" style={{ color: SLATE, fontSize: 'clamp(2.2rem, 5vw, 3.6rem)', marginBottom: 14 }}>
+              Hey, I’m Jeremy
+            </h2>
+            <span
+              aria-hidden="true"
+              style={{ display: 'block', width: 54, height: 3, backgroundColor: SECONDARY, marginBottom: 30 }}
+            />
+            <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.85, marginBottom: 20 }}>
+              Two decades in private markets, real assets, and capital formation. Based in South
+              Florida, operating globally. I connect people who build things worth building.
+            </p>
+            <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.85, marginBottom: 20 }}>
+              Most leadership content is generic. Most financial conferences are sterile. Real growth
+              happens through <strong style={{ color: SLATE }}>honest stories</strong> — the messy
+              middle, the character tests, the decisions you can’t reverse.
+            </p>
+            <p style={{ color: SLATE, fontSize: 17, lineHeight: 1.85, fontWeight: 600 }}>
+              That’s what I speak and write about.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          MY FOUNDATION
+          ============================================================ */}
+      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>
+        <div className="max-w-6xl mx-auto">
+          <SectionHead
+            eyebrow="This is me"
+            title="My Foundation"
+            intro="Four things sit underneath every call I make. The order is the point."
+          />
+          <div className="mt-14">
+            <TopicCards cards={PILLARS} />
           </div>
         </div>
       </section>

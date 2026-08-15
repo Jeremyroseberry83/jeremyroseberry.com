@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { Menu, X, Mail, Instagram, Linkedin, Youtube, Twitter } from 'lucide-react';
 import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
-import MeetPage from '../components/MeetPage';
 import SpeakingPage from '../components/SpeakingPage';
 import BooksPage from '../components/BooksPage';
 import EntrepreneurPage from '../components/EntrepreneurPage';
@@ -36,15 +35,10 @@ const META = {
     description:
       'Keynotes, event hosting and podcast conversations on leadership, mindset and what building a business actually costs. Book Jeremy Roseberry.'
   },
-  meet: {
-    title: `About ${company.name} — Faith, Family, Fitness`,
-    description:
-      'The foundation behind the work: faith, family and fitness, two decades in private markets, and why honest stories beat generic leadership content.'
-  },
   speaking: {
     title: `Book ${company.name} to Speak — Keynotes & Workshops`,
     description:
-      'Signature keynotes on mindset, leadership and the honest middle of building a business. Formats, topics, logistics and availability for event organisers.'
+      'Signature keynotes on mindset, leadership and the honest middle of building a business. Topics, availability and the values behind the work.'
   },
   books: {
     title: `Books & Podcast — ${company.name}`,
@@ -117,8 +111,6 @@ export default function Site() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'meet':
-        return <MeetPage onContactClick={openContact} />;
       case 'speaking':
         return <SpeakingPage onContactClick={openContact} />;
       case 'books':

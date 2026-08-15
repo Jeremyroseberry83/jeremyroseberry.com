@@ -33,7 +33,6 @@ INBOX = ROOT / 'public/images/_incoming'
 #             for the type to sit on. Same treatment used for the podcast
 #             card, where it was built by hand.
 JOBS = {
-    'header-meet':         ('images/headers/meet.jpg',         (2400, 840), 'banner'),
     'header-speaking':     ('images/headers/speaking.jpg',     (2400, 840), 'banner'),
     'header-entrepreneur': ('images/headers/entrepreneur.jpg', (2400, 840), 'banner'),
     'header-books':        ('images/headers/books.jpg',        (2400, 840), 'banner'),
