@@ -25,9 +25,9 @@ import {
  * rest look identical, and leaves with no impression at all — the opposite of
  * what this page is for. Three changes fix that:
  *
- *  1. SEVEN BECOME FIVE DISCIPLINES, under the page's own question. The
- *     taxonomy and the "why these businesses" argument were two sections
- *     making the same point, so they are now one. The first discipline,
+ *  1. SEVEN BECOME FIVE DISCIPLINES, under "My Why", which opens the page.
+ *     The taxonomy and the argument for it were two sections making the same
+ *     point, so they are now one. The first discipline,
  *     People, has no company under it on purpose: it is the speaking and
  *     writing, which turns the taxonomy into the argument the whole site is
  *     making and hands the reader back to the booking page.
@@ -207,7 +207,88 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
       />
 
       {/* ============================================================
-          1 — THE PORTFOLIO, ONE AT A TIME
+          1 — MY WHY
+          The taxonomy and the argument, which used to be two sections
+          making the same point, are now one.
+          ============================================================ */}
+      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: '#ffffff' }}>
+        <div className="max-w-6xl mx-auto">
+          <SectionHead
+            eyebrow="The through-line"
+            title="My Why"
+            intro="Each one flows from the same conviction: real value comes from connecting people, solving problems, and building with integrity. Whether it’s capital, operations, real estate, or people development — the principle is the same."
+          />
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px mt-14" style={{ backgroundColor: '#e2e2e2' }}>
+            {DISCIPLINES.map((d, i) => {
+              const isPeople = d.key === 'people';
+              return (
+                <div
+                  key={d.key}
+                  className="p-7 flex flex-col"
+                  style={{ backgroundColor: isPeople ? PRIMARY : '#ffffff', minHeight: 264 }}
+                >
+                  <span
+                    className="display"
+                    style={{ color: SECONDARY, fontSize: 15, letterSpacing: '0.14em', marginBottom: 18 }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3
+                    className="display"
+                    style={{
+                      color: isPeople ? '#ffffff' : SLATE,
+                      fontSize: 'clamp(1.4rem, 2.1vw, 1.75rem)',
+                      marginBottom: 12
+                    }}
+                  >
+                    {d.name}
+                  </h3>
+                  <p
+                    style={{
+                      color: isPeople ? 'rgba(255,255,255,0.82)' : MUTED,
+                      fontSize: 14.5,
+                      lineHeight: 1.7,
+                      marginBottom: 20
+                    }}
+                  >
+                    {d.blurb}
+                  </p>
+
+                  {/* Just an arrow. The counts and the "this is the speaking"
+                      label were doing the same job as the cards themselves and
+                      made the row read as four different kinds of thing. The
+                      People card keeps its arrow clickable through to
+                      Speaking; the rest are direction, not controls, so they
+                      are hidden from assistive tech. */}
+                  <div style={{ marginTop: 'auto' }}>
+                    {isPeople ? (
+                      <button
+                        type="button"
+                        onClick={() => onNavigate && onNavigate('speaking')}
+                        aria-label="Go to Speaking"
+                        style={{ background: 'none', border: 'none', padding: 0, color: SECONDARY, display: 'inline-flex' }}
+                      >
+                        <ArrowRight size={22} strokeWidth={1.8} />
+                      </button>
+                    ) : (
+                      <ArrowRight
+                        size={22}
+                        strokeWidth={1.8}
+                        aria-hidden="true"
+                        style={{ color: SECONDARY_DEEP }}
+                      />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          2 — THE PORTFOLIO, ONE AT A TIME
           ============================================================ */}
       <section className="px-6 py-16 md:py-28" style={{ backgroundColor: BG }}>
         <div className="max-w-6xl mx-auto">
@@ -328,87 +409,6 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
           </div>
 
           <p style={{ color: MUTED, fontSize: 13, marginTop: 16 }}>Select a company to read more.</p>
-        </div>
-      </section>
-
-      {/* ============================================================
-          2 — WHY THESE BUSINESSES
-          The taxonomy and the argument, which used to be two sections
-          making the same point, are now one.
-          ============================================================ */}
-      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: '#ffffff' }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            eyebrow="The through-line"
-            title="Why These Businesses?"
-            intro="Each one flows from the same conviction: real value comes from connecting people, solving problems, and building with integrity. Whether it’s capital, operations, real estate, or people development — the principle is the same."
-          />
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-px mt-14" style={{ backgroundColor: '#e2e2e2' }}>
-            {DISCIPLINES.map((d, i) => {
-              const isPeople = d.key === 'people';
-              return (
-                <div
-                  key={d.key}
-                  className="p-7 flex flex-col"
-                  style={{ backgroundColor: isPeople ? PRIMARY : '#ffffff', minHeight: 264 }}
-                >
-                  <span
-                    className="display"
-                    style={{ color: SECONDARY, fontSize: 15, letterSpacing: '0.14em', marginBottom: 18 }}
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3
-                    className="display"
-                    style={{
-                      color: isPeople ? '#ffffff' : SLATE,
-                      fontSize: 'clamp(1.4rem, 2.1vw, 1.75rem)',
-                      marginBottom: 12
-                    }}
-                  >
-                    {d.name}
-                  </h3>
-                  <p
-                    style={{
-                      color: isPeople ? 'rgba(255,255,255,0.82)' : MUTED,
-                      fontSize: 14.5,
-                      lineHeight: 1.7,
-                      marginBottom: 20
-                    }}
-                  >
-                    {d.blurb}
-                  </p>
-
-                  {/* Just an arrow. The counts and the "this is the speaking"
-                      label were doing the same job as the cards themselves and
-                      made the row read as four different kinds of thing. The
-                      People card keeps its arrow clickable through to
-                      Speaking; the rest are direction, not controls, so they
-                      are hidden from assistive tech. */}
-                  <div style={{ marginTop: 'auto' }}>
-                    {isPeople ? (
-                      <button
-                        type="button"
-                        onClick={() => onNavigate && onNavigate('speaking')}
-                        aria-label="Go to Speaking"
-                        style={{ background: 'none', border: 'none', padding: 0, color: SECONDARY, display: 'inline-flex' }}
-                      >
-                        <ArrowRight size={22} strokeWidth={1.8} />
-                      </button>
-                    ) : (
-                      <ArrowRight
-                        size={22}
-                        strokeWidth={1.8}
-                        aria-hidden="true"
-                        style={{ color: SECONDARY_DEEP }}
-                      />
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </section>
 
