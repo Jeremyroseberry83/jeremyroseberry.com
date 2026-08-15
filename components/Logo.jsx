@@ -15,12 +15,14 @@ import { colors, company } from '../site.config';
  * negative tracking, which is the closest a real font gets to the drawn
  * J/R ligature in the original mark.
  *
- * CONTRAST NOTE — the brief specified Jeremy in #d9d9d9 and Roseberry in
- * #6b6b6b. On the dark nav those are used exactly. On a white ground #d9d9d9
- * is 1.35:1 against white, which is invisible to most people and unusable for
- * anyone with low vision, so the light-ground variant steps "Jeremy" down to
- * the brand's own accent gray and keeps the identical thin/bold relationship.
- * #6b6b6b for "Roseberry" is 5.7:1 on white and is used exactly as specified.
+ * COLOUR NOTE — on the light (cream) bar: navy monogram, "Jeremy" in brand
+ * gold, "Roseberry" in taupe, all as specified. Gold on #f5f5f5 measures about
+ * 2:1, which is well under the 4.5:1 text minimum — acceptable here only
+ * because a logo wordmark is exempt from that rule and "Roseberry" carries the
+ * name at 5.4:1. If "Jeremy" ever needs to be genuinely legible at small
+ * sizes, SECONDARY_DEEP (#a8873f) is the same hue at 3.5:1.
+ *
+ * On the dark bar the original spec still applies: #d9d9d9 thin, white bold.
  */
 export default function Logo({ tone = 'dark', size = 'md' }) {
   const isDark = tone === 'dark';
@@ -28,7 +30,7 @@ export default function Logo({ tone = 'dark', size = 'md' }) {
   const scale = size === 'sm' ? 0.82 : size === 'lg' ? 1.25 : 1;
 
   const monogramColor = isDark ? colors.SECONDARY : colors.PRIMARY;
-  const thinColor = isDark ? colors.GRAY_LIGHT : colors.GRAY_ACCENT;
+  const thinColor = isDark ? colors.GRAY_LIGHT : colors.SECONDARY;
   const boldColor = isDark ? '#ffffff' : colors.TAUPE;
 
   return (

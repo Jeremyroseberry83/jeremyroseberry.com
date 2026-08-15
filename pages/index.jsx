@@ -4,7 +4,9 @@ import { Menu, X, Mail } from 'lucide-react';
 import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
 import MeetPage from '../components/MeetPage';
-import HelpfulPage from '../components/HelpfulPage';
+import SpeakingPage from '../components/SpeakingPage';
+import BooksPage from '../components/BooksPage';
+import EntrepreneurPage from '../components/EntrepreneurPage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
 import { Button } from '../components/ui';
@@ -27,14 +29,24 @@ const META = {
       'Keynotes, event hosting and podcast conversations on leadership, mindset and what building a business actually costs. Book Jeremy Roseberry.'
   },
   meet: {
-    title: `Book ${company.name} — Keynotes, Hosting & Podcasts`,
+    title: `About ${company.name} — Faith, Family, Fitness`,
     description:
-      'Signature keynotes on mindset, leadership and the honest middle of building a business. Topics, formats, bios and availability for event organisers and podcast producers.'
+      'The foundation behind the work: faith, family and fitness, two decades in private markets, and why honest stories beat generic leadership content.'
   },
-  helpful: {
-    title: `Helpful Stuff — ${company.name}`,
+  speaking: {
+    title: `Book ${company.name} to Speak — Keynotes & Workshops`,
     description:
-      'Essays, episodes and talks on leadership, mindset and the mechanics of building something worth building.'
+      'Signature keynotes on mindset, leadership and the honest middle of building a business. Formats, topics, logistics and availability for event organisers.'
+  },
+  books: {
+    title: `Books & Podcast — ${company.name}`,
+    description:
+      'Four Levels of Success, Adulting, Kicking Off Bottom and Why Lying Works — a four-year series, plus short episodes on building and leading.'
+  },
+  entrepreneur: {
+    title: `${company.name} — Entrepreneur & Operator`,
+    description:
+      'Building across seven platforms: capital, operations, real estate and people. Current ventures and the conviction behind each one.'
   }
 };
 
@@ -54,16 +66,11 @@ export default function Site() {
 
   const isHome = currentPage === 'home';
 
-  // Home gets a solid WHITE nav bar and the artwork starts below it, never
-  // under it. Two reasons: white type laid over the graphic's light-gray
-  // left side washes out (and a scrim heavy enough to fix that would dirty
-  // the top of the image), and white picks up that same light-gray tone so
-  // the bar reads as part of the composition rather than a lid on top of it.
-  //
-  // Inner pages open on the dark PageTopBand, so the nav is transparent until
-  // the reader scrolls, then flips to white.
-  const navBg = isHome || scrolled ? '#ffffff' : 'transparent';
-  const navDark = !isHome && !scrolled;
+  // Cream bar on every page and every scroll state. Off-white rather than pure
+  // white: it picks up the light-gray left side of the hero artwork, so the
+  // bar settles into the composition instead of sitting on it as a bright lid.
+  const navBg = colors.BG;
+  const navDark = false;
 
   const handleNavClick = (pageId) => {
     setCurrentPage(pageId);
@@ -81,8 +88,12 @@ export default function Site() {
     switch (currentPage) {
       case 'meet':
         return <MeetPage onContactClick={openContact} />;
-      case 'helpful':
-        return <HelpfulPage onContactClick={openContact} />;
+      case 'speaking':
+        return <SpeakingPage onContactClick={openContact} />;
+      case 'books':
+        return <BooksPage onContactClick={openContact} />;
+      case 'entrepreneur':
+        return <EntrepreneurPage onContactClick={openContact} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }
@@ -118,7 +129,8 @@ export default function Site() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
           backgroundColor: navBg,
-          boxShadow: isHome || scrolled ? '0 1px 3px rgba(0,0,0,0.08)' : 'none'
+          borderBottom: `1px solid rgba(42,42,42,0.10)`,
+          boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.10)' : 'none'
         }}
       >
         <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
@@ -130,7 +142,7 @@ export default function Site() {
             <Logo tone={navDark ? 'dark' : 'light'} />
           </button>
 
-          <div className="hidden md:flex items-center gap-9">
+          <div className="hidden lg:flex items-center gap-6">
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
               return (
@@ -145,13 +157,7 @@ export default function Site() {
                     fontWeight: 600,
                     letterSpacing: '0.16em',
                     textTransform: 'uppercase',
-                    color: navDark
-                      ? isActive
-                        ? '#ffffff'
-                        : 'rgba(255,255,255,0.78)'
-                      : isActive
-                      ? colors.PRIMARY
-                      : colors.MUTED,
+                    color: isActive ? colors.PRIMARY : colors.TAUPE,
                     borderBottom: `2px solid ${isActive ? colors.SECONDARY : 'transparent'}`,
                     transition: 'color 0.2s, border-color 0.2s'
                   }}
@@ -168,7 +174,7 @@ export default function Site() {
             })}
           </div>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <Translate />
             <Button variant="gold" size="sm" onClick={() => openContact('Speaking')}>
               {cta.primary}
@@ -176,7 +182,7 @@ export default function Site() {
           </div>
 
           <button
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{ color: navDark ? '#ffffff' : colors.SLATE, background: 'none', border: 'none' }}
             aria-label="Menu"
@@ -187,7 +193,7 @@ export default function Site() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden" style={{ backgroundColor: colors.INK, borderTop: `3px solid ${colors.SECONDARY}` }}>
+          <div className="lg:hidden" style={{ backgroundColor: colors.INK, borderTop: `3px solid ${colors.SECONDARY}` }}>
             <div className="px-6 py-6 flex flex-col gap-5">
               {navItems.map((item) => (
                 <button

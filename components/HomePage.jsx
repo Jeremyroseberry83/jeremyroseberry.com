@@ -1,77 +1,157 @@
 import React from 'react';
-import { Button, INK } from './ui';
+import { Button, PRIMARY, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
 
 /**
- * HomePage — the brand graphic, full width, and one button. Nothing else.
+ * HomePage — the brand artwork with live type laid over it. Nothing else on
+ * the page, and no footer (pages/index.jsx suppresses it here).
  *
- * No footer (pages/index.jsx suppresses it here) and no sections below. The
- * page is a doorway: the only ways out are the nav and the single button.
+ * The artwork at /images/hero-honest-stories.jpg is the TYPELESS version:
+ * portrait, taupe wedge and ROSEBERRY watermark are baked in, the headline is
+ * not. So this file draws no wedge and no watermark of its own — they would
+ * double up on what is already in the image. It draws only the words.
  *
- * The artwork already contains the headline, the tagline and the portrait, so
- * nothing is drawn on top of it — anything added here would compete with type
- * that is already in the image.
+ * Why live text rather than the pre-typed artwork: it reflows on a phone,
+ * stays sharp at any pixel density, is readable by search engines and screen
+ * readers, and the wording can change without a trip back to a design tool.
+ * (The pre-typed version is kept at /images/brand-lockup.jpg for decks and
+ * one-pagers, and is what og-card.jpg is built from.)
  *
- * DESKTOP: the section takes the image's own 16:9 ratio, so the graphic is
- * never cropped and never letterboxed. Fitting a fixed 16:9 image to an
- * arbitrary viewport height forces a choice between cutting the edges off
- * (object-fit: cover, which clips "HONEST STORIES" on shorter laptops) or
- * black bars (contain). Sizing the container to the image instead avoids both.
- *
- * MOBILE: a 16:9 graphic on a portrait phone renders only about 220px tall,
- * and the type baked into it is unreadable at that size. For now the image is
- * shown complete and centred on the charcoal ground with the button beneath
- * it — nothing is cropped, it is just small.
- *
- * The real fix is a portrait export of the same artwork (roughly 4:5, with the
- * headline stacked above the portrait). When that exists, swap the <img> below
- * for a <picture> with a `(max-width: 767px)` source. Don't add the <picture>
- * before the file exists: a matching <source> pointing at a 404 renders a
- * broken image rather than falling back.
+ * DESKTOP: the section takes the image's own 16:9 ratio so the artwork is
+ * never cropped or letterboxed, and the text block is positioned in PERCENT
+ * of that box — which means it stays locked to the wedge at every width.
+ * Sizes are in vw for the same reason: 1vw is 1% of the artwork's width, so
+ * the type scales with the composition instead of drifting out of it.
  */
 export default function HomePage({ onContactClick }) {
   return (
     <section className="relative" style={{ backgroundColor: INK }}>
       {/* ---------- Desktop / tablet ----------
-          Sits below the nav rather than under it. The artwork's top edge is
-          light gray, so nav type laid over it washes out and a scrim heavy
-          enough to fix that would dirty the top of the image. The white nav
-          bar above it picks up the same light-gray tone instead. */}
+          Sits below the nav rather than under it: the artwork's top-left is
+          light gray, so nav type laid over it washes out. */}
       <div className="hidden md:block relative" style={{ width: '100%', aspectRatio: '16 / 9', marginTop: 76 }}>
         <img
           src="/images/hero-honest-stories.jpg"
-          alt={`${company.name} — Honest Stories. ${company.tagline}`}
+          alt=""
+          aria-hidden="true"
           style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
 
-        {/* The single button, overlaying the artwork. Positioned under the
-            "LEADER. SPEAKER. ENTREPRENEUR." bar rather than centred, so it
-            reads as part of the lockup instead of floating over the portrait.
-            Percentages, not pixels, so it tracks the artwork as it scales. */}
-        <div style={{ position: 'absolute', left: '47.5%', top: '76%' }}>
-          <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick('Speaking')}>
-            {cta.primary}
-          </Button>
+        {/* Text block, pinned to the taupe panel by percentage. */}
+        <div
+          style={{
+            position: 'absolute',
+            left: '45.5%',
+            right: '6%',
+            top: '50%',
+            transform: 'translateY(-50%)'
+          }}
+        >
+          <p
+            className="eyebrow-wide hero-reveal"
+            style={{ color: '#ffffff', fontSize: '1.55vw', marginBottom: '1.6vw' }}
+          >
+            Mindset <span style={{ color: SECONDARY }}>Motivation</span>
+          </p>
+
+          <h1
+            className="display hero-reveal-2"
+            style={{ color: '#ffffff', fontSize: '10.6vw', marginBottom: '1.8vw' }}
+          >
+            Honest
+            <br />
+            Stories
+          </h1>
+
+          <p
+            className="hero-reveal-3"
+            style={{
+              display: 'inline-block',
+              backgroundColor: PRIMARY,
+              color: '#ffffff',
+              fontSize: '1.32vw',
+              fontWeight: 600,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              padding: '0.85vw 1.5vw',
+              marginBottom: '2vw'
+            }}
+          >
+            {company.tagline}
+          </p>
+
+          <div className="hero-reveal-4">
+            <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick('Speaking')}>
+              {cta.primary}
+            </Button>
+          </div>
         </div>
       </div>
 
-      {/* ---------- Mobile ---------- */}
-      <div
-        className="md:hidden flex flex-col justify-center"
-        style={{ minHeight: '100svh', paddingTop: 96, paddingBottom: 48 }}
-      >
+      {/* ---------- Mobile ----------
+          Now that the artwork carries no baked-in type, the phone gets a real
+          hero instead of a shrunken 16:9 band: the photo half is cropped to
+          portrait under a charcoal wash, with the same words stacked over it.
+          This is why a separate portrait export of the artwork is no longer
+          needed. */}
+      <div className="md:hidden relative flex items-end" style={{ minHeight: '100svh' }}>
         <img
           src="/images/hero-honest-stories.jpg"
-          alt={`${company.name} — Honest Stories. ${company.tagline}`}
-          style={{ width: '100%', display: 'block' }}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: '22% center' }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(42,42,42,0.30) 0%, rgba(42,42,42,0.72) 45%, rgba(42,42,42,0.95) 100%)'
+          }}
         />
 
-        <div className="px-6" style={{ marginTop: 36 }}>
-          <Button variant="gold" size="lg" full onClick={() => onContactClick && onContactClick('Speaking')}>
-            {cta.primary}
-          </Button>
+        <div className="relative px-6" style={{ paddingTop: 120, paddingBottom: 56 }}>
+          <p className="eyebrow-wide hero-reveal" style={{ color: '#ffffff', fontSize: 11, marginBottom: 14 }}>
+            Mindset <span style={{ color: SECONDARY }}>Motivation</span>
+          </p>
+
+          <h1 className="display hero-reveal-2" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
+            Honest
+            <br />
+            Stories
+          </h1>
+
+          <p
+            className="hero-reveal-3"
+            style={{
+              display: 'inline-block',
+              backgroundColor: PRIMARY,
+              color: '#ffffff',
+              fontSize: 10.5,
+              fontWeight: 600,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              padding: '9px 14px',
+              marginBottom: 26
+            }}
+          >
+            {company.tagline}
+          </p>
+
+          <div className="hero-reveal-4">
+            <Button variant="gold" size="lg" full onClick={() => onContactClick && onContactClick('Speaking')}>
+              {cta.primary}
+            </Button>
+          </div>
         </div>
       </div>
+
+      {/* The artwork is decorative (aria-hidden) because the H1 above already
+          carries the words. This keeps the page's identity in the text layer
+          for screen readers and search engines rather than in alt text. */}
+      <h2 className="sr-only">
+        {company.name} — {company.role}
+      </h2>
     </section>
   );
 }

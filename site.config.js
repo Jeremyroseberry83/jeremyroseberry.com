@@ -51,17 +51,17 @@ module.exports = {
     GRAY_ACCENT: '#999999'
   },
 
-  // Two pages, deliberately. `id` must match a case in pages/index.jsx
-  // renderPage().
+  // `id` must match a case in pages/index.jsx renderPage().
   //
-  // "Let's Meet" is the whole sales and booking case in one scroll — how to
-  // book, what he speaks about, the podcast pitch, and the bio. "Helpful
-  // Stuff" is the content archive that feeds it. A visitor who is not ready
-  // to book has exactly one other place to go, and that place still ends in
-  // the booking ask.
+  // Order note: Speaking is the page that actually takes bookings, and it sits
+  // second. Let's Meet is the values/bio page. If enquiries come in slower than
+  // expected, moving Speaking to first is the cheapest thing to test — it is a
+  // one-line reorder here.
   nav: [
     { name: "Let's Meet", id: 'meet' },
-    { name: 'Helpful Stuff', id: 'helpful' }
+    { name: 'Speaking', id: 'speaking' },
+    { name: 'Books & Podcast', id: 'books' },
+    { name: 'Entrepreneur', id: 'entrepreneur' }
   ],
 
   // Booking is the entire point of this site. One label, used on every primary
