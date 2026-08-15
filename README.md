@@ -17,23 +17,71 @@ ask harder to find, it is the wrong change.
 | **Let's Meet** | The whole sales and booking case in one scroll. Long on purpose — an organiser who is genuinely evaluating reads all of it; splitting it into four short pages would just add three chances to leave. |
 | **Helpful Stuff** | The content archive. The reason someone not ready to book still has somewhere to go — and it closes by pointing back at the booking ask. |
 
-## Assets still needed
+## Assets
 
-The build references these paths. Until the files exist, those spots render as
-empty gray blocks — nothing crashes, but the pages look unfinished.
+Every asset the site references is in place. Nothing renders as an empty gray
+block. The two marked ⬜ below are improvements, not blockers.
 
-| Path | What it is | Notes |
-|---|---|---|
-| `public/images/jeremy-hero.jpg` | **Required.** Home hero portrait | Black-and-white, Jeremy only, **no type baked in**. Roughly 1200×1600 portrait. He should sit in the left half of the frame with headroom above. |
-| `public/images/jeremy-speaking.jpg` | Speaking page, on stage | A real on-stage shot beats a studio portrait here — it is the proof the talk exists. |
-| `public/images/jeremy-portrait.jpg` | About page portrait | |
-| `public/images/og-card.jpg` | Social share card | 1200×630. This is what appears when anyone pastes the URL into LinkedIn or a group chat. |
-| `public/favicon.ico` | Browser tab icon | 32×32 from the JR monogram. |
+| Path | Status |
+|---|---|
+| `public/images/hero-honest-stories.jpg` | ✅ In place — 2560×1440, the brand artwork |
+| `public/images/jeremy-portrait.jpg` | ✅ In place — 1400×1750, used in the bio section |
+| `public/images/og-card.jpg` | ✅ In place — 1200×630 social share card |
+| `public/favicon.ico` + `apple-touch-icon.png` | ✅ In place — generated from the JR monogram |
+| `public/images/hero-honest-stories-mobile.jpg` | ⬜ **Wanted.** 1080×1350, artwork re-laid-out for portrait (headline stacked above the photo, ~420px clear at the bottom for the button). Phones currently get the 16:9 version scaled down, so the baked-in type is small. |
+| `public/images/jeremy-speaking.jpg` | ⬜ **Wanted.** A real on-stage shot. See the shoot brief below. |
 
-`public/images/jr-monogram.png` is already in place (used for the apple-touch
-icon and the PNG favicon).
+Images render grayscale in CSS, so colour originals are fine to drop in.
 
-Images are rendered grayscale in CSS, so colour originals are fine to drop in.
+## Photo & video shoot brief
+
+The current portraits are studio/model shots. They work for the bio, but they
+cannot do the job of proving Jeremy can hold a room — which is the single
+thing an event organiser is actually buying. Until stage photography exists,
+the "Why book Jeremy" section on Let's Meet is deliberately typographic rather
+than illustrated with a studio portrait that quietly undercuts its own claim.
+
+**Priority order — the first two are worth more than everything else combined.**
+
+### 1. On stage (highest value)
+
+Shoot at a real event, not a staged empty room; an empty auditorium reads as
+empty. Ask the organiser's photographer, or bring your own for one date.
+
+| Shot | Why it matters |
+|---|---|
+| **Wide, audience in frame** | The only shot that proves scale. Get the backs of heads in the foreground and Jeremy lit on stage. This is the money shot. |
+| **Mid, mid-gesture** | Hands moving, mouth open, mid-sentence. Posed-with-a-mic reads as fake instantly. |
+| **Tight, mid-sentence** | For the "Why book Jeremy" block — crops well to 4:5 portrait. |
+| **Audience reaction** | Laughing, leaning forward, taking notes. Proof the room was with him. |
+| **Off-stage candid** | Talking to attendees afterwards. Sells approachability, which is what gets the repeat booking. |
+
+Shoot in landscape *and* portrait for each — the site needs both crops.
+
+### 2. Sizzle reel (highest value, video)
+
+Sixty to ninety seconds. Outperforms every word of copy on this site. Structure
+that works: open on a strong line mid-delivery (no title card first), cut
+between wide/tight, include two seconds of audience laughing or applauding,
+end on the offer. Capture clean audio off the venue's board — phone audio from
+the back of a room is the usual reason a reel is unusable.
+
+### 3. Studio refresh
+
+The existing set is all posed and formal. What's missing:
+
+- **Laughing, genuinely** — the brand is "Honest Stories"; every current photo is serious. The tone of the artwork and the tone of the man should match.
+- **Mid-conversation, looking off-camera** — reads as candid rather than corporate.
+- **Environmental** — at a desk, in a venue, walking. Backdrop shots say "headshot"; environment says "operator".
+- **One clean cut-out on plain background** — so the hero artwork can be re-laid-out later without another shoot.
+
+Shoot everything in colour at full resolution. The site converts to grayscale
+in CSS, so colour originals stay useful for press, decks, and social.
+
+### Delivery
+
+Full-resolution JPEGs, longest edge 2500px+, into `public/images/`. Grayscale
+conversion, cropping and compression are handled here — don't pre-process.
 
 ## Content still needed
 

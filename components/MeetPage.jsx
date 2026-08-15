@@ -15,7 +15,8 @@ import {
   SLATE,
   MUTED,
   INK,
-  BG
+  BG,
+  TAUPE
 } from './ui';
 import { company } from '../site.config';
 
@@ -260,24 +261,66 @@ export default function MeetPage({ onContactClick }) {
           4 — POSITIONING. Why this speaker and not the other forty on
           the shortlist.
           ============================================================ */}
-      <SplitFeature
-        eyebrow="Why book Jeremy"
-        title="The version most speakers leave out"
-        image="/images/jeremy-speaking.jpg"
-        flip
-        quote="The talk people remember is the one where somebody finally said the quiet part out loud."
-      >
-        <p style={{ marginBottom: 18 }}>
-          Most business talks are a highlight reel with a lesson bolted on the end. That is not what
-          moves a room. People lean in when the person on stage is honest about the part that did not
-          work — the payroll nearly missed, the call got wrong, the year they wanted out.
-        </p>
-        <p>
-          That honesty is the whole method. It earns attention in the first ninety seconds, and it
-          makes the practical part land, because by then the audience believes the person saying it has
-          actually been there.
-        </p>
-      </SplitFeature>
+      {/* Typographic on purpose, no photograph.
+          This section argues that Jeremy can hold a room, and the only image
+          that supports that claim is a real on-stage shot. A studio portrait
+          here quietly undercuts the argument, and reusing the bio portrait
+          would put the same face twice on one page, which reads as a bug.
+          When stage photography exists, this can become:
+            <SplitFeature eyebrow="Why book Jeremy" title="…" flip
+              image="/images/jeremy-speaking.jpg" quote="…">…</SplitFeature> */}
+      <section className="relative overflow-hidden py-16 md:py-28 px-6" style={{ backgroundColor: INK }}>
+        <div
+          className="hero-wedge absolute inset-y-0 right-0 hidden md:block"
+          style={{ width: '48%', backgroundColor: TAUPE, opacity: 0.28 }}
+        />
+        <span
+          aria-hidden="true"
+          className="watermark absolute hidden md:block"
+          style={{
+            right: '-2%',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            fontSize: 'clamp(5rem, 14vw, 12rem)',
+            color: 'rgba(255,255,255,0.045)'
+          }}
+        >
+          Honest
+        </span>
+
+        <div className="relative max-w-6xl mx-auto">
+          <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11, marginBottom: 20 }}>
+            Why book Jeremy
+          </p>
+
+          <blockquote
+            className="display"
+            style={{
+              color: '#ffffff',
+              fontSize: 'clamp(1.9rem, 4.6vw, 3.5rem)',
+              maxWidth: '20ch',
+              marginBottom: 44
+            }}
+          >
+            The talk people remember is the one where somebody finally said the quiet part out loud.
+          </blockquote>
+
+          <span aria-hidden="true" style={{ display: 'block', width: 54, height: 3, backgroundColor: SECONDARY, marginBottom: 36 }} />
+
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16" style={{ maxWidth: 940 }}>
+            <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 17, lineHeight: 1.8 }}>
+              Most business talks are a highlight reel with a lesson bolted on the end. That is not what
+              moves a room. People lean in when the person on stage is honest about the part that did
+              not work — the payroll nearly missed, the call got wrong, the year they wanted out.
+            </p>
+            <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 17, lineHeight: 1.8 }}>
+              That honesty is the whole method. It earns attention in the first ninety seconds, and it
+              makes the practical part land, because by then the audience believes the person saying it
+              has actually been there.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Renders nothing while STATS is empty — see the note above it. */}
       {STATS.length > 0 && <StatBand stats={STATS} />}
