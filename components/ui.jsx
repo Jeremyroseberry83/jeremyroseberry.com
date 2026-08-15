@@ -549,12 +549,13 @@ export function BookingCTA({ onContactClick, title = 'Let’s get a date on the 
           {body ||
             'Tell me about the event — the date, the room, roughly who is in it. You get a reply from me personally, not an assistant.'}
         </p>
-        <div className="flex flex-wrap gap-3 justify-center">
+        {/* One button. The second ("check availability") opened the same
+            modal as the first, so it was a choice with no consequence — and a
+            second option next to a primary action reliably lowers how many
+            people take either. */}
+        <div className="flex justify-center">
           <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick(context || 'Speaking')}>
-            {cta.primary}
-          </Button>
-          <Button variant="ghost" size="lg" onClick={() => onContactClick && onContactClick('Availability')}>
-            {cta.secondary}
+            {cta.connect}
           </Button>
         </div>
       </div>

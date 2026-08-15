@@ -66,8 +66,12 @@ module.exports = {
   // Booking is the entire point of this site. One label, used on every primary
   // button, so the ask is identical everywhere the visitor looks.
   cta: {
+    // Nav and hero — names the action.
     primary: 'Book To Speak',
-    secondary: 'Check availability'
+    // The closing block on every page. Warmer on purpose: by the time someone
+    // reaches the bottom they have already read the case, and "connect" also
+    // fits the podcast, press and content enquiries the same form handles.
+    connect: 'Let’s Connect'
   },
 
   // Blank entries are skipped by the footer social row — better than shipping
