@@ -74,33 +74,34 @@ export default function Site() {
 
   const isHome = currentPage === 'home';
 
-  // The bar is cream on every page.
+  // Navy bar on every page, with the dark logo variant.
   //
-  // An earlier version painted the home bar with the artwork's own top-edge
-  // colours (gray to 41.1%, taupe to 79.9%, gray out) so it read as a
-  // continuation of the image. It was abandoned for a reason worth recording,
-  // because it looks like an obvious idea and someone will try it again:
+  // Of everything tried, this is the one with no contrast compromise anywhere:
+  // white links 12.2:1, the gold monogram 5.7:1, the #d9d9d9 half of the
+  // wordmark 8.7:1 — all comfortably clear. Cream forced the gold in the
+  // wordmark down to about 2:1, and the artwork-coloured bar it replaced was
+  // worse still.
   //
-  //   No single text colour is legible on both bands. On the gray only dark
-  //   type clears 4.5:1 (white is 2.6:1, gold 1.2:1); on the taupe only light
-  //   type does (charcoal is 2.1:1). That is survivable only if you know which
-  //   band the nav sits in — and you don't. The nav group is right-aligned
-  //   inside a max-width container, so its left edge moves with viewport
-  //   width and crosses the 41.1% boundary somewhere around 1024–1100px.
-  //   Whatever colour you pick, there is a window where the links disappear.
-  //
-  // The logo plate was a patch on the same problem and read as a sticker.
-  // Cream everywhere is legible at every width, matches the inner pages, and
-  // still keys to the artwork through the accent rule below.
-  const navBg = colors.BG;
-  const navDark = false;
+  // Recorded because it looks like an obvious idea and someone will try it
+  // again: painting the home bar in the artwork's own top-edge colours (gray
+  // to 41.1%, taupe to 79.9%, gray out) does not work. No single text colour
+  // is legible on both bands — the gray takes only dark type (white 2.6:1,
+  // gold 1.2:1), the taupe only light type (charcoal 2.1:1) — and the nav
+  // group is right-aligned inside a max-width container, so its left edge
+  // crosses that 41.1% boundary somewhere around 1024–1100px. Whatever colour
+  // you choose, there is a window of viewport widths where the links vanish.
+  const navBg = colors.PRIMARY;
+  const navDark = true;
 
-  // The one blend cue that costs nothing: a rule under the bar in the
-  // artwork's taupe, spanning exactly the 41.1%–79.9% band where the wedge
-  // sits in the image below. Measured from the artwork's top row of pixels —
-  // re-sample rather than eyeball if it is ever re-exported.
-  const HERO_TOP_TAUPE = '#665e5b';
-  const homeNavRule = `linear-gradient(90deg, transparent 0 41.1%, ${HERO_TOP_TAUPE} 41.1% 79.9%, transparent 79.9% 100%)`;
+  // Accent rule under the bar, spanning exactly the 41.1%–79.9% band where the
+  // wedge sits in the artwork below. Measured from the artwork's top row of
+  // pixels — re-sample rather than eyeball if it is ever re-exported.
+  //
+  // Gold rather than the artwork's taupe: taupe on navy is 1.87:1 and would
+  // simply not be visible. With a navy bar the rule can no longer pretend to
+  // be a continuation of the image anyway, so its job is now to be a brand
+  // accent that happens to line up — and for that it has to be seen.
+  const homeNavRule = `linear-gradient(90deg, transparent 0 41.1%, ${colors.SECONDARY} 41.1% 79.9%, transparent 79.9% 100%)`;
 
   const handleNavClick = (pageId) => {
     setCurrentPage(pageId);
@@ -159,15 +160,15 @@ export default function Site() {
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
           background: navBg,
-          borderBottom: `1px solid rgba(42,42,42,0.10)`,
-          boxShadow: scrolled ? '0 2px 10px rgba(0,0,0,0.10)' : 'none'
+          borderBottom: `1px solid rgba(255,255,255,0.12)`,
+          boxShadow: scrolled ? '0 2px 14px rgba(0,0,0,0.28)' : 'none'
         }}
       >
         {/* Blend cue — lines the bar up with the wedge in the artwork below. */}
         {isHome && (
           <span
             aria-hidden="true"
-            style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 4, background: homeNavRule }}
+            style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 3, background: homeNavRule }}
           />
         )}
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
@@ -185,8 +186,8 @@ export default function Site() {
           <div className={`hidden lg:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
-              const idle = colors.TAUPE;
-              const on = colors.PRIMARY;
+              const idle = 'rgba(255,255,255,0.82)';
+              const on = '#ffffff';
               return (
                 <button
                   key={item.id}
@@ -233,7 +234,7 @@ export default function Site() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="lg:hidden" style={{ backgroundColor: colors.INK, borderTop: `3px solid ${colors.SECONDARY}` }}>
+          <div className="lg:hidden" style={{ backgroundColor: colors.PRIMARY_DEEP, borderTop: `3px solid ${colors.SECONDARY}` }}>
             <div className="px-6 py-6 flex flex-col gap-5">
               {navItems.map((item) => (
                 <button
