@@ -56,7 +56,12 @@ def banner(im, size):
     scale = H / band.height
     fig = band.resize((max(1, int(band.width * scale)), H), Image.LANCZOS)
 
-    canvas = band.resize((W, H), Image.LANCZOS).filter(ImageFilter.GaussianBlur(46))
+    # Backdrop from a BACKGROUND-ONLY strip at the frame's left edge, stretched
+    # across. Blurring the whole band — the obvious approach — leaves a ghost of
+    # the subject floating in the empty half, a second softer face beside the
+    # real one. A strip containing no subject cannot ghost.
+    strip = band.crop((0, 0, max(2, int(band.width * 0.06)), band.height))
+    canvas = strip.resize((W, H), Image.LANCZOS).filter(ImageFilter.GaussianBlur(28))
 
     # Feather the figure's left edge into that backdrop; a hard vertical join
     # reads as a compositing mistake.
