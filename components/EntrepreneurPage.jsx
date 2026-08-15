@@ -46,8 +46,13 @@ import {
  * trailing slash.
  *
  * `thumb` images in /images/ventures are GENERATED placeholders in the brand
- * palette. Replace any of them with a real logo lockup or a photograph of the
- * work at the same 900x560 proportion — the filename is the only contract.
+ * palette. Replace any with a real photograph at the same 900x560 proportion —
+ * `scripts/intake.py` does the conversion and sizing.
+ *
+ * `logo` is optional. When set, it is laid over the thumbnail on a scrim so a
+ * real company mark can sit on a real photograph without either fighting the
+ * other. Leave it empty and the thumbnail carries the panel alone. Logos want
+ * a transparent PNG; run them through the same intake script.
  */
 const displayUrl = (url) => url.replace(/^https?:\/{2}/, '').replace(/^www\./, '').replace(/\/$/, '');
 
@@ -70,18 +75,16 @@ const DISCIPLINES = [
 
 const VENTURES = [
   {
-    // DRAFT COPY — written to the shape of the role, not from inside knowledge
-    // of Avestix's mandate. Sharpen the first sentence with what the firm
-    // actually invests in; the second is already true of any COO seat.
     name: 'Avestix Frontier',
     role: 'Chief Operating Officer',
     discipline: 'operations',
     url: 'https://avestix.com',
     thumb: '/images/ventures/avestix-frontier.jpg',
+    logo: '/images/logos/avestix.png',
     description:
-      'An alternative investment platform. I run the operating side of the house — the process, the systems and the execution that sit underneath the investment strategy.',
+      'An invitation-only private society for families building enduring wealth — governed, principals-only, and AI-native from the start. Hosted and curated by Avestix.',
     value:
-      'Day-to-day operating leadership. Turning a thesis into repeatable process, keeping the machine running while the strategy evolves, and holding the standard when it would be easier not to.'
+      'Chief Operating Officer. I run the operating side: the governance, the membership standard, and the execution behind every gathering — including the inaugural voyage.'
   },
   {
     // DRAFT COPY — grounded in the venture name (4IR) and the Seco Bio link.
@@ -114,6 +117,7 @@ const VENTURES = [
     discipline: 'capital',
     url: 'https://www.privateinvestorcircle.com/',
     thumb: '/images/ventures/private-investor-circle.jpg',
+    logo: '/images/logos/private-investor-circle.png',
     description:
       'A curated circle of investors, allocators and founders who meet in person. Small rooms, real conversations, and none of the pitch theatre that makes most capital events a waste of an evening.',
     value:
@@ -125,6 +129,7 @@ const VENTURES = [
     discipline: 'addvalue',
     url: 'https://accessglobal.co',
     thumb: '/images/ventures/access-global.jpg',
+    logo: '/images/logos/access-global.png',
     description:
       '30-country private markets platform. Alternative investments: CRE, private credit, infrastructure, and more. Sector agnostic. Network of partners with shared values and standards.',
     value:
@@ -136,6 +141,7 @@ const VENTURES = [
     discipline: 'realestate',
     url: 'https://roseberryproperties.com',
     thumb: '/images/ventures/roseberry-properties.jpg',
+    logo: '/images/logos/roseberry-properties.png',
     description:
       'Referral-only residential and commercial real estate serving high-net-worth buyers and investors across South Florida and beyond.',
     value:
@@ -148,7 +154,7 @@ const VENTURES = [
     url: 'https://roseberryproperties.com/premierehomewatch',
     thumb: '/images/ventures/premiere-home-watch.jpg',
     description:
-      'Luxury home concierge service for high-net-worth owners. Recurring revenue model. Acquisition-ready framework.',
+      'Lifestyle services and luxury home concierge for distinguished clientele. Recurring revenue model, acquisition-ready framework.',
     value: 'Built by Kourtney. Scaled from 8 to 20+ clients. Turnkey systems. Ready to scale.'
   }
 ];
@@ -329,7 +335,7 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
 
               <div className="relative">
                 {current.thumb && (
-                  <div style={{ width: '100%', aspectRatio: '900 / 360', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '900 / 360', overflow: 'hidden' }}>
                     <img
                       key={current.thumb}
                       src={current.thumb}
@@ -338,6 +344,23 @@ export default function EntrepreneurPage({ onContactClick, onNavigate }) {
                       className="w-full h-full object-cover"
                       style={{ objectPosition: 'center 42%' }}
                     />
+                    {current.logo && (
+                      <>
+                        {/* Scrim only under the logo, so a mark stays legible
+                            on a photograph without dimming the whole image. */}
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-0"
+                          style={{ background: `linear-gradient(90deg, rgba(18,41,59,0.80) 0%, rgba(18,41,59,0.35) 46%, transparent 72%)` }}
+                        />
+                        <img
+                          src={current.logo}
+                          alt={`${current.name} logo`}
+                          className="absolute"
+                          style={{ left: 28, bottom: 22, height: 'clamp(38px, 5vw, 58px)', width: 'auto' }}
+                        />
+                      </>
+                    )}
                   </div>
                 )}
 
