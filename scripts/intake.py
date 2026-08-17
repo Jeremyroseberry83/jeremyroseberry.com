@@ -34,8 +34,8 @@ INBOX = ROOT / 'public/images/_incoming'
 #             card, where it was built by hand.
 JOBS = {
     'header-speaking':     ('images/headers/speaking.jpg',     (2400, 840), 'banner'),
-    'header-entrepreneur': ('images/headers/entrepreneur.jpg', (2400, 840), 'banner'),
-    'header-books':        ('images/headers/books.jpg',        (2400, 840), 'banner'),
+    'header-faith':        ('images/headers/entrepreneur.jpg', (2400, 840), 'banner'),
+    'header-fitness':      ('images/headers/fitness.jpg',      (2400, 840), 'banner'),
     'jeremy-tuxedo':        ('images/jeremy-tuxedo.jpg',                    (1800, 1125), 'cover'),
     'access-global':        ('images/ventures/access-global.jpg',           (900, 560),   'cover'),
     'access-global-logo':   ('images/logos/access-global.png',              (600, 600),   'contain'),

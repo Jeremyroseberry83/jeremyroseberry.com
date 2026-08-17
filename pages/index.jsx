@@ -4,8 +4,8 @@ import { Menu, X, Mail, Instagram, Linkedin, Youtube, Twitter } from 'lucide-rea
 import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
 import SpeakingPage from '../components/SpeakingPage';
-import BooksPage from '../components/BooksPage';
-import EntrepreneurPage from '../components/EntrepreneurPage';
+import FaithFamilyPage from '../components/FaithFamilyPage';
+import FitnessFunPage from '../components/FitnessFunPage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
 import { Button } from '../components/ui';
@@ -35,20 +35,20 @@ const META = {
     description:
       'Keynotes, event hosting and podcast conversations on leadership, mindset and what building a business actually costs. Book Jeremy Roseberry.'
   },
+  faith: {
+    title: `${company.name} — Faith, Family & Finance`,
+    description:
+      'Husband, father, and the values underneath two decades of building. The four-legged stool, the family, and what we have built in real estate and capital markets.'
+  },
+  fitness: {
+    title: `${company.name} — Fitness, Fun & Friends`,
+    description:
+      'Training in 130-degree rooms, jet surfing, skydiving, base jumping into water — and the slow mornings that hold the rest of it together.'
+  },
   speaking: {
-    title: `Book ${company.name} to Speak — Keynotes & Workshops`,
+    title: `Book ${company.name} to Speak — Keynotes, Books & Podcast`,
     description:
-      'Signature keynotes on mindset, leadership and the honest middle of building a business. Topics, availability and the values behind the work.'
-  },
-  books: {
-    title: `Books & Podcast — ${company.name}`,
-    description:
-      'Four Levels of Success, Adulting, Kicking Off Bottom and Why Lying Works — a four-year series, plus short episodes on building and leading.'
-  },
-  entrepreneur: {
-    title: `${company.name} — Entrepreneur & Operator`,
-    description:
-      'Building across seven platforms: capital, operations, real estate and people. Current ventures and the conviction behind each one.'
+      'Signature keynotes on mindset and leadership, the Four Levels book series, and the podcast. Topics and availability for event organisers.'
   }
 };
 
@@ -68,33 +68,23 @@ export default function Site() {
 
   const isHome = currentPage === 'home';
 
-  // Navy bar on every page, with the dark logo variant.
-  //
-  // Of everything tried, this is the one with no contrast compromise anywhere:
-  // white links 12.2:1, the gold monogram 5.7:1, the #d9d9d9 half of the
-  // wordmark 8.7:1 — all comfortably clear. Cream forced the gold in the
-  // wordmark down to about 2:1, and the artwork-coloured bar it replaced was
-  // worse still.
-  //
-  // Recorded because it looks like an obvious idea and someone will try it
-  // again: painting the home bar in the artwork's own top-edge colours (gray
-  // to 41.1%, taupe to 79.9%, gray out) does not work. No single text colour
-  // is legible on both bands — the gray takes only dark type (white 2.6:1,
-  // gold 1.2:1), the taupe only light type (charcoal 2.1:1) — and the nav
-  // group is right-aligned inside a max-width container, so its left edge
-  // crosses that 41.1% boundary somewhere around 1024–1100px. Whatever colour
-  // you choose, there is a window of viewport widths where the links vanish.
   // Off-white bar on every page. Settled.
   //
-  // Trade-off, recorded so it is a known cost rather than a surprise: the
-  // "Jeremy" half of the wordmark is gold, and gold on #f5f5f5 measures about
-  // 2:1. That is fine for a logo — wordmarks are exempt from the text
-  // minimums, and "Roseberry" carries the name at 5.4:1 — but it does mean the
-  // gold reads as a tint rather than as type. SECONDARY_DEEP (#a8873f) is the
-  // same hue at 3.5:1 if it ever needs to be firmer.
+  // Trade-off, recorded so it stays a known cost: the "Jeremy" half of the
+  // wordmark is gold, and gold on #f5f5f5 measures about 2:1. Fine for a logo
+  // — wordmarks are exempt from the text minimums and "Roseberry" carries the
+  // name at 4.89:1 — but the gold reads as a tint rather than as type.
+  // SECONDARY_DEEP (#a8873f) is the same hue at 3.5:1 if it needs to be firmer.
+  // Everything else is comfortable: navy monogram 10.9:1, taupe links 4.89:1.
   //
-  // Everything else on the bar is comfortable: navy monogram 8.9:1, taupe
-  // links 5.4:1, navy active links 8.9:1.
+  // Recorded because it looks like an obvious idea and someone will try it:
+  // painting the home bar in the artwork's own top-edge colours (gray to
+  // 41.1%, taupe to 79.9%, gray out) does not work. No single text colour is
+  // legible on both bands — the gray takes only dark type (white 2.6:1, gold
+  // 1.2:1), the taupe only light type (charcoal 2.1:1) — and the nav group is
+  // right-aligned inside a max-width container, so its left edge crosses that
+  // boundary somewhere around 1024–1100px. Whatever colour you pick, there is
+  // a window of viewport widths where the links vanish.
   const navBg = colors.BG;
   const navDark = false;
 
@@ -112,12 +102,12 @@ export default function Site() {
 
   const renderPage = () => {
     switch (currentPage) {
+      case 'faith':
+        return <FaithFamilyPage onContactClick={openContact} onNavigate={handleNavClick} />;
+      case 'fitness':
+        return <FitnessFunPage onContactClick={openContact} />;
       case 'speaking':
         return <SpeakingPage onContactClick={openContact} />;
-      case 'books':
-        return <BooksPage onContactClick={openContact} />;
-      case 'entrepreneur':
-        return <EntrepreneurPage onContactClick={openContact} onNavigate={handleNavClick} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }
@@ -165,9 +155,6 @@ export default function Site() {
             <Logo tone={navDark ? 'dark' : 'light'} />
           </button>
 
-          {/* On home the links and actions are one right-aligned group so they
-              stay over the taupe band, where white type clears 7:1. On inner
-              pages they keep their own spacing on the cream bar. */}
           <div className={`hidden lg:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
@@ -208,7 +195,7 @@ export default function Site() {
           </div>
 
           <button
-            className="lg:hidden"
+            className="xl:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{ color: colors.SLATE, background: 'none', border: 'none' }}
             aria-label="Menu"
@@ -219,7 +206,7 @@ export default function Site() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="lg:hidden" style={{ backgroundColor: colors.PRIMARY_DEEP, borderTop: `3px solid ${colors.SECONDARY}` }}>
+          <div className="xl:hidden" style={{ backgroundColor: colors.PRIMARY_DEEP, borderTop: `3px solid ${colors.SECONDARY}` }}>
             <div className="px-6 py-6 flex flex-col gap-5">
               {navItems.map((item) => (
                 <button
