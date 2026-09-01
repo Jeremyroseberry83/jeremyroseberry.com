@@ -23,6 +23,9 @@ def strip_code(s):
 # the body, so an unused import always looked used.
 IMPORT_RE = re.compile(r"^import\s+[\s\S]*?from\s+'[^']+';\s*$", re.M)
 
+# Names ui.jsx exports. Anything used bare in a page must be imported from
+# here, or it is a ReferenceError at render — the failure this check exists to
+# catch. The reverse direction (imported but unused) is only tidiness.
 root = pathlib.Path('.')
 ui  = set(re.findall(r'^export (?:const|function) ([A-Za-z_]+)', (root/'components/ui.jsx').read_text(), re.M))
 cfg = set(re.findall(r'^  ([a-zA-Z]+):', (root/'site.config.js').read_text(), re.M))
@@ -51,6 +54,21 @@ for f in sorted(list(root.glob('components/*.jsx')) + list(root.glob('pages/*.js
         pth = m.group(2)
         if not any((f.parent/(pth+e)).exists() for e in ('.jsx','.js','')):
             problems.append(f"{f.name}: missing module {pth}")
+
+    # USED BUT NOT IMPORTED. This is the direction that actually breaks a
+    # page: an unused import is dead weight, a missing one is a crash. Merging
+    # the books and podcast sections into SpeakingPage carried markup that
+    # referenced PRIMARY and PRIMARY_DEEP without their imports, and the page
+    # died on render while every other check passed.
+    if f.name != 'ui.jsx':
+        m = re.search(r"import\s*\{([^}]*)\}\s*from\s*'\.{1,2}/(?:components/)?ui'", src)
+        imported = {n.strip() for n in m.group(1).split(',')} if m else set()
+        after = body[m.end():] if m else body
+        for name in sorted(ui):
+            # bare identifier only — not colors.PRIMARY, not PRIMARY_DEEP when
+            # looking for PRIMARY
+            if name not in imported and re.search(r'(?<![.\w])' + re.escape(name) + r'(?![\w])', after):
+                problems.append(f"{f.name}: uses {name} without importing it")
 
     c = {ch: body.count(ch) for ch in '{}()[]'}
     if not (c['{']==c['}'] and c['(']==c[')'] and c['[']==c[']']):

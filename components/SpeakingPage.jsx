@@ -8,6 +8,8 @@ import {
   Button,
   SECONDARY,
   SECONDARY_DEEP,
+  PRIMARY,
+  PRIMARY_DEEP,
   SLATE,
   MUTED,
   INK,
