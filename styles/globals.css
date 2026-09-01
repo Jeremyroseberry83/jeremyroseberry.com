@@ -247,3 +247,17 @@ body {
 .skiptranslate iframe {
   display: none !important;
 }
+
+/* The latest-episode panel. A fixed 16:10 box is right on desktop, where the
+   card is wide and the copy sits comfortably inside it. On a phone the same
+   ratio gives a ~200px-tall box holding a headline, a paragraph and two
+   buttons — and the parent clips overflow, so the buttons simply vanish.
+   Below md the box takes its height from its contents instead. */
+.band-16x10 {
+  min-height: 0;
+}
+@media (min-width: 768px) {
+  .band-16x10 {
+    aspect-ratio: 16 / 10;
+  }
+}

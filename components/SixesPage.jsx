@@ -334,16 +334,33 @@ export default function SixesPage({ onContactClick }) {
                     left into the card, with the copy in the clear half. */}
                 {p.image && (
                   <>
+                    {/* Phone: the card is one column and only ~340px wide, so a
+                        46% side panel would leave the copy about 140px to live
+                        in. Full bleed with a vertical wash instead, same as the
+                        page banners do. */}
                     <img
                       src={p.image}
                       alt=""
                       aria-hidden="true"
-                      className="absolute inset-y-0 right-0 h-full object-cover"
+                      className="md:hidden absolute inset-0 w-full h-full object-cover"
+                      style={{ objectPosition: 'center 22%' }}
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="md:hidden absolute inset-0"
+                      style={{ background: 'linear-gradient(180deg, rgba(42,42,42,0.62) 0%, rgba(42,42,42,0.88) 55%, rgba(42,42,42,0.97) 100%)' }}
+                    />
+
+                    <img
+                      src={p.image}
+                      alt=""
+                      aria-hidden="true"
+                      className="hidden md:block absolute inset-y-0 right-0 h-full object-cover"
                       style={{ width: '46%', objectPosition: 'center 28%' }}
                     />
                     <span
                       aria-hidden="true"
-                      className="absolute inset-y-0 right-0"
+                      className="hidden md:block absolute inset-y-0 right-0"
                       style={{
                         width: '52%',
                         background: 'linear-gradient(90deg, rgba(42,42,42,1) 0%, rgba(42,42,42,0.55) 40%, rgba(42,42,42,0.12) 100%)'
@@ -351,10 +368,7 @@ export default function SixesPage({ onContactClick }) {
                     />
                   </>
                 )}
-                <div
-                  className="relative p-9 h-full flex flex-col"
-                  style={p.image ? { maxWidth: '62%' } : undefined}
-                >
+                <div className={`relative p-9 h-full flex flex-col${p.image ? ' md:max-w-[62%]' : ''}`}>
                   <span className="display" style={{ color: SECONDARY, fontSize: 15, letterSpacing: '0.14em', marginBottom: 18 }}>
                     {String(i + 1).padStart(2, '0')}
                   </span>

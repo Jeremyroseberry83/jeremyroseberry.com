@@ -254,6 +254,13 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
               background: `linear-gradient(90deg, rgba(${rgb},0.92) 0%, rgba(${rgb},0.80) 38%, rgba(${rgb},0.55) 70%, rgba(${rgb},0.40) 100%)`
             }}
           />
+          {/* Same vertical pass the photo branch uses. On a phone the copy runs
+              the full width and crosses into the 55%/40% end of the horizontal
+              gradient, where moving video underneath it destroys legibility. */}
+          <div
+            className="absolute inset-0 md:hidden"
+            style={{ background: `linear-gradient(180deg, rgba(${rgb},0.55) 0%, rgba(${rgb},0.92) 70%)` }}
+          />
         </>
       ) : image ? (
         <>

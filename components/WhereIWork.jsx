@@ -206,7 +206,7 @@ function WhereIWorkDisplay() {
                       {/* The column is reserved whether or not a photo exists,
                           so rows stay aligned as thumbnails arrive one at a
                           time rather than reflowing the whole list each time. */}
-                      <div className="md:col-span-2">
+                      <div className="md:col-span-2 max-w-[104px] md:max-w-none">
                         {c.thumb && (
                           <img
                             src={c.thumb}

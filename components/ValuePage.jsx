@@ -265,7 +265,7 @@ export default function ValuePage({ onContactClick }) {
           {/* Episode card — the artwork panel doubles as the cover art until
               per-episode art exists. */}
           <div className="lg:col-span-7">
-            <div className="relative overflow-hidden" style={{ backgroundColor: INK, aspectRatio: '16 / 10' }}>
+            <div className="relative overflow-hidden band-16x10" style={{ backgroundColor: INK }}>
               <img
                 src="/images/jeremy-navy-card.jpg"
                 alt=""
