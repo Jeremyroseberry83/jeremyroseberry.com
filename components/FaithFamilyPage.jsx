@@ -65,17 +65,22 @@ const PILLARS = [
 const TIERS = [
   {
     label: 'Real Estate',
-    blurb: 'Investing, acquisitions, and the service businesses built around ownership.',
+    blurb: 'Our family platform. Investing, acquisitions, and the service businesses built around ownership.',
     companies: [
       { name: 'Roseberry Properties', role: 'Founder', url: 'https://roseberryproperties.com', logo: '/images/logos/roseberry-properties.png' },
-      { name: 'Premiere Home Watch', role: 'Founder', url: 'https://roseberryproperties.com/premierehomewatch', logo: '' }
+      { name: 'Premiere Home Watch', role: 'Founder', url: 'https://roseberryproperties.com/premierehomewatch', logo: '' },
+      // NEEDS A URL. This card previously pointed at luma.com/PrivateInvestorCircle,
+      // which is the Circle's events page and now belongs to the Circle's own
+      // card below. Rather than send a real-estate link somewhere unrelated it
+      // renders unlinked until the right address exists.
+      { name: 'Roseberry Capital', role: 'Founder', url: '', logo: '' }
     ]
   },
   {
     label: 'Capital Markets',
     blurb: 'Advisory, allocation, and the rooms where allocators actually meet founders.',
     companies: [
-      { name: 'Roseberry Capital', role: 'Founder', url: 'https://luma.com/PrivateInvestorCircle', logo: '' },
+      { name: 'Private Investor Circle', role: 'Founder', url: 'https://www.privateinvestorcircle.com/', logo: '/images/logos/private-investor-circle.png' },
       { name: 'Avestix', role: 'Chief Operating Officer', url: 'https://avestix.com', logo: '/images/logos/avestix.png' },
       { name: 'Access Global', role: 'Strategic Partner', url: 'https://accessglobal.co', logo: '/images/logos/access-global.png' },
       { name: 'The 4IR Group', role: 'Co-founder, CBO', url: 'https://secobio.com', logo: '' }
@@ -155,7 +160,7 @@ export default function FaithFamilyPage({ onContactClick, onNavigate }) {
             dark
             eyebrow="The tiers"
             title="Where I Work"
-            intro="Two tiers, six companies. The detail lives on each company’s own site — this is the shape of the week."
+            intro="Two tiers, seven companies. The detail lives on each company’s own site — this is the shape of the week."
           />
 
           <div className="mt-14 space-y-12">
@@ -169,15 +174,18 @@ export default function FaithFamilyPage({ onContactClick, onNavigate }) {
                 </div>
 
                 <div className="md:col-span-8 grid sm:grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
-                  {tier.companies.map((c) => (
-                    <a
+                  {tier.companies.map((c) => {
+                    // A card without a URL renders as a div, not an <a href="">.
+                    // An empty href reloads the current page, which is a worse
+                    // outcome than simply not being clickable.
+                    const Card = c.url ? 'a' : 'div';
+                    return (
+                    <Card
                       key={c.name}
-                      href={c.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      {...(c.url ? { href: c.url, target: '_blank', rel: 'noopener noreferrer' } : {})}
                       className="p-6 flex flex-col"
                       style={{ backgroundColor: PRIMARY, transition: 'background-color 180ms ease', minHeight: 150 }}
-                      onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#1f4666'; }}
+                      onMouseOver={(e) => { if (c.url) e.currentTarget.style.backgroundColor = '#1f4666'; }}
                       onMouseOut={(e) => { e.currentTarget.style.backgroundColor = PRIMARY; }}
                     >
                       {/* Fixed-height logo slot so cards align whether or not a
@@ -195,11 +203,16 @@ export default function FaithFamilyPage({ onContactClick, onNavigate }) {
                         className="flex items-center gap-2"
                         style={{ marginTop: 'auto', paddingTop: 14, color: SECONDARY, fontSize: 12 }}
                       >
-                        {displayUrl(c.url)}
-                        <ArrowUpRight size={13} />
+                        {c.url ? (
+                          <>
+                            {displayUrl(c.url)}
+                            <ArrowUpRight size={13} />
+                          </>
+                        ) : null}
                       </span>
-                    </a>
-                  ))}
+                    </Card>
+                    );
+                  })}
                 </div>
               </div>
             ))}
