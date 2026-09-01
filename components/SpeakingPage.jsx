@@ -152,13 +152,110 @@ export default function SpeakingPage({ onContactClick }) {
     <div>
       <PageTopBand
         eyebrow="Speaking + Content"
-        title="Signature Talks"
-        subtitle="The podcast and the book series — the material the keynotes are built from."
+        title="Resources"
+        subtitle="Trying to add value — in books, podcasts, and talks."
         image="/images/headers/speaking.jpg"
         tone="ink"
         cta={cta.primary}
         onCta={() => onContactClick && onContactClick('Speaking')}
       />
+
+      {/* ============================================================
+          THE BOOKS
+          Opens the page. The series is the most finished thing on it, so
+          it leads and the podcast follows.
+          ============================================================ */}
+      <section className="pt-16 md:pt-28 px-6" style={{ backgroundColor: '#ffffff' }}>
+        <div className="max-w-6xl mx-auto">
+          <SectionHead
+            eyebrow="The writing"
+            title="Four Levels of Success"
+            intro="A four-year series on real leadership, real success, and why most people never get there. Built to give away at speaking events, share with your team, or read alone."
+          />
+        </div>
+      </section>
+      {BOOKS.map((book, i) => {
+        const flip = i % 2 === 1;
+        const liveLinks = Object.entries(book.links).filter(([, url]) => url);
+        return (
+          <section
+            key={book.title}
+            className={`px-6 ${i === 0 ? 'pt-20 md:pt-28 pb-16 md:pb-28' : 'py-16 md:py-28'}`}
+            style={{ backgroundColor: i % 2 === 0 ? '#ffffff' : BG }}
+          >
+            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+              <div className={flip ? 'md:order-2' : ''}>
+                <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 10, marginBottom: 14 }}>
+                  Book {String(i + 1).padStart(2, '0')} · {book.type}
+                </p>
+                <h2
+                  className="display"
+                  style={{ color: SLATE, fontSize: 'clamp(2rem, 4.4vw, 3.2rem)', marginBottom: 20 }}
+                >
+                  {book.title}
+                </h2>
+                <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.8, marginBottom: 28 }}>{book.blurb}</p>
+
+                <p style={{ color: SLATE, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>In this book, you’ll:</p>
+                <ul className="space-y-4" style={{ marginBottom: 32 }}>
+                  {book.points.map((pt) => (
+                    <li key={pt} className="flex gap-4">
+                      <span
+                        aria-hidden="true"
+                        style={{ color: SECONDARY, flexShrink: 0, fontSize: 17, fontWeight: 700, lineHeight: 1.5 }}
+                      >
+                        ✓
+                      </span>
+                      <span style={{ color: MUTED, fontSize: 16, lineHeight: 1.75 }}>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                {liveLinks.length > 0 ? (
+                  <div className="flex flex-wrap gap-3">
+                    {liveLinks.map(([key, url], n) => (
+                      <Button key={key} variant={n === 0 ? 'gold' : 'quiet'} href={url}>
+                        {LABELS[key]}
+                      </Button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex flex-wrap items-center gap-4">
+                    <span
+                      style={{
+                        fontSize: 10,
+                        fontWeight: 700,
+                        letterSpacing: '0.16em',
+                        textTransform: 'uppercase',
+                        color: '#ffffff',
+                        backgroundColor: MUTED,
+                        padding: '6px 12px'
+                      }}
+                    >
+                      Forthcoming {book.year}
+                    </span>
+                    <Button
+                      variant="quiet"
+                      onClick={() => onContactClick && onContactClick('Content', `Tell me when “${book.title}” is out.`)}
+                    >
+                      Tell me when it’s out
+                    </Button>
+                  </div>
+                )}
+              </div>
+
+              <div className={`flex justify-center ${flip ? 'md:order-1 md:justify-start' : 'md:justify-end'}`}>
+                <img
+                  src={book.cover}
+                  alt={`${book.title} — cover`}
+                  loading="lazy"
+                  style={{ display: 'block', width: '100%', maxWidth: 360, height: 'auto' }}
+                />
+              </div>
+            </div>
+          </section>
+        );
+      })}
 
       {/* ============================================================
           LATEST EPISODE + SUBSCRIBE
@@ -395,104 +492,6 @@ export default function SpeakingPage({ onContactClick }) {
           </p>
         </div>
       </section>
-
-      {/* ============================================================
-          THE BOOKS
-          Merged in when Books & Podcast stopped being its own page. It
-          sits after the talks because a reader who came to book wants the
-          talks first; a reader who came for the writing scrolls.
-          ============================================================ */}
-      <section className="pt-16 md:pt-28 px-6" style={{ backgroundColor: '#ffffff' }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            eyebrow="The writing"
-            title="Four Levels of Success"
-            intro="A four-year series on real leadership, real success, and why most people never get there. Built to give away at speaking events, share with your team, or read alone."
-          />
-        </div>
-      </section>
-      {BOOKS.map((book, i) => {
-        const flip = i % 2 === 1;
-        const liveLinks = Object.entries(book.links).filter(([, url]) => url);
-        return (
-          <section
-            key={book.title}
-            className={`px-6 ${i === 0 ? 'pt-20 md:pt-28 pb-16 md:pb-28' : 'py-16 md:py-28'}`}
-            style={{ backgroundColor: i % 2 === 0 ? '#ffffff' : BG }}
-          >
-            <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-              <div className={flip ? 'md:order-2' : ''}>
-                <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 10, marginBottom: 14 }}>
-                  Book {String(i + 1).padStart(2, '0')} · {book.type}
-                </p>
-                <h2
-                  className="display"
-                  style={{ color: SLATE, fontSize: 'clamp(2rem, 4.4vw, 3.2rem)', marginBottom: 20 }}
-                >
-                  {book.title}
-                </h2>
-                <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.8, marginBottom: 28 }}>{book.blurb}</p>
-
-                <p style={{ color: SLATE, fontSize: 16, fontWeight: 700, marginBottom: 16 }}>In this book, you’ll:</p>
-                <ul className="space-y-4" style={{ marginBottom: 32 }}>
-                  {book.points.map((pt) => (
-                    <li key={pt} className="flex gap-4">
-                      <span
-                        aria-hidden="true"
-                        style={{ color: SECONDARY, flexShrink: 0, fontSize: 17, fontWeight: 700, lineHeight: 1.5 }}
-                      >
-                        ✓
-                      </span>
-                      <span style={{ color: MUTED, fontSize: 16, lineHeight: 1.75 }}>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {liveLinks.length > 0 ? (
-                  <div className="flex flex-wrap gap-3">
-                    {liveLinks.map(([key, url], n) => (
-                      <Button key={key} variant={n === 0 ? 'gold' : 'quiet'} href={url}>
-                        {LABELS[key]}
-                      </Button>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="flex flex-wrap items-center gap-4">
-                    <span
-                      style={{
-                        fontSize: 10,
-                        fontWeight: 700,
-                        letterSpacing: '0.16em',
-                        textTransform: 'uppercase',
-                        color: '#ffffff',
-                        backgroundColor: MUTED,
-                        padding: '6px 12px'
-                      }}
-                    >
-                      Forthcoming {book.year}
-                    </span>
-                    <Button
-                      variant="quiet"
-                      onClick={() => onContactClick && onContactClick('Content', `Tell me when “${book.title}” is out.`)}
-                    >
-                      Tell me when it’s out
-                    </Button>
-                  </div>
-                )}
-              </div>
-
-              <div className={`flex justify-center ${flip ? 'md:order-1 md:justify-start' : 'md:justify-end'}`}>
-                <img
-                  src={book.cover}
-                  alt={`${book.title} — cover`}
-                  loading="lazy"
-                  style={{ display: 'block', width: '100%', maxWidth: 360, height: 'auto' }}
-                />
-              </div>
-            </div>
-          </section>
-        );
-      })}
 
       {/* Empty until real quotes exist — see components/ui.jsx Testimonials. */}
       <Testimonials items={[]} />
