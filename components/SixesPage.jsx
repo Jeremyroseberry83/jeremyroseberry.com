@@ -50,12 +50,11 @@ const DISCIPLINES = [
 ];
 
 /**
- * The five F's, in Jeremy's order. Friends joins the four foundations here
- * because this is the page where all five actually live — Faith, Family and
- * Finances used to sit on the Entrepreneurs page, which made that page argue
- * two things at once.
+ * The six F's, in Jeremy's order. Faith, Family and Finances used to sit on
+ * the Entrepreneurs page while Fitness, Friends and Fun sat here, which made
+ * both pages argue two things at once. All six live together now.
  */
-const FIVES = [
+const SIXES = [
   {
     eyebrow: 'Principle',
     title: 'Faith',
@@ -85,6 +84,12 @@ const FIVES = [
     title: 'Friends',
     body:
       'The people who would tell me the truth about myself. Some I do business with, all of them outrank the calendar.'
+  },
+  {
+    eyebrow: 'Release',
+    title: 'Fun',
+    body:
+      'Jet surfing, skydiving, base jumping into water. Not a bucket list — the things that reset me, and the reason I can sit still in a board meeting the next morning.'
   }
 ];
 
@@ -151,11 +156,11 @@ const SIMPLE = [
  */
 const FRIENDS = [];
 
-export default function FivesPage({ onContactClick }) {
+export default function SixesPage({ onContactClick }) {
   return (
     <div>
       <PageTopBand
-        eyebrow="5-Fs"
+        eyebrow="6-Fs"
         title="The Real Me"
         subtitle="Discipline, adrenaline, and the slow enjoyment of very simple things. Usually in the same week."
         image="/images/headers/fitness.jpg"
@@ -163,19 +168,19 @@ export default function FivesPage({ onContactClick }) {
       />
 
       {/* ============================================================
-          1 — THE FIVE
-          All five on one page. The order is the argument.
+          1 — THE SIX
+          All six on one page. The order is the argument.
           ============================================================ */}
       <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>
         <div className="max-w-6xl mx-auto">
           <SectionHead
             maxWidth="62ch"
             eyebrow="This is me"
-            title="The Five"
-            intro="Faith, Family, Fitness, Finances, Friends. In that order, and all five load-bearing. Let one slip and everything built on top of it moves. If I ever look like I am coming apart, or just off, it is because one of these is off — and I need to recalibrate my rhythms before I try to fix anything else."
+            title="The Six"
+            intro="Faith, Family, Fitness, Finances, Friends, Fun. In that order, and all six load-bearing. Let one slip and everything built on top of it moves. If I ever look like I am coming apart, or just off, it is because one of these is off — and I need to recalibrate my rhythms before I try to fix anything else."
           />
           <div className="mt-14">
-            <TopicCards cards={FIVES} />
+            <TopicCards cards={SIXES} />
           </div>
         </div>
       </section>

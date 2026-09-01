@@ -59,7 +59,7 @@ module.exports = {
   // rail sits on Books & Podcast with the rest of the content.
   nav: [
     { name: 'Entrepreneurs', id: 'entrepreneurs' },
-    { name: '5-Fs', id: 'fives' },
+    { name: '6-Fs', id: 'sixes' },
     { name: '+Value To You', id: 'value' }
   ],
 

@@ -398,9 +398,9 @@ export function NumberStrip({ items, dark }) {
  * borders where cards meet.
  */
 export function TopicCards({ cards, dark }) {
-  // Column count follows the data: three cards read best as thirds, four as
-  // quarters. Hardcoding three left a four-card set with an orphan on its own
-  // row.
+  // Column count follows the data: four cards go to quarters, everything else
+  // to thirds — which gives three in one row and six in two clean rows.
+  // Hardcoding thirds left a four-card set with an orphan on its own row.
   const cols = cards.length === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3';
   return (
     <div className={`grid ${cols} gap-px`} style={{ backgroundColor: dark ? 'rgba(255,255,255,0.14)' : '#e2e2e2' }}>

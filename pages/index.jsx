@@ -4,7 +4,7 @@ import { Menu, X, Mail, Instagram, Linkedin, Youtube, Twitter } from 'lucide-rea
 import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
 import EntrepreneursPage from '../components/EntrepreneursPage';
-import FivesPage from '../components/FivesPage';
+import SixesPage from '../components/SixesPage';
 import ValuePage from '../components/ValuePage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
@@ -40,10 +40,10 @@ const META = {
     description:
       'Two tiers, seven companies: real estate and capital markets. Two decades of building, and what each business actually does.'
   },
-  fives: {
-    title: `${company.name} — Faith, Family, Fitness, Finances, Friends`,
+  sixes: {
+    title: `${company.name} — Faith, Family, Fitness, Finances, Friends, Fun`,
     description:
-      'The five that hold everything else up, plus the training, the adrenaline and the slow mornings in between.'
+      'The six that hold everything else up, plus the training, the adrenaline and the slow mornings in between.'
   },
   value: {
     title: `${company.name} — Books, Podcast & Speaking`,
@@ -104,8 +104,8 @@ export default function Site() {
     switch (currentPage) {
       case 'entrepreneurs':
         return <EntrepreneursPage onContactClick={openContact} />;
-      case 'fives':
-        return <FivesPage onContactClick={openContact} />;
+      case 'sixes':
+        return <SixesPage onContactClick={openContact} />;
       case 'value':
         return <ValuePage onContactClick={openContact} />;
       default:
