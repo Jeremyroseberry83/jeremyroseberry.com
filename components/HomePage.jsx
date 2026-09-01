@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, PRIMARY_DEEP, SECONDARY, INK } from './ui';
+import WhereIWork from './WhereIWork';
 import { company, cta } from '../site.config';
 
 /**
@@ -28,6 +29,7 @@ const HERO_BADGE = 'Speaker Entrepreneur';
 
 export default function HomePage({ onContactClick }) {
   return (
+    <>
     <section className="relative" style={{ backgroundColor: INK }}>
       {/* ---------- Desktop / tablet ----------
           Sits below the nav rather than under it: the artwork's top-left is
@@ -161,5 +163,12 @@ export default function HomePage({ onContactClick }) {
         {company.name} — {company.role}
       </h2>
     </section>
+
+    {/* The tiers, directly under the hero. The home page is no longer a pure
+        doorway — a visitor now gets the shape of the businesses before they
+        choose a page. Same component the Faith page mounts, so the two cannot
+        list different companies. */}
+    <WhereIWork />
+    </>
   );
 }
