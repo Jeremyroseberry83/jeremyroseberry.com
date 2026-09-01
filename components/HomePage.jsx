@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button, PRIMARY_DEEP, SECONDARY, INK } from './ui';
-import WhereIWork from './WhereIWork';
+import { Button, PRIMARY, PRIMARY_DEEP, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
 
 /**
@@ -24,6 +23,17 @@ import { company, cta } from '../site.config';
  * Sizes are in vw for the same reason: 1vw is 1% of the artwork's width, so
  * the type scales with the composition instead of drifting out of it.
  */
+/** Brown for type on the gold band — 4.95:1, where the artwork's own is 2.8:1. */
+const SCALE_BROWN = '#413a37';
+
+/** Every figure is Jeremy's own claim. Nothing estimated or rounded up. */
+const SCALE = [
+  { value: '20', unit: 'yrs', label: 'Investing in real estate' },
+  { value: '25', unit: '', label: 'Countries with capital relationships' },
+  { value: '30', unit: '', label: 'Country private-markets platform' },
+  { value: '18', unit: 'yrs', label: 'Married to Kourtney' }
+];
+
 /** The two words the navy bar carries; the other two are the headline. */
 const HERO_BADGE = 'Speaker Entrepreneur';
 
@@ -164,11 +174,39 @@ export default function HomePage({ onContactClick }) {
       </h2>
     </section>
 
-    {/* The tiers, directly under the hero. The home page is no longer a pure
-        doorway — a visitor now gets the shape of the businesses before they
-        choose a page. Same component the Faith page mounts, so the two cannot
-        list different companies. */}
-    <WhereIWork />
+    {/* The figures, directly under the hero. The home page is no longer a pure
+        doorway — four numbers give a visitor the scale of the thing before
+        they choose a page, and they read in about three seconds, which is all
+        the attention a hero hands off. The company list lives on
+        Entrepreneurs, where someone who wants that detail has already gone
+        looking for it. */}
+    <section className="relative overflow-hidden px-6 py-16 md:py-24" style={{ backgroundColor: SECONDARY }}>
+      <span
+        aria-hidden="true"
+        className="watermark absolute hidden md:block"
+        style={{
+          left: '-2%',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          fontSize: 'clamp(5rem, 15vw, 13rem)',
+          color: 'rgba(255,255,255,0.22)'
+        }}
+      >
+        Built
+      </span>
+      <div className="relative max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8">
+        {SCALE.map((s) => (
+          <div key={s.label}>
+            <div className="display" style={{ color: PRIMARY, fontSize: 'clamp(2.8rem, 6vw, 4.6rem)', lineHeight: 1 }}>
+              {s.value}
+              {s.unit && <span style={{ fontSize: '0.42em', marginLeft: 6, letterSpacing: '0.06em', color: SCALE_BROWN }}>{s.unit}</span>}
+            </div>
+            <span aria-hidden="true" style={{ display: 'block', width: 34, height: 2, backgroundColor: '#ffffff', margin: '16px 0' }} />
+            <p style={{ color: SCALE_BROWN, fontSize: 14.5, lineHeight: 1.6, fontWeight: 500 }}>{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
     </>
   );
 }

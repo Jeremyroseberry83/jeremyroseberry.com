@@ -125,7 +125,7 @@ const PURSUITS = [
   {
     name: 'Base jumping into water',
     body: 'A cliff, a countdown, and about four seconds where nothing else in your life exists.',
-    image: ''
+    image: '/images/pursuits/base-jumping.jpg'
   },
   {
     name: '130-degree training',
