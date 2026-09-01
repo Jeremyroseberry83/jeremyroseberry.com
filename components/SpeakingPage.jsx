@@ -148,9 +148,6 @@ const LABELS = { order: 'Order now', ebook: 'Download ebook', audiobook: 'Audiob
 export default function SpeakingPage({ onContactClick }) {
   const latest = EPISODES[0];
 
-  const featured = TALKS.filter((t) => t.featured);
-  const rest = TALKS.filter((t) => !t.featured);
-
   return (
     <div>
       <PageTopBand

@@ -21,6 +21,10 @@ def strip_code(s):
 # Remove ENTIRE import statements, not just their first line. Filtering only
 # lines that begin with "import" left the names inside a multi-line block in
 # the body, so an unused import always looked used.
+# Built-ins that look like module constants to a regex.
+GLOBALS = {'JSON', 'Math', 'Object', 'Array', 'String', 'Number', 'Boolean',
+           'Date', 'Intl', 'URL', 'NaN', 'Infinity'}
+
 IMPORT_RE = re.compile(r"^import\s+[\s\S]*?from\s+'[^']+';\s*$", re.M)
 
 # Names ui.jsx exports. Anything used bare in a page must be imported from
@@ -69,6 +73,20 @@ for f in sorted(list(root.glob('components/*.jsx')) + list(root.glob('pages/*.js
             # looking for PRIMARY
             if name not in imported and re.search(r'(?<![.\w])' + re.escape(name) + r'(?![\w])', after):
                 problems.append(f"{f.name}: uses {name} without importing it")
+
+    # MODULE CONSTANTS USED BUT NEVER DECLARED. Deleting a data array and
+    # leaving a reference behind is the same crash as a missing import, and it
+    # happened twice: TALKS survived in two filter() calls after the talks
+    # section was cut. SCREAMING_CASE only, which is exactly how the page data
+    # in this project is named.
+    declared = set(re.findall(r'^(?:export\s+)?const ([A-Z][A-Z0-9_]+)\s*=', body, re.M))
+    declared |= GLOBALS
+    imported_all = set()
+    for m in re.finditer(r"import\s*\{([^}]*)\}\s*from", src):
+        imported_all |= {n.strip().split(' as ')[-1].strip() for n in m.group(1).split(',') if n.strip()}
+    for name in set(re.findall(r'(?<![.\w])([A-Z][A-Z0-9_]{2,})(?![\w])', body)):
+        if name not in declared and name not in imported_all:
+            problems.append(f"{f.name}: uses {name} but nothing declares or imports it")
 
     c = {ch: body.count(ch) for ch in '{}()[]'}
     if not (c['{']==c['}'] and c['(']==c[')'] and c['[']==c[']']):
