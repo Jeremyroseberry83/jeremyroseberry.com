@@ -22,7 +22,7 @@ module.exports = {
     name: 'Jeremy Roseberry',
     shortName: 'Roseberry',
     initials: 'JR',
-    tagline: 'Leader. Speaker. Entrepreneur.',
+    tagline: 'Leader. Builder. Speaker. Entrepreneur.',
     domain: 'jeremyroseberry.com',
     email: 'jeremy@roseberrycapital.net',
     role: 'Keynote Speaker, Host & Entrepreneur'

@@ -38,7 +38,12 @@ problems = []
 for f in sorted(list(root.glob('components/*.jsx')) + list(root.glob('pages/*.jsx'))):
     src  = f.read_text()
     body = strip_code(src)
-    rest = IMPORT_RE.sub('', body)
+    # Strip imports from the RAW source, THEN blank the strings. The other
+    # order silently disabled this check for the whole session: strip_code
+    # turns './ui' into "", so IMPORT_RE's `from '...'` never matched, no
+    # import line was ever removed, and every imported name looked used
+    # because its own import statement was still in the haystack.
+    rest = strip_code(IMPORT_RE.sub('', src))
 
     for m in re.finditer(r"import\s*\{([^}]*)\}\s*from\s*'([^']+)'", src, re.S):
         names = [n.strip().split(' as ')[-1].strip() for n in m.group(1).split(',') if n.strip()]

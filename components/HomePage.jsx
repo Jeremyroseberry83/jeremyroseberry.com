@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, PRIMARY_DEEP, SECONDARY, INK } from './ui';
+import { Button, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
 
 /**
@@ -54,31 +54,22 @@ export default function HomePage({ onContactClick }) {
             Mindset <span style={{ color: SECONDARY }}>Motivation</span>
           </p>
 
+          {/* Four words stacked. Sized at 8.2vw rather than the 10.6vw the
+              two-word headline used: the text column is about 48% of the
+              viewport, and ENTREPRENEUR at twelve characters overruns it above
+              roughly 9.5vw. The badge is gone — it said the same four words. */}
           <h1
             className="display hero-reveal-2"
-            style={{ color: '#ffffff', fontSize: '10.6vw', marginBottom: '1.8vw' }}
+            style={{ color: '#ffffff', fontSize: '8.2vw', marginBottom: '2.4vw' }}
           >
-            Honest
+            Leader
             <br />
-            Stories
+            Builder
+            <br />
+            Speaker
+            <br />
+            Entrepreneur
           </h1>
-
-          <p
-            className="hero-reveal-3"
-            style={{
-              display: 'inline-block',
-              backgroundColor: PRIMARY_DEEP,
-              color: '#ffffff',
-              fontSize: '1.32vw',
-              fontWeight: 600,
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              padding: '0.85vw 1.5vw',
-              marginBottom: '2vw'
-            }}
-          >
-            {company.tagline}
-          </p>
 
           <div className="hero-reveal-4">
             <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick('Speaking')}>
@@ -115,28 +106,15 @@ export default function HomePage({ onContactClick }) {
             Mindset <span style={{ color: SECONDARY }}>Motivation</span>
           </p>
 
-          <h1 className="display hero-reveal-2" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
-            Honest
+          <h1 className="display hero-reveal-2" style={{ color: '#ffffff', fontSize: 'clamp(2.3rem, 12.5vw, 4.4rem)', marginBottom: 28 }}>
+            Leader
             <br />
-            Stories
+            Builder
+            <br />
+            Speaker
+            <br />
+            Entrepreneur
           </h1>
-
-          <p
-            className="hero-reveal-3"
-            style={{
-              display: 'inline-block',
-              backgroundColor: PRIMARY_DEEP,
-              color: '#ffffff',
-              fontSize: 10.5,
-              fontWeight: 600,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              padding: '9px 14px',
-              marginBottom: 26
-            }}
-          >
-            {company.tagline}
-          </p>
 
           <div className="hero-reveal-4">
             <Button variant="gold" size="lg" full onClick={() => onContactClick && onContactClick('Speaking')}>

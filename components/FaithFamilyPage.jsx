@@ -9,9 +9,7 @@ import {
   SECONDARY_DEEP,
   PRIMARY,
   PRIMARY_DEEP,
-  SLATE,
   MUTED,
-  INK,
   BG
 } from './ui';
 
