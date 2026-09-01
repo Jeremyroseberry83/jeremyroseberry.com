@@ -5,16 +5,13 @@ import {
   SectionHead,
   TopicCards,
   BookingCTA,
-  Button,
   SECONDARY,
   SECONDARY_DEEP,
-  PRIMARY,
   PRIMARY_DEEP,
   SLATE,
   MUTED,
   INK,
-  BG,
-  TAUPE
+  BG
 } from './ui';
 
 /**
@@ -118,7 +115,7 @@ const PURSUITS = [
   {
     name: 'Jet surfing',
     body: 'Motorised board, open water, no forgiveness for a bad decision. Closest thing to flying at sea level.',
-    image: ''
+    image: '/images/pursuits/jet-surfing.jpg'
   },
   {
     name: 'Skydiving',
@@ -137,16 +134,6 @@ const PURSUITS = [
   }
 ];
 
-/**
- * FILL — the slow half. This page fails if it is only adrenaline: what makes
- * it human is the contrast between base jumping and a good coffee.
- */
-const SIMPLE = [
-  'A long breakfast with no phone on the table',
-  'Coffee before anyone else in the house is up',
-  'Boat days that go nowhere in particular',
-  'Watching my kids do something they are getting good at'
-];
 
 /**
  * FILL — people. Empty renders nothing rather than an empty shelf.
@@ -362,40 +349,7 @@ export default function SixesPage({ onContactClick }) {
       </section>
 
       {/* ============================================================
-          5 — THE SLOW HALF
-          The counterweight. Without it this page is just a man shouting
-          about cliffs.
-          ============================================================ */}
-      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-12 gap-12">
-          <div className="md:col-span-5">
-            <SectionHead
-              eyebrow="And the other half"
-              title="Slow Things"
-              intro="For every jump there are twenty mornings that look like nothing at all. Those are the ones that actually hold a life together."
-            />
-          </div>
-          <div className="md:col-span-7 flex items-center">
-            <ul className="w-full">
-              {SIMPLE.map((item, i) => (
-                <li
-                  key={item}
-                  className="flex items-baseline gap-5 py-5"
-                  style={{ borderTop: i === 0 ? 'none' : '1px solid #e2e2e2' }}
-                >
-                  <span className="display" style={{ color: SECONDARY, fontSize: 14, letterSpacing: '0.12em', flexShrink: 0 }}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span style={{ color: SLATE, fontSize: 'clamp(1.05rem, 2vw, 1.35rem)', lineHeight: 1.55 }}>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          6 — FRIENDS
+          5 — FRIENDS
           Renders nothing while FRIENDS is empty. Naming someone in public
           is their decision as much as his, so this stays opt-in.
           ============================================================ */}
@@ -432,31 +386,6 @@ export default function SixesPage({ onContactClick }) {
           </div>
         </section>
       )}
-
-      {/* ============================================================
-          7 — THE LINE
-          ============================================================ */}
-      <section className="relative overflow-hidden px-6 py-16 md:py-24" style={{ backgroundColor: PRIMARY }}>
-        <div
-          className="hero-wedge absolute inset-y-0 right-0 hidden md:block"
-          style={{ width: '46%', backgroundColor: TAUPE, opacity: 0.22 }}
-        />
-        <div className="relative max-w-4xl mx-auto text-center">
-          <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11, marginBottom: 20 }}>
-            Why any of this is here
-          </p>
-          <p className="display" style={{ color: '#ffffff', fontSize: 'clamp(1.7rem, 4.2vw, 2.9rem)', marginBottom: 22 }}>
-            You cannot lead people you would not have dinner with.
-          </p>
-          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 17, lineHeight: 1.8, maxWidth: '52ch', margin: '0 auto 32px' }}>
-            The discipline is real and so is the fun. Anyone who tells you they only have one of the
-            two is selling you something.
-          </p>
-          <Button variant="gold" onClick={() => onContactClick && onContactClick('Speaking')}>
-            Let’s talk
-          </Button>
-        </div>
-      </section>
 
       <BookingCTA onContactClick={onContactClick} context="Speaking" />
     </div>

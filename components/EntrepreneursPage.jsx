@@ -1,12 +1,6 @@
 import React from 'react';
 import WhereIWork from './WhereIWork';
-import {
-  PageTopBand,
-  BookingCTA,
-  SECONDARY,
-  PRIMARY,
-  MUTED
-} from './ui';
+import { PageTopBand, BookingCTA, SECONDARY, PRIMARY } from './ui';
 
 /**
  * "Faith + Family + Finance" — the identity page.
@@ -51,7 +45,7 @@ export default function EntrepreneursPage({ onContactClick }) {
         tone="taupe"
       />
 
-      <WhereIWork />
+      <WhereIWork variant="display" />
 
       {/* ============================================================
           1 — SCALE
@@ -81,21 +75,6 @@ export default function EntrepreneursPage({ onContactClick }) {
               <p style={{ color: SCALE_BROWN, fontSize: 14.5, lineHeight: 1.6, fontWeight: 500 }}>{s.label}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ============================================================
-          2 — THE LINE TO REMEMBER
-          ============================================================ */}
-      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: '#ffffff' }}>
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="display" style={{ color: PRIMARY, fontSize: 'clamp(1.8rem, 5vw, 3.4rem)', marginBottom: 14 }}>
-            Relationships. <span style={{ color: SECONDARY }}>Economics.</span> Execution.
-          </p>
-          <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.8, maxWidth: '54ch', margin: '0 auto' }}>
-            Trust compounds, the numbers have to work, and none of it counts until somebody does the
-            unglamorous part on a Tuesday.
-          </p>
         </div>
       </section>
 

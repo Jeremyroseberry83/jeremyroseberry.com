@@ -46,6 +46,12 @@ JOBS = {
     'premiere-home-watch':  ('images/ventures/premiere-home-watch.jpg',     (900, 560),   'cover'),
     'jeremy-speaking':      ('images/jeremy-speaking.jpg',                  (1800, 1200), 'cover'),
     'fitness-training':     ('images/fitness-training.jpg',                 (1000, 1400), 'cover'),
+
+    # WHERE I GO TO FEEL ALIVE cards on the 6-Fs page. Landscape, because the
+    # card crops to a wide band and a portrait shot loses the subject to it.
+    'pursuit-skydive':      ('images/pursuits/skydiving.jpg',                (1200, 800),  'cover'),
+    'pursuit-basejump':     ('images/pursuits/base-jumping.jpg',             (1200, 800),  'cover'),
+    'pursuit-heat':         ('images/pursuits/heat-training.jpg',            (1200, 800),  'cover'),
     'hero-mobile':          ('images/hero-honest-stories-mobile.jpg',       (1080, 1350), 'cover'),
 }
 # Contact-sheet tiles for the 5-Fs page. 4:5 to match the grid; a video's
