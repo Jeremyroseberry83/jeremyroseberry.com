@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, SECONDARY, INK } from './ui';
+import { Button, PRIMARY_DEEP, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
 
 /**
@@ -23,6 +23,9 @@ import { company, cta } from '../site.config';
  * Sizes are in vw for the same reason: 1vw is 1% of the artwork's width, so
  * the type scales with the composition instead of drifting out of it.
  */
+/** The two words the navy bar carries; the other two are the headline. */
+const HERO_BADGE = 'Speaker Entrepreneur';
+
 export default function HomePage({ onContactClick }) {
   return (
     <section className="relative" style={{ backgroundColor: INK }}>
@@ -54,22 +57,36 @@ export default function HomePage({ onContactClick }) {
             Mindset <span style={{ color: SECONDARY }}>Motivation</span>
           </p>
 
-          {/* Four words stacked. Sized at 8.2vw rather than the 10.6vw the
-              two-word headline used: the text column is about 48% of the
-              viewport, and ENTREPRENEUR at twelve characters overruns it above
-              roughly 9.5vw. The badge is gone — it said the same four words. */}
+          {/* Two words at display scale, the other two in the navy bar. Four
+              stacked lines were tried and pushed the type down to 8.2vw to fit
+              ENTREPRENEUR in a column that is only ~48% of the viewport —
+              which cost the headline all of its weight. Splitting them keeps
+              LEADER/BUILDER at full size and gives the bar something to say. */}
           <h1
             className="display hero-reveal-2"
-            style={{ color: '#ffffff', fontSize: '8.2vw', marginBottom: '2.4vw' }}
+            style={{ color: '#ffffff', fontSize: '10.6vw', marginBottom: '1.8vw' }}
           >
             Leader
             <br />
             Builder
-            <br />
-            Speaker
-            <br />
-            Entrepreneur
           </h1>
+
+          <p
+            className="hero-reveal-3"
+            style={{
+              display: 'inline-block',
+              backgroundColor: PRIMARY_DEEP,
+              color: '#ffffff',
+              fontSize: '1.32vw',
+              fontWeight: 600,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              padding: '0.85vw 1.5vw',
+              marginBottom: '2vw'
+            }}
+          >
+            {HERO_BADGE}
+          </p>
 
           <div className="hero-reveal-4">
             <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick('Speaking')}>
@@ -106,15 +123,28 @@ export default function HomePage({ onContactClick }) {
             Mindset <span style={{ color: SECONDARY }}>Motivation</span>
           </p>
 
-          <h1 className="display hero-reveal-2" style={{ color: '#ffffff', fontSize: 'clamp(2.3rem, 12.5vw, 4.4rem)', marginBottom: 28 }}>
+          <h1 className="display hero-reveal-2" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
             Leader
             <br />
             Builder
-            <br />
-            Speaker
-            <br />
-            Entrepreneur
           </h1>
+
+          <p
+            className="hero-reveal-3"
+            style={{
+              display: 'inline-block',
+              backgroundColor: PRIMARY_DEEP,
+              color: '#ffffff',
+              fontSize: 10.5,
+              fontWeight: 600,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              padding: '9px 14px',
+              marginBottom: 26
+            }}
+          >
+            {HERO_BADGE}
+          </p>
 
           <div className="hero-reveal-4">
             <Button variant="gold" size="lg" full onClick={() => onContactClick && onContactClick('Speaking')}>
