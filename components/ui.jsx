@@ -198,7 +198,7 @@ const BAND_TONES = {
  */
 const LIGHT_TONES = new Set(['gold']);
 
-export function PageTopBand({ eyebrow, title, subtitle, watermark, image, tone = 'ink', cta, onCta }) {
+export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video, poster, tone = 'ink', cta, onCta }) {
   const wash = BAND_TONES[tone] || INK;
   const rgb = {
     [PRIMARY]: '26,58,82',
@@ -217,7 +217,45 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, tone =
 
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: wash }}>
-      {image ? (
+      {video ? (
+        <>
+          {/* Muted, looping, inline — the only combination browsers will
+              autoplay without a gesture. `poster` covers the gap before the
+              first frame decodes and is what a data-saver or reduced-motion
+              visitor keeps instead. preload="metadata" so the file is not
+              fetched in full before the page is usable. */}
+          {/* Poster sits underneath as a real image, not just the video's
+              poster attribute, so hiding the video for reduced-motion leaves a
+              still frame rather than a hole. */}
+          {poster && (
+            <img
+              src={poster}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ objectPosition: 'center 38%' }}
+            />
+          )}
+          <video
+            className="band-video absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: 'center 38%' }}
+            src={video}
+            poster={poster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(90deg, rgba(${rgb},0.92) 0%, rgba(${rgb},0.80) 38%, rgba(${rgb},0.55) 70%, rgba(${rgb},0.40) 100%)`
+            }}
+          />
+        </>
+      ) : image ? (
         <>
           <img
             src={image}
@@ -266,11 +304,11 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, tone =
 
       <div
         className="relative max-w-6xl mx-auto px-6"
-        style={{ paddingTop: 'clamp(130px, 16vw, 180px)', paddingBottom: 'clamp(56px, 8vw, 88px)' }}
+        style={{ paddingTop: 'clamp(130px, 16vw, 180px)', paddingBottom: 'clamp(56px, 8vw, 88px)', minHeight: video ? 'clamp(420px, 46vw, 620px)' : undefined }}
       >
         {/* Half-width beside the photograph on desktop, full width on a phone
             where the image sits behind a vertical wash instead. */}
-        <div className={image ? 'w-full md:w-7/12' : undefined}>
+        <div className={image || video ? 'w-full md:w-7/12' : undefined}>
           {eyebrow && (
             <p className="eyebrow-wide" style={{ color: eyebrowInk, fontSize: 11, marginBottom: 18 }}>
               {eyebrow}

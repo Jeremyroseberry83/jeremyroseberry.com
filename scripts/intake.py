@@ -45,6 +45,7 @@ JOBS = {
     'roseberry-properties': ('images/ventures/roseberry-properties.jpg',    (900, 560),   'cover'),
     'premiere-home-watch':  ('images/ventures/premiere-home-watch.jpg',     (900, 560),   'cover'),
     'jeremy-speaking':      ('images/jeremy-speaking.jpg',                  (1800, 1200), 'cover'),
+    'fitness-training':     ('images/fitness-training.jpg',                 (1000, 1400), 'cover'),
     'hero-mobile':          ('images/hero-honest-stories-mobile.jpg',       (1080, 1350), 'cover'),
 }
 # Contact-sheet tiles for the 5-Fs page. 4:5 to match the grid; a video's

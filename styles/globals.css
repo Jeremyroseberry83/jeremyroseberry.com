@@ -171,6 +171,11 @@ a {
   .scroll-cue span { animation: none; }
   .modal-fade-in { opacity: 1; animation: none; }
   html { scroll-behavior: auto; }
+
+  /* A looping background video is motion the user asked not to see, and no
+     CSS property stops playback — so the element is removed and the poster
+     image layered beneath it shows through instead. */
+  .band-video { display: none; }
 }
 
 /* ============================================================

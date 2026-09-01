@@ -3,13 +3,13 @@ import { ArrowUpRight, Play } from 'lucide-react';
 import {
   PageTopBand,
   SectionHead,
-  NumberStrip,
   TopicCards,
   BookingCTA,
   Button,
   SECONDARY,
   SECONDARY_DEEP,
   PRIMARY,
+  PRIMARY_DEEP,
   SLATE,
   MUTED,
   INK,
@@ -163,7 +163,8 @@ export default function SixesPage({ onContactClick }) {
         eyebrow="6-Fs"
         title="The Real Me"
         subtitle="Discipline, adrenaline, and the slow enjoyment of very simple things. Usually in the same week."
-        image="/images/headers/fitness.jpg"
+        video="/videos/six-hero.mp4"
+        poster="/images/six-hero-poster.jpg"
         tone="ink"
       />
 
@@ -248,16 +249,78 @@ export default function SixesPage({ onContactClick }) {
 
       {/* ============================================================
           3 — DISCIPLINE
+          Photograph bleeding off the left edge, disciplines as an
+          editorial list on the right. The bordered four-across grid this
+          replaces gave four equal boxes on white — accurate, and completely
+          inert. A page about physical discipline should look like effort,
+          which means a dark ground, a real photograph, and type that has
+          somewhere to go.
           ============================================================ */}
-      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: '#ffffff' }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            eyebrow="Fitness"
-            title="How I Train"
-            intro="One of the four foundations, and the one that holds the other three steady when they start to slip. It is not vanity — it is the daily proof that I can do a hard thing on purpose."
+      <section className="relative overflow-hidden" style={{ backgroundColor: INK }}>
+        {/* Desktop: the photo runs the full height of the section and off the
+            left edge of the viewport, with a gradient dissolving its right
+            side into the ground so there is no hard seam against the type. */}
+        <div className="hidden md:block absolute inset-y-0 left-0" style={{ width: '44%' }}>
+          <img
+            src="/images/fitness-training.jpg"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center 30%' }}
           />
-          <div className="mt-14">
-            <NumberStrip items={DISCIPLINES} />
+          <span
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{ background: 'linear-gradient(90deg, transparent 0%, transparent 55%, rgba(42,42,42,0.85) 88%, rgba(42,42,42,1) 100%)' }}
+          />
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-6 py-16 md:py-28">
+          {/* Mobile: same photo as a band above the copy. */}
+          <div className="md:hidden" style={{ aspectRatio: '4 / 3', overflow: 'hidden', marginBottom: 40 }}>
+            <img
+              src="/images/fitness-training.jpg"
+              alt=""
+              aria-hidden="true"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center 30%' }}
+            />
+          </div>
+
+          <div className="md:grid md:grid-cols-12">
+            <div className="md:col-start-6 md:col-span-7">
+              <SectionHead
+                dark
+                eyebrow="Fitness"
+                title="How I Train"
+                intro="One of the six, and the one that holds the others steady when they start to slip. Not vanity — the daily proof that I can do a hard thing on purpose."
+              />
+
+              <ul className="mt-12">
+                {DISCIPLINES.map((d, i) => (
+                  <li
+                    key={d.title}
+                    className="flex gap-6 py-7"
+                    style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.14)' }}
+                  >
+                    <span
+                      className="display flex-shrink-0"
+                      style={{ color: SECONDARY, fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', lineHeight: 1, width: '2.2em' }}
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span>
+                      <span className="display block" style={{ color: '#ffffff', fontSize: 'clamp(1.15rem, 2vw, 1.5rem)', marginBottom: 8 }}>
+                        {d.title}
+                      </span>
+                      <span className="block" style={{ color: 'rgba(255,255,255,0.74)', fontSize: 16, lineHeight: 1.75 }}>
+                        {d.body}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -265,7 +328,7 @@ export default function SixesPage({ onContactClick }) {
       {/* ============================================================
           4 — ADRENALINE
           ============================================================ */}
-      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: INK }}>
+      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: PRIMARY_DEEP }}>
         <div className="max-w-6xl mx-auto">
           <SectionHead
             dark
