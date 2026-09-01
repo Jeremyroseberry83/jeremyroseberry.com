@@ -38,7 +38,7 @@ const META = {
   faith: {
     title: `${company.name} — Faith, Family & Finance`,
     description:
-      'Husband, father, and the values underneath two decades of building. The four-legged stool, the family, and what we have built in real estate and capital markets.'
+      'Husband, father, and the values underneath two decades of building. The four foundations, the family, and what we have built in real estate and capital markets.'
   },
   fitness: {
     title: `${company.name} — Fitness, Fun & Friends`,
@@ -155,7 +155,7 @@ export default function Site() {
             <Logo tone={navDark ? 'dark' : 'light'} />
           </button>
 
-          <div className={`hidden lg:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
+          <div className={`hidden xl:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
               const idle = colors.TAUPE;

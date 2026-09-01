@@ -22,9 +22,9 @@ import {
  * its own space, and only then lists what the family has built — deliberately
  * short, because the businesses are the evidence here, not the subject.
  *
- * Fitness stays in the stool below even though it has its own page: the four
- * legs only make sense as a set, and the card links across rather than
- * pretending the fourth leg does not exist.
+ * Fitness keeps its card here even though it has its own page: the four
+ * foundations only make sense as a set, so the card links across rather than
+ * pretending the fourth one does not exist.
  *
  * Everything marked FILL is a slot waiting for real copy. Each renders
  * something honest while empty rather than a bracketed placeholder.
@@ -133,7 +133,7 @@ export default function FaithFamilyPage({ onContactClick, onNavigate }) {
       />
 
       {/* ============================================================
-          1 — THE STOOL
+          1 — THE FOUR FOUNDATIONS
           ============================================================ */}
       <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>
         <div className="max-w-6xl mx-auto">
@@ -141,7 +141,7 @@ export default function FaithFamilyPage({ onContactClick, onNavigate }) {
             maxWidth="62ch"
             eyebrow="This is me"
             title="My Foundation"
-            intro="This is my four-legged stool. Faith, family, fitness, finances — in that order, and every leg load-bearing. Pull one and the whole thing tips. If I ever look like I am coming apart — or just off — it is because one of these four is off, and I need to recalibrate my rhythms before I try to fix anything else. Everything I build sits on top of these four."
+            intro="These are my four foundations — Faith, Family, Fitness, Finances. In that order, and all four load-bearing. Let one slip and everything built on top of it moves. If I ever look like I am coming apart, or just off, it is because one of these four is off — and I need to recalibrate my rhythms before I try to fix anything else."
           />
           <div className="mt-14">
             <TopicCards cards={PILLARS} />

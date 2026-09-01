@@ -113,7 +113,7 @@ export default function FitnessFunPage({ onContactClick }) {
           <SectionHead
             eyebrow="Fitness"
             title="How I Train"
-            intro="One of the four legs, and the one that props up the other three when they wobble. It is not vanity — it is the daily proof that I can do a hard thing on purpose."
+            intro="One of the four foundations, and the one that holds the other three steady when they start to slip. It is not vanity — it is the daily proof that I can do a hard thing on purpose."
           />
           <div className="mt-14">
             <NumberStrip items={DISCIPLINES} />
