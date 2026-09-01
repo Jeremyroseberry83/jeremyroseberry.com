@@ -145,7 +145,7 @@ const BOOKS = [
 const LABELS = { order: 'Order now', ebook: 'Download ebook', audiobook: 'Audiobook' };
 
 
-export default function SpeakingPage({ onContactClick }) {
+export default function ValuePage({ onContactClick }) {
   const latest = EPISODES[0];
 
   return (

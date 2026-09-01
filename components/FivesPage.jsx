@@ -1,9 +1,10 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Play } from 'lucide-react';
 import {
   PageTopBand,
   SectionHead,
   NumberStrip,
+  TopicCards,
   BookingCTA,
   Button,
   SECONDARY,
@@ -47,6 +48,62 @@ const DISCIPLINES = [
     body: 'The body is on loan. How you show up for it is how you will show up for everything that depends on you.'
   }
 ];
+
+/**
+ * The five F's, in Jeremy's order. Friends joins the four foundations here
+ * because this is the page where all five actually live — Faith, Family and
+ * Finances used to sit on the Entrepreneurs page, which made that page argue
+ * two things at once.
+ */
+const FIVES = [
+  {
+    eyebrow: 'Principle',
+    title: 'Faith',
+    body:
+      'God is first. Church is the center of our world, and our creativity and influence in every sphere flows from it.'
+  },
+  {
+    eyebrow: 'Foundation',
+    title: 'Family',
+    body:
+      'Married 18 years to Kourtney. Two teenagers. They teach me more about leadership than any conference. Family stability is the ultimate competitive advantage.'
+  },
+  {
+    eyebrow: 'Practice',
+    title: 'Fitness',
+    body:
+      'Stewarding my body. Physical discipline mirrors mental discipline — how you show up for your body tells me how you’ll show up for a partnership.'
+  },
+  {
+    eyebrow: 'Stewardship',
+    title: 'Finances',
+    body:
+      'Money just makes you more of who you already are. It does not rule my family — but every now and then it buys happiness, and it buys radical generosity.'
+  },
+  {
+    eyebrow: 'The room',
+    title: 'Friends',
+    body:
+      'The people who would tell me the truth about myself. Some I do business with, all of them outrank the calendar.'
+  }
+];
+
+/**
+ * MEDIA — clips and photographs, mostly pulled from Instagram.
+ *
+ * Empty renders nothing; add entries and the grid appears. `video: true` puts
+ * a play badge on the tile and, if `href` is set, the tile links out to the
+ * post rather than trying to play inline — an embedded player per tile would
+ * cost more in weight and autoplay policy headaches than it buys on a page
+ * that is really a contact sheet.
+ *
+ * Filenames the intake script already expects:
+ *   reel-surf-01 … reel-surf-04     reel-lift-01 … reel-lift-04
+ *   reel-family-01 … reel-family-04 reel-host-01 … reel-host-04
+ *
+ *   { src: '/images/reels/surf-01.jpg', label: 'Jet surfing', video: true, href: '' }
+ */
+const MEDIA = [];
 
 /**
  * FILL — the adrenaline list. These are real and specific, which is the whole
@@ -94,11 +151,11 @@ const SIMPLE = [
  */
 const FRIENDS = [];
 
-export default function FitnessFunPage({ onContactClick }) {
+export default function FivesPage({ onContactClick }) {
   return (
     <div>
       <PageTopBand
-        eyebrow="Fitness + Fun + Friends"
+        eyebrow="5-Fs"
         title="The Real Me"
         subtitle="Discipline, adrenaline, and the slow enjoyment of very simple things. Usually in the same week."
         image="/images/headers/fitness.jpg"
@@ -106,7 +163,86 @@ export default function FitnessFunPage({ onContactClick }) {
       />
 
       {/* ============================================================
-          1 — DISCIPLINE
+          1 — THE FIVE
+          All five on one page. The order is the argument.
+          ============================================================ */}
+      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>
+        <div className="max-w-6xl mx-auto">
+          <SectionHead
+            maxWidth="62ch"
+            eyebrow="This is me"
+            title="The Five"
+            intro="Faith, Family, Fitness, Finances, Friends. In that order, and all five load-bearing. Let one slip and everything built on top of it moves. If I ever look like I am coming apart, or just off, it is because one of these is off — and I need to recalibrate my rhythms before I try to fix anything else."
+          />
+          <div className="mt-14">
+            <TopicCards cards={FIVES} />
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+          2 — THE CONTACT SHEET
+          Clips and photographs. Renders nothing until there are files —
+          an empty grid of grey boxes reads as broken, not as coming soon.
+          ============================================================ */}
+      {MEDIA.length > 0 && (
+        <section className="py-16 md:py-28 px-6" style={{ backgroundColor: INK }}>
+          <div className="max-w-6xl mx-auto">
+            <SectionHead
+              dark
+              eyebrow="Off the feed"
+              title="Surfing, Lifting, Family, Hosting"
+              intro="The week as it actually looks, pulled from Instagram."
+            />
+            <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-3">
+              {MEDIA.map((m) => {
+                const Tile = m.href ? 'a' : 'div';
+                return (
+                  <Tile
+                    key={m.src}
+                    {...(m.href ? { href: m.href, target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="relative overflow-hidden group"
+                    style={{ aspectRatio: '4 / 5', backgroundColor: '#3a3a3a' }}
+                  >
+                    <img src={m.src} alt={m.label || ''} loading="lazy" className="w-full h-full object-cover" />
+                    {m.video && (
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-0 flex items-center justify-center"
+                        style={{ background: 'rgba(42,42,42,0.28)' }}
+                      >
+                        <span
+                          className="flex items-center justify-center"
+                          style={{ width: 48, height: 48, borderRadius: '50%', backgroundColor: SECONDARY, color: SLATE }}
+                        >
+                          <Play size={19} fill={SLATE} strokeWidth={0} style={{ marginLeft: 3 }} />
+                        </span>
+                      </span>
+                    )}
+                    {m.label && (
+                      <span
+                        className="absolute left-0 right-0 bottom-0 p-3"
+                        style={{
+                          background: 'linear-gradient(180deg, transparent, rgba(42,42,42,0.85))',
+                          color: '#ffffff',
+                          fontSize: 12,
+                          letterSpacing: '0.08em',
+                          textTransform: 'uppercase'
+                        }}
+                      >
+                        {m.label}
+                      </span>
+                    )}
+                  </Tile>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================
+          3 — DISCIPLINE
           ============================================================ */}
       <section className="py-16 md:py-28 px-6" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-6xl mx-auto">
@@ -122,7 +258,7 @@ export default function FitnessFunPage({ onContactClick }) {
       </section>
 
       {/* ============================================================
-          2 — ADRENALINE
+          4 — ADRENALINE
           ============================================================ */}
       <section className="py-16 md:py-28 px-6" style={{ backgroundColor: INK }}>
         <div className="max-w-6xl mx-auto">
@@ -158,7 +294,7 @@ export default function FitnessFunPage({ onContactClick }) {
       </section>
 
       {/* ============================================================
-          3 — THE SLOW HALF
+          5 — THE SLOW HALF
           The counterweight. Without it this page is just a man shouting
           about cliffs.
           ============================================================ */}
@@ -191,7 +327,7 @@ export default function FitnessFunPage({ onContactClick }) {
       </section>
 
       {/* ============================================================
-          4 — FRIENDS
+          6 — FRIENDS
           Renders nothing while FRIENDS is empty. Naming someone in public
           is their decision as much as his, so this stays opt-in.
           ============================================================ */}
@@ -230,7 +366,7 @@ export default function FitnessFunPage({ onContactClick }) {
       )}
 
       {/* ============================================================
-          5 — THE LINE
+          7 — THE LINE
           ============================================================ */}
       <section className="relative overflow-hidden px-6 py-16 md:py-24" style={{ backgroundColor: PRIMARY }}>
         <div

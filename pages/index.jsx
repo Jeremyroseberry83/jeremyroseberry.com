@@ -3,9 +3,9 @@ import Head from 'next/head';
 import { Menu, X, Mail, Instagram, Linkedin, Youtube, Twitter } from 'lucide-react';
 import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
-import SpeakingPage from '../components/SpeakingPage';
-import FaithFamilyPage from '../components/FaithFamilyPage';
-import FitnessFunPage from '../components/FitnessFunPage';
+import EntrepreneursPage from '../components/EntrepreneursPage';
+import FivesPage from '../components/FivesPage';
+import ValuePage from '../components/ValuePage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
 import { Button } from '../components/ui';
@@ -35,20 +35,20 @@ const META = {
     description:
       'Keynotes, event hosting and podcast conversations on leadership, mindset and what building a business actually costs. Book Jeremy Roseberry.'
   },
-  faith: {
-    title: `${company.name} — Faith, Family & Finance`,
+  entrepreneurs: {
+    title: `${company.name} — Entrepreneur & Operator`,
     description:
-      'Husband, father, and the values underneath two decades of building. The four foundations, the family, and what we have built in real estate and capital markets.'
+      'Two tiers, seven companies: real estate and capital markets. Two decades of building, and what each business actually does.'
   },
-  fitness: {
-    title: `${company.name} — Fitness, Fun & Friends`,
+  fives: {
+    title: `${company.name} — Faith, Family, Fitness, Finances, Friends`,
     description:
-      'Training in 130-degree rooms, jet surfing, skydiving, base jumping into water — and the slow mornings that hold the rest of it together.'
+      'The five that hold everything else up, plus the training, the adrenaline and the slow mornings in between.'
   },
-  speaking: {
-    title: `Book ${company.name} to Speak — Keynotes, Books & Podcast`,
+  value: {
+    title: `${company.name} — Books, Podcast & Speaking`,
     description:
-      'Signature keynotes on mindset and leadership, the Four Levels book series, and the podcast. Topics and availability for event organisers.'
+      'The Four Levels book series, the podcast, and booking Jeremy to speak. Trying to add value in books, podcasts and talks.'
   }
 };
 
@@ -102,12 +102,12 @@ export default function Site() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'faith':
-        return <FaithFamilyPage onContactClick={openContact} onNavigate={handleNavClick} />;
-      case 'fitness':
-        return <FitnessFunPage onContactClick={openContact} />;
-      case 'speaking':
-        return <SpeakingPage onContactClick={openContact} />;
+      case 'entrepreneurs':
+        return <EntrepreneursPage onContactClick={openContact} />;
+      case 'fives':
+        return <FivesPage onContactClick={openContact} />;
+      case 'value':
+        return <ValuePage onContactClick={openContact} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }

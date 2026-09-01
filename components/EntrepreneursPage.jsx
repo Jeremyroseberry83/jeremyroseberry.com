@@ -1,16 +1,11 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
 import WhereIWork from './WhereIWork';
 import {
   PageTopBand,
-  SectionHead,
-  TopicCards,
   BookingCTA,
   SECONDARY,
-  SECONDARY_DEEP,
   PRIMARY,
-  MUTED,
-  BG
+  MUTED
 } from './ui';
 
 /**
@@ -29,32 +24,7 @@ import {
  * something honest while empty rather than a bracketed placeholder.
  */
 
-const PILLARS = [
-  {
-    eyebrow: 'Principle',
-    title: 'Faith',
-    body:
-      'God is first. Church is the center of our world, and our creativity and influence in every sphere flows from it.'
-  },
-  {
-    eyebrow: 'Foundation',
-    title: 'Family',
-    body:
-      'Married 18 years to Kourtney. Two teenagers. They teach me more about leadership than any conference. Family stability is the ultimate competitive advantage.'
-  },
-  {
-    eyebrow: 'Practice',
-    title: 'Fitness',
-    body:
-      'Stewarding my body. Physical discipline mirrors mental discipline — how you show up for your body tells me how you’ll show up for a partnership.'
-  },
-  {
-    eyebrow: 'Stewardship',
-    title: 'Finances',
-    body:
-      'Money just makes you more of who you already are. It does not rule my family — but every now and then it buys happiness, and it buys radical generosity.'
-  }
-];
+
 
 
 
@@ -70,57 +40,21 @@ const SCALE = [
   { value: '18', unit: 'yrs', label: 'Married to Kourtney' }
 ];
 
-export default function FaithFamilyPage({ onContactClick, onNavigate }) {
+export default function EntrepreneursPage({ onContactClick }) {
   return (
     <div>
       <PageTopBand
-        eyebrow="Faith + Family + Finance"
-        title="What I Am Built On"
-        subtitle="Before the businesses, before the stage — this is the core. Husband, father, and someone who thinks the order of your priorities shows up in your results."
+        eyebrow="Entrepreneurs"
+        title="What We Build"
+        subtitle="Two tiers, seven companies, and two decades of learning the difference between a good idea and a business."
         image="/images/headers/entrepreneur.jpg"
         tone="taupe"
       />
 
-      {/* ============================================================
-          1 — THE FOUR FOUNDATIONS
-          ============================================================ */}
-      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: BG }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            maxWidth="62ch"
-            eyebrow="This is me"
-            title="My Foundation"
-            intro="These are my four foundations — Faith, Family, Fitness, Finances. In that order, and all four load-bearing. Let one slip and everything built on top of it moves. If I ever look like I am coming apart, or just off, it is because one of these four is off — and I need to recalibrate my rhythms before I try to fix anything else."
-          />
-          <div className="mt-14">
-            <TopicCards cards={PILLARS} />
-          </div>
-          <button
-            type="button"
-            onClick={() => onNavigate && onNavigate('fitness')}
-            className="eyebrow-wide"
-            style={{
-              marginTop: 24,
-              background: 'none',
-              border: 'none',
-              padding: 0,
-              color: SECONDARY_DEEP,
-              fontSize: 10,
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 10
-            }}
-          >
-            Fitness has its own page
-            <ArrowUpRight size={14} />
-          </button>
-        </div>
-      </section>
-
       <WhereIWork />
 
       {/* ============================================================
-          2 — SCALE
+          1 — SCALE
           ============================================================ */}
       <section className="relative overflow-hidden px-6 py-16 md:py-24" style={{ backgroundColor: SECONDARY }}>
         <span
@@ -151,7 +85,7 @@ export default function FaithFamilyPage({ onContactClick, onNavigate }) {
       </section>
 
       {/* ============================================================
-          3 — THE LINE TO REMEMBER
+          2 — THE LINE TO REMEMBER
           ============================================================ */}
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-6xl mx-auto text-center">

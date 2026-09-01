@@ -47,6 +47,13 @@ JOBS = {
     'jeremy-speaking':      ('images/jeremy-speaking.jpg',                  (1800, 1200), 'cover'),
     'hero-mobile':          ('images/hero-honest-stories-mobile.jpg',       (1080, 1350), 'cover'),
 }
+# Contact-sheet tiles for the 5-Fs page. 4:5 to match the grid; a video's
+# thumbnail goes through here the same as a photo, and MEDIA in FivesPage.jsx
+# marks which ones get a play badge.
+for _kind in ('surf', 'lift', 'family', 'host'):
+    for _n in range(1, 5):
+        JOBS[f'reel-{_kind}-{_n:02d}'] = (f'images/reels/{_kind}-{_n:02d}.jpg', (900, 1125), 'cover')
+
 EXT = {'.jpg', '.jpeg', '.png', '.heic', '.heif', '.webp', '.tif', '.tiff'}
 
 
