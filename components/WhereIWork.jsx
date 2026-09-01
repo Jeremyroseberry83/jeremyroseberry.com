@@ -19,6 +19,7 @@ const TIERS = [
     companies: [
       {
         name: 'Roseberry Properties',
+        thumb: '',   // /images/ventures/photos/roseberry-properties.jpg
         role: 'Founder',
         url: 'https://roseberryproperties.com',
         logo: '/images/logos/roseberry-properties.png',
@@ -27,6 +28,7 @@ const TIERS = [
       {
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'Premiere Home Watch',
+        thumb: '',   // /images/ventures/photos/premiere-home-watch.jpg
         role: 'Founder',
         url: 'https://roseberryproperties.com/premierehomewatch',
         logo: '',
@@ -37,6 +39,7 @@ const TIERS = [
         // has no site of its own yet. Two cards pointing at one destination is
         // a stopgap, not a design; give this its own URL when there is one.
         name: 'Roseberry Capital',
+        thumb: '',   // /images/ventures/photos/roseberry-capital.jpg
         role: 'Founder',
         url: 'https://www.privateinvestorcircle.com/',
         logo: '',
@@ -51,6 +54,7 @@ const TIERS = [
       {
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'Private Investor Circle',
+        thumb: '',   // /images/ventures/photos/private-investor-circle.jpg
         role: 'Founder',
         url: 'https://www.privateinvestorcircle.com/',
         logo: '/images/logos/private-investor-circle.png',
@@ -59,6 +63,7 @@ const TIERS = [
       {
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'Avestix',
+        thumb: '',   // /images/ventures/photos/avestix.jpg
         role: 'Chief Operating Officer',
         url: 'https://avestix.com',
         logo: '/images/logos/avestix.png',
@@ -67,6 +72,7 @@ const TIERS = [
       {
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'Access Global',
+        thumb: '',   // /images/ventures/photos/access-global.jpg
         role: 'Strategic Partner',
         url: 'https://accessglobal.co',
         logo: '/images/logos/access-global.png',
@@ -75,6 +81,7 @@ const TIERS = [
       {
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'The 4IR Group',
+        thumb: '',   // /images/ventures/photos/four-ir-group.jpg
         role: 'Co-founder, CBO',
         url: 'https://secobio.com',
         logo: '',
@@ -196,7 +203,21 @@ function WhereIWorkDisplay() {
                       onMouseOver={(e) => { if (c.url) e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.04)'; }}
                       onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
                     >
-                      <div className="md:col-span-4">
+                      {/* The column is reserved whether or not a photo exists,
+                          so rows stay aligned as thumbnails arrive one at a
+                          time rather than reflowing the whole list each time. */}
+                      <div className="md:col-span-2">
+                        {c.thumb && (
+                          <img
+                            src={c.thumb}
+                            alt=""
+                            aria-hidden="true"
+                            style={{ width: '100%', aspectRatio: '1 / 1', objectFit: 'cover', display: 'block' }}
+                          />
+                        )}
+                      </div>
+
+                      <div className="md:col-span-3">
                         {/* Fixed slot so names line up whether or not a mark exists. */}
                         <span style={{ height: 30, marginBottom: 12, display: 'flex', alignItems: 'center' }}>
                           {c.logo && (
@@ -225,7 +246,7 @@ function WhereIWorkDisplay() {
                         )}
                       </div>
 
-                      <div className="md:col-span-3 md:text-right">
+                      <div className="md:col-span-2 md:text-right">
                         {c.url && (
                           <span
                             className="inline-flex items-center gap-2"

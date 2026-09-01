@@ -53,6 +53,18 @@ JOBS = {
     'pursuit-basejump':     ('images/pursuits/base-jumping.jpg',             (1200, 800),  'cover'),
     'pursuit-heat':         ('images/pursuits/heat-training.jpg',            (1200, 800),  'cover'),
     'hero-mobile':          ('images/hero-honest-stories-mobile.jpg',       (1080, 1350), 'cover'),
+
+    # Square photo thumbnails for the company rows on Entrepreneurs. Separate
+    # from images/ventures/*.jpg — those are generated navy brand plates, which
+    # disappear against the navy the rows sit on.
+    'venture-roseberry-properties':    ('images/ventures/photos/roseberry-properties.jpg', (700, 700), 'cover'),
+    'venture-premiere-home-watch':     ('images/ventures/photos/premiere-home-watch.jpg', (700, 700), 'cover'),
+    'venture-roseberry-capital':       ('images/ventures/photos/roseberry-capital.jpg', (700, 700), 'cover'),
+    'venture-private-investor-circle': ('images/ventures/photos/private-investor-circle.jpg', (700, 700), 'cover'),
+    'venture-avestix':                 ('images/ventures/photos/avestix.jpg', (700, 700), 'cover'),
+    'venture-access-global':           ('images/ventures/photos/access-global.jpg', (700, 700), 'cover'),
+    'venture-four-ir-group':           ('images/ventures/photos/four-ir-group.jpg', (700, 700), 'cover'),
+
 }
 # Contact-sheet tiles for the 5-Fs page. 4:5 to match the grid; a video's
 # thumbnail goes through here the same as a photo, and MEDIA in FivesPage.jsx
