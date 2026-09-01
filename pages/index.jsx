@@ -155,7 +155,7 @@ export default function Site() {
             <Logo tone={navDark ? 'dark' : 'light'} />
           </button>
 
-          <div className={`hidden xl:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
+          <div className={`hidden lg:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
               const idle = colors.TAUPE;
@@ -195,7 +195,7 @@ export default function Site() {
           </div>
 
           <button
-            className="xl:hidden"
+            className="lg:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{ color: colors.SLATE, background: 'none', border: 'none' }}
             aria-label="Menu"
@@ -206,7 +206,7 @@ export default function Site() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="xl:hidden" style={{ backgroundColor: colors.PRIMARY_DEEP, borderTop: `3px solid ${colors.SECONDARY}` }}>
+          <div className="lg:hidden" style={{ backgroundColor: colors.PRIMARY_DEEP, borderTop: `3px solid ${colors.SECONDARY}` }}>
             <div className="px-6 py-6 flex flex-col gap-5">
               {navItems.map((item) => (
                 <button
