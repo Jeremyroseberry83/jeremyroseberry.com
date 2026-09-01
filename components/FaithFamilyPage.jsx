@@ -69,11 +69,10 @@ const TIERS = [
     companies: [
       { name: 'Roseberry Properties', role: 'Founder', url: 'https://roseberryproperties.com', logo: '/images/logos/roseberry-properties.png' },
       { name: 'Premiere Home Watch', role: 'Founder', url: 'https://roseberryproperties.com/premierehomewatch', logo: '' },
-      // NEEDS A URL. This card previously pointed at luma.com/PrivateInvestorCircle,
-      // which is the Circle's events page and now belongs to the Circle's own
-      // card below. Rather than send a real-estate link somewhere unrelated it
-      // renders unlinked until the right address exists.
-      { name: 'Roseberry Capital', role: 'Founder', url: '', logo: '' }
+      // Shares the Circle's address for now — Roseberry Capital has no site of
+      // its own yet. Two cards pointing at one destination is a stopgap, not a
+      // design; give this its own URL when there is one.
+      { name: 'Roseberry Capital', role: 'Founder', url: 'https://www.privateinvestorcircle.com/', logo: '' }
     ]
   },
   {
