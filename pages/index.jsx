@@ -104,9 +104,9 @@ export default function Site() {
     switch (currentPage) {
       case 'entrepreneurs':
         return <EntrepreneursPage onContactClick={openContact} />;
-      case 'sixes':
+      case 'foundation':
         return <SixesPage onContactClick={openContact} />;
-      case 'value':
+      case 'resources':
         return <ValuePage onContactClick={openContact} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;

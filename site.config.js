@@ -59,8 +59,8 @@ module.exports = {
   // rail sits on Books & Podcast with the rest of the content.
   nav: [
     { name: 'Entrepreneurs', id: 'entrepreneurs' },
-    { name: '6-Fs', id: 'sixes' },
-    { name: '+Value To You', id: 'value' }
+    { name: 'Foundation', id: 'foundation' },
+    { name: 'Resources', id: 'resources' }
   ],
 
   // Booking is the entire point of this site. One label, used on every primary

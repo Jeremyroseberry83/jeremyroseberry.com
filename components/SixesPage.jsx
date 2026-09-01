@@ -120,7 +120,7 @@ const PURSUITS = [
   {
     name: 'Skydiving',
     body: 'The part nobody tells you about is the quiet before the door opens.',
-    image: ''
+    image: '/images/pursuits/skydiving.jpg'
   },
   {
     name: 'Base jumping into water',
@@ -147,7 +147,7 @@ export default function SixesPage({ onContactClick }) {
   return (
     <div>
       <PageTopBand
-        eyebrow="6-Fs"
+        eyebrow="Foundation"
         title="The Real Me"
         subtitle="Discipline, adrenaline, and the slow enjoyment of very simple things. Usually in the same week."
         video="/videos/six-hero.mp4"
@@ -164,7 +164,7 @@ export default function SixesPage({ onContactClick }) {
           <SectionHead
             maxWidth="62ch"
             eyebrow="This is me"
-            title="The Six"
+            title="The Six Foundations"
             intro="Faith, Family, Fitness, Finances, Friends, Fun. In that order, and all six load-bearing. Let one slip and everything built on top of it moves. If I ever look like I am coming apart, or just off, it is because one of these is off — and I need to recalibrate my rhythms before I try to fix anything else."
           />
           <div className="mt-14">
@@ -326,14 +326,35 @@ export default function SixesPage({ onContactClick }) {
 
           <div className="mt-14 grid md:grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
             {PURSUITS.map((p, i) => (
-              <article key={p.name} className="relative overflow-hidden" style={{ backgroundColor: INK, minHeight: 260 }}>
+              <article key={p.name} className="relative overflow-hidden" style={{ backgroundColor: INK, minHeight: 300 }}>
+                {/* The photos are phone portraits. Stretching one across the
+                    full card means cover-cropping a wide band out of a tall
+                    frame, which cuts the head off every time. So the image
+                    takes a portrait-shaped panel on the right and dissolves
+                    left into the card, with the copy in the clear half. */}
                 {p.image && (
                   <>
-                    <img src={p.image} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" style={{ opacity: 0.5 }} />
-                    <span aria-hidden="true" className="absolute inset-0" style={{ background: 'linear-gradient(90deg, rgba(42,42,42,0.92) 0%, rgba(42,42,42,0.55) 100%)' }} />
+                    <img
+                      src={p.image}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-y-0 right-0 h-full object-cover"
+                      style={{ width: '46%', objectPosition: 'center 28%' }}
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-y-0 right-0"
+                      style={{
+                        width: '52%',
+                        background: 'linear-gradient(90deg, rgba(42,42,42,1) 0%, rgba(42,42,42,0.55) 40%, rgba(42,42,42,0.12) 100%)'
+                      }}
+                    />
                   </>
                 )}
-                <div className="relative p-9 h-full flex flex-col">
+                <div
+                  className="relative p-9 h-full flex flex-col"
+                  style={p.image ? { maxWidth: '62%' } : undefined}
+                >
                   <span className="display" style={{ color: SECONDARY, fontSize: 15, letterSpacing: '0.14em', marginBottom: 18 }}>
                     {String(i + 1).padStart(2, '0')}
                   </span>

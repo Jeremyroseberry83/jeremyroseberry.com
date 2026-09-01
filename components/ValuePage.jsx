@@ -151,7 +151,7 @@ export default function ValuePage({ onContactClick }) {
   return (
     <div>
       <PageTopBand
-        eyebrow="Speaking + Content"
+        eyebrow="Books, podcast + talks"
         title="Resources"
         subtitle="Trying to add value — in books, podcasts, and talks."
         image="/images/headers/speaking.jpg"
