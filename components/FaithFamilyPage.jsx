@@ -157,9 +157,10 @@ export default function FaithFamilyPage({ onContactClick, onNavigate }) {
         <div className="max-w-6xl mx-auto">
           <SectionHead
             dark
+            maxWidth="60ch"
             eyebrow="The tiers"
             title="Where I Work"
-            intro="Two tiers, seven companies. The detail lives on each company’s own site — this is the shape of the week."
+            intro="Two tiers, seven companies. Just a simple serial entrepreneur. No, it is never perfect — but on my best days I like to think it is all vertically integrated."
           />
 
           <div className="mt-14 space-y-12">
