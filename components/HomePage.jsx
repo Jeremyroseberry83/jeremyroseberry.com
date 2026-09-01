@@ -28,10 +28,10 @@ const SCALE_BROWN = '#413a37';
 
 /** Every figure is Jeremy's own claim. Nothing estimated or rounded up. */
 const SCALE = [
-  { value: '20', unit: 'yrs', label: 'Investing in real estate' },
-  { value: '25', unit: '', label: 'Countries with capital relationships' },
-  { value: '30', unit: '', label: 'Country private-markets platform' },
-  { value: '18', unit: 'yrs', label: 'Married to Kourtney' }
+  { value: '19', unit: 'yrs', label: 'Husband' },
+  { value: '15', unit: 'yrs', label: 'Dad' },
+  { value: '20', unit: 'yrs', label: 'Investing' },
+  { value: '7', unit: '', label: 'Businesses' }
 ];
 
 /** The two words the navy bar carries; the other two are the headline. */
