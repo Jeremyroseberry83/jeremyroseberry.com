@@ -198,7 +198,7 @@ function WhereIWorkDisplay() {
                     <Row
                       key={c.name}
                       {...(c.url ? { href: c.url, target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      className="group grid md:grid-cols-12 gap-4 md:gap-8 items-start py-7 md:py-8"
+                      className="venture-row grid md:grid-cols-12 gap-4 md:gap-8 items-start py-7 md:py-8"
                       style={{ borderBottom: '1px solid rgba(255,255,255,0.13)', transition: 'background-color 180ms ease' }}
                       onMouseOver={(e) => { if (c.url) e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.04)'; }}
                       onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
@@ -208,12 +208,9 @@ function WhereIWorkDisplay() {
                           time rather than reflowing the whole list each time. */}
                       <div className="md:col-span-2 max-w-[104px] md:max-w-none">
                         {c.thumb && (
-                          <img
-                            src={c.thumb}
-                            alt=""
-                            aria-hidden="true"
-                            style={{ width: '100%', aspectRatio: '1 / 1', objectFit: 'cover', display: 'block' }}
-                          />
+                          <span className="venture-thumb">
+                            <img src={c.thumb} alt="" aria-hidden="true" />
+                          </span>
                         )}
                       </div>
 

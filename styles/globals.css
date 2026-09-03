@@ -261,3 +261,67 @@ body {
     aspect-ratio: 16 / 10;
   }
 }
+
+/* ============================================================
+   Company thumbnails on Entrepreneurs.
+
+   A flat square on a flat navy ground reads as a placeholder no matter what
+   photograph is in it — there is nothing separating the image plane from the
+   page. Depth here is three cheap things stacked: a rounded corner so it
+   reads as an object, a hairline light ring so the edge survives against a
+   dark ground (a drop shadow alone is nearly invisible navy-on-navy), and a
+   shadow with a large negative spread so it sits under the tile rather than
+   haloing it.
+
+   The wrapper is a <span> with overflow hidden, not a border-radius on the
+   <img> itself: Safari still bleeds the corners of an object-fit image out
+   past its own radius during a transform.
+   ============================================================ */
+.venture-thumb {
+  display: block;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 18px 32px -14px rgba(0, 0, 0, 0.8),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 240ms ease;
+}
+
+.venture-thumb img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* A soft top highlight — the edge a physical card catches from light above.
+   Without it the rounded corner reads as a cut-out rather than a raised
+   surface. */
+.venture-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 38%);
+  pointer-events: none;
+}
+
+.venture-row:hover .venture-thumb {
+  transform: translateY(-5px);
+  box-shadow:
+    0 0 0 1px rgba(201, 169, 97, 0.55),
+    0 30px 48px -16px rgba(0, 0, 0, 0.85),
+    0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .venture-thumb,
+  .venture-row:hover .venture-thumb {
+    transition: none;
+    transform: none;
+  }
+}
