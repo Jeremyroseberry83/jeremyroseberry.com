@@ -156,8 +156,10 @@ const PURSUITS = [
     image: '/images/pursuits/base-jumping.jpg'
   },
   {
-    name: '130-degree training',
-    body: 'The unglamorous one, and the one that actually changes how the other three feel.',
+    // DRAFT copy — replaced 130-degree training, which now lives in the Rule
+    // of 5 as something he does rather than somewhere he goes.
+    name: 'Coffee shops',
+    body: 'The opposite of the other three. A corner table, two hours, and most of the thinking that ever actually gets done.',
     image: ''
   }
 ];
@@ -367,9 +369,12 @@ export default function SixesPage({ onContactClick }) {
             intro="Not a bucket list. These are the things that reset me — and the reason I can sit still in a board meeting the next morning."
           />
 
-          <div className="mt-14 grid md:grid-cols-2 gap-px" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
+          {/* gap-px over the section's own navy, so the dividing lines read
+              as thin navy rules between cream cards rather than the pale
+              hairline that worked when the cards were dark. */}
+          <div className="mt-14 grid md:grid-cols-2 gap-px" style={{ backgroundColor: PRIMARY_DEEP }}>
             {PURSUITS.map((p, i) => (
-              <article key={p.name} className="relative overflow-hidden" style={{ backgroundColor: INK, minHeight: 300 }}>
+              <article key={p.name} className="relative overflow-hidden" style={{ backgroundColor: BG, minHeight: 300 }}>
                 {/* The photos are phone portraits. Stretching one across the
                     full card means cover-cropping a wide band out of a tall
                     frame, which cuts the head off every time. So the image
@@ -391,7 +396,7 @@ export default function SixesPage({ onContactClick }) {
                     <span
                       aria-hidden="true"
                       className="md:hidden absolute inset-0"
-                      style={{ background: 'linear-gradient(180deg, rgba(42,42,42,0.62) 0%, rgba(42,42,42,0.88) 55%, rgba(42,42,42,0.97) 100%)' }}
+                      style={{ background: 'linear-gradient(180deg, rgba(245,245,245,0.55) 0%, rgba(245,245,245,0.92) 52%, rgba(245,245,245,0.99) 100%)' }}
                     />
 
                     <img
@@ -406,19 +411,26 @@ export default function SixesPage({ onContactClick }) {
                       className="hidden md:block absolute inset-y-0 right-0"
                       style={{
                         width: '52%',
-                        background: 'linear-gradient(90deg, rgba(42,42,42,1) 0%, rgba(42,42,42,0.55) 40%, rgba(42,42,42,0.12) 100%)'
+                        background: 'linear-gradient(90deg, rgba(245,245,245,1) 0%, rgba(245,245,245,0.6) 42%, rgba(245,245,245,0.1) 100%)'
                       }}
                     />
                   </>
                 )}
                 <div className={`relative p-9 h-full flex flex-col${p.image ? ' md:max-w-[62%]' : ''}`}>
-                  <span className="display" style={{ color: SECONDARY, fontSize: 15, letterSpacing: '0.14em', marginBottom: 18 }}>
+                  {/* Set large deliberately. SECONDARY_DEEP on #f5f5f5 is
+                      3.11:1 — under the 4.5:1 floor for small text, over the
+                      3:1 floor for large. At 15px the old size it would have
+                      failed; at this size it passes and reads better. */}
+                  <span
+                    className="display"
+                    style={{ color: SECONDARY_DEEP, fontSize: 'clamp(1.6rem, 2.4vw, 2rem)', letterSpacing: '0.06em', marginBottom: 16, lineHeight: 1 }}
+                  >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="display" style={{ color: '#ffffff', fontSize: 'clamp(1.5rem, 2.8vw, 2.1rem)', marginBottom: 14 }}>
+                  <h3 className="display" style={{ color: SLATE, fontSize: 'clamp(1.5rem, 2.8vw, 2.1rem)', marginBottom: 14 }}>
                     {p.name}
                   </h3>
-                  <p style={{ color: 'rgba(255,255,255,0.76)', fontSize: 16, lineHeight: 1.75 }}>{p.body}</p>
+                  <p style={{ color: MUTED, fontSize: 16, lineHeight: 1.75 }}>{p.body}</p>
                 </div>
               </article>
             ))}

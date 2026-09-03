@@ -47,11 +47,11 @@ JOBS = {
     'jeremy-speaking':      ('images/jeremy-speaking.jpg',                  (1800, 1200), 'cover'),
     'fitness-training':     ('images/fitness-training.jpg',                 (1000, 1400), 'cover'),
 
-    # WHERE I GO TO FEEL ALIVE cards on the 6-Fs page. Landscape, because the
-    # card crops to a wide band and a portrait shot loses the subject to it.
-    'pursuit-skydive':      ('images/pursuits/skydiving.jpg',                (1200, 800),  'cover'),
-    'pursuit-basejump':     ('images/pursuits/base-jumping.jpg',             (1200, 800),  'cover'),
-    'pursuit-heat':         ('images/pursuits/heat-training.jpg',            (1200, 800),  'cover'),
+    # WHERE I GO TO FEEL ALIVE cards. Portrait: the card shows the photo in a
+    # tall right-hand panel on desktop, so a landscape source loses its subject.
+    'pursuit-skydive':      ('images/pursuits/skydiving.jpg',                (900, 1100),  'cover'),
+    'pursuit-basejump':     ('images/pursuits/base-jumping.jpg',             (900, 1100),  'cover'),
+    'pursuit-coffee':       ('images/pursuits/coffee-shops.jpg',             (900, 1100),  'cover'),
     'hero-mobile':          ('images/hero-honest-stories-mobile.jpg',       (1080, 1350), 'cover'),
 
     # Square photo thumbnails for the company rows on Entrepreneurs. Separate
