@@ -243,13 +243,19 @@ function WhereIWorkDisplay() {
                         )}
                       </div>
 
+                      {/* A span, not a nested <a> — the whole row is already
+                          the link, and an anchor inside an anchor is invalid
+                          and behaves unpredictably. This is the button's
+                          appearance; the row carries the click.
+
+                          It also fixes a real layout problem: printing the
+                          raw address meant a URL like
+                          roseberryproperties.com/premierehomewatch ran past
+                          the column. A fixed label cannot. */}
                       <div className="md:col-span-2 md:text-right">
                         {c.url && (
-                          <span
-                            className="inline-flex items-center gap-2"
-                            style={{ color: SECONDARY, fontSize: 13 }}
-                          >
-                            {displayUrl(c.url)}
+                          <span className="venture-visit">
+                            Visit Website
                             <ArrowUpRight size={14} />
                           </span>
                         )}
