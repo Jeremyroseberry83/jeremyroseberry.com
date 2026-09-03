@@ -1,5 +1,6 @@
 import React from 'react';
 import { Play, Music, Youtube, Radio, Mic, Headphones } from 'lucide-react';
+import PodcastLaunch from './PodcastLaunch';
 import {
   PageTopBand,
   SectionHead,
@@ -260,6 +261,8 @@ export default function ValuePage({ onContactClick }) {
       {/* ============================================================
           LATEST EPISODE + SUBSCRIBE
           ============================================================ */}
+      <PodcastLaunch />
+
       <section className="py-16 md:py-24 px-6" style={{ backgroundColor: BG }}>
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Episode card — the artwork panel doubles as the cover art until

@@ -93,6 +93,26 @@ for f in sorted(list(root.glob('components/*.jsx')) + list(root.glob('pages/*.js
         if name not in declared and name not in imported_all:
             problems.append(f"{f.name}: uses {name} but nothing declares or imports it")
 
+    # JSX COMPONENTS USED BUT NOT IN SCOPE. Same crash class as the two above,
+    # and the one they both missed: mounting <PodcastLaunch /> in ValuePage
+    # without its default import passed every other check here and would have
+    # been a blank page. Local components are default-imported, so the
+    # named-import scan above never sees them.
+    in_scope = set(imported_all)
+    in_scope |= set(re.findall(r"import\s+([A-Za-z_][A-Za-z0-9_]*)\s+from", src))
+    # Anything bound in this file, at any nesting depth: components defined
+    # here, and locals like `const Icon = SOCIAL_ICONS[key]` or `const Tag =`.
+    in_scope |= set(re.findall(r'(?:function|const|let|var)\s+([A-Z][A-Za-z0-9_]*)', body))
+    # Destructured bindings — function params and const patterns. _app.jsx
+    # renders <Component /> straight out of ({ Component, pageProps }).
+    for m in re.finditer(r'\{([^{}]*)\}\s*(?:\)|=[^=])', body):
+        in_scope |= {n.strip().split(':')[0].strip()
+                     for n in m.group(1).split(',') if re.match(r'\s*[A-Z]', n)}
+    in_scope |= {'React', 'Fragment'}
+    for tag in set(re.findall(r'<([A-Z][A-Za-z0-9_]*)[\s/>]', body)):
+        if tag not in in_scope:
+            problems.append(f"{f.name}: renders <{tag}> but nothing declares or imports it")
+
     c = {ch: body.count(ch) for ch in '{}()[]'}
     if not (c['{']==c['}'] and c['(']==c[')'] and c['[']==c[']']):
         problems.append(f"{f.name}: unbalanced {c}")

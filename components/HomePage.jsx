@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, PRIMARY, PRIMARY_DEEP, SECONDARY, INK } from './ui';
+import { Button, CountUp, PRIMARY, PRIMARY_DEEP, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
 
 /**
@@ -198,7 +198,7 @@ export default function HomePage({ onContactClick }) {
         {SCALE.map((s) => (
           <div key={s.label}>
             <div className="display" style={{ color: PRIMARY, fontSize: 'clamp(2.8rem, 6vw, 4.6rem)', lineHeight: 1 }}>
-              {s.value}
+              <CountUp end={Number(s.value)} duration={1600} />
               {s.unit && <span style={{ fontSize: '0.42em', marginLeft: 6, letterSpacing: '0.06em', color: SCALE_BROWN }}>{s.unit}</span>}
             </div>
             <span aria-hidden="true" style={{ display: 'block', width: 34, height: 2, backgroundColor: '#ffffff', margin: '16px 0' }} />

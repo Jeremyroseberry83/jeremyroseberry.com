@@ -486,6 +486,14 @@ export function CountUp({ end, duration = 1400, prefix = '', suffix = '', decima
   React.useEffect(() => {
     const node = ref.current;
     if (!node) return undefined;
+
+    // A number ticking upward is motion. Reduced-motion visitors get the final
+    // figure immediately rather than a stat that reads 0 until it animates.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setValue(end);
+      return undefined;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting || started.current) return;

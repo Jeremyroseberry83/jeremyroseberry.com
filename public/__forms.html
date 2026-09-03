@@ -27,5 +27,12 @@
       <input type="text" name="audience" />
       <textarea name="message"></textarea>
     </form>
+
+    <!-- Podcast launch notification list. Mirrors components/PodcastLaunch.jsx. -->
+    <form name="notify" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="notify" />
+      <input type="text" name="bot-field" />
+      <input type="email" name="email" />
+    </form>
   </body>
 </html>
