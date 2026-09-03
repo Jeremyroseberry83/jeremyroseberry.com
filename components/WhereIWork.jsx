@@ -19,7 +19,7 @@ const TIERS = [
     companies: [
       {
         name: 'Roseberry Properties',
-        thumb: '',   // /images/ventures/photos/roseberry-properties.jpg
+        thumb: '/images/ventures/photos/roseberry-properties.jpg',
         role: 'Founder',
         url: 'https://roseberryproperties.com',
         logo: '/images/logos/roseberry-properties.png',
@@ -28,7 +28,7 @@ const TIERS = [
       {
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'Premiere Home Watch',
-        thumb: '',   // /images/ventures/photos/premiere-home-watch.jpg
+        thumb: '/images/ventures/photos/premiere-home-watch.jpg',
         role: 'Founder',
         url: 'https://roseberryproperties.com/premierehomewatch',
         logo: '',
@@ -39,7 +39,7 @@ const TIERS = [
         // has no site of its own yet. Two cards pointing at one destination is
         // a stopgap, not a design; give this its own URL when there is one.
         name: 'Roseberry Capital',
-        thumb: '',   // /images/ventures/photos/roseberry-capital.jpg
+        thumb: '/images/ventures/photos/roseberry-capital.jpg',
         role: 'Founder',
         url: 'https://www.privateinvestorcircle.com/',
         logo: '',
@@ -54,7 +54,7 @@ const TIERS = [
       {
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'Private Investor Circle',
-        thumb: '',   // /images/ventures/photos/private-investor-circle.jpg
+        thumb: '/images/ventures/photos/private-investor-circle.jpg',
         role: 'Founder',
         url: 'https://www.privateinvestorcircle.com/',
         logo: '/images/logos/private-investor-circle.png',
@@ -63,7 +63,7 @@ const TIERS = [
       {
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'Avestix',
-        thumb: '',   // /images/ventures/photos/avestix.jpg
+        thumb: '/images/ventures/photos/avestix.jpg',
         role: 'Chief Operating Officer',
         url: 'https://avestix.com',
         logo: '/images/logos/avestix.png',
@@ -72,7 +72,7 @@ const TIERS = [
       {
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'Access Global',
-        thumb: '',   // /images/ventures/photos/access-global.jpg
+        thumb: '/images/ventures/photos/access-global.jpg',
         role: 'Strategic Partner',
         url: 'https://accessglobal.co',
         logo: '/images/logos/access-global.png',
@@ -81,7 +81,7 @@ const TIERS = [
       {
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'The 4IR Group',
-        thumb: '',   // /images/ventures/photos/four-ir-group.jpg
+        thumb: '/images/ventures/photos/four-ir-group.jpg',
         role: 'Co-founder, CBO',
         url: 'https://secobio.com',
         logo: '',
