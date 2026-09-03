@@ -27,22 +27,50 @@ import {
  * rather than printing a bracket on a live page.
  */
 
-const DISCIPLINES = [
+/**
+ * The Rule of 5 — five things a day in each area, in Jeremy's own words.
+ *
+ * This replaced a block of four abstractions (Heat / Consistency / Recovery /
+ * Stewardship) that could have been written about anybody. A list this
+ * specific — a five-second hug, an Off The Farm bar, finished eating by
+ * eight — is the opposite: nobody else could have written it, which is the
+ * only thing that makes a values section worth reading.
+ *
+ * So keep it concrete if you edit it. The moment an item becomes a principle
+ * rather than an action, it belongs somewhere else on the page.
+ */
+const RULE_OF_5 = [
   {
-    title: 'Heat',
-    body: 'Training in 130-degree rooms. The point is not the sweat — it is proving to yourself that discomfort is survivable before the day makes that argument for you.'
+    area: 'Family',
+    items: [
+      'Make breakfast',
+      'Hug them for at least five seconds',
+      'Text them',
+      'Tell them I love them',
+      'Pray with them'
+    ]
   },
   {
-    title: 'Consistency',
-    body: 'Showing up on the days it is inconvenient. Nobody is impressed by the workout you did when you felt like it.'
+    area: 'Food',
+    items: [
+      'Big breakfast — eggs, avocado, toast, chicken sausage',
+      'Lean and green lunch',
+      'An Off The Farm bar',
+      'Lean and savoury dinner, finished by eight',
+      'Nothing artificial — water, coffee, the occasional whiskey'
+    ]
   },
   {
-    title: 'Recovery',
-    body: 'Sleep, food and the discipline to stop. The people who burn out are usually the ones who never learned this half.'
-  },
-  {
-    title: 'Stewardship',
-    body: 'The body is on loan. How you show up for it is how you will show up for everything that depends on you.'
+    // DRAFT — written from Jeremy's old training block, turned from things he
+    // believes into things he does. Wants his sign-off or his own five.
+    area: 'Fitness',
+    items: [
+      'Train in the heat — 130 degrees, before the day gets a vote',
+      'Lift something heavy',
+      'Get outside on my feet',
+      'Ten minutes of stretching, usually at night',
+      'Asleep by ten, because the training only counts if you recover from it'
+    ]
   }
 ];
 
@@ -235,79 +263,63 @@ export default function SixesPage({ onContactClick }) {
       )}
 
       {/* ============================================================
-          3 — DISCIPLINE
-          Photograph bleeding off the left edge, disciplines as an
-          editorial list on the right. The bordered four-across grid this
-          replaces gave four equal boxes on white — accurate, and completely
-          inert. A page about physical discipline should look like effort,
-          which means a dark ground, a real photograph, and type that has
-          somewhere to go.
+          3 — RULE OF 5
+          The photograph and the heading share the top; the three areas run
+          full width underneath, because fifteen items will not fit beside a
+          44% photo without shrinking to nothing. The photo carries the same
+          radius and shadow as the company tiles so the two pages read as one
+          system.
           ============================================================ */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: INK }}>
-        {/* Desktop: the photo runs the full height of the section and off the
-            left edge of the viewport, with a gradient dissolving its right
-            side into the ground so there is no hard seam against the type. */}
-        <div className="hidden md:block absolute inset-y-0 left-0" style={{ width: '44%' }}>
-          <img
-            src="/images/fitness-training.jpg"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover"
-            style={{ objectPosition: 'center 30%' }}
-          />
-          <span
-            aria-hidden="true"
-            className="absolute inset-0"
-            style={{ background: 'linear-gradient(90deg, transparent 0%, transparent 55%, rgba(42,42,42,0.85) 88%, rgba(42,42,42,1) 100%)' }}
-          />
-        </div>
+      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: INK }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+            <div className="md:col-span-5">
+              <span className="venture-thumb" style={{ borderRadius: 14 }}>
+                <img
+                  src="/images/fitness-training.jpg"
+                  alt=""
+                  aria-hidden="true"
+                  style={{ aspectRatio: '4 / 5' }}
+                />
+              </span>
+            </div>
 
-        <div className="relative max-w-6xl mx-auto px-6 py-16 md:py-28">
-          {/* Mobile: same photo as a band above the copy. */}
-          <div className="md:hidden" style={{ aspectRatio: '4 / 3', overflow: 'hidden', marginBottom: 40 }}>
-            <img
-              src="/images/fitness-training.jpg"
-              alt=""
-              aria-hidden="true"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 30%' }}
-            />
-          </div>
-
-          <div className="md:grid md:grid-cols-12">
-            <div className="md:col-start-6 md:col-span-7">
+            <div className="md:col-span-7">
               <SectionHead
                 dark
-                eyebrow="Fitness"
-                title="How I Train"
-                intro="One of the six, and the one that holds the others steady when they start to slip. Not vanity — the daily proof that I can do a hard thing on purpose."
+                eyebrow="The daily"
+                title="Rule Of 5"
+                intro="Five things a day, in each area. Not goals — the things that happen whether I feel like it or not."
               />
-
-              <ul className="mt-12">
-                {DISCIPLINES.map((d, i) => (
-                  <li
-                    key={d.title}
-                    className="flex gap-6 py-7"
-                    style={{ borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.14)' }}
-                  >
-                    <span
-                      className="display flex-shrink-0"
-                      style={{ color: SECONDARY, fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', lineHeight: 1, width: '2.2em' }}
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span>
-                      <span className="display block" style={{ color: '#ffffff', fontSize: 'clamp(1.15rem, 2vw, 1.5rem)', marginBottom: 8 }}>
-                        {d.title}
-                      </span>
-                      <span className="block" style={{ color: 'rgba(255,255,255,0.74)', fontSize: 16, lineHeight: 1.75 }}>
-                        {d.body}
-                      </span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
             </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-px mt-14 md:mt-20" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
+            {RULE_OF_5.map((group) => (
+              <div key={group.area} className="p-8 md:p-9" style={{ backgroundColor: INK }}>
+                <h3
+                  className="display"
+                  style={{ color: SECONDARY, fontSize: 'clamp(1.4rem, 2.6vw, 1.9rem)', marginBottom: 22 }}
+                >
+                  {group.area}
+                </h3>
+                <ol className="space-y-4" style={{ listStyle: 'none' }}>
+                  {group.items.map((item, i) => (
+                    <li key={item} className="flex gap-4">
+                      <span
+                        className="display"
+                        style={{ color: 'rgba(255,255,255,0.3)', fontSize: 13, letterSpacing: '0.1em', paddingTop: 3, flexShrink: 0 }}
+                      >
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span style={{ color: 'rgba(255,255,255,0.82)', fontSize: 15.5, lineHeight: 1.65 }}>
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
           </div>
         </div>
       </section>
