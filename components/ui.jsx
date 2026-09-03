@@ -584,7 +584,7 @@ export function Testimonials({ items, eyebrow = 'What organisers say', title = '
  * everywhere, so the ask is identical no matter where a visitor runs out of
  * scroll.
  */
-export function BookingCTA({ onContactClick, title = 'Ready to book?', body, context }) {
+export function BookingCTA({ onContactClick, title = 'Let’s talk.', body, context }) {
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: PRIMARY }}>
       <div
@@ -593,14 +593,14 @@ export function BookingCTA({ onContactClick, title = 'Ready to book?', body, con
       />
       <div className="relative max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
         <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11, marginBottom: 20 }}>
-          Booking now
+          Get in touch
         </p>
         <h2 className="display" style={{ color: '#ffffff', fontSize: 'clamp(2rem, 4.6vw, 3.3rem)', marginBottom: 20 }}>
           {title}
         </h2>
         <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 17, lineHeight: 1.75, maxWidth: '52ch', margin: '0 auto 36px' }}>
           {body ||
-            'Tell me about your event and what you are hoping people take away.'}
+            'Business, an introduction, something you are building, or just a conversation. I read every message myself.'}
         </p>
         {/* One button. The second ("check availability") opened the same
             modal as the first, so it was a choice with no consequence — and a

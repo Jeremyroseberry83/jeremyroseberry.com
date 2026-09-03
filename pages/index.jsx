@@ -5,6 +5,7 @@ import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
 import EntrepreneursPage from '../components/EntrepreneursPage';
 import SixesPage from '../components/SixesPage';
+import ComingSoonPage from '../components/ComingSoonPage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
 import { Button } from '../components/ui';
@@ -47,6 +48,11 @@ const META = {
     title: `${company.name} — Faith, Family, Fitness, Finances, Friends, Fun`,
     description:
       'The six that hold everything else up, plus the training, the adrenaline and the slow mornings in between.'
+  },
+  coming: {
+    title: `${company.name} — What I’m Building`,
+    description:
+      'A podcast launching January 2027, four books in progress, and a leadership speaking platform being built deliberately. None of it launched yet.'
   }
 };
 export default function Site() {
@@ -103,6 +109,8 @@ export default function Site() {
         return <EntrepreneursPage onContactClick={openContact} />;
       case 'foundation':
         return <SixesPage onContactClick={openContact} />;
+      case 'coming':
+        return <ComingSoonPage onContactClick={openContact} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }
