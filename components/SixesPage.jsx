@@ -264,62 +264,93 @@ export default function SixesPage({ onContactClick }) {
 
       {/* ============================================================
           3 — RULE OF 5
-          The photograph and the heading share the top; the three areas run
-          full width underneath, because fifteen items will not fit beside a
-          44% photo without shrinking to nothing. The photo carries the same
-          radius and shadow as the company tiles so the two pages read as one
-          system.
-          ============================================================ */}
-      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: INK }}>
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
-            <div className="md:col-span-5">
-              <span className="venture-thumb" style={{ borderRadius: 14 }}>
-                <img
-                  src="/images/fitness-training.jpg"
-                  alt=""
-                  aria-hidden="true"
-                  style={{ aspectRatio: '4 / 5' }}
-                />
-              </span>
-            </div>
 
-            <div className="md:col-span-7">
-              <SectionHead
-                dark
-                eyebrow="The daily"
-                title="Rule Of 5"
-                intro="Five things a day, in each area. Not goals — the things that happen whether I feel like it or not."
+          Navy, not the charcoal this page uses elsewhere: the photograph is
+          a dark gym, and charcoal-on-charcoal turned the whole band muddy.
+
+          The image is the full frame, uncropped, at its own 0.385 aspect —
+          so it is tall and narrow, and the three lists beside it are taller
+          still. That mismatch is the layout: the photo column is sticky on
+          desktop, so the figure stays with you while you read all fifteen
+          items instead of scrolling away after the first five.
+
+          Reading order is fixed by the grid, not by source order — the copy
+          block is written first in the DOM so a screen reader and a phone
+          both get the heading before the photograph.
+          ============================================================ */}
+      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: PRIMARY_DEEP }}>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+
+          {/* Photo. Order flipped on desktop so it sits left of the copy while
+              staying second in the document. */}
+          <div className="md:col-span-4 md:order-first mx-auto md:mx-0" style={{ maxWidth: 340, width: '100%' }}>
+            <div className="md:sticky" style={{ top: 104 }}>
+              <img
+                src="/images/fitness-training.jpg"
+                alt=""
+                aria-hidden="true"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
               />
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-px mt-14 md:mt-20" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
-            {RULE_OF_5.map((group) => (
-              <div key={group.area} className="p-8 md:p-9" style={{ backgroundColor: INK }}>
-                <h3
-                  className="display"
-                  style={{ color: SECONDARY, fontSize: 'clamp(1.4rem, 2.6vw, 1.9rem)', marginBottom: 22 }}
-                >
-                  {group.area}
-                </h3>
-                <ol className="space-y-4" style={{ listStyle: 'none' }}>
-                  {group.items.map((item, i) => (
-                    <li key={item} className="flex gap-4">
-                      <span
-                        className="display"
-                        style={{ color: 'rgba(255,255,255,0.3)', fontSize: 13, letterSpacing: '0.1em', paddingTop: 3, flexShrink: 0 }}
-                      >
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <span style={{ color: 'rgba(255,255,255,0.82)', fontSize: 15.5, lineHeight: 1.65 }}>
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            ))}
+          <div className="md:col-span-8">
+            <SectionHead
+              dark
+              eyebrow="The daily"
+              title="Rule Of 5"
+              intro="Five things a day, in each area. Not goals — the things that happen whether I feel like it or not."
+            />
+
+            <div className="mt-12 md:mt-14 space-y-12">
+              {RULE_OF_5.map((group) => (
+                <div key={group.area}>
+                  <div
+                    className="flex items-baseline gap-4 pb-4"
+                    style={{ borderBottom: '1px solid rgba(255,255,255,0.16)' }}
+                  >
+                    <h3 className="display" style={{ color: SECONDARY, fontSize: 'clamp(1.3rem, 2.4vw, 1.8rem)' }}>
+                      {group.area}
+                    </h3>
+                    <span
+                      className="eyebrow-wide"
+                      style={{ color: 'rgba(255,255,255,0.38)', fontSize: 10, marginLeft: 'auto' }}
+                    >
+                      Five a day
+                    </span>
+                  </div>
+
+                  {/* Two columns on wide screens: five short lines in a single
+                      column beside a photo leaves a long empty gutter, and the
+                      whole block ran taller than the page needed. */}
+                  <ol
+                    className="grid sm:grid-cols-2 gap-x-10 gap-y-4"
+                    style={{ listStyle: 'none', marginTop: 20 }}
+                  >
+                    {group.items.map((item, i) => (
+                      <li key={item} className="flex gap-3.5">
+                        <span
+                          className="display"
+                          style={{
+                            color: SECONDARY,
+                            opacity: 0.55,
+                            fontSize: 12,
+                            letterSpacing: '0.1em',
+                            paddingTop: 4,
+                            flexShrink: 0
+                          }}
+                        >
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <span style={{ color: 'rgba(255,255,255,0.84)', fontSize: 15.5, lineHeight: 1.6 }}>
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
