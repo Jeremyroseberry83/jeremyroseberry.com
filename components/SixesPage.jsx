@@ -422,7 +422,7 @@ export default function SixesPage({ onContactClick }) {
         </section>
       )}
 
-      <BookingCTA onContactClick={onContactClick} context="Speaking" />
+      <BookingCTA onContactClick={onContactClick} />
     </div>
   );
 }

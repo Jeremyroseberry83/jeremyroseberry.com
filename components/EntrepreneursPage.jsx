@@ -27,7 +27,7 @@ export default function EntrepreneursPage({ onContactClick }) {
 
       <WhereIWork variant="display" />
 
-      <BookingCTA onContactClick={onContactClick} context="Speaking" />
+      <BookingCTA onContactClick={onContactClick} />
     </div>
   );
 }

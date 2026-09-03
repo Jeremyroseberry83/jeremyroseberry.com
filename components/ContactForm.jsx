@@ -24,11 +24,15 @@ const FORM_NAME = 'booking';
  * with the same form name and the same field names. Change a field here and
  * you must change it there, or submissions silently vanish.
  */
-const ENQUIRY_TYPES = ['Speaking', 'Hosting / emcee', 'Podcast', 'Availability', 'Press', 'Content', 'Other'];
+// Order matters: whatever sits first is the default, and the default is a
+// statement about what this site is for. Opening on 'Speaking' framed every
+// enquiry as a booking, which both overclaimed and turned away the capital
+// and partnership conversations that are the real inbound today.
+const ENQUIRY_TYPES = ['Just connecting', 'Business / capital', 'Speaking', 'Hosting / emcee', 'Podcast', 'Press', 'Other'];
 
 export default function ContactForm({ onClose, initialType, initialMessage }) {
   const [form, setForm] = useState({
-    type: ENQUIRY_TYPES.includes(initialType) ? initialType : 'Speaking',
+    type: ENQUIRY_TYPES.includes(initialType) ? initialType : ENQUIRY_TYPES[0],
     name: '',
     email: '',
     organisation: '',

@@ -1,4 +1,5 @@
 import React from 'react';
+import PodcastLaunch from './PodcastLaunch';
 import { Button, CountUp, PRIMARY, PRIMARY_DEEP, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
 
@@ -35,7 +36,7 @@ const SCALE = [
 ];
 
 /** The two words the navy bar carries; the other two are the headline. */
-const HERO_BADGE = 'Speaker Entrepreneur';
+const HERO_BADGE = 'Entrepreneur & Investor';
 
 export default function HomePage({ onContactClick }) {
   return (
@@ -101,7 +102,7 @@ export default function HomePage({ onContactClick }) {
           </p>
 
           <div className="hero-reveal-4">
-            <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick('Speaking')}>
+            <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick()}>
               {cta.primary}
             </Button>
           </div>
@@ -159,7 +160,7 @@ export default function HomePage({ onContactClick }) {
           </p>
 
           <div className="hero-reveal-4">
-            <Button variant="gold" size="lg" full onClick={() => onContactClick && onContactClick('Speaking')}>
+            <Button variant="gold" size="lg" full onClick={() => onContactClick && onContactClick()}>
               {cta.primary}
             </Button>
           </div>
@@ -207,6 +208,13 @@ export default function HomePage({ onContactClick }) {
         ))}
       </div>
     </section>
+
+    {/* One dated announcement, directly under the figures. This is the whole
+        content layer for now, and a single announcement is the honest size
+        for it — a nav tab called Resources containing one unlaunched thing
+        claimed more than exists. The capture starts building the list four
+        months before launch, which is the point. */}
+    <PodcastLaunch />
     </>
   );
 }

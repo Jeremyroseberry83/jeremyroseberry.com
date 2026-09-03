@@ -607,7 +607,7 @@ export function BookingCTA({ onContactClick, title = 'Ready to book?', body, con
             second option next to a primary action reliably lowers how many
             people take either. */}
         <div className="flex justify-center">
-          <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick(context || 'Speaking')}>
+          <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick(context)}>
             {cta.connect}
           </Button>
         </div>

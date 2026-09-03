@@ -22,10 +22,10 @@ module.exports = {
     name: 'Jeremy Roseberry',
     shortName: 'Roseberry',
     initials: 'JR',
-    tagline: 'Leader. Builder. Speaker. Entrepreneur.',
+    tagline: 'Leader. Builder. Entrepreneur.',
     domain: 'jeremyroseberry.com',
     email: 'jeremy@roseberrycapital.net',
-    role: 'Keynote Speaker, Host & Entrepreneur'
+    role: 'Entrepreneur & Investor'
   },
 
   colors: {
@@ -59,15 +59,17 @@ module.exports = {
   // rail sits on Books & Podcast with the rest of the content.
   nav: [
     { name: 'Entrepreneurs', id: 'entrepreneurs' },
-    { name: 'Foundation', id: 'foundation' },
-    { name: 'Resources', id: 'resources' }
+    { name: 'Foundation', id: 'foundation' }
   ],
 
   // Booking is the entire point of this site. One label, used on every primary
   // button, so the ask is identical everywhere the visitor looks.
   cta: {
-    // Nav and hero — names the action.
-    primary: 'Book To Speak',
+    // Nav and hero. Was 'Book To Speak', which made two claims that are not
+    // true yet: that there is an established speaking practice to book, and
+    // that speaking is what this site is for. It also turned away the capital,
+    // deal and partnership enquiries that are the actual inbound today.
+    primary: 'Let’s Connect',
     // The closing block on every page. Warmer on purpose: by the time someone
     // reaches the bottom they have already read the case, and "connect" also
     // fits the podcast, press and content enquiries the same form handles.

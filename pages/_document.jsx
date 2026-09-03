@@ -41,7 +41,7 @@ export default function Document() {
               url: `https://${company.domain}`,
               email: `mailto:${company.email}`,
               description:
-                'Keynote speaker, event host and podcast guest on leadership, mindset and building businesses.',
+                'Serial entrepreneur across real estate and capital markets. Founder of seven companies, investing for twenty years.',
               sameAs: Object.values(social).filter(Boolean)
             })
           }}

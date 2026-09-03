@@ -5,7 +5,6 @@ import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
 import EntrepreneursPage from '../components/EntrepreneursPage';
 import SixesPage from '../components/SixesPage';
-import ValuePage from '../components/ValuePage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
 import { Button } from '../components/ui';
@@ -31,27 +30,25 @@ const SOCIAL_ICONS = {
 
 const META = {
   home: {
-    title: `${company.name} — Keynote Speaker, Host & Entrepreneur`,
+    title: `${company.name} — Entrepreneur & Investor`,
     description:
-      'Keynotes, event hosting and podcast conversations on leadership, mindset and what building a business actually costs. Book Jeremy Roseberry.'
+      'Seven companies across real estate and capital markets. Two decades of building, and a podcast launching January 2027.'
   },
   entrepreneurs: {
     title: `${company.name} — Entrepreneur & Operator`,
     description:
       'Two tiers, seven companies: real estate and capital markets. Two decades of building, and what each business actually does.'
   },
-  sixes: {
+  // Keys MUST match the nav ids in site.config.js. They did not after the
+  // pages were renamed — 'sixes' and 'value' were stale, so both pages fell
+  // through to META.home and served the home page's title and description to
+  // search engines.
+  foundation: {
     title: `${company.name} — Faith, Family, Fitness, Finances, Friends, Fun`,
     description:
       'The six that hold everything else up, plus the training, the adrenaline and the slow mornings in between.'
-  },
-  value: {
-    title: `${company.name} — Books, Podcast & Speaking`,
-    description:
-      'The Four Levels book series, the podcast, and booking Jeremy to speak. Trying to add value in books, podcasts and talks.'
   }
 };
-
 export default function Site() {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -106,8 +103,6 @@ export default function Site() {
         return <EntrepreneursPage onContactClick={openContact} />;
       case 'foundation':
         return <SixesPage onContactClick={openContact} />;
-      case 'resources':
-        return <ValuePage onContactClick={openContact} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }
