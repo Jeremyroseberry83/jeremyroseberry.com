@@ -5,6 +5,7 @@ import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
 import EntrepreneursPage from '../components/EntrepreneursPage';
 import SixesPage from '../components/SixesPage';
+import RealEstatePage from '../components/RealEstatePage';
 import ComingSoonPage from '../components/ComingSoonPage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
@@ -44,6 +45,11 @@ const META = {
   // pages were renamed — 'sixes' and 'value' were stale, so both pages fell
   // through to META.home and served the home page's title and description to
   // search engines.
+  realestate: {
+    title: `${company.name} — Real Estate`,
+    description:
+      'Roseberry Properties, Premiere Home Watch and Roseberry Capital — the brokerage, the service company and the capital behind twenty years of ownership.'
+  },
   foundation: {
     title: `${company.name} — Faith, Family, Fitness, Finances, Friends, Fun`,
     description:
@@ -107,6 +113,8 @@ export default function Site() {
     switch (currentPage) {
       case 'entrepreneurs':
         return <EntrepreneursPage onContactClick={openContact} />;
+      case 'realestate':
+        return <RealEstatePage onContactClick={openContact} />;
       case 'foundation':
         return <SixesPage onContactClick={openContact} />;
       case 'coming':

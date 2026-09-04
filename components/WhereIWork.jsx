@@ -12,7 +12,7 @@ import { SectionHead, SECONDARY, PRIMARY, PRIMARY_DEEP } from './ui';
  * link carries anyone who wants more. Anything marked DRAFT below is recovered
  * from the old Entrepreneur page and still wants Jeremy's sign-off.
  */
-const TIERS = [
+export const TIERS = [
   {
     label: 'Real Estate',
     blurb: 'Our family platform. Investing, acquisitions, and the service businesses built around ownership.',
