@@ -184,20 +184,23 @@ export default function HomePage({ onContactClick }) {
     <section className="px-6 py-16 md:py-28" style={{ backgroundColor: BG }}>
       <div className="max-w-5xl mx-auto text-center">
         <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 11, marginBottom: 24 }}>
-          What I actually do
+          What I do
         </p>
         {/* One sentence, broken where Jeremy broke it. The cap is 2.5rem
             rather than 3rem because the second half runs to forty-seven
             characters — any larger and the browser re-breaks it into three
             ragged lines, which loses the two-part structure the line depends
             on. The container is max-w-5xl for the same reason. */}
+        {/* Back up to 2.8rem — the imperative version runs thirty-eight
+            characters a line against the previous fifty-six, so it holds two
+            clean lines at a size the old wording could not. */}
         <h2
           className="display"
-          style={{ color: SLATE, fontSize: 'clamp(1.35rem, 3.1vw, 2.2rem)', marginBottom: 14 }}
+          style={{ color: SLATE, fontSize: 'clamp(1.6rem, 3.8vw, 2.8rem)', marginBottom: 14 }}
         >
-          I try to add value to people in my words and actions.
+          Add value to people in words &amp; action.
           <br />
-          <span style={{ color: PRIMARY }}>I often help solve business problems that I didn’t make.</span>
+          <span style={{ color: PRIMARY }}>Solve complex problems I didn’t make.</span>
         </h2>
 
         {/* Starts with "and", so it is set tight under the headline as a
@@ -211,7 +214,7 @@ export default function HomePage({ onContactClick }) {
             marginBottom: 26
           }}
         >
-          and add enterprise value along the way.
+          and add enterprise value.
         </p>
 
         {/* Set in the body face rather than the condensed display one. Three
@@ -230,9 +233,9 @@ export default function HomePage({ onContactClick }) {
             textTransform: 'uppercase'
           }}
         >
-          I live grateful for everything. Entitled to nothing.
+          Live grateful for everything. Lead entitled to nothing.
           <br className="hidden sm:block" />
-          {' '}Faithful in the small things.
+          {' '}Be faithful in the small things.
         </p>
       </div>
     </section>
