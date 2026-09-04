@@ -219,20 +219,22 @@ export default function HomePage({ onContactClick }) {
         does not need help from a photograph or a gradient, and giving it any
         would make it look like a slogan rather than something he means. */}
     <section className="px-6 py-16 md:py-28" style={{ backgroundColor: BG }}>
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-5xl mx-auto text-center">
         <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 11, marginBottom: 24 }}>
           What I actually do
         </p>
-        {/* Capped a little below the earlier size: the second line is nearly
-            fifty characters and at 3.4rem it broke across three ragged lines
-            before the browser had any say in it. */}
+        {/* One sentence, broken where Jeremy broke it. The cap is 2.5rem
+            rather than 3rem because the second half runs to forty-seven
+            characters — any larger and the browser re-breaks it into three
+            ragged lines, which loses the two-part structure the line depends
+            on. The container is max-w-5xl for the same reason. */}
         <h2
           className="display"
-          style={{ color: SLATE, fontSize: 'clamp(1.7rem, 4.1vw, 3rem)', marginBottom: 14 }}
+          style={{ color: SLATE, fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)', marginBottom: 14 }}
         >
-          I add value to people.
+          I try to add value to every person by
           <br />
-          <span style={{ color: PRIMARY }}>I help others solve problems that I didn’t make.</span>
+          <span style={{ color: PRIMARY }}>helping solve their problems that I didn’t make.</span>
         </h2>
 
         {/* Starts with "and", so it is set tight under the headline as a
@@ -246,7 +248,7 @@ export default function HomePage({ onContactClick }) {
             marginBottom: 26
           }}
         >
-          and try to add enterprise value.
+          and add business and enterprise value.
         </p>
 
         {/* Set in the body face rather than the condensed display one. Three
