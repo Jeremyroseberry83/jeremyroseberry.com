@@ -58,9 +58,9 @@ module.exports = {
   // pillars now sit on Speaking, where an organiser already is; the Instagram
   // rail sits on Books & Podcast with the rest of the content.
   nav: [
-    { name: 'Entrepreneur', id: 'entrepreneurs' },
-    { name: 'Real Estate', id: 'realestate' },
+    { name: 'About', id: 'about' },
     { name: 'Capital Markets', id: 'capital' },
+    { name: 'Real Estate', id: 'realestate' },
     { name: 'PR + Marketing', id: 'prmarketing' },
     { name: 'Speaking', id: 'speaking' }
   ],

@@ -40,8 +40,8 @@ const META = {
   // Keys MUST match the nav ids in site.config.js. They fell out of sync once
   // already during a rename, and the symptom is silent: the page renders fine
   // and quietly serves the home page's title and description to search.
-  entrepreneurs: {
-    title: `${company.name} — Entrepreneur`,
+  about: {
+    title: `${company.name} — About`,
     description:
       'Seven companies across two tiers, the six foundations underneath them, and the daily rule that keeps it all running.'
   },
@@ -115,12 +115,12 @@ const META = {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'entrepreneurs':
+      case 'about':
         return <EntrepreneursPage onContactClick={openContact} />;
-      case 'realestate':
-        return <RealEstatePage onContactClick={openContact} />;
       case 'capital':
         return <CapitalMarketsPage onContactClick={openContact} />;
+      case 'realestate':
+        return <RealEstatePage onContactClick={openContact} />;
       case 'prmarketing':
         return <PRMarketingPage onContactClick={openContact} />;
       case 'speaking':

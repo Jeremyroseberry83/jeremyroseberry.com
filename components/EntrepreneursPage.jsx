@@ -191,7 +191,7 @@ export default function EntrepreneursPage({ onContactClick }) {
   return (
     <div>
       <PageTopBand
-        eyebrow="Entrepreneurs"
+        eyebrow="About"
         title="What I’m Building"
         subtitle="Seven companies across two tiers. Almost everything I know came out of a problem I did not create and had to solve anyway."
         image="/images/headers/entrepreneur.jpg"
