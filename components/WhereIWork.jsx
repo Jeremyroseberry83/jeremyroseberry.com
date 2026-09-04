@@ -20,7 +20,7 @@ const TIERS = [
       {
         name: 'Roseberry Properties',
         thumb: '/images/ventures/photos/roseberry-properties.jpg',
-        role: 'Founder',
+        role: 'Founder / Broker',
         url: 'https://roseberryproperties.com',
         logo: '/images/logos/roseberry-properties.png',
         description: 'A real estate brokerage specializing in referral and advisory services across all asset classes.'
