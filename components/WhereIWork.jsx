@@ -152,7 +152,7 @@ function WhereIWorkDisplay() {
               dark
               maxWidth="62ch"
               eyebrow="The tiers"
-              title="Where I Work"
+              title="What I’m Building"
               intro="Two tiers, seven companies. Just a simple serial entrepreneur. No, it is never perfect — but on my best days I like to think it is all vertically integrated."
             />
           </div>
@@ -283,7 +283,7 @@ function WhereIWorkGrid() {
               dark
               maxWidth="60ch"
               eyebrow="The tiers"
-              title="Where I Work"
+              title="What I’m Building"
               intro="Two tiers, seven companies. Just a simple serial entrepreneur. No, it is never perfect — but on my best days I like to think it is all vertically integrated."
             />
 

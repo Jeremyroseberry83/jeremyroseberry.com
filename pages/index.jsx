@@ -42,7 +42,7 @@ const META = {
   about: {
     title: `${company.name} — About`,
     description:
-      'Seven companies across two tiers, the six foundations underneath them, the daily rule that keeps it running, and short-form video on starting before you feel ready.'
+      'Husband and dad first. Then seven companies across two tiers, six foundations underneath them, a daily routine, and short-form video on starting before you feel ready.'
   },
   realestate: {
     title: `${company.name} — Real Estate`,

@@ -194,8 +194,8 @@ export default function EntrepreneursPage({ onContactClick }) {
     <div>
       <PageTopBand
         eyebrow="About"
-        title="What I’m Building"
-        subtitle="Seven companies across two tiers. Almost everything I know came out of a problem I did not create and had to solve anyway."
+        title="Who Am I"
+        subtitle="I’m a husband and dad first. Every other role in my life, somebody else will eventually do."
         image="/images/headers/entrepreneur.jpg"
         tone="taupe"
       />
@@ -210,8 +210,8 @@ export default function EntrepreneursPage({ onContactClick }) {
         <div className="max-w-6xl mx-auto">
           <SectionHead
             maxWidth="62ch"
-            eyebrow="This is me"
-            title="The Six Foundations"
+            eyebrow="What I’m built on"
+            title="Six Foundations"
             intro="Faith, Family, Fitness, Finances, Friends, Fun. In that order, and all six load-bearing. Let one slip and everything built on top of it moves. If I ever look like I am coming apart, or just off, it is because one of these is off — and I need to recalibrate my rhythms before I try to fix anything else."
           />
           <div className="mt-14">
@@ -316,8 +316,8 @@ export default function EntrepreneursPage({ onContactClick }) {
           <div className="md:col-span-8">
             <SectionHead
               dark
-              eyebrow="The daily"
-              title="Rule Of 5"
+              eyebrow="Rule of 5"
+              title="My Daily Routine"
               intro="Five things a day, in each area. Not goals — the things that happen whether I feel like it or not."
             />
 
@@ -382,7 +382,7 @@ export default function EntrepreneursPage({ onContactClick }) {
           <SectionHead
             dark
             eyebrow="Fun"
-            title="Where I Go To Feel Alive"
+            title="Where I Have Fun"
             intro="Not a bucket list. These are the things that reset me — and the reason I can sit still in a board meeting the next morning."
           />
 
