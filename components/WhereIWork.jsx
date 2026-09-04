@@ -61,13 +61,12 @@ const TIERS = [
         description: 'A curated circle of investors, allocators and founders who meet in person. Small rooms, no pitch theatre.'
       },
       {
-        // DRAFT — recovered from the old Entrepreneur page.
-        name: 'Avestix',
-        thumb: '/images/ventures/photos/avestix.jpg',
-        role: 'Chief Operating Officer',
-        url: 'https://avestix.com',
-        logo: '/images/logos/avestix.png',
-        description: 'An invitation-only private society for families building enduring wealth. Governed, principals-only, AI-native.'
+        name: '4IR Studios',
+        thumb: '',   // /images/ventures/photos/four-ir-studios.jpg
+        role: 'Co-founder',
+        url: 'https://4irstudio.com',
+        logo: '',    // /images/logos/four-ir-studios.png
+        description: 'A capital markets PR, marketing and design firm — helping companies get investor-ready, financing-ready, acquisition-ready and IPO-ready.'
       },
       {
         // DRAFT — recovered from the old Entrepreneur page.

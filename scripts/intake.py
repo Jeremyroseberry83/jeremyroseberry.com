@@ -41,7 +41,7 @@ JOBS = {
     'access-global-logo':   ('images/logos/access-global.png',              (600, 600),   'contain'),
     'private-investor-circle':      ('images/ventures/private-investor-circle.jpg', (900, 560), 'cover'),
     'private-investor-circle-logo': ('images/logos/private-investor-circle.png',    (600, 600), 'contain'),
-    'avestix-logo':         ('images/logos/avestix.png',                    (600, 600),   'contain'),
+    'four-ir-studios-logo': ('images/logos/four-ir-studios.png',            (600, 600),   'contain'),
     'roseberry-properties': ('images/ventures/roseberry-properties.jpg',    (900, 560),   'cover'),
     'premiere-home-watch':  ('images/ventures/premiere-home-watch.jpg',     (900, 560),   'cover'),
     'jeremy-speaking':      ('images/jeremy-speaking.jpg',                  (1800, 1200), 'cover'),
@@ -61,7 +61,7 @@ JOBS = {
     'venture-premiere-home-watch':     ('images/ventures/photos/premiere-home-watch.jpg', (700, 700), 'cover'),
     'venture-roseberry-capital':       ('images/ventures/photos/roseberry-capital.jpg', (700, 700), 'cover'),
     'venture-private-investor-circle': ('images/ventures/photos/private-investor-circle.jpg', (700, 700), 'cover'),
-    'venture-avestix':                 ('images/ventures/photos/avestix.jpg', (700, 700), 'cover'),
+    'venture-four-ir-studios':         ('images/ventures/photos/four-ir-studios.jpg', (700, 700), 'cover'),
     'venture-access-global':           ('images/ventures/photos/access-global.jpg', (700, 700), 'cover'),
     'venture-four-ir-group':           ('images/ventures/photos/four-ir-group.jpg', (700, 700), 'cover'),
 
