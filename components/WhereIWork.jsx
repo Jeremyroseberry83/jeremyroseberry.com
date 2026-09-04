@@ -62,10 +62,10 @@ const TIERS = [
       },
       {
         name: '4IR Studios',
-        thumb: '',   // /images/ventures/photos/four-ir-studios.jpg
+        thumb: '/images/ventures/photos/four-ir-studios.jpg',
         role: 'Co-founder, CBO',
         url: 'https://4irstudio.com',
-        logo: '',    // /images/logos/four-ir-studios.png
+        logo: '/images/logos/four-ir-studios.png',
         description: 'A capital markets PR, marketing and design firm — helping companies get investor-ready, financing-ready, acquisition-ready and IPO-ready.'
       },
       {
