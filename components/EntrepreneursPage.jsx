@@ -1,5 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, Play } from 'lucide-react';
+import ShortForm from './ShortForm';
+import PodcastLaunch from './PodcastLaunch';
 import WhereIWork from './WhereIWork';
 import {
   PageTopBand,
@@ -492,6 +494,10 @@ export default function EntrepreneursPage({ onContactClick }) {
         </section>
       )}
 
+
+      <ShortForm />
+
+      <PodcastLaunch />
 
       <BookingCTA onContactClick={onContactClick} />
     </div>

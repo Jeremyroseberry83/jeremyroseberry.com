@@ -7,7 +7,6 @@ import EntrepreneursPage from '../components/EntrepreneursPage';
 import RealEstatePage from '../components/RealEstatePage';
 import CapitalMarketsPage from '../components/CapitalMarketsPage';
 import PRMarketingPage from '../components/PRMarketingPage';
-import SpeakingPage from '../components/SpeakingPage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
 import { Button } from '../components/ui';
@@ -43,7 +42,7 @@ const META = {
   about: {
     title: `${company.name} — About`,
     description:
-      'Seven companies across two tiers, the six foundations underneath them, and the daily rule that keeps it all running.'
+      'Seven companies across two tiers, the six foundations underneath them, the daily rule that keeps it running, and short-form video on starting before you feel ready.'
   },
   realestate: {
     title: `${company.name} — Real Estate`,
@@ -60,11 +59,6 @@ const META = {
     description:
       '4IR Studios: capital markets PR, marketing and design. Investor-ready, financing-ready, acquisition-ready, IPO-ready.'
   },
-  speaking: {
-    title: `${company.name} — Speaking`,
-    description:
-      'Ten topics on leadership, mindset and building — plus clips, and a podcast launching January 2027.'
-  }
 };export default function Site() {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -123,8 +117,6 @@ const META = {
         return <RealEstatePage onContactClick={openContact} />;
       case 'prmarketing':
         return <PRMarketingPage onContactClick={openContact} />;
-      case 'speaking':
-        return <SpeakingPage onContactClick={openContact} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }

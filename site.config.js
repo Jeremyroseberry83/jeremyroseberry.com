@@ -61,8 +61,7 @@ module.exports = {
     { name: 'About', id: 'about' },
     { name: 'Capital Markets', id: 'capital' },
     { name: 'Real Estate', id: 'realestate' },
-    { name: 'PR + Marketing', id: 'prmarketing' },
-    { name: 'Speaking', id: 'speaking' }
+    { name: 'PR + Marketing', id: 'prmarketing' }
   ],
 
   // Booking is the entire point of this site. One label, used on every primary
