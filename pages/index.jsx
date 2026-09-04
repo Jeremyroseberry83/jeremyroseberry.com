@@ -172,7 +172,7 @@ const META = {
             <Logo tone={navDark ? 'dark' : 'light'} />
           </button>
 
-          <div className={`hidden lg:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
+          <div className={`hidden xl:flex items-center ${isHome ? 'gap-7 ml-auto' : 'gap-6'}`}>
             {navItems.map((item) => {
               const isActive = currentPage === item.id;
               const idle = colors.TAUPE;
@@ -212,7 +212,7 @@ const META = {
           </div>
 
           <button
-            className="lg:hidden"
+            className="xl:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{ color: colors.SLATE, background: 'none', border: 'none' }}
             aria-label="Menu"
@@ -223,7 +223,7 @@ const META = {
         </div>
 
         {mobileMenuOpen && (
-          <div className="lg:hidden" style={{ backgroundColor: colors.PRIMARY_DEEP, borderTop: `3px solid ${colors.SECONDARY}` }}>
+          <div className="xl:hidden" style={{ backgroundColor: colors.PRIMARY_DEEP, borderTop: `3px solid ${colors.SECONDARY}` }}>
             <div className="px-6 py-6 flex flex-col gap-5">
               {navItems.map((item) => (
                 <button
