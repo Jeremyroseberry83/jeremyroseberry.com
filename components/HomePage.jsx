@@ -223,14 +223,32 @@ export default function HomePage({ onContactClick }) {
         <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 11, marginBottom: 24 }}>
           What I actually do
         </p>
+        {/* Capped a little below the earlier size: the second line is nearly
+            fifty characters and at 3.4rem it broke across three ragged lines
+            before the browser had any say in it. */}
         <h2
           className="display"
-          style={{ color: SLATE, fontSize: 'clamp(1.9rem, 4.6vw, 3.4rem)', marginBottom: 26 }}
+          style={{ color: SLATE, fontSize: 'clamp(1.7rem, 4.1vw, 3rem)', marginBottom: 14 }}
         >
           I add value to people.
           <br />
-          <span style={{ color: PRIMARY }}>I solve problems I didn’t make.</span>
+          <span style={{ color: PRIMARY }}>I help others solve problems that I didn’t make.</span>
         </h2>
+
+        {/* Starts with "and", so it is set tight under the headline as a
+            continuation of it rather than as a separate line of copy. */}
+        <p
+          style={{
+            color: SECONDARY_DEEP,
+            fontSize: 'clamp(0.95rem, 1.5vw, 1.15rem)',
+            lineHeight: 1.5,
+            fontStyle: 'italic',
+            marginBottom: 26
+          }}
+        >
+          and try to add enterprise value.
+        </p>
+
         <p style={{ color: MUTED, fontSize: 17.5, lineHeight: 1.8, maxWidth: '50ch', margin: '0 auto' }}>
           That is most of what twenty years has actually been. Somebody is in a mess they did not
           ask for, and I have usually been in one like it.
