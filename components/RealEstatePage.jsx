@@ -123,7 +123,7 @@ export default function RealEstatePage({ onContactClick }) {
       <PageTopBand
         eyebrow="Real Estate"
         title="Our Family Platform"
-        subtitle="Three businesses built around ownership — the brokerage, the service company, and the capital. Twenty years of doing it with my own money before I did it with anybody else’s."
+        subtitle="Three businesses built around ownership. Most people call me with a problem attached to a property, not a listing they want to look at — and twenty years of my own money went in before anybody else’s did."
         image="/images/headers/entrepreneur.jpg"
         tone="ink"
       />

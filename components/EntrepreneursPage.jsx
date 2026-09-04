@@ -193,7 +193,7 @@ export default function EntrepreneursPage({ onContactClick }) {
       <PageTopBand
         eyebrow="Entrepreneurs"
         title="What I’m Building"
-        subtitle="Two tiers, seven companies, and two decades of learning the difference between a good idea and a business."
+        subtitle="Seven companies across two tiers. Almost everything I know came out of a problem I did not create and had to solve anyway."
         image="/images/headers/entrepreneur.jpg"
         tone="taupe"
       />

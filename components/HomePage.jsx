@@ -1,6 +1,6 @@
 import React from 'react';
 import PodcastLaunch from './PodcastLaunch';
-import { Button, CountUp, PRIMARY, PRIMARY_DEEP, SECONDARY, INK } from './ui';
+import { Button, CountUp, PRIMARY, PRIMARY_DEEP, SECONDARY, SECONDARY_DEEP, SLATE, MUTED, INK, BG } from './ui';
 import { company, cta } from '../site.config';
 
 /**
@@ -214,6 +214,30 @@ export default function HomePage({ onContactClick }) {
         for it — a nav tab called Resources containing one unlaunched thing
         claimed more than exists. The capture starts building the list four
         months before launch, which is the point. */}
+    {/* The statement. It sits between the gold figures and the navy podcast
+        band on cream, which is the only quiet surface on the page — this line
+        does not need help from a photograph or a gradient, and giving it any
+        would make it look like a slogan rather than something he means. */}
+    <section className="px-6 py-16 md:py-28" style={{ backgroundColor: BG }}>
+      <div className="max-w-4xl mx-auto text-center">
+        <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 11, marginBottom: 24 }}>
+          What I actually do
+        </p>
+        <h2
+          className="display"
+          style={{ color: SLATE, fontSize: 'clamp(1.9rem, 4.6vw, 3.4rem)', marginBottom: 26 }}
+        >
+          I add value to people.
+          <br />
+          <span style={{ color: PRIMARY }}>I solve problems I didn’t make.</span>
+        </h2>
+        <p style={{ color: MUTED, fontSize: 17.5, lineHeight: 1.8, maxWidth: '50ch', margin: '0 auto' }}>
+          That is most of what twenty years has actually been. Somebody is in a mess they did not
+          ask for, and I have usually been in one like it.
+        </p>
+      </div>
+    </section>
+
     <PodcastLaunch />
     </>
   );
