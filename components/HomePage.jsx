@@ -36,7 +36,7 @@ const SCALE = [
 ];
 
 /** The two words the navy bar carries; the other two are the headline. */
-const HERO_BADGE = 'Entrepreneur & Investor';
+const HERO_BADGE = 'One person at a time';
 
 export default function HomePage({ onContactClick }) {
   return (
@@ -67,7 +67,7 @@ export default function HomePage({ onContactClick }) {
             className="eyebrow-wide hero-reveal"
             style={{ color: '#ffffff', fontSize: '1.55vw', marginBottom: '1.6vw' }}
           >
-            Mindset <span style={{ color: SECONDARY }}>Motivation</span>
+            Leader <span style={{ color: SECONDARY }}>Builder</span>
           </p>
 
           {/* Two words at display scale, the other two in the navy bar. Four
@@ -79,9 +79,9 @@ export default function HomePage({ onContactClick }) {
             className="display hero-reveal-2"
             style={{ color: '#ffffff', fontSize: '10.6vw', marginBottom: '1.8vw' }}
           >
-            Leader
+            Adding
             <br />
-            Builder
+            Value
           </h1>
 
           <p
@@ -133,13 +133,13 @@ export default function HomePage({ onContactClick }) {
 
         <div className="relative px-6" style={{ paddingTop: 120, paddingBottom: 56 }}>
           <p className="eyebrow-wide hero-reveal" style={{ color: '#ffffff', fontSize: 11, marginBottom: 14 }}>
-            Mindset <span style={{ color: SECONDARY }}>Motivation</span>
+            Leader <span style={{ color: SECONDARY }}>Builder</span>
           </p>
 
           <h1 className="display hero-reveal-2" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
-            Leader
+            Adding
             <br />
-            Builder
+            Value
           </h1>
 
           <p
@@ -230,11 +230,11 @@ export default function HomePage({ onContactClick }) {
             on. The container is max-w-5xl for the same reason. */}
         <h2
           className="display"
-          style={{ color: SLATE, fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)', marginBottom: 14 }}
+          style={{ color: SLATE, fontSize: 'clamp(1.35rem, 3.1vw, 2.2rem)', marginBottom: 14 }}
         >
-          I try to add value to every person by
+          I try to add value to people in my words and actions.
           <br />
-          <span style={{ color: PRIMARY }}>helping solve their problems that I didn’t make.</span>
+          <span style={{ color: PRIMARY }}>I often help solve business problems that I didn’t make.</span>
         </h2>
 
         {/* Starts with "and", so it is set tight under the headline as a
@@ -248,7 +248,7 @@ export default function HomePage({ onContactClick }) {
             marginBottom: 26
           }}
         >
-          and add business and enterprise value.
+          and add enterprise value along the way.
         </p>
 
         {/* Set in the body face rather than the condensed display one. Three
@@ -267,7 +267,7 @@ export default function HomePage({ onContactClick }) {
             textTransform: 'uppercase'
           }}
         >
-          Grateful for everything. Entitled to nothing.
+          I live grateful for everything. Entitled to nothing.
           <br className="hidden sm:block" />
           {' '}Faithful in the small things.
         </p>
