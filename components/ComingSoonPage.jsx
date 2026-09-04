@@ -23,9 +23,14 @@ import {
  *
  * So: everything here is written in the future tense, dated where a date is
  * real, and nothing offers a link to buy or listen. A reader should finish it
- * knowing exactly what stage this is at. That honesty is the asset — announcing
- * early and letting people watch it get built is a stronger position than
- * arriving with a finished shelf and no audience.
+ * knowing exactly what stage this is at.
+ *
+ * The voice matters as much as the facts. The first draft read as an apology —
+ * "not launched yet", "the one I am still earning" — which puts the reader in
+ * the position of a customer waiting on a product. It is written now as one
+ * builder talking to another: twenty-six years of making things for the people
+ * around him, finally being put somewhere reachable. Same honesty, no flinch.
+ * Keep it that way.
  *
  * RULE FOR ANYONE EDITING THIS FILE: nothing here gets a purchase link, a
  * play button, or a testimonial until the thing is real. The moment a book
@@ -92,9 +97,9 @@ export default function ComingSoonPage({ onContactClick }) {
   return (
     <div>
       <PageTopBand
-        eyebrow="In progress"
+        eyebrow="For people building things"
         title="What I’m Building"
-        subtitle="A leadership and thought-leadership platform — the podcast, the books, and the speaking. None of it has launched. Here is the plan, and where each piece actually stands."
+        subtitle="If you are reading this, you are probably building something too. I have spent twenty-six years making things — companies, teams, and content for the people around me. This is the season I start making it available."
         image="/images/headers/speaking.jpg"
         tone="ink"
       />
@@ -107,23 +112,30 @@ export default function ComingSoonPage({ onContactClick }) {
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-3xl mx-auto">
           <SectionHead
-            eyebrow="Where this stands"
-            title="Not Launched Yet"
-            intro="I have spent twenty years building businesses. For the last few I have been studying, writing, and quietly preparing a second thing: a platform for leadership, business thinking, and motivation."
+            eyebrow="Why now"
+            title="Twenty-Six Years Of This"
+            intro="Creating content with and for other people is not new for me. It is the thing I have been doing longest — it just never had a name on it."
           />
           <div style={{ marginTop: 30 }}>
             <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.85, marginBottom: 22 }}>
-              Nothing on this page is finished. The books are outlined and being written. The
-              podcast has a launch date and a format. The speaking is something I am working
-              toward deliberately rather than something I already do.
+              A talk for somebody’s team. Notes for a founder at eleven at night. A framework
+              sketched on the back of something because a friend was stuck and I had been stuck
+              in the same place five years earlier. None of it was a product. It is just what you
+              end up doing when you spend your life around people who build.
             </p>
             <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.85, marginBottom: 22 }}>
-              I would rather tell you that than let a website imply otherwise. If you have read
-              anything else on this site, you know the businesses are real and the years behind
-              them are real. This part is the one I am still earning.
+              What has changed is that I am putting it somewhere you can actually get to it. A
+              podcast, four books, and eventually rooms. Same material, same conversations — just
+              no longer only available to whoever happened to be sitting across from me.
+            </p>
+            <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.85, marginBottom: 22 }}>
+              None of it has launched yet, and I would rather say so here than let a website
+              imply otherwise. The companies are real and the years behind them are real. This
+              part I am building in public, which is new for me.
             </p>
             <p style={{ color: SLATE, fontSize: 17, lineHeight: 1.85, fontWeight: 500 }}>
-              If it interests you, follow along. The first thing lands in January.
+              If you are building something too, come along for it. The first piece lands in
+              January.
             </p>
           </div>
         </div>
@@ -146,7 +158,7 @@ export default function ComingSoonPage({ onContactClick }) {
           <SectionHead
             eyebrow="The writing"
             title="Four Books, Four Years"
-            intro="A series, written in order, each one building on the last. The years are targets I am working to, not release dates you can hold me to."
+            intro="Written in order, each one out of a conversation I have had more times than I can count. The years are what I am working to, not dates you should hold me to."
           />
 
           <div className="mt-14 space-y-px" style={{ backgroundColor: '#e2e2e2' }}>
@@ -221,17 +233,18 @@ export default function ComingSoonPage({ onContactClick }) {
           <SectionHead
             dark
             eyebrow="The speaking"
-            title="The Part I Am Working Toward"
-            intro="A leadership and motivation platform — stages, teams, rooms of founders. This is the piece with no launch date, because it is the piece you do not get to schedule."
+            title="Rooms, Eventually"
+            intro="Teams, founders, people in the middle of building something hard. This is the piece with no date on it, because it is the one you do not get to schedule for yourself."
           />
           <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 17, lineHeight: 1.85, marginTop: 26 }}>
-            I am studying it properly: the material, the craft, the people who do it well. When
-            I stand in front of a room I want it to be because I have something worth an hour of
-            everyone’s time, not because a website said I was available.
+            I am studying it properly — the material, the craft, the people who do it well. The
+            best conversations I have ever had happened in a room with other builders in it, and
+            that is what I am working toward rather than a stage for its own sake.
           </p>
           <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 17, lineHeight: 1.85, marginTop: 20 }}>
-            If you run an event and want to talk early — before there is a reel, a fee, or a
-            one-sheet — that is a conversation I would genuinely like to have.
+            If you run something and want to talk early — before there is a reel, a fee, or a
+            one-sheet — that is a conversation I would genuinely like to have. Early is usually
+            when the interesting ones happen anyway.
           </p>
         </div>
       </section>
