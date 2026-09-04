@@ -1,6 +1,6 @@
 import React from 'react';
 import PodcastLaunch from './PodcastLaunch';
-import { Button, CountUp, PRIMARY, PRIMARY_DEEP, SECONDARY, SECONDARY_DEEP, SLATE, INK, BG } from './ui';
+import { Button, CountUp, PRIMARY, SECONDARY, SECONDARY_DEEP, SLATE, INK, BG } from './ui';
 import { company, cta } from '../site.config';
 
 /**
@@ -35,8 +35,6 @@ const SCALE = [
   { value: '7', unit: '', label: 'Businesses' }
 ];
 
-/** The two words the navy bar carries; the other two are the headline. */
-const HERO_BADGE = 'One person at a time';
 
 export default function HomePage({ onContactClick }) {
   return (
@@ -67,42 +65,24 @@ export default function HomePage({ onContactClick }) {
             className="eyebrow-wide hero-reveal"
             style={{ color: '#ffffff', fontSize: '1.55vw', marginBottom: '1.6vw' }}
           >
-            Leader <span style={{ color: SECONDARY }}>Builder</span>
+            Jeremy <span style={{ color: SECONDARY }}>Roseberry</span>
           </p>
 
-          {/* Two words at display scale, the other two in the navy bar. Four
-              stacked lines were tried and pushed the type down to 8.2vw to fit
-              ENTREPRENEUR in a column that is only ~48% of the viewport —
-              which cost the headline all of its weight. Splitting them keeps
-              LEADER/BUILDER at full size and gives the bar something to say. */}
+          {/* Two words, full size. The name above is a fact, so the headline
+              reads as a description of a named person rather than a claim
+              floating on its own — which is what went wrong when ADDING VALUE
+              sat here with a claim above it and a claim below it. */}
           <h1
             className="display hero-reveal-2"
             style={{ color: '#ffffff', fontSize: '10.6vw', marginBottom: '1.8vw' }}
           >
-            Adding
+            Leader
             <br />
-            Value
+            Builder
           </h1>
 
-          <p
-            className="hero-reveal-3"
-            style={{
-              display: 'inline-block',
-              backgroundColor: PRIMARY_DEEP,
-              color: '#ffffff',
-              fontSize: '1.32vw',
-              fontWeight: 600,
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              padding: '0.85vw 1.5vw',
-              marginBottom: '2vw'
-            }}
-          >
-            {HERO_BADGE}
-          </p>
-
-          <div className="hero-reveal-4">
-            <Button variant="gold" size="lg" onClick={() => onContactClick && onContactClick()}>
+          <div className="hero-reveal-3">
+            <Button variant="navy" size="lg" borderColor="rgba(255,255,255,0.9)" onClick={() => onContactClick && onContactClick()}>
               {cta.primary}
             </Button>
           </div>
@@ -133,34 +113,17 @@ export default function HomePage({ onContactClick }) {
 
         <div className="relative px-6" style={{ paddingTop: 120, paddingBottom: 56 }}>
           <p className="eyebrow-wide hero-reveal" style={{ color: '#ffffff', fontSize: 11, marginBottom: 14 }}>
-            Leader <span style={{ color: SECONDARY }}>Builder</span>
+            Jeremy <span style={{ color: SECONDARY }}>Roseberry</span>
           </p>
 
           <h1 className="display hero-reveal-2" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
-            Adding
+            Leader
             <br />
-            Value
+            Builder
           </h1>
 
-          <p
-            className="hero-reveal-3"
-            style={{
-              display: 'inline-block',
-              backgroundColor: PRIMARY_DEEP,
-              color: '#ffffff',
-              fontSize: 10.5,
-              fontWeight: 600,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              padding: '9px 14px',
-              marginBottom: 26
-            }}
-          >
-            {HERO_BADGE}
-          </p>
-
-          <div className="hero-reveal-4">
-            <Button variant="gold" size="lg" full onClick={() => onContactClick && onContactClick()}>
+          <div className="hero-reveal-3">
+            <Button variant="navy" size="lg" full borderColor="rgba(255,255,255,0.9)" onClick={() => onContactClick && onContactClick()}>
               {cta.primary}
             </Button>
           </div>

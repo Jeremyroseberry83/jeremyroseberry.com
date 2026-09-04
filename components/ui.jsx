@@ -46,7 +46,7 @@ export function Eyebrow({ children, color = SECONDARY_DEEP, className = '' }) {
  *  ghost — tertiary, on dark grounds and photography.
  *  quiet — tertiary, on light grounds.
  */
-export function Button({ variant = 'gold', onClick, href, children, full, size = 'md', type = 'button', disabled }) {
+export function Button({ variant = 'gold', onClick, href, children, full, size = 'md', type = 'button', disabled, borderColor }) {
   const pad = size === 'lg' ? '17px 38px' : size === 'sm' ? '10px 22px' : '14px 30px';
   const fontSize = size === 'lg' ? 16 : size === 'sm' ? 13 : 15;
 
@@ -69,9 +69,14 @@ export function Button({ variant = 'gold', onClick, href, children, full, size =
     textAlign: 'center'
   };
 
+  // A filled button on a photograph can fail WCAG 1.4.11 even when its label
+  // is perfectly readable: the rule is about the boundary that identifies the
+  // control, not the text inside it. Navy on the hero's taupe wedge is 2.23:1,
+  // under the 3:1 floor, so the hero passes an explicit border. Gold would not
+  // have fixed it — gold on that wedge is 2.37:1. White is 5.33:1.
   const variants = {
     gold: { ...base, backgroundColor: SECONDARY, color: SLATE, borderColor: SECONDARY },
-    navy: { ...base, backgroundColor: PRIMARY, color: '#ffffff', borderColor: PRIMARY },
+    navy: { ...base, backgroundColor: PRIMARY, color: '#ffffff', borderColor: borderColor || PRIMARY },
     ghost: { ...base, backgroundColor: 'transparent', color: '#ffffff', borderColor: 'rgba(255,255,255,0.55)' },
     quiet: { ...base, backgroundColor: 'transparent', color: PRIMARY, borderColor: 'rgba(26,58,82,0.35)' }
   };
