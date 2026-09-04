@@ -58,10 +58,11 @@ module.exports = {
   // pillars now sit on Speaking, where an organiser already is; the Instagram
   // rail sits on Books & Podcast with the rest of the content.
   nav: [
-    { name: 'Entrepreneurs', id: 'entrepreneurs' },
+    { name: 'Entrepreneur', id: 'entrepreneurs' },
     { name: 'Real Estate', id: 'realestate' },
-    { name: 'Foundation', id: 'foundation' },
-    { name: 'Coming Soon', id: 'coming' }
+    { name: 'Capital Markets', id: 'capital' },
+    { name: 'PR + Marketing', id: 'prmarketing' },
+    { name: 'Speaking', id: 'speaking' }
   ],
 
   // Booking is the entire point of this site. One label, used on every primary

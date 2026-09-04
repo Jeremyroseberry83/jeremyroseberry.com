@@ -4,9 +4,10 @@ import { Menu, X, Mail, Instagram, Linkedin, Youtube, Twitter } from 'lucide-rea
 import Logo from '../components/Logo';
 import HomePage from '../components/HomePage';
 import EntrepreneursPage from '../components/EntrepreneursPage';
-import SixesPage from '../components/SixesPage';
 import RealEstatePage from '../components/RealEstatePage';
-import ComingSoonPage from '../components/ComingSoonPage';
+import CapitalMarketsPage from '../components/CapitalMarketsPage';
+import PRMarketingPage from '../components/PRMarketingPage';
+import SpeakingPage from '../components/SpeakingPage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
 import { Button } from '../components/ui';
@@ -34,34 +35,37 @@ const META = {
   home: {
     title: `${company.name} — Entrepreneur & Investor`,
     description:
-      'Seven companies across real estate and capital markets. Two decades of building, and a podcast launching January 2027.'
+      'Seven companies across real estate, capital markets and PR. Two decades of building, and a podcast launching January 2027.'
   },
+  // Keys MUST match the nav ids in site.config.js. They fell out of sync once
+  // already during a rename, and the symptom is silent: the page renders fine
+  // and quietly serves the home page's title and description to search.
   entrepreneurs: {
-    title: `${company.name} — Entrepreneur & Operator`,
+    title: `${company.name} — Entrepreneur`,
     description:
-      'Two tiers, seven companies: real estate and capital markets. Two decades of building, and what each business actually does.'
+      'Seven companies across two tiers, the six foundations underneath them, and the daily rule that keeps it all running.'
   },
-  // Keys MUST match the nav ids in site.config.js. They did not after the
-  // pages were renamed — 'sixes' and 'value' were stale, so both pages fell
-  // through to META.home and served the home page's title and description to
-  // search engines.
   realestate: {
     title: `${company.name} — Real Estate`,
     description:
       'Roseberry Properties, Premiere Home Watch and Roseberry Capital — the brokerage, the service company and the capital behind twenty years of ownership.'
   },
-  foundation: {
-    title: `${company.name} — Faith, Family, Fitness, Finances, Friends, Fun`,
+  capital: {
+    title: `${company.name} — Capital Markets`,
     description:
-      'The six that hold everything else up, plus the training, the adrenaline and the slow mornings in between.'
+      'Private Investor Circle, Access Global and The 4IR Group. Where allocators meet operators, and what actually crosses the desk.'
   },
-  coming: {
-    title: `${company.name} — What I’m Building`,
+  prmarketing: {
+    title: `${company.name} — PR & Marketing`,
     description:
-      'A podcast launching January 2027, four books in progress, and a leadership speaking platform being built deliberately. None of it launched yet.'
+      '4IR Studios: capital markets PR, marketing and design. Investor-ready, financing-ready, acquisition-ready, IPO-ready.'
+  },
+  speaking: {
+    title: `${company.name} — Speaking`,
+    description:
+      'Ten topics on leadership, mindset and building — plus clips, and a podcast launching January 2027.'
   }
-};
-export default function Site() {
+};export default function Site() {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
@@ -115,10 +119,12 @@ export default function Site() {
         return <EntrepreneursPage onContactClick={openContact} />;
       case 'realestate':
         return <RealEstatePage onContactClick={openContact} />;
-      case 'foundation':
-        return <SixesPage onContactClick={openContact} />;
-      case 'coming':
-        return <ComingSoonPage onContactClick={openContact} />;
+      case 'capital':
+        return <CapitalMarketsPage onContactClick={openContact} />;
+      case 'prmarketing':
+        return <PRMarketingPage onContactClick={openContact} />;
+      case 'speaking':
+        return <SpeakingPage onContactClick={openContact} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }
