@@ -1,6 +1,6 @@
 import React from 'react';
 import PodcastLaunch from './PodcastLaunch';
-import { Button, CountUp, PRIMARY, PRIMARY_DEEP, SECONDARY, SECONDARY_DEEP, SLATE, MUTED, INK, BG } from './ui';
+import { Button, CountUp, PRIMARY, PRIMARY_DEEP, SECONDARY, SECONDARY_DEEP, SLATE, INK, BG } from './ui';
 import { company, cta } from '../site.config';
 
 /**
@@ -249,9 +249,25 @@ export default function HomePage({ onContactClick }) {
           and try to add enterprise value.
         </p>
 
-        <p style={{ color: MUTED, fontSize: 17.5, lineHeight: 1.8, maxWidth: '50ch', margin: '0 auto' }}>
-          That is most of what twenty years has actually been. Somebody is in a mess they did not
-          ask for, and I have usually been in one like it.
+        {/* Set in the body face rather than the condensed display one. Three
+            short declaratives in Oswald caps would read as a second headline
+            competing with the first; in Inter caps they read as a creed, which
+            is what they are. Tracking is 0.14em, not the eyebrow's 0.34em —
+            that much air is right for two words and unreadable across three
+            full sentences. */}
+        <p
+          style={{
+            color: SLATE,
+            fontSize: 'clamp(0.85rem, 1.4vw, 1rem)',
+            fontWeight: 600,
+            letterSpacing: '0.14em',
+            lineHeight: 2,
+            textTransform: 'uppercase'
+          }}
+        >
+          Grateful for everything. Entitled to nothing.
+          <br className="hidden sm:block" />
+          {' '}Faithful in the small things.
         </p>
       </div>
     </section>
