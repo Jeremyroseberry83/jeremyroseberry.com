@@ -23,7 +23,7 @@ import {
  * page, because PR and marketing is a different buyer.
  *
  * NOTHING ON THIS PAGE NAMES A DEAL, A RETURN, OR AN ALLOCATION. Deal flow is
- * described by shape — sectors, stages, cheque sizes — never by example.
+ * described by shape — sectors, stages, ticket sizes — never by example.
  * Publishing live opportunities on an open web page is a securities question as much
  * as a design one, and a fabricated example would be worse than both. If real
  * flow ever goes here it belongs behind the Circle, not in front of it.
@@ -67,7 +67,7 @@ const FOR_WHOM = {
   'The 4IR Group': {
     who: 'Founders building at the front edge, and the capital that backs them',
     points: [
-      'Venture building rather than passive cheque writing',
+      'Venture building rather than passive capital deployment',
       'Operating help where it is scarcest — story, structure and the first raise',
       'Seco Bio was the first one out'
     ]
@@ -103,7 +103,7 @@ const FLOW = [
   },
   {
     label: 'Early venture',
-    body: 'Founders at the point where operating help matters more than the size of the cheque. Usually the ones who did not need to be talked into the work.'
+    body: 'Founders at the point where operating help matters more than the size of the allocation. Usually the ones who did not need to be talked into the work.'
   }
 ];
 
@@ -128,7 +128,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
           <SectionHead
             eyebrow="Adding value"
             title="Advisory / Investing / Private Gatherings"
-            intro="Three ways of being useful in capital markets: putting the right people in one room, backing founders with more than a cheque, and giving a straight read to anyone raising or allocating. Most of the value lands long before anything closes."
+            intro="Three ways of being useful in capital markets: putting the right people in one room, backing founders with more than capital, and giving a straight read to anyone raising or allocating. Most of the value lands long before anything closes."
           />
 
           <div className="mt-14 md:mt-20 space-y-16 md:space-y-24">
