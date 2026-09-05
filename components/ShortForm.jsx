@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Play } from 'lucide-react';
-import { SectionHead, SECONDARY, PRIMARY_DEEP, SLATE } from './ui';
+import { SectionHead, SECONDARY, SECONDARY_DEEP, PRIMARY, SLATE, MUTED, BG } from './ui';
 
 /**
  * Short form — a playlist rather than a wall of thumbnails.
@@ -67,11 +67,14 @@ export default function ShortForm() {
   const src = `/videos/speaking/clip-${active}.mp4`;
   const current = CLIPS.find((c) => c.id === active) || CLIPS[0];
 
+  // Light ground. Gold is 2.06:1 on it and its deep shade only 3.11:1, so
+  // neither can carry the 10px WATCH label — that is navy at 10.88:1. Gold
+  // survives only as the play button, where it is a large filled shape rather
+  // than small text.
   return (
-    <section className="px-6 py-16 md:py-28" style={{ backgroundColor: PRIMARY_DEEP }}>
+    <section className="px-6 py-16 md:py-28" style={{ backgroundColor: BG }}>
       <div className="max-w-6xl mx-auto">
         <SectionHead
-          dark
           eyebrow="Short form"
           title="Mindset &amp; Motivation"
           intro="One point each, said plainly. If you would rather read them than watch them, they are written out beside the player."
@@ -142,21 +145,23 @@ export default function ShortForm() {
                     className="w-full text-left flex gap-5 md:gap-7 items-start"
                     style={{
                       padding: '22px 20px 22px 18px',
-                      background: on ? 'rgba(255,255,255,0.06)' : 'transparent',
-                      borderLeft: `3px solid ${on ? SECONDARY : 'rgba(255,255,255,0.14)'}`,
+                      background: on ? '#ffffff' : 'transparent',
                       border: 'none',
                       borderLeftWidth: 3,
                       borderLeftStyle: 'solid',
-                      borderLeftColor: on ? SECONDARY : 'rgba(255,255,255,0.14)',
+                      /* SECONDARY_DEEP, not SECONDARY: a 3px rule is a
+                         graphical object and needs 3:1. Gold gives 2.06:1
+                         here, its deep shade 3.11:1. */
+                      borderLeftColor: on ? SECONDARY_DEEP : '#dcdcdc',
                       cursor: 'pointer',
                       transition: 'background-color 180ms ease, border-color 180ms ease'
                     }}
-                    onMouseOver={(e) => { if (!on) e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.035)'; }}
+                    onMouseOver={(e) => { if (!on) e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.03)'; }}
                     onMouseOut={(e) => { if (!on) e.currentTarget.style.backgroundColor = 'transparent'; }}
                   >
                     <span
                       className="display"
-                      style={{ color: on ? SECONDARY : 'rgba(255,255,255,0.34)', fontSize: 14, letterSpacing: '0.1em', paddingTop: 5, flexShrink: 0 }}
+                      style={{ color: on ? SECONDARY_DEEP : MUTED, fontSize: 14, letterSpacing: '0.1em', paddingTop: 5, flexShrink: 0 }}
                     >
                       {String(i + 1).padStart(2, '0')}
                     </span>
@@ -164,18 +169,18 @@ export default function ShortForm() {
                     <span>
                       <span
                         className="display block"
-                        style={{ color: '#ffffff', fontSize: 'clamp(1.15rem, 2vw, 1.5rem)', lineHeight: 1.2, marginBottom: 8 }}
+                        style={{ color: SLATE, fontSize: 'clamp(1.15rem, 2vw, 1.5rem)', lineHeight: 1.2, marginBottom: 8 }}
                       >
                         {c.title}
                       </span>
-                      <span className="block" style={{ color: 'rgba(255,255,255,0.76)', fontSize: 15.5, lineHeight: 1.7 }}>
+                      <span className="block" style={{ color: MUTED, fontSize: 15.5, lineHeight: 1.7 }}>
                         {c.point}
                       </span>
                       <span
                         className="eyebrow-wide inline-flex items-center gap-2"
-                        style={{ color: SECONDARY, fontSize: 10, marginTop: 12, opacity: on ? 1 : 0.75 }}
+                        style={{ color: PRIMARY, fontSize: 10, marginTop: 12, opacity: on ? 1 : 0.75 }}
                       >
-                        <Play size={11} fill={SECONDARY} color={SECONDARY} />
+                        <Play size={11} fill={PRIMARY} color={PRIMARY} />
                         {on && playing ? 'Now playing' : 'Watch'}
                       </span>
                     </span>
