@@ -17,19 +17,24 @@ import { SectionHead, SECONDARY, PRIMARY_DEEP, SLATE } from './ui';
  *
  * Titles and encouragement are Jeremy's own, and the running order is his:
  * courage, then fear, then starting unready, then not waiting for perfect.
- * `id` is the clip file, which is why the ids do not run in sequence — the
- * order of this array is the order on the page, and the video that belongs
- * with each idea travels with it.
+ *
+ * `id` is the clip file. Each one is paired to its title by what is actually
+ * said in it — the burned-in captions read "STAIRCASE / THE FIRST" (1),
+ * "in bankruptcy / However, fear is" (2), "Pressfield says / under qualified"
+ * (3), "Are you holding / ready to begin" (5). An earlier reorder moved the
+ * videos along with the list positions instead of leaving each one with its
+ * own title, and every clip played against the wrong idea. If the order
+ * changes again, move the whole entry — never the id alone.
  */
 const CLIPS = [
   {
-    id: 2,
+    id: 1,
     title: 'Courage | Take The First Step',
     point:
       'Don’t let the climb overwhelm you or stop you from starting. The first step is the only one you have to see clearly.'
   },
   {
-    id: 5,
+    id: 2,
     title: '49% Fear / 51% Courage',
     point:
       'Everything you are dreaming of attaining is on the other side of fear. It is never a clean split — you only need the courage to win by two.'
@@ -41,7 +46,7 @@ const CLIPS = [
       'You will not feel qualified. Nobody does. Ready arrives after you begin, never before — everyone you think is qualified started out exactly like this.'
   },
   {
-    id: 1,
+    id: 5,
     title: 'Don’t Wait For Perfect',
     point:
       'Perfect is the most expensive thing you will ever wait on. Begin with what is already in your hands, and let the rest arrive on the way.'
