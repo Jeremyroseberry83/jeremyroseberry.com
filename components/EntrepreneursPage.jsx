@@ -155,8 +155,8 @@ export default function EntrepreneursPage() {
   return (
     <div>
       <PageTopBand
-        eyebrow="About"
-        title="Who Am I"
+        eyebrow="The person behind it"
+        title="Jeremy"
         subtitle="There are only two roles in my life that make me “unique” — husband and dad. I am not looking to replace myself in either one. Every other position, somebody else will eventually do."
         subtitleWidth="62ch"
         portrait="/images/portraits/about.jpg"
