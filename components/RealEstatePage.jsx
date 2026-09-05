@@ -4,6 +4,7 @@ import { TIERS } from './WhereIWork';
 import {
   PageTopBand,
   SectionHead,
+  CountUp,
   BookingCTA,
   SECONDARY,
   SECONDARY_DEEP,
@@ -78,7 +79,7 @@ export default function RealEstatePage({ onContactClick }) {
         <div className="max-w-6xl mx-auto">
           <SectionHead
             eyebrow="What we run"
-            title="Three Businesses"
+            title={<><CountUp end={3} duration={2200} /> Businesses</>}
             intro="Different clients, same discipline. Each one exists because the last one kept running into a problem it could not solve."
           />
 
