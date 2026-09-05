@@ -70,6 +70,7 @@ const FOR_WHOM = {
 const TOPICS = [
   {
     id: 'skip-mls',
+    thumb: '',   // /images/real-estate/skip-mls.jpg
     kicker: 'Skip MLS',
     title: 'Build Custom',
     body:
@@ -79,6 +80,7 @@ const TOPICS = [
   },
   {
     id: 'sitting-on-equity',
+    thumb: '',   // /images/real-estate/sitting-on-equity.jpg
     kicker: 'Sitting on',
     title: 'Equity',
     body:
@@ -88,6 +90,7 @@ const TOPICS = [
   },
   {
     id: 'four-wealth-builders',
+    thumb: '',   // /images/real-estate/four-wealth-builders.jpg
     kicker: 'Custom',
     title: '4 Wealth Builders',
     body:
@@ -97,6 +100,7 @@ const TOPICS = [
   },
   {
     id: 'panic-or-strategy',
+    thumb: '',   // /images/real-estate/panic-or-strategy.jpg
     kicker: 'Panic',
     title: 'Or Strategy',
     body:
@@ -106,6 +110,7 @@ const TOPICS = [
   },
   {
     id: 'number-one-alt',
+    thumb: '',   // /images/real-estate/number-one-alt.jpg
     kicker: '#1 Alt',
     title: 'Investment',
     body:
@@ -229,7 +234,11 @@ export default function RealEstatePage({ onContactClick }) {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px mt-14" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
             {TOPICS.map((t) => (
               <article key={t.id} className="p-8 md:p-9 flex flex-col" style={{ backgroundColor: PRIMARY_DEEP, minHeight: 300 }}>
-                {t.video && t.poster && (
+                {/* A video wins if there is one; otherwise the reel thumbnail
+                    stands in. 4:5 rather than the reel's native 9:16 — a full
+                    portrait frame in a three-up card runs about 650px tall and
+                    pushes the copy off the bottom of the screen. */}
+                {t.video && t.poster ? (
                   <video
                     className="mb-6"
                     src={t.video}
@@ -239,7 +248,11 @@ export default function RealEstatePage({ onContactClick }) {
                     preload="none"
                     style={{ width: '100%', borderRadius: 10, display: 'block' }}
                   />
-                )}
+                ) : t.thumb ? (
+                  <span className="venture-thumb mb-6" style={{ borderRadius: 10 }}>
+                    <img src={t.thumb} alt="" aria-hidden="true" style={{ aspectRatio: '4 / 5' }} />
+                  </span>
+                ) : null}
 
                 <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 10 }}>
                   {t.kicker}
