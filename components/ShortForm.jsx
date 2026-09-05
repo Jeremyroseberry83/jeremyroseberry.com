@@ -15,35 +15,36 @@ import { SectionHead, SECONDARY, PRIMARY_DEEP, SLATE } from './ui';
  * The player is sticky beside the list on desktop, so switching clips does not
  * scroll the video out from under you.
  *
- * TITLES AND POINTS ARE DRAFT. They were inferred from the captions burned
- * into the clips — Pressfield, "under qualified", "ready to begin", a 19th
- * century bankruptcy, markets shifting — not from a transcript. Jeremy should
- * correct them against what he actually says.
+ * Titles and encouragement are Jeremy's own, and the running order is his:
+ * courage, then fear, then starting unready, then not waiting for perfect.
+ * `id` is the clip file, which is why the ids do not run in sequence — the
+ * order of this array is the order on the page, and the video that belongs
+ * with each idea travels with it.
  */
 const CLIPS = [
   {
-    id: 1,
-    title: 'You don’t need the whole staircase',
-    point:
-      'Markets shift and the view never clears completely. Waiting for the whole flight to be visible costs more than taking the first step does.'
-  },
-  {
     id: 2,
-    title: 'Fear is the normal part',
+    title: 'Courage | Take The First Step',
     point:
-      'Bankruptcy, failure, the thing you are afraid will define you. It usually turns out to be a chapter rather than the ending.'
-  },
-  {
-    id: 3,
-    title: 'Everyone feels under-qualified',
-    point:
-      'Pressfield calls it resistance. It shows up hardest right before the work that matters — which is how you know you are pointed at the right thing.'
+      'Don’t let the climb overwhelm you or stop you from starting. The first step is the only one you have to see clearly.'
   },
   {
     id: 5,
-    title: 'Nobody is ever ready',
+    title: '49% Fear / 51% Courage',
     point:
-      'Are you holding, or are you beginning? Ready is not a state you arrive at. It is something you decide to act without.'
+      'Everything you are dreaming of attaining is on the other side of fear. It is never a clean split — you only need the courage to win by two.'
+  },
+  {
+    id: 3,
+    title: 'Start Before You Are Ready',
+    point:
+      'You will not feel qualified. Nobody does. Ready arrives after you begin, never before — everyone you think is qualified started out exactly like this.'
+  },
+  {
+    id: 1,
+    title: 'Don’t Wait For Perfect',
+    point:
+      'Perfect is the most expensive thing you will ever wait on. Begin with what is already in your hands, and let the rest arrive on the way.'
   }
 ];
 
