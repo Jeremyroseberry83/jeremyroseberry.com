@@ -372,11 +372,13 @@ body {
    horizontally — and a centred crop lands on image x 36%-64%, which is
    nothing but backdrop. That is why no headshot appeared on mobile.
 
-   85% pulls the window to x 61%-89%, which is the figure. At md and up the
+   The figures now run off the right edge of the composite, so the mobile crop
+   goes to the right edge with them — that lands the head between a third and
+   two thirds across the phone screen on all four banners. At md and up the
    whole composite fits and centre is correct again.
    ============================================================ */
 .band-photo {
-  object-position: 85% 50%;
+  object-position: 100% 50%;
 }
 
 @media (min-width: 768px) {
