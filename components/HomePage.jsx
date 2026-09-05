@@ -1,6 +1,6 @@
 import React from 'react';
 import PodcastLaunch from './PodcastLaunch';
-import { Button, CountUp, PRIMARY, SECONDARY, SECONDARY_DEEP, SLATE, INK, BG } from './ui';
+import { Button, CountUp, PRIMARY, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
 
 /**
@@ -177,69 +177,6 @@ export default function HomePage({ onContactClick }) {
         for it — a nav tab called Resources containing one unlaunched thing
         claimed more than exists. The capture starts building the list four
         months before launch, which is the point. */}
-    {/* The statement. It sits between the gold figures and the navy podcast
-        band on cream, which is the only quiet surface on the page — this line
-        does not need help from a photograph or a gradient, and giving it any
-        would make it look like a slogan rather than something he means. */}
-    <section className="px-6 py-16 md:py-28" style={{ backgroundColor: BG }}>
-      <div className="max-w-5xl mx-auto text-center">
-        <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 11, marginBottom: 24 }}>
-          What I do
-        </p>
-        {/* One sentence, broken where Jeremy broke it. The cap is 2.5rem
-            rather than 3rem because the second half runs to forty-seven
-            characters — any larger and the browser re-breaks it into three
-            ragged lines, which loses the two-part structure the line depends
-            on. The container is max-w-5xl for the same reason. */}
-        {/* Back up to 2.8rem — the imperative version runs thirty-eight
-            characters a line against the previous fifty-six, so it holds two
-            clean lines at a size the old wording could not. */}
-        <h2
-          className="display"
-          style={{ color: SLATE, fontSize: 'clamp(1.6rem, 3.8vw, 2.8rem)', marginBottom: 14 }}
-        >
-          Add value to people in words &amp; action.
-          <br />
-          <span style={{ color: PRIMARY }}>Solve complex problems I didn’t make.</span>
-        </h2>
-
-        {/* Starts with "and", so it is set tight under the headline as a
-            continuation of it rather than as a separate line of copy. */}
-        <p
-          style={{
-            color: SECONDARY_DEEP,
-            fontSize: 'clamp(0.95rem, 1.5vw, 1.15rem)',
-            lineHeight: 1.5,
-            fontStyle: 'italic',
-            marginBottom: 26
-          }}
-        >
-          and add enterprise value.
-        </p>
-
-        {/* Set in the body face rather than the condensed display one. Three
-            short declaratives in Oswald caps would read as a second headline
-            competing with the first; in Inter caps they read as a creed, which
-            is what they are. Tracking is 0.14em, not the eyebrow's 0.34em —
-            that much air is right for two words and unreadable across three
-            full sentences. */}
-        <p
-          style={{
-            color: SLATE,
-            fontSize: 'clamp(0.85rem, 1.4vw, 1rem)',
-            fontWeight: 600,
-            letterSpacing: '0.14em',
-            lineHeight: 2,
-            textTransform: 'uppercase'
-          }}
-        >
-          Live grateful for everything. Lead entitled to nothing.
-          <br className="hidden sm:block" />
-          {' '}Be faithful in the small things.
-        </p>
-      </div>
-    </section>
-
     <PodcastLaunch />
     </>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Play } from 'lucide-react';
+import ValueStatement from './ValueStatement';
 import ShortForm from './ShortForm';
 import PodcastLaunch from './PodcastLaunch';
 import WhereIWork from './WhereIWork';
@@ -7,7 +8,6 @@ import {
   PageTopBand,
   SectionHead,
   TopicCards,
-  BookingCTA,
   SECONDARY,
   SECONDARY_DEEP,
   PRIMARY_DEEP,
@@ -189,7 +189,7 @@ const PURSUITS = [
  */
 const FRIENDS = [];
 
-export default function EntrepreneursPage({ onContactClick }) {
+export default function EntrepreneursPage() {
   return (
     <div>
       <PageTopBand
@@ -199,6 +199,8 @@ export default function EntrepreneursPage({ onContactClick }) {
         image="/images/headers/entrepreneur.jpg"
         tone="taupe"
       />
+
+      <ValueStatement />
 
       <WhereIWork variant="display" />
 
@@ -499,7 +501,6 @@ export default function EntrepreneursPage({ onContactClick }) {
 
       <PodcastLaunch />
 
-      <BookingCTA onContactClick={onContactClick} />
     </div>
   );
 }
