@@ -176,7 +176,7 @@ const PURSUITS = [
     // of 5 as something he does rather than somewhere he goes.
     name: 'Coffee shops',
     body: 'The opposite of the other three. A corner table, two hours, and most of the thinking that ever actually gets done.',
-    image: ''
+    image: '/images/pursuits/coffee-shops.jpg'
   }
 ];
 
