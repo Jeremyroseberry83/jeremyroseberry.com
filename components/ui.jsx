@@ -591,7 +591,7 @@ export function Testimonials({ items, eyebrow = 'What organisers say', title = '
  * everywhere, so the ask is identical no matter where a visitor runs out of
  * scroll.
  */
-export function BookingCTA({ onContactClick, title = 'What are you working on?', body, context }) {
+export function BookingCTA({ onContactClick, eyebrow = 'Get in touch', title = 'What are you working on?', body, context }) {
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: PRIMARY }}>
       <div
@@ -600,7 +600,7 @@ export function BookingCTA({ onContactClick, title = 'What are you working on?',
       />
       <div className="relative max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
         <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11, marginBottom: 20 }}>
-          Get in touch
+          {eyebrow}
         </p>
         <h2 className="display" style={{ color: '#ffffff', fontSize: 'clamp(2rem, 4.6vw, 3.3rem)', marginBottom: 20 }}>
           {title}

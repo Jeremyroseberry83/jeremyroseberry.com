@@ -184,7 +184,16 @@ export default function PRMarketingPage({ onContactClick }) {
         </div>
       </section>
 
-      <BookingCTA onContactClick={onContactClick} />
+      {/* The generic close asks what you are working on. This page has spent
+          four stages and five disciplines making a reader diagnose themselves,
+          so it closes on that diagnosis instead. */}
+      <BookingCTA
+        onContactClick={onContactClick}
+        eyebrow="Capital readiness"
+        title="Let’s get you ready."
+        body="Tell me what you are raising for and where you think the story is weakest. If the honest answer is that you are not ready for any of it yet, I will say so — that is usually the more useful conversation."
+        context="Business / capital"
+      />
     </div>
   );
 }
