@@ -460,7 +460,7 @@ body {
   display: block;
   width: 46%;
   height: 0.055em;
-  background-color: var(--navy);
+  background-color: var(--gold);
   margin: 0.10em 0 0.07em;
   opacity: 0;
   animation: heroFade 1.8s ease-out 2.4s forwards;
