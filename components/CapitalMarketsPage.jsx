@@ -109,7 +109,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
           <SectionHead
             eyebrow="The platforms"
             title="A Platform For Capital Markets"
-            intro="Gatherings / Venture / Advisory. Different mechanics, same premise: relationships compound and lists do not."
+            intro="Gatherings / Venture / Advisory. Different rooms, same work — knowing people well enough to be genuinely useful to them, long before there is a transaction in it."
           />
 
           <div className="mt-14 md:mt-20 space-y-16 md:space-y-24">
