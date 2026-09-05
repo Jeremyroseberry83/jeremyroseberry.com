@@ -178,7 +178,7 @@ function WhereIWorkDisplay({ only, heading = true }) {
                     className="display"
                     style={{ color: 'rgba(255,255,255,0.28)', fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', lineHeight: 1 }}
                   >
-                    {String(TIERS.indexOf(tier) + 1).padStart(2, '0')}
+                    Tier {String(TIERS.indexOf(tier) + 1).padStart(2, '0')}
                   </span>
                   <h3
                     className="display"
