@@ -195,7 +195,8 @@ export default function EntrepreneursPage() {
       <PageTopBand
         eyebrow="About"
         title="Who Am I"
-        subtitle="I’m a husband and dad first. Every other role in my life, somebody else will eventually do."
+        subtitle="There are only two roles in my life that make me “unique” — husband and dad. I am not looking to replace myself in either one. Every other position, somebody else will eventually do."
+        subtitleWidth="62ch"
         image="/images/headers/entrepreneur.jpg"
         tone="taupe"
       />

@@ -203,7 +203,7 @@ const BAND_TONES = {
  */
 const LIGHT_TONES = new Set(['gold']);
 
-export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video, poster, tone = 'ink', cta, onCta, titleWidth = '16ch' }) {
+export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video, poster, tone = 'ink', cta, onCta, titleWidth = '16ch', subtitleWidth = '46ch' }) {
   const wash = BAND_TONES[tone] || INK;
   const rgb = {
     [PRIMARY]: '26,58,82',
@@ -332,7 +332,7 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
             {title}
           </h1>
           {subtitle && (
-            <p style={{ color: subInk, fontSize: 18, lineHeight: 1.7, maxWidth: '46ch', marginTop: 22 }}>
+            <p style={{ color: subInk, fontSize: 18, lineHeight: 1.7, maxWidth: subtitleWidth, marginTop: 22 }}>
               {subtitle}
             </p>
           )}
