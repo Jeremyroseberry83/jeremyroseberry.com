@@ -102,8 +102,8 @@ export default function PRMarketingPage({ onContactClick }) {
             </p>
             <p style={{ color: SLATE, fontSize: 16, lineHeight: 1.8, marginBottom: 30 }}>
               I have sat on both sides of this table — raising for my own companies, and in the
-              room when somebody else was raising. The gap between a good business and a fundable
-              one is almost never the business.
+              room when somebody else was raising. The gap between a good business or offering and
+              a fundable one is never the concept.
             </p>
 
             {STUDIOS.url && (
