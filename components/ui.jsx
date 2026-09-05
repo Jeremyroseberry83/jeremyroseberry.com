@@ -115,9 +115,15 @@ export function Button({ variant = 'gold', onClick, href, children, full, size =
  * here is what makes a one-person site read as a brand rather than a stack of
  * unrelated blocks.
  */
-export function SectionHead({ eyebrow, title, intro, dark, align = 'left', maxWidth = '48ch' }) {
-  const ink = dark ? '#ffffff' : SLATE;
-  const body = dark ? 'rgba(255,255,255,0.72)' : MUTED;
+export function SectionHead({ eyebrow, title, intro, dark, align = 'left', maxWidth = '48ch', tone }) {
+  // A gold ground needs its own set, not the light one. MUTED — the body
+  // colour everywhere else — is 2.37:1 on gold and unreadable, and the gold
+  // eyebrow and rule simply vanish into it. Navy and a warm near-black do the
+  // job at 6.64:1 and 4.95:1.
+  const gold = tone === 'gold';
+  const ink = gold ? SLATE : dark ? '#ffffff' : SLATE;
+  const body = gold ? '#413a37' : dark ? 'rgba(255,255,255,0.72)' : MUTED;
+  const accent = gold ? PRIMARY_DEEP : SECONDARY;
   const centered = align === 'center';
   return (
     <div
@@ -129,7 +135,10 @@ export function SectionHead({ eyebrow, title, intro, dark, align = 'left', maxWi
       }}
     >
       {eyebrow && (
-        <p className="eyebrow-wide" style={{ color: dark ? SECONDARY : SECONDARY_DEEP, fontSize: 11, marginBottom: 18 }}>
+        <p
+          className="eyebrow-wide"
+          style={{ color: gold ? PRIMARY_DEEP : dark ? SECONDARY : SECONDARY_DEEP, fontSize: 11, marginBottom: 18 }}
+        >
           {eyebrow}
         </p>
       )}
@@ -139,7 +148,7 @@ export function SectionHead({ eyebrow, title, intro, dark, align = 'left', maxWi
           display: 'block',
           width: 54,
           height: 3,
-          backgroundColor: SECONDARY,
+          backgroundColor: accent,
           marginBottom: 24,
           marginLeft: centered ? 'auto' : 0,
           marginRight: centered ? 'auto' : 0

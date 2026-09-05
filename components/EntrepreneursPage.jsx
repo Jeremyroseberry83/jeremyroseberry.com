@@ -374,10 +374,10 @@ export default function EntrepreneursPage() {
       {/* ============================================================
           4 — ADRENALINE
           ============================================================ */}
-      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: PRIMARY_DEEP }}>
+      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: SECONDARY }}>
         <div className="max-w-6xl mx-auto">
           <SectionHead
-            dark
+            tone="gold"
             eyebrow="Fun"
             title="Where I Have Fun"
             intro="Not a bucket list. These are the things that reset me — and the reason I can sit still in a board meeting the next morning."
