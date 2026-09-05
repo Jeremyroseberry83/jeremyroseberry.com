@@ -120,12 +120,12 @@ const MEDIA = [];
 const PURSUITS = [
   {
     name: 'Jet surfing',
-    body: 'Motorised board, open water, no forgiveness for a bad decision. Closest thing to flying at sea level.',
+    body: 'Just another big-kid toy that goes 42 MPH on the water. Like a magic carpet on glass, and so exhilarating.',
     image: '/images/pursuits/jet-surfing.jpg'
   },
   {
     name: 'Skydiving',
-    body: 'The part nobody tells you about is the quiet before the door opens.',
+    body: 'Yes, jumping out of a perfectly good plane. Pure adrenaline and a view like no other. Ask me why I can’t do it more than twice a year.',
     image: '/images/pursuits/skydiving.jpg'
   },
   {
@@ -137,7 +137,7 @@ const PURSUITS = [
     // DRAFT copy — replaced 130-degree training, which now lives in the Rule
     // of 5 as something he does rather than somewhere he goes.
     name: 'Coffee shops',
-    body: 'The opposite of the other three. A corner table, two hours, and most of the thinking that ever actually gets done.',
+    body: 'Honestly my second preferred office, other than the beach or the backyard. The opposite of the other three. A corner table, three hours, and time to think and create.',
     image: '/images/pursuits/coffee-shops.jpg'
   }
 ];
