@@ -82,7 +82,7 @@ export default function PRMarketingPage({ onContactClick }) {
         title="Are You Capital Ready?"
         subtitle="Most companies don’t have a bad product — they are missing a story, clear communication, and clarity about the problem they solve for their market."
         subtitleWidth="58ch"
-        image="/images/headers/pr-marketing.jpg"
+        portrait="/images/portraits/pr.jpg"
         tone="ink"
       />
 

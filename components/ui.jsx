@@ -212,7 +212,7 @@ const BAND_TONES = {
  */
 const LIGHT_TONES = new Set(['gold']);
 
-export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video, poster, tone = 'ink', cta, onCta, titleWidth = '16ch', subtitleWidth = '46ch' }) {
+export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video, poster, tone = 'ink', cta, onCta, titleWidth = '16ch', subtitleWidth = '46ch', portrait }) {
   const wash = BAND_TONES[tone] || INK;
   const rgb = {
     [PRIMARY]: '26,58,82',
@@ -276,6 +276,36 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
             style={{ background: `linear-gradient(180deg, rgba(${rgb},0.55) 0%, rgba(${rgb},0.92) 70%)` }}
           />
         </>
+      ) : portrait ? (
+        /* The original photo as a right-hand panel, dissolved into the band by
+           a CSS gradient in the band's OWN colour.
+
+           This replaces baking the figure onto a synthetic backdrop in Python.
+           That approach always left a visible seam: the photo's background
+           never quite matched the generated one, and no amount of feathering
+           hid the tonal join. Here the left of the photo sits under a fully
+           opaque wash of the exact section colour, so there is nothing to
+           match and nothing to see. */
+        <>
+          <img
+            src={portrait}
+            alt=""
+            aria-hidden="true"
+            className="band-portrait absolute inset-y-0 right-0 h-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(90deg, rgba(${rgb},1) 0%, rgba(${rgb},1) 38%, rgba(${rgb},0.72) 58%, rgba(${rgb},0.10) 78%, rgba(${rgb},0) 100%)`
+            }}
+          />
+          {/* Phones put the copy across the full width, so the horizontal wash
+              alone is not enough. */}
+          <div
+            className="absolute inset-0 md:hidden"
+            style={{ background: `linear-gradient(180deg, rgba(${rgb},0.55) 0%, rgba(${rgb},0.90) 58%, rgba(${rgb},0.97) 100%)` }}
+          />
+        </>
       ) : image ? (
         <>
           <img
@@ -324,11 +354,11 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
 
       <div
         className="relative max-w-6xl mx-auto px-6"
-        style={{ paddingTop: 'clamp(130px, 16vw, 180px)', paddingBottom: 'clamp(56px, 8vw, 88px)', minHeight: video ? 'clamp(420px, 46vw, 620px)' : undefined }}
+        style={{ paddingTop: 'clamp(130px, 16vw, 180px)', paddingBottom: 'clamp(56px, 8vw, 88px)', minHeight: video || portrait ? 'clamp(420px, 46vw, 620px)' : undefined }}
       >
         {/* Half-width beside the photograph on desktop, full width on a phone
             where the image sits behind a vertical wash instead. */}
-        <div className={image || video ? 'w-full md:w-7/12' : undefined}>
+        <div className={image || video || portrait ? 'w-full md:w-7/12' : undefined}>
           {eyebrow && (
             <p className="eyebrow-wide" style={{ color: eyebrowInk, fontSize: 11, marginBottom: 18 }}>
               {eyebrow}

@@ -386,3 +386,27 @@ body {
     object-position: center;
   }
 }
+
+/* ============================================================
+   Banner portrait — the original photo as a right-hand panel.
+
+   Width is set here rather than inline so the two breakpoints can differ:
+   on a phone the figure needs to be a larger share of a narrow band to read
+   at all, on desktop a third of the width leaves the copy its room.
+
+   object-position places the head just under the nav. The panel is taller
+   than the band at every width, so this is choosing which slice of the
+   portrait shows — 12% on desktop, and lower on mobile where the band is
+   proportionally much taller and a high crop pushed the head off the top.
+   ============================================================ */
+.band-portrait {
+  width: 62%;
+  object-position: 50% 6%;
+}
+
+@media (min-width: 768px) {
+  .band-portrait {
+    width: 34%;
+    object-position: 50% 12%;
+  }
+}

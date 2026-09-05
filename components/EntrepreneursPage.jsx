@@ -159,7 +159,7 @@ export default function EntrepreneursPage() {
         title="Who Am I"
         subtitle="There are only two roles in my life that make me “unique” — husband and dad. I am not looking to replace myself in either one. Every other position, somebody else will eventually do."
         subtitleWidth="62ch"
-        image="/images/headers/entrepreneur.jpg"
+        portrait="/images/portraits/about.jpg"
         tone="taupe"
       />
 

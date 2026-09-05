@@ -119,7 +119,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
         title="Scaling The Five Levels Of Capital"
         titleWidth="18ch"
         subtitle="One goal — scale relational, socio-economical, organizational, time and monetary capital."
-        image="/images/headers/speaking.jpg"
+        portrait="/images/portraits/capital.jpg"
         tone="ink"
       />
 
