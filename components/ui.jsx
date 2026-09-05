@@ -293,17 +293,11 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
             aria-hidden="true"
             className="band-portrait absolute inset-y-0 right-0 h-full object-cover"
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              /* Fully opaque PAST the photo's left edge — the panel starts
-                 at 48%, the wash does not begin clearing until 58%. The first
-                 attempt cleared from 38% and was only 47% opaque where the
-                 photo began, which is exactly the hard line that showed. The
-                 figure then emerges over a 30% run rather than at a boundary. */
-              background: `linear-gradient(90deg, rgba(${rgb},1) 0%, rgba(${rgb},1) 52%, rgba(${rgb},0.92) 60%, rgba(${rgb},0.55) 72%, rgba(${rgb},0.12) 86%, rgba(${rgb},0) 100%)`
-            }}
-          />
+          {/* The wash lives in CSS so it can differ by breakpoint: the panel
+              is narrow on desktop and wide on a phone, so a single set of
+              stops cannot stay opaque past the photo's edge at both. The band
+              colour is handed over as a custom property. */}
+          <div className="band-wash absolute inset-0" style={{ '--band': rgb }} />
           {/* Phones put the copy across the full width, so the horizontal wash
               alone is not enough. */}
           <div

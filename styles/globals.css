@@ -400,17 +400,47 @@ body {
    proportionally much taller and a high crop pushed the head off the top.
    ============================================================ */
 .band-portrait {
-  width: 82%;
-  object-position: 50% 6%;
+  width: 78%;
+  object-position: 50% 8%;
 }
 
 @media (min-width: 768px) {
   .band-portrait {
-    /* Wide on purpose. The wash stays fully opaque to 52% and only clears at
-       86%, so the panel has to start well left of where the figure reads —
-       otherwise the wash is still clearing when the photo runs out and its
-       edge shows. A narrow panel is what produced the visible line. */
-    width: 52%;
-    object-position: 50% 10%;
+    /* 26%, not 52%. The source is a 3:4 portrait; in a panel wider than it is
+       tall, object-fit cover scales by WIDTH and then crops the height away —
+       at 52% only 39% of the photo survived, which is why the face filled the
+       frame. At 26% the panel is narrower than 0.75 of the band height, so
+       scaling is height-driven and the whole portrait shows. */
+    width: 26%;
+    object-position: 50% 50%;
+  }
+}
+
+/* The wash. Must be fully opaque where the photo's left edge falls, or that
+   edge shows as a hard line — which is exactly what happened at the first
+   attempt. The edge is at 22% on a phone and 74% on desktop, so the two need
+   different stops. */
+.band-wash {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--band), 1) 0%,
+    rgba(var(--band), 1) 24%,
+    rgba(var(--band), 0.86) 42%,
+    rgba(var(--band), 0.45) 64%,
+    rgba(var(--band), 0.12) 84%,
+    rgba(var(--band), 0) 100%
+  );
+}
+
+@media (min-width: 768px) {
+  .band-wash {
+    background: linear-gradient(
+      90deg,
+      rgba(var(--band), 1) 0%,
+      rgba(var(--band), 1) 74%,
+      rgba(var(--band), 0.72) 82%,
+      rgba(var(--band), 0.24) 92%,
+      rgba(var(--band), 0) 100%
+    );
   }
 }
