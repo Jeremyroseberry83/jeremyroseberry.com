@@ -97,12 +97,17 @@ export default function HomePage({ onContactClick }) {
           This is why a separate portrait export of the artwork is no longer
           needed. */}
       <div className="md:hidden relative flex items-end" style={{ minHeight: '100svh' }}>
+        {/* 12%, not 22%. The artwork is 2560x1440 and on a phone it is cropped
+            to about a 665px-wide window of it; his face sits at 21.9% of the
+            frame, so 22% put it a fifth of the way across the screen rather
+            than in the middle. 12% centres it, and the figure comes out the
+            same at 375, 390 and 430 wide. */}
         <img
           src="/images/hero-honest-stories.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: '22% center' }}
+          style={{ objectPosition: '12% center' }}
         />
         <div
           className="absolute inset-0"

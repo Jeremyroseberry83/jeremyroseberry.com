@@ -93,6 +93,30 @@ for f in sorted(list(root.glob('components/*.jsx')) + list(root.glob('pages/*.js
         if name not in declared and name not in imported_all:
             problems.append(f"{f.name}: uses {name} but nothing declares or imports it")
 
+    # JSX COMMENT AMONG AN ELEMENT'S ATTRIBUTES. Also fatal, and a different
+    # shape from the one below: {/* ... */} is only legal among an element's
+    # CHILDREN, so it cannot sit between two attributes either. Scans for a
+    # {/* that opens while inside a tag.
+    depth, i, n = 0, 0, len(src)
+    in_tag = False
+    while i < n:
+        ch = src[i]
+        if not in_tag and ch == '<' and i + 1 < n and (src[i + 1].isalpha() or src[i + 1] == '_'):
+            in_tag, depth = True, 0
+        elif in_tag:
+            if ch == '{':
+                # Only depth 0 is attribute position. Deeper than that we are
+                # inside an attribute's expression — title={<>...</>} — whose
+                # JSX children may legally contain a comment.
+                if depth == 0 and src[i:i + 3] == '{/*':
+                    problems.append(f"{f.name}: JSX comment among attributes (line {src[:i].count(chr(10)) + 1}) — will not parse")
+                depth += 1
+            elif ch == '}':
+                depth -= 1
+            elif ch == '>' and depth <= 0:
+                in_tag = False
+        i += 1
+
     # JSX COMMENT IN AN ILLEGAL POSITION. {/* ... */} is an expression
     # container and is only valid among an element's children. Put one
     # between `return (` and the root element and the file will not parse —

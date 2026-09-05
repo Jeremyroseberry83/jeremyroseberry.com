@@ -66,7 +66,7 @@ export default function RealEstatePage({ onContactClick }) {
         title="Our Family Platform"
         subtitle="Businesses built around adding value. We advise and refer exclusively. No agents. No listings. Always looking for the best experts in every market."
         subtitleWidth="56ch"
-        image="/images/headers/entrepreneur.jpg"
+        image="/images/headers/real-estate.jpg"
         tone="ink"
       />
 
