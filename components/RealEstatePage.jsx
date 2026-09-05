@@ -53,8 +53,8 @@ const FOR_WHOM = {
     who: 'Sponsors raising and allocators deploying, across twenty-five countries',
     points: [
       'Capital advisory for people who need the introduction, not the pitch deck',
-      'Relationships built over two decades rather than bought off a list',
-      'Honest read on whether a raise is ready before it goes out'
+      'Relationships built over time. Not bought off a list',
+      'Honest consulting on whether a raise is ready before it goes to market'
     ]
   }
 };

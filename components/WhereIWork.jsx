@@ -35,15 +35,15 @@ export const TIERS = [
         description: 'Lifestyle services and luxury home concierge for distinguished clientele. Recurring revenue, acquisition-ready.'
       },
       {
-        // DRAFT. Also shares the Circle's address for now — Roseberry Capital
-        // has no site of its own yet. Two cards pointing at one destination is
-        // a stopgap, not a design; give this its own URL when there is one.
+        // Shares the Circle's address for now — Roseberry Capital has no site
+        // of its own yet. Two cards pointing at one destination is a stopgap,
+        // not a design; give this its own URL when there is one.
         name: 'Roseberry Capital',
         thumb: '/images/ventures/photos/roseberry-capital.jpg',
         role: 'Founder',
         url: 'https://www.privateinvestorcircle.com/',
         logo: '',
-        description: 'Capital advisory and allocation — relationships with sponsors and allocators across 25 countries.'
+        description: 'Capital advisory and strategy — direct relationships with sponsors and allocators.'
       }
     ]
   },
