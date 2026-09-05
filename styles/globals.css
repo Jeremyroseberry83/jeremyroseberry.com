@@ -400,13 +400,17 @@ body {
    proportionally much taller and a high crop pushed the head off the top.
    ============================================================ */
 .band-portrait {
-  width: 62%;
+  width: 82%;
   object-position: 50% 6%;
 }
 
 @media (min-width: 768px) {
   .band-portrait {
-    width: 34%;
-    object-position: 50% 12%;
+    /* Wide on purpose. The wash stays fully opaque to 52% and only clears at
+       86%, so the panel has to start well left of where the figure reads —
+       otherwise the wash is still clearing when the photo runs out and its
+       edge shows. A narrow panel is what produced the visible line. */
+    width: 52%;
+    object-position: 50% 10%;
   }
 }

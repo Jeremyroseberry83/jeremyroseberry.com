@@ -296,7 +296,12 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
           <div
             className="absolute inset-0"
             style={{
-              background: `linear-gradient(90deg, rgba(${rgb},1) 0%, rgba(${rgb},1) 38%, rgba(${rgb},0.72) 58%, rgba(${rgb},0.10) 78%, rgba(${rgb},0) 100%)`
+              /* Fully opaque PAST the photo's left edge — the panel starts
+                 at 48%, the wash does not begin clearing until 58%. The first
+                 attempt cleared from 38% and was only 47% opaque where the
+                 photo began, which is exactly the hard line that showed. The
+                 figure then emerges over a 30% run rather than at a boundary. */
+              background: `linear-gradient(90deg, rgba(${rgb},1) 0%, rgba(${rgb},1) 52%, rgba(${rgb},0.92) 60%, rgba(${rgb},0.55) 72%, rgba(${rgb},0.12) 86%, rgba(${rgb},0) 100%)`
             }}
           />
           {/* Phones put the copy across the full width, so the horizontal wash
