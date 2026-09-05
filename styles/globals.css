@@ -362,3 +362,25 @@ body {
     transform: none;
   }
 }
+
+/* ============================================================
+   Page banner photography.
+
+   Every banner is a 2400x840 composite with the figure on the far right and
+   empty backdrop on the left, where the type goes. On a phone the band is
+   tall and narrow, so object-fit: cover scales by HEIGHT and overflows
+   horizontally — and a centred crop lands on image x 36%-64%, which is
+   nothing but backdrop. That is why no headshot appeared on mobile.
+
+   85% pulls the window to x 61%-89%, which is the figure. At md and up the
+   whole composite fits and centre is correct again.
+   ============================================================ */
+.band-photo {
+  object-position: 85% 50%;
+}
+
+@media (min-width: 768px) {
+  .band-photo {
+    object-position: center;
+  }
+}

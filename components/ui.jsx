@@ -282,8 +282,7 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
             src={image}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ objectPosition: 'center' }}
+            className="band-photo absolute inset-0 w-full h-full object-cover"
           />
           {/* Opaque under the type, clearing across the photograph. The extra
               vertical pass keeps the bottom edge readable on tall phones,
@@ -297,7 +296,7 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
           />
           <div
             className="absolute inset-0 md:hidden"
-            style={{ background: `linear-gradient(180deg, rgba(${rgb},0.55) 0%, rgba(${rgb},0.92) 70%)` }}
+            style={{ background: `linear-gradient(180deg, rgba(${rgb},0.62) 0%, rgba(${rgb},0.95) 62%)` }}
           />
         </>
       ) : (

@@ -293,15 +293,7 @@ const META = {
               className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left"
               style={{ paddingBottom: 22, marginBottom: 22, borderBottom: '1px solid rgba(255,255,255,0.16)' }}
             >
-              <div>
-                <Logo tone="dark" />
-                {/* The tagline was defined in site.config.js and rendered
-                    nowhere. It is the plainest statement of what he does, so
-                    it belongs under his name on every page. */}
-                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, lineHeight: 1.6, marginTop: 12, maxWidth: '34ch' }}>
-                  {company.tagline}
-                </p>
-              </div>
+              <Logo tone="dark" />
 
               <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
                 {navItems.map((item) => (
@@ -324,14 +316,6 @@ const META = {
                 ))}
               </div>
 
-              <a
-                href={`mailto:${company.email}`}
-                className="inline-flex items-center gap-2"
-                style={{ color: colors.SECONDARY, fontSize: 14 }}
-              >
-                <Mail size={15} />
-                {company.email}
-              </a>
             </div>
 
             {/* Social. Each icon renders only when site.config.js has a URL for

@@ -156,7 +156,16 @@ export default function PRMarketingPage({ onContactClick }) {
           <SectionHead
             dark
             eyebrow="Helping you be market ready"
-            title={<><CountUp end={4} duration={2400} /> Kinds Of Ready</>}
+            title={
+              <>
+                <CountUp end={4} duration={2400} /> Types of{' '}
+                {/* Rule drawn as a border on the word, not a separate element:
+                    it has to follow the word if the headline rewraps. */}
+                <span style={{ borderBottom: `5px solid ${SECONDARY}`, paddingBottom: '0.06em' }}>
+                  Ready
+                </span>
+              </>
+            }
             intro="Read them in order and one will describe you. The honest answer is usually a stage behind where a company thinks it is — and naming that gap is what makes the next raise, or the next lender, go differently. If you can see where you actually are, I can help you close the distance to the next one."
           />
 
