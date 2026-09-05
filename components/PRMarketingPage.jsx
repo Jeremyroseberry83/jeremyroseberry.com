@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { TIERS } from './WhereIWork';
 import {
@@ -50,6 +50,31 @@ const STAGES = [
 
 
 export default function PRMarketingPage({ onContactClick }) {
+  // The four stages arrive a second apart. Reduced-motion visitors get them
+  // all at once — a three-second wait for the last card is a long time to
+  // stare at nothing if the animation is not wanted in the first place.
+  const ref = useRef(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return undefined;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setShown(true);
+      return undefined;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        setShown(true);
+        io.disconnect();
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div>
       <PageTopBand
@@ -118,7 +143,15 @@ export default function PRMarketingPage({ onContactClick }) {
       </section>
 
       {/* The ladder */}
-      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: PRIMARY_DEEP }}>
+      {/* Navy into gold. The warm stop is #57492c rather than the brand gold:
+          at #c9a961 the 72%-white body copy falls to 1.83:1, and even a
+          mid-gold like #6b5a35 only reaches 4.39:1. #57492c is the lightest
+          warm tone where that copy still clears 4.5:1, at 5.48. */}
+      <section
+        ref={ref}
+        className="px-6 py-16 md:py-28"
+        style={{ background: `linear-gradient(135deg, ${PRIMARY_DEEP} 0%, ${PRIMARY} 42%, #57492c 100%)` }}
+      >
         <div className="max-w-6xl mx-auto">
           <SectionHead
             dark
@@ -129,7 +162,18 @@ export default function PRMarketingPage({ onContactClick }) {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px mt-14" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
             {STAGES.map((s, i) => (
-              <article key={s.label} className="p-8 flex flex-col" style={{ backgroundColor: PRIMARY_DEEP, minHeight: 260 }}>
+              <article
+                key={s.label}
+                className="p-8 flex flex-col"
+                style={{
+                  backgroundColor: PRIMARY_DEEP,
+                  minHeight: 260,
+                  opacity: shown ? 1 : 0,
+                  transform: shown ? 'none' : 'translateY(14px)',
+                  transition: 'opacity 700ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1)',
+                  transitionDelay: `${i * 1000}ms`
+                }}
+              >
                 <span
                   className="display"
                   style={{ color: SECONDARY, opacity: 0.55, fontSize: '1.6rem', lineHeight: 1, marginBottom: 16 }}
