@@ -203,7 +203,7 @@ const BAND_TONES = {
  */
 const LIGHT_TONES = new Set(['gold']);
 
-export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video, poster, tone = 'ink', cta, onCta }) {
+export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video, poster, tone = 'ink', cta, onCta, titleWidth = '16ch' }) {
   const wash = BAND_TONES[tone] || INK;
   const rgb = {
     [PRIMARY]: '26,58,82',
@@ -326,7 +326,9 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
               {eyebrow}
             </p>
           )}
-          <h1 className="display" style={{ color: ink, fontSize: 'clamp(2.4rem, 6vw, 4.4rem)', maxWidth: '16ch' }}>
+          {/* 16ch suits a two-or-three-word title. A longer one needs its
+              own measure or the last line is left holding one word. */}
+          <h1 className="display" style={{ color: ink, fontSize: 'clamp(2.4rem, 6vw, 4.4rem)', maxWidth: titleWidth }}>
             {title}
           </h1>
           {subtitle && (

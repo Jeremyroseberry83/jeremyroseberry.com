@@ -87,8 +87,9 @@ export default function CapitalMarketsPage({ onContactClick }) {
     <div>
       <PageTopBand
         eyebrow="Capital Markets"
-        title="Where Capital Meets Founders"
-        subtitle="Three platforms, one job — put the right allocator in front of the right operator, and be honest with both about whether it fits."
+        title="Scaling The Five Levels Of Capital"
+        titleWidth="18ch"
+        subtitle="One goal — scale relational, socio-economical, organizational, time and monetary capital."
         image="/images/headers/speaking.jpg"
         tone="ink"
       />
