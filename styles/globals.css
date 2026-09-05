@@ -452,18 +452,18 @@ body {
    type runs from 3.2rem on a phone to 10.6vw on desktop, and a fixed pixel
    height would be a hairline on one and a slab on the other.
 
-   It arrives after the headline has finished. hero-fade-3 starts at 1.15s and
-   runs 1.6s, so anything before 2.75s would be competing with the words it is
-   meant to punctuate.
+   Starts at 2.4s, which overlaps the last third of a second of the headline's
+   own fade — close enough to feel like part of the same movement rather than
+   an afterthought arriving on its own.
    ============================================================ */
 .hero-rule {
   display: block;
   width: 46%;
   height: 0.055em;
-  background-color: var(--gold);
+  background-color: var(--navy);
   margin: 0.10em 0 0.07em;
   opacity: 0;
-  animation: heroFade 1.8s ease-out 2.9s forwards;
+  animation: heroFade 1.8s ease-out 2.4s forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
