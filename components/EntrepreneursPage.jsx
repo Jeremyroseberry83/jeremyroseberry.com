@@ -155,7 +155,7 @@ export default function EntrepreneursPage() {
   return (
     <div>
       <PageTopBand
-        eyebrow="The person behind it"
+        eyebrow="About"
         title="Jeremy"
         subtitle="There are only two roles in my life that make me “unique” — husband and dad. I am not looking to replace myself in either one. Every other position, somebody else will eventually do."
         subtitleWidth="62ch"
