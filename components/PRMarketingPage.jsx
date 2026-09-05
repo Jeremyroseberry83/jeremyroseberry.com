@@ -10,8 +10,7 @@ import {
   PRIMARY,
   PRIMARY_DEEP,
   SLATE,
-  MUTED,
-  BG
+  MUTED
 } from './ui';
 
 /**
@@ -20,7 +19,9 @@ import {
  *
  * The four READY stages come straight off 4IR Studios' own artwork, which is
  * the strongest thing it has: a company can locate itself on that ladder in
- * about four seconds, and that self-diagnosis is the whole pitch.
+ * about four seconds, and that self-diagnosis is the whole pitch. The page is
+ * now the company, the ladder, and the ask — nothing between the diagnosis
+ * and the invitation to fix it.
  */
 
 const STUDIOS =
@@ -47,13 +48,6 @@ const STAGES = [
   }
 ];
 
-const DISCIPLINES = [
-  { label: 'Strategy', body: 'What the company is actually claiming, and whether that claim survives contact with a sophisticated reader.' },
-  { label: 'Story', body: 'The version a founder can tell in ninety seconds and an analyst can repeat accurately afterwards.' },
-  { label: 'Design', body: 'Materials that look like the size of company you are asking to be treated as.' },
-  { label: 'Market', body: 'Presence where the capital already is — press, platforms, and the rooms that matter.' },
-  { label: 'Capital', body: 'The introductions, once the first four are actually true. Not before.' }
-];
 
 export default function PRMarketingPage({ onContactClick }) {
   return (
@@ -147,39 +141,6 @@ export default function PRMarketingPage({ onContactClick }) {
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 15, lineHeight: 1.7 }}>{s.body}</p>
               </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* The work */}
-      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: BG }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            eyebrow="The work"
-            title="Five Disciplines"
-            intro="In order. The last one does not work until the first four are actually true, which is the part most firms will not tell you."
-          />
-
-          <div className="mt-14 space-y-px" style={{ backgroundColor: '#e2e2e2' }}>
-            {DISCIPLINES.map((d, i) => (
-              <div
-                key={d.label}
-                className="grid md:grid-cols-12 gap-4 md:gap-10 items-baseline p-7 md:p-8"
-                style={{ backgroundColor: '#ffffff' }}
-              >
-                <div className="md:col-span-4 flex items-baseline gap-4">
-                  <span className="display" style={{ color: SECONDARY, fontSize: '1.4rem', lineHeight: 1 }}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="display" style={{ color: SLATE, fontSize: 'clamp(1.3rem, 2.2vw, 1.7rem)' }}>
-                    {d.label}
-                  </h3>
-                </div>
-                <p className="md:col-span-8" style={{ color: MUTED, fontSize: 16, lineHeight: 1.75 }}>
-                  {d.body}
-                </p>
-              </div>
             ))}
           </div>
         </div>
