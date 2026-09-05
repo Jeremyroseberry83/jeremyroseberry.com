@@ -273,8 +273,8 @@ export default function EntrepreneursPage() {
           <SectionHead
             dark
             align="center"
-            eyebrow="Rule of 5"
-            title="My Daily Routine"
+            eyebrow="My daily routine"
+            title="Daily Rule Of 5"
             intro="Five things a day, in each area. Not goals — the things that happen whether I feel like it or not."
           />
 
