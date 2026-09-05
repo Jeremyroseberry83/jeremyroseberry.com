@@ -29,7 +29,17 @@ import {
  */
 
 const CM_TIER = TIERS.find((t) => t.label === 'Capital Markets');
-const ON_THIS_PAGE = ['Private Investor Circle', 'Access Global', 'The 4IR Group'];
+// Order matters here: it runs Gatherings -> Venture -> Advisory, and each
+// company carries its label. Driven from this list rather than from TIERS,
+// which orders by when the businesses were added.
+const ON_THIS_PAGE = ['Private Investor Circle', 'The 4IR Group', 'Access Global'];
+
+/** The three words in the section intro, attached to the company each names. */
+const KIND = {
+  'Private Investor Circle': 'Gatherings',
+  'The 4IR Group': 'Venture',
+  'Access Global': 'Advisory'
+};
 
 const FOR_WHOM = {
   'Private Investor Circle': {
@@ -80,7 +90,7 @@ const FLOW = [
 
 export default function CapitalMarketsPage({ onContactClick }) {
   const companies = CM_TIER
-    ? CM_TIER.companies.filter((c) => ON_THIS_PAGE.includes(c.name))
+    ? ON_THIS_PAGE.map((n) => CM_TIER.companies.find((c) => c.name === n)).filter(Boolean)
     : [];
 
   return (
@@ -98,8 +108,8 @@ export default function CapitalMarketsPage({ onContactClick }) {
         <div className="max-w-6xl mx-auto">
           <SectionHead
             eyebrow="The platforms"
-            title="Three Ways In"
-            intro="A room, a platform, and a venture studio. Different mechanics, same premise: relationships compound and lists do not."
+            title="A Platform For Capital Markets"
+            intro="Gatherings / Venture / Advisory. Different mechanics, same premise: relationships compound and lists do not."
           />
 
           <div className="mt-14 md:mt-20 space-y-16 md:space-y-24">
@@ -122,6 +132,11 @@ export default function CapitalMarketsPage({ onContactClick }) {
                         <img src={c.logo} alt="" aria-hidden="true" style={{ maxHeight: 30, maxWidth: 170, width: 'auto' }} />
                       )}
                     </span>
+                    {KIND[c.name] && (
+                      <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 10 }}>
+                        {KIND[c.name]}
+                      </p>
+                    )}
                     <h3 className="display" style={{ color: SLATE, fontSize: 'clamp(1.7rem, 3.4vw, 2.5rem)', marginBottom: 10 }}>
                       {c.name}
                     </h3>
