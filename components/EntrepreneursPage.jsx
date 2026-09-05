@@ -326,7 +326,7 @@ export default function EntrepreneursPage() {
             tone="gold"
             eyebrow="Fun"
             title="Where I Have Fun"
-            intro="Not a bucket list. These are the things that reset me — and the reason I can sit still in a board meeting the next morning."
+            intro="Not a bucket list. These are the things that fill me up and help me re-create — yes, I enjoy quiet, intentional, slow days. But a good dose of adrenaline is also a tank I keep filled."
           />
 
           {/* gap-px over the section's own navy, so the dividing lines read
