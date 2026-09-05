@@ -120,9 +120,9 @@ export default function CapitalMarketsPage({ onContactClick }) {
       <section className="px-6 py-16 md:py-28" style={{ backgroundColor: '#ffffff' }}>
         <div className="max-w-6xl mx-auto">
           <SectionHead
-            eyebrow="The platforms"
-            title="A Platform For Capital Markets"
-            intro="Gatherings / Venture / Advisory. Different rooms, same work — knowing people well enough to be genuinely useful to them, long before there is a transaction in it."
+            eyebrow="Adding value"
+            title="Gatherings / Venture / Advisory"
+            intro="Three ways of being useful in capital markets: putting the right people in one room, backing founders with more than a cheque, and giving a straight read to anyone raising or allocating. Most of the value lands long before anything closes."
           />
 
           <div className="mt-14 md:mt-20 space-y-16 md:space-y-24">
