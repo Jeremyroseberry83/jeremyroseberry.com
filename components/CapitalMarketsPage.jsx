@@ -69,18 +69,20 @@ const FOR_WHOM = {
 };
 
 /**
- * The shape of what crosses the desk. Categories, not opportunities — see the
- * file header. Introductions leads because it is the one Jeremy gives away.
+ * What crosses the desk, as the four categories a private-markets desk
+ * actually splits into. Introductions came out because it was the odd one —
+ * a service rather than an asset class, sitting in a list of asset classes.
+ * The intro paragraph already carries that promise ("direct to the principal
+ * or the GP"), which is where it belongs.
  *
- * No company is named in these. The flow is described as his, which is what
- * it is at the advisory layer; pointing each category at a platform made it
- * read as a routing diagram rather than a desk.
+ * DRAFT: private equity is my addition — it is the standard fourth alongside
+ * real assets, credit and venture, and its absence was the reason the list
+ * needed a service to round it out. Order is strongest first. Both want
+ * Jeremy's confirmation.
+ *
+ * No named deal, return or allocation appears here. See the file header.
  */
 const FLOW = [
-  {
-    label: 'Introductions',
-    body: 'Often the most valuable thing on the list, and the only one nobody charges for. Two people who should already know each other, finally in the same room.'
-  },
   {
     label: 'Real assets',
     body: 'Commercial real estate and infrastructure. Sponsors who have done it before, in markets they already know, with a basis that makes sense before the story does.'
@@ -88,6 +90,10 @@ const FLOW = [
   {
     label: 'Private credit',
     body: 'Where the return is contractual rather than hoped for. The category most allocators say they want more of and see the least of.'
+  },
+  {
+    label: 'Private equity',
+    body: 'Operating businesses with real cash flow and a reason to change hands. Sponsors who can say plainly what they intend to do differently after close.'
   },
   {
     label: 'Early venture',
