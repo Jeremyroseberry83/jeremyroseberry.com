@@ -128,7 +128,8 @@ export default function RealEstatePage({ onContactClick }) {
       <PageTopBand
         eyebrow="Real Estate"
         title="Our Family Platform"
-        subtitle="Three businesses built around ownership. Most people call me with a problem attached to a property, not a listing they want to look at — and twenty years of my own money went in before anybody else’s did."
+        subtitle="Businesses built around adding value. We advise and refer exclusively. No agents. No listings. Always looking for the best experts in every market."
+        subtitleWidth="56ch"
         image="/images/headers/entrepreneur.jpg"
         tone="ink"
       />
