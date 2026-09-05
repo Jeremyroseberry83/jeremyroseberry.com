@@ -30,16 +30,21 @@ import {
  */
 
 const CM_TIER = TIERS.find((t) => t.label === 'Capital Markets');
-// Order matters here: it runs Gatherings -> Venture -> Advisory, and each
-// company carries its label. Driven from this list rather than from TIERS,
-// which orders by when the businesses were added.
+// Company order is Jeremy's: Private Investor Circle, then 4IR, then Access
+// Global. Driven from this list rather than from TIERS, which orders by when
+// the businesses were added.
+//
+// NOTE: the headline runs Advisory / Investing / Private Gatherings, which is
+// the reverse of this. Each company still carries its own label correctly —
+// KIND is keyed by name, not by position — but the two sequences no longer
+// mirror each other. Flip one or the other if that matters.
 const ON_THIS_PAGE = ['Private Investor Circle', 'The 4IR Group', 'Access Global'];
 
 /** The three words in the section intro, attached to the company each names. */
 const KIND = {
-  'Private Investor Circle': 'Gatherings',
-  'The 4IR Group': 'Venture',
-  'Access Global': 'Advisory'
+  'Access Global': 'Advisory',
+  'The 4IR Group': 'Investing',
+  'Private Investor Circle': 'Private gatherings'
 };
 
 const FOR_WHOM = {
@@ -122,7 +127,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
         <div className="max-w-6xl mx-auto">
           <SectionHead
             eyebrow="Adding value"
-            title="Gatherings / Venture / Advisory"
+            title="Advisory / Investing / Private Gatherings"
             intro="Three ways of being useful in capital markets: putting the right people in one room, backing founders with more than a cheque, and giving a straight read to anyone raising or allocating. Most of the value lands long before anything closes."
           />
 
