@@ -73,7 +73,7 @@ export default function ShortForm() {
         <SectionHead
           dark
           eyebrow="Short form"
-          title="Four Ideas, Four Minutes"
+          title="Mindset &amp; Motivation"
           intro="One point each, said plainly. If you would rather read them than watch them, they are written out beside the player."
         />
 

@@ -14,40 +14,6 @@ import { SectionHead, SECONDARY, PRIMARY, PRIMARY_DEEP } from './ui';
  */
 export const TIERS = [
   {
-    label: 'Real Estate',
-    blurb: 'Our family platform. Investing, acquisitions, and the service businesses built around ownership.',
-    companies: [
-      {
-        name: 'Roseberry Properties',
-        thumb: '/images/ventures/photos/roseberry-properties.jpg',
-        role: 'Founder / Broker',
-        url: 'https://roseberryproperties.com',
-        logo: '/images/logos/roseberry-properties.png',
-        description: 'A real estate brokerage specializing in referral and advisory services across all asset classes.'
-      },
-      {
-        // DRAFT — recovered from the old Entrepreneur page.
-        name: 'Premiere Home Watch',
-        thumb: '/images/ventures/photos/premiere-home-watch.jpg',
-        role: 'Founder',
-        url: 'https://roseberryproperties.com/premierehomewatch',
-        logo: '',
-        description: 'Lifestyle services and luxury home concierge for distinguished clientele. Recurring revenue, acquisition-ready.'
-      },
-      {
-        // Shares the Circle's address for now — Roseberry Capital has no site
-        // of its own yet. Two cards pointing at one destination is a stopgap,
-        // not a design; give this its own URL when there is one.
-        name: 'Roseberry Capital',
-        thumb: '/images/ventures/photos/roseberry-capital.jpg',
-        role: 'Founder',
-        url: 'https://www.privateinvestorcircle.com/',
-        logo: '',
-        description: 'Capital advisory and strategy — direct relationships with sponsors and allocators.'
-      }
-    ]
-  },
-  {
     label: 'Capital Markets',
     blurb: 'Advisory, allocation, and the rooms where allocators actually meet founders.',
     companies: [
@@ -87,6 +53,40 @@ export const TIERS = [
         description: 'Venture building at the edge of the Fourth Industrial Revolution. Seco Bio is the first.'
       }
     ]
+  },
+  {
+    label: 'Real Estate',
+    blurb: 'Our family platform. Investing, acquisitions, and the service businesses built around ownership.',
+    companies: [
+      {
+        name: 'Roseberry Properties',
+        thumb: '/images/ventures/photos/roseberry-properties.jpg',
+        role: 'Founder / Broker',
+        url: 'https://roseberryproperties.com',
+        logo: '/images/logos/roseberry-properties.png',
+        description: 'A real estate brokerage specializing in referral and advisory services across all asset classes.'
+      },
+      {
+        // DRAFT — recovered from the old Entrepreneur page.
+        name: 'Premiere Home Watch',
+        thumb: '/images/ventures/photos/premiere-home-watch.jpg',
+        role: 'Founder',
+        url: 'https://roseberryproperties.com/premierehomewatch',
+        logo: '',
+        description: 'Lifestyle services and luxury home concierge for distinguished clientele. Recurring revenue, acquisition-ready.'
+      },
+      {
+        // Shares the Circle's address for now — Roseberry Capital has no site
+        // of its own yet. Two cards pointing at one destination is a stopgap,
+        // not a design; give this its own URL when there is one.
+        name: 'Roseberry Capital',
+        thumb: '/images/ventures/photos/roseberry-capital.jpg',
+        role: 'Founder',
+        url: 'https://www.privateinvestorcircle.com/',
+        logo: '',
+        description: 'Capital advisory and strategy — direct relationships with sponsors and allocators.'
+      }
+    ]
   }
 ];
 
@@ -118,8 +118,8 @@ const displayUrl = (url) => url.replace(/^https?:\/{2}/, '').replace(/^www\./, '
  *    fit inside. The portrait sits at the top because on this page the reader
  *    is deciding whether they want to work with a person, not a portfolio.
  */
-export default function WhereIWork({ variant = 'grid' }) {
-  if (variant === 'display') return <WhereIWorkDisplay />;
+export default function WhereIWork({ variant = 'grid', only, heading = true }) {
+  if (variant === 'display') return <WhereIWorkDisplay only={only} heading={heading} />;
   return <WhereIWorkGrid />;
 }
 
@@ -127,13 +127,18 @@ export default function WhereIWork({ variant = 'grid' }) {
    DISPLAY — Entrepreneurs page
    ============================================================ */
 
-function WhereIWorkDisplay() {
+function WhereIWorkDisplay({ only, heading = true }) {
+  // `only` renders a single tier so a page can put something between the two.
+  // The numeral still comes from the tier's position in TIERS, not from its
+  // position in this filtered list — otherwise both tiers render as 01.
+  const tiers = only ? TIERS.filter((t) => t.label === only) : TIERS;
   return (
     <section className="py-16 md:py-28 px-6" style={{ backgroundColor: PRIMARY_DEEP }}>
       <div className="max-w-6xl mx-auto">
         {/* Portrait beside the intro rather than above it: at this width a
             centred headshot reads as a profile page, and this is a directory
             of businesses that happens to have a person attached. */}
+        {heading && (
         <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
           <img
             src="/images/jeremy-round.png"
@@ -157,9 +162,10 @@ function WhereIWorkDisplay() {
             />
           </div>
         </div>
+        )}
 
-        <div className="mt-14 md:mt-20 space-y-16 md:space-y-20">
-          {TIERS.map((tier, ti) => (
+        <div className={`${heading ? 'mt-14 md:mt-20 ' : ''}space-y-16 md:space-y-20`}>
+          {tiers.map((tier) => (
             <div key={tier.label}>
               {/* Tier header runs the full width — this is the unit an
                   entrepreneur is actually scanning for. */}
@@ -172,7 +178,7 @@ function WhereIWorkDisplay() {
                     className="display"
                     style={{ color: 'rgba(255,255,255,0.28)', fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', lineHeight: 1 }}
                   >
-                    {String(ti + 1).padStart(2, '0')}
+                    {String(TIERS.indexOf(tier) + 1).padStart(2, '0')}
                   </span>
                   <h3
                     className="display"

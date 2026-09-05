@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { TIERS } from './WhereIWork';
+import ShortForm from './ShortForm';
 import {
   PageTopBand,
   SectionHead,
@@ -236,6 +237,8 @@ export default function CapitalMarketsPage({ onContactClick }) {
           </div>
         </div>
       </section>
+
+      <ShortForm />
 
       <BookingCTA onContactClick={onContactClick} />
     </div>

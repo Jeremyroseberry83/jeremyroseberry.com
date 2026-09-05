@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { TIERS } from './WhereIWork';
+import SixFoundations from './SixFoundations';
 import {
   PageTopBand,
   SectionHead,
@@ -151,6 +152,8 @@ export default function RealEstatePage({ onContactClick }) {
           </div>
         </div>
       </section>
+
+      <SixFoundations />
 
       <BookingCTA onContactClick={onContactClick} />
     </div>
