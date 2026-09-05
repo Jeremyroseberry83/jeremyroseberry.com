@@ -81,7 +81,7 @@ export default function PRMarketingPage({ onContactClick }) {
         eyebrow="PR + Marketing"
         title="Are You Capital Ready?"
         subtitle="Most companies lose the raise on the story, the communication, and not emphasizing their strengths."
-        image="/images/headers/speaking.jpg"
+        image="/images/headers/pr-marketing.jpg"
         tone="ink"
       />
 
