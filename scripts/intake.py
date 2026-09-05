@@ -53,14 +53,6 @@ JOBS = {
     'pursuit-basejump':     ('images/pursuits/base-jumping.jpg',             (900, 1100),  'cover'),
     'pursuit-coffee':       ('images/pursuits/coffee-shops.jpg',             (900, 1100),  'cover'),
 
-    # Reel thumbnails for the content cards on Real Estate. 4:5 — the reels are
-    # 9:16, and a full portrait frame in a three-up card pushes the copy off
-    # the bottom of the screen.
-    'reel-skip-mls':        ('images/real-estate/skip-mls.jpg',              (800, 1000),  'cover'),
-    'reel-equity':          ('images/real-estate/sitting-on-equity.jpg',     (800, 1000),  'cover'),
-    'reel-wealth':          ('images/real-estate/four-wealth-builders.jpg',  (800, 1000),  'cover'),
-    'reel-panic':           ('images/real-estate/panic-or-strategy.jpg',     (800, 1000),  'cover'),
-    'reel-alt':             ('images/real-estate/number-one-alt.jpg',        (800, 1000),  'cover'),
     'hero-mobile':          ('images/hero-honest-stories-mobile.jpg',       (1080, 1350), 'cover'),
 
     # Square photo thumbnails for the company rows on Entrepreneurs. Separate

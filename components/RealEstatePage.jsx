@@ -8,7 +8,6 @@ import {
   SECONDARY,
   SECONDARY_DEEP,
   PRIMARY,
-  PRIMARY_DEEP,
   SLATE,
   MUTED
 } from './ui';
@@ -21,12 +20,6 @@ import {
  * business two different ways. What this page adds is the outward-facing half:
  * WHO each one is for and what they actually do for that person. The directory
  * answers "what is it"; this answers "why would I call".
- *
- * TOPICS are Jeremy's own content hooks, taken off the reels. Each is built to
- * take a video: drop a file at /videos/real-estate/<id>.mp4 with a poster and
- * fill the two fields — the card already renders a play affordance when a
- * video exists and stays a clean editorial card when it does not. Nothing here
- * fakes a play button over a still.
  */
 
 const RE_TIER = TIERS.find((t) => t.label === 'Real Estate');
@@ -59,66 +52,7 @@ const FOR_WHOM = {
   }
 };
 
-/**
- * Content hooks off the reels. Copy is DRAFT — written from Jeremy's own
- * titles, in his register, and wanting his sign-off.
- *
- * Deliberately no tax or return specifics. These are opinions about how to
- * think, not advice about what to do, and the moment one of them names a
- * depreciation schedule or a yield it becomes something else entirely.
- */
-const TOPICS = [
-  {
-    id: 'skip-mls',
-    thumb: '',   // /images/real-estate/skip-mls.jpg
-    kicker: 'Skip MLS',
-    title: 'Build Custom',
-    body:
-      'Everyone is fighting over the same listed inventory and paying a premium for the privilege. Building takes longer and it is not for everybody — but you set the basis, you pick what matters, and you are not bidding against six other people for someone else’s compromise.',
-    video: '',
-    poster: ''
-  },
-  {
-    id: 'sitting-on-equity',
-    thumb: '',   // /images/real-estate/sitting-on-equity.jpg
-    kicker: 'Sitting on',
-    title: 'Equity',
-    body:
-      'For most people their largest position is dead money and they do not know it. Equity that just sits is a decision — usually one nobody actually made. Know what it is worth, know what it could be doing, then decide on purpose.',
-    video: '',
-    poster: ''
-  },
-  {
-    id: 'four-wealth-builders',
-    thumb: '',   // /images/real-estate/four-wealth-builders.jpg
-    kicker: 'Custom',
-    title: '4 Wealth Builders',
-    body:
-      'Four things stack when you build instead of buy: equity you created rather than purchased, a basis you set yourself, a property built for how you actually live, and an asset with no comparable on the street. Buying gets you one of those on a good day.',
-    video: '',
-    poster: ''
-  },
-  {
-    id: 'panic-or-strategy',
-    thumb: '',   // /images/real-estate/panic-or-strategy.jpg
-    kicker: 'Panic',
-    title: 'Or Strategy',
-    body:
-      'Rates move, headlines follow, and people make permanent decisions about temporary conditions. The question was never what the market did this week. It is whether the thing you own still does the job you bought it to do.',
-    video: '',
-    poster: ''
-  },
-  {
-    id: 'number-one-alt',
-    thumb: '',   // /images/real-estate/number-one-alt.jpg
-    kicker: '#1 Alt',
-    title: 'Investment',
-    body:
-      'Every alternative asset class gets its moment. Real estate keeps getting picked because it is the only one you can finance cheaply, improve with your own hands, live inside, and hand to your kids.',
-    video: '',
-    poster: ''
-  }
-];
+
 
 export default function RealEstatePage({ onContactClick }) {
   const companies = RE_TIER ? RE_TIER.companies : [];
@@ -213,81 +147,6 @@ export default function RealEstatePage({ onContactClick }) {
                 </div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          2 — THE CONTENT
-          Jeremy's own hooks. Built video-ready: the moment a file exists
-          the card grows a real player, and until then it is an essay
-          card rather than a still with a fake play button on it.
-          ============================================================ */}
-      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: PRIMARY_DEEP }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            dark
-            eyebrow="What I talk about"
-            title="Real Estate, Plainly"
-            intro="The conversations I keep having, usually with someone who has already been told the opposite by somebody selling something."
-          />
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px mt-14" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
-            {TOPICS.map((t) => (
-              <article key={t.id} className="p-8 md:p-9 flex flex-col" style={{ backgroundColor: PRIMARY_DEEP, minHeight: 300 }}>
-                {/* A video wins if there is one; otherwise the reel thumbnail
-                    stands in. 4:5 rather than the reel's native 9:16 — a full
-                    portrait frame in a three-up card runs about 650px tall and
-                    pushes the copy off the bottom of the screen. */}
-                {t.video && t.poster ? (
-                  <video
-                    className="mb-6"
-                    src={t.video}
-                    poster={t.poster}
-                    controls
-                    playsInline
-                    preload="none"
-                    style={{ width: '100%', borderRadius: 10, display: 'block' }}
-                  />
-                ) : t.thumb ? (
-                  <span className="venture-thumb mb-6" style={{ borderRadius: 10 }}>
-                    <img src={t.thumb} alt="" aria-hidden="true" style={{ aspectRatio: '4 / 5' }} />
-                  </span>
-                ) : null}
-
-                <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 10 }}>
-                  {t.kicker}
-                </p>
-                <h3 className="display" style={{ color: '#ffffff', fontSize: 'clamp(1.5rem, 2.6vw, 2rem)', marginBottom: 16 }}>
-                  {t.title}
-                </h3>
-                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 15.5, lineHeight: 1.75 }}>{t.body}</p>
-              </article>
-            ))}
-
-            {/* Balances the 3-up grid at five items and does a real job: the
-                content section should end by asking for the conversation it
-                has spent five cards earning. */}
-            <article
-              className="p-8 md:p-9 flex flex-col justify-center"
-              style={{ backgroundColor: PRIMARY, minHeight: 300 }}
-            >
-              <h3 className="display" style={{ color: SECONDARY, fontSize: 'clamp(1.4rem, 2.4vw, 1.8rem)', marginBottom: 14 }}>
-                Ask Me Anything
-              </h3>
-              <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 15.5, lineHeight: 1.75, marginBottom: 24 }}>
-                Buying, building, sitting on equity you have not looked at in years — if you want a
-                straight answer with nothing attached to it, ask.
-              </p>
-              <button
-                onClick={() => onContactClick && onContactClick('Business / capital')}
-                className="venture-visit"
-                style={{ alignSelf: 'flex-start', cursor: 'pointer' }}
-              >
-                Let’s Connect
-                <ArrowUpRight size={14} />
-              </button>
-            </article>
           </div>
         </div>
       </section>
