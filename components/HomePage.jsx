@@ -77,9 +77,9 @@ export default function HomePage({ onContactClick }) {
             className="display hero-fade-3"
             style={{ color: '#ffffff', fontSize: '10.6vw', marginBottom: '1.8vw' }}
           >
-            Leader
-            <br />
-            Builder
+            <span className="block">Leader</span>
+            <span aria-hidden="true" className="hero-rule" />
+            <span className="block">Builder</span>
           </h1>
 
           <div>
@@ -124,9 +124,9 @@ export default function HomePage({ onContactClick }) {
           </p>
 
           <h1 className="display hero-fade-3" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
-            Leader
-            <br />
-            Builder
+            <span className="block">Leader</span>
+            <span aria-hidden="true" className="hero-rule" />
+            <span className="block">Builder</span>
           </h1>
 
           <div>

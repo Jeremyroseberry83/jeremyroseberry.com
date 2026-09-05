@@ -444,3 +444,31 @@ body {
     );
   }
 }
+
+/* ============================================================
+   The gold rule between LEADER and BUILDER.
+
+   Sized in em so it scales with the headline at every breakpoint — the hero
+   type runs from 3.2rem on a phone to 10.6vw on desktop, and a fixed pixel
+   height would be a hairline on one and a slab on the other.
+
+   It arrives after the headline has finished. hero-fade-3 starts at 1.15s and
+   runs 1.6s, so anything before 2.75s would be competing with the words it is
+   meant to punctuate.
+   ============================================================ */
+.hero-rule {
+  display: block;
+  width: 46%;
+  height: 0.055em;
+  background-color: var(--gold);
+  margin: 0.10em 0 0.07em;
+  opacity: 0;
+  animation: heroFade 1.8s ease-out 2.9s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rule {
+    opacity: 1;
+    animation: none;
+  }
+}
