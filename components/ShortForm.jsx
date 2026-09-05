@@ -18,23 +18,24 @@ import { SectionHead, SECONDARY, PRIMARY_DEEP, SLATE } from './ui';
  * Titles and encouragement are Jeremy's own, and the running order is his:
  * courage, then fear, then starting unready, then not waiting for perfect.
  *
- * `id` is the clip file. Each one is paired to its title by what is actually
- * said in it — the burned-in captions read "STAIRCASE / THE FIRST" (1),
- * "in bankruptcy / However, fear is" (2), "Pressfield says / under qualified"
- * (3), "Are you holding / ready to begin" (5). An earlier reorder moved the
- * videos along with the list positions instead of leaving each one with its
- * own title, and every clip played against the wrong idea. If the order
- * changes again, move the whole entry — never the id alone.
+ * `id` is the clip file, and the pairing below is Jeremy's — he confirmed
+ * which video belongs to which idea after watching them. Two earlier attempts
+ * got it wrong: the first moved video ids along with list positions during a
+ * reorder, the second guessed from the captions burned into the frames, which
+ * put clips 1 and 2 the wrong way round.
+ *
+ * So: do not re-derive this from the footage. If the running order changes,
+ * move whole entries and leave every id with the title it is already on.
  */
 const CLIPS = [
   {
-    id: 1,
+    id: 2,
     title: 'Courage | Take The First Step',
     point:
       'Don’t let the climb overwhelm you or stop you from starting. The first step is the only one you have to see clearly.'
   },
   {
-    id: 2,
+    id: 1,
     title: '49% Fear / 51% Courage',
     point:
       'Everything you are dreaming of attaining is on the other side of fear. It is never a clean split — you only need the courage to win by two.'
