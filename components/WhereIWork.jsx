@@ -151,7 +151,7 @@ function WhereIWorkDisplay() {
             <SectionHead
               dark
               maxWidth="62ch"
-              eyebrow="The tiers"
+              eyebrow="Business tiers"
               title="What I’m Building"
               intro="Two tiers, seven companies. Just a simple serial entrepreneur. No, it is never perfect — but on my best days I like to think it is all vertically integrated."
             />
@@ -282,7 +282,7 @@ function WhereIWorkGrid() {
             <SectionHead
               dark
               maxWidth="60ch"
-              eyebrow="The tiers"
+              eyebrow="Business tiers"
               title="What I’m Building"
               intro="Two tiers, seven companies. Just a simple serial entrepreneur. No, it is never perfect — but on my best days I like to think it is all vertically integrated."
             />

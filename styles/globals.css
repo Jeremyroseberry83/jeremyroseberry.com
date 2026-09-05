@@ -138,16 +138,35 @@ a {
 }
 .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
 
-@keyframes heroReveal {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* Hero entrance. Opacity only — the old version also slid the type up, which
+   fights a headline this large: at 10.6vw the movement reads as a layout
+   shift rather than an arrival.
+
+   The sequence: the name arrives a word at a time, then the headline fades in
+   slowly with both words together. The CTA is deliberately not animated — it
+   is the one thing on the page a visitor might reach for immediately, and a
+   button that is still fading in is a button that can be missed or mis-hit.
+
+   Timings live here, in one place. The gaps are 0.5s; at the 0.05s in the
+   brief the two words of the name would land within one frame of each other
+   and read as simultaneous. */
+@keyframes heroFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-/* Staggered so the eyebrow, headline, and CTA land in reading order rather
-   than all at once. */
-.hero-reveal   { opacity: 0; animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards; }
-.hero-reveal-2 { opacity: 0; animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.30s forwards; }
-.hero-reveal-3 { opacity: 0; animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.48s forwards; }
-.hero-reveal-4 { opacity: 0; animation: heroReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.66s forwards; }
+
+.hero-fade-1,
+.hero-fade-2,
+.hero-fade-3 {
+  opacity: 0;
+  animation-name: heroFade;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+.hero-fade-1 { animation-duration: 0.8s; animation-delay: 0.15s; }
+.hero-fade-2 { animation-duration: 0.8s; animation-delay: 0.65s; }
+.hero-fade-3 { animation-duration: 1.6s; animation-delay: 1.15s; }
 
 @keyframes scrollCue {
   0%, 100% { transform: translate(-50%, 0);  opacity: 1; }
@@ -164,10 +183,9 @@ a {
 /* Respect users who ask for reduced motion. Every animated element needs an
    entry here, or reduced-motion users get a permanently invisible headline. */
 @media (prefers-reduced-motion: reduce) {
-  .hero-reveal,
-  .hero-reveal-2,
-  .hero-reveal-3,
-  .hero-reveal-4 { opacity: 1; animation: none; }
+  .hero-fade-1,
+  .hero-fade-2,
+  .hero-fade-3 { opacity: 1; animation: none; }
   .scroll-cue span { animation: none; }
   .modal-fade-in { opacity: 1; animation: none; }
   html { scroll-behavior: auto; }

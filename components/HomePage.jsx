@@ -62,10 +62,11 @@ export default function HomePage({ onContactClick }) {
           }}
         >
           <p
-            className="eyebrow-wide hero-reveal"
+            className="eyebrow-wide"
             style={{ color: '#ffffff', fontSize: '1.55vw', marginBottom: '1.6vw' }}
           >
-            Jeremy <span style={{ color: SECONDARY }}>Roseberry</span>
+            <span className="hero-fade-1">Jeremy</span>{' '}
+            <span className="hero-fade-2" style={{ color: SECONDARY }}>Roseberry</span>
           </p>
 
           {/* Two words, full size. The name above is a fact, so the headline
@@ -73,7 +74,7 @@ export default function HomePage({ onContactClick }) {
               floating on its own — which is what went wrong when ADDING VALUE
               sat here with a claim above it and a claim below it. */}
           <h1
-            className="display hero-reveal-2"
+            className="display hero-fade-3"
             style={{ color: '#ffffff', fontSize: '10.6vw', marginBottom: '1.8vw' }}
           >
             Leader
@@ -81,7 +82,7 @@ export default function HomePage({ onContactClick }) {
             Builder
           </h1>
 
-          <div className="hero-reveal-3">
+          <div>
             <Button variant="navy" size="lg" borderColor="rgba(255,255,255,0.9)" onClick={() => onContactClick && onContactClick()}>
               {cta.primary}
             </Button>
@@ -112,17 +113,18 @@ export default function HomePage({ onContactClick }) {
         />
 
         <div className="relative px-6" style={{ paddingTop: 120, paddingBottom: 56 }}>
-          <p className="eyebrow-wide hero-reveal" style={{ color: '#ffffff', fontSize: 11, marginBottom: 14 }}>
-            Jeremy <span style={{ color: SECONDARY }}>Roseberry</span>
+          <p className="eyebrow-wide" style={{ color: '#ffffff', fontSize: 11, marginBottom: 14 }}>
+            <span className="hero-fade-1">Jeremy</span>{' '}
+            <span className="hero-fade-2" style={{ color: SECONDARY }}>Roseberry</span>
           </p>
 
-          <h1 className="display hero-reveal-2" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
+          <h1 className="display hero-fade-3" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
             Leader
             <br />
             Builder
           </h1>
 
-          <div className="hero-reveal-3">
+          <div>
             <Button variant="navy" size="lg" full borderColor="rgba(255,255,255,0.9)" onClick={() => onContactClick && onContactClick()}>
               {cta.primary}
             </Button>
