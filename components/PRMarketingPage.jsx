@@ -4,6 +4,7 @@ import { TIERS } from './WhereIWork';
 import {
   PageTopBand,
   SectionHead,
+  CountUp,
   BookingCTA,
   SECONDARY,
   PRIMARY,
@@ -127,9 +128,9 @@ export default function PRMarketingPage({ onContactClick }) {
         <div className="max-w-6xl mx-auto">
           <SectionHead
             dark
-            eyebrow="Where are you"
-            title="Four Kinds Of Ready"
-            intro="Most companies know which of these they are not. The work is getting from one to the next without pretending you are already there."
+            eyebrow="Helping you be market ready"
+            title={<><CountUp end={4} duration={2400} /> Kinds Of Ready</>}
+            intro="Read them in order and one will describe you. The honest answer is usually a stage behind where a company thinks it is — and naming that gap is what makes the next raise, or the next lender, go differently. If you can see where you actually are, I can help you close the distance to the next one."
           />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px mt-14" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
