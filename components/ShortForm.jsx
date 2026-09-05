@@ -55,7 +55,10 @@ const CLIPS = [
 ];
 
 export default function ShortForm() {
-  const [active, setActive] = useState(CLIPS[0].id);
+  // Opens on 49% Fear / 51% Courage rather than the top of the list — it is
+  // the most distinctive of the four and the one worth loading first. The list
+  // order is unchanged, so row 02 is highlighted on arrival.
+  const [active, setActive] = useState(CLIPS[1].id);
   const [playing, setPlaying] = useState(false);
 
   const open = (id) => {

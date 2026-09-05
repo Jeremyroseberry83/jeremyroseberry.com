@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { TIERS } from './WhereIWork';
 import ShortForm from './ShortForm';
@@ -90,24 +90,51 @@ const FOR_WHOM = {
  */
 const FLOW = [
   {
+    tint: '#0f2231',
     label: 'Real assets',
     body: 'Commercial real estate and infrastructure. Sponsors who have done it before, in markets they already know, with a basis that makes sense before the story does.'
   },
   {
+    tint: '#132a3d',
     label: 'Private credit',
     body: 'Where the return is contractual rather than hoped for. The category most allocators say they want more of and see the least of.'
   },
   {
+    tint: '#173149',
     label: 'Private equity',
     body: 'Operating businesses with real cash flow and a reason to change hands. Sponsors who can say plainly what they intend to do differently after close.'
   },
   {
+    tint: '#1b3854',
     label: 'Early venture',
     body: 'Founders at the point where operating help matters more than the size of the allocation. Usually the ones who did not need to be talked into the work.'
   }
 ];
 
 export default function CapitalMarketsPage({ onContactClick }) {
+  // Deal-flow cards arrive in order once the grid is in view.
+  const flowRef = useRef(null);
+  const [flowIn, setFlowIn] = useState(false);
+
+  useEffect(() => {
+    const node = flowRef.current;
+    if (!node) return undefined;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setFlowIn(true);
+      return undefined;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        setFlowIn(true);
+        io.disconnect();
+      },
+      { threshold: 0.2 }
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+
   const companies = CM_TIER
     ? ON_THIS_PAGE.map((n) => CM_TIER.companies.find((c) => c.name === n)).filter(Boolean)
     : [];
@@ -209,9 +236,22 @@ export default function CapitalMarketsPage({ onContactClick }) {
             intro="Quality flow crosses my desk across most asset classes, and my role in it is advisory — I consult, I tell you what I actually think, and I put you direct to the principal or the GP. No middle layer, and no live opportunities posted on a website."
           />
 
-          <div className="grid md:grid-cols-2 gap-px mt-14" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
+          <div ref={flowRef} className="grid md:grid-cols-2 gap-px mt-14" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
             {FLOW.map((f, i) => (
-              <article key={f.label} className="p-8 md:p-10" style={{ backgroundColor: PRIMARY_DEEP }}>
+              <article
+                key={f.label}
+                className="p-8 md:p-10"
+                style={{
+                  /* Each card a step lighter than the last. All four keep
+                     white at 12:1 or better, so the variation is visible
+                     without costing any legibility. */
+                  backgroundColor: f.tint,
+                  opacity: flowIn ? 1 : 0,
+                  transform: flowIn ? 'none' : 'translateY(12px)',
+                  transition: 'opacity 620ms ease, transform 620ms cubic-bezier(0.22, 1, 0.36, 1)',
+                  transitionDelay: `${i * 160}ms`
+                }}
+              >
                 <span
                   className="display block"
                   style={{ color: SECONDARY, opacity: 0.55, fontSize: 'clamp(1.5rem, 2.4vw, 2rem)', lineHeight: 1, marginBottom: 14 }}
