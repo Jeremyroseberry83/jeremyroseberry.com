@@ -47,10 +47,10 @@ export default function Creed() {
     return () => io.disconnect();
   }, []);
 
+  // Gold ground. White on gold is 2.25:1 and unusable, so the type is navy at
+  // 5.27:1 with the verbs a shade deeper at 6.64:1 — the two read apart by
+  // weight of colour rather than by hue.
   return (
-    {/* Gold ground. White on gold is 2.25:1 and unusable, so the type is navy
-        at 5.27:1 with the verbs a shade deeper at 6.64:1 — the two read apart
-        by weight of colour rather than by hue. */}
     <section className="px-6 py-16 md:py-28" style={{ backgroundColor: SECONDARY }}>
       <blockquote ref={ref} className="max-w-4xl mx-auto text-center" style={{ margin: '0 auto' }}>
         <span

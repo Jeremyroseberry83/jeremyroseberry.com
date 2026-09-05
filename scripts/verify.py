@@ -93,6 +93,14 @@ for f in sorted(list(root.glob('components/*.jsx')) + list(root.glob('pages/*.js
         if name not in declared and name not in imported_all:
             problems.append(f"{f.name}: uses {name} but nothing declares or imports it")
 
+    # JSX COMMENT IN AN ILLEGAL POSITION. {/* ... */} is an expression
+    # container and is only valid among an element's children. Put one
+    # between `return (` and the root element and the file will not parse —
+    # which is exactly what took the Netlify build down: every other check
+    # here passed, brace counting included, because the braces balance fine.
+    for m in re.finditer(r'(?:return|=>)\s*\(\s*\{/\*', src):
+        problems.append(f"{f.name}: JSX comment before the root element (line {src[:m.start()].count(chr(10)) + 1}) — will not parse")
+
     # JSX COMPONENTS USED BUT NOT IN SCOPE. Same crash class as the two above,
     # and the one they both missed: mounting <PodcastLaunch /> in ValuePage
     # without its default import passed every other check here and would have
