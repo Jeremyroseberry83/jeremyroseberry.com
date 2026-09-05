@@ -31,7 +31,7 @@ const SCALE_BROWN = '#413a37';
 const SCALE = [
   { value: '19', unit: 'yrs', label: 'Husband' },
   { value: '15', unit: 'yrs', label: 'Dad' },
-  { value: '20', unit: 'yrs', label: 'Investing' },
+  { value: '20', unit: 'yrs', label: 'Investor' },
   { value: '7', unit: '', label: 'Businesses' }
 ];
 
