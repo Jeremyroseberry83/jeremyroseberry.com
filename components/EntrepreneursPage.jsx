@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, Play } from 'lucide-react';
 import ValueStatement from './ValueStatement';
+import Creed from './Creed';
 import ShortForm from './ShortForm';
 import PodcastLaunch from './PodcastLaunch';
 import WhereIWork from './WhereIWork';
@@ -8,6 +9,7 @@ import {
   PageTopBand,
   SectionHead,
   TopicCards,
+  CountUp,
   SECONDARY,
   SECONDARY_DEEP,
   PRIMARY_DEEP,
@@ -205,6 +207,8 @@ export default function EntrepreneursPage() {
 
       <WhereIWork variant="display" />
 
+      <Creed />
+
       {/* ============================================================
           1 — THE SIX
           All six on one page. The order is the argument.
@@ -214,11 +218,11 @@ export default function EntrepreneursPage() {
           <SectionHead
             maxWidth="62ch"
             eyebrow="What I’m built on"
-            title="Six Foundations"
+            title={<><CountUp end={6} duration={2600} /> Foundations</>}
             intro="Faith, Family, Fitness, Finances, Friends, Fun. In that order, and all six load-bearing. Let one slip and everything built on top of it moves. If I ever look like I am coming apart, or just off, it is because one of these is off — and I need to recalibrate my rhythms before I try to fix anything else."
           />
           <div className="mt-14">
-            <TopicCards cards={SIXES} />
+            <TopicCards numbered cards={SIXES} />
           </div>
         </div>
       </section>
@@ -287,92 +291,82 @@ export default function EntrepreneursPage() {
       {/* ============================================================
           3 — RULE OF 5
 
-          Navy, not the charcoal this page uses elsewhere: the photograph is
-          a dark gym, and charcoal-on-charcoal turned the whole band muddy.
+          The photograph is the ground now, not a column. It is a 591x1537
+          portrait, so at full-bleed width it can only ever show a horizontal
+          slice — object-position is set high to make that slice his head and
+          shoulders rather than a band of torso.
 
-          The image is the full frame, uncropped, at its own 0.385 aspect —
-          so it is tall and narrow, and the three lists beside it are taller
-          still. That mismatch is the layout: the photo column is sticky on
-          desktop, so the figure stays with you while you read all fifteen
-          items instead of scrolling away after the first five.
+          Two layers over it: a near-solid navy at 0.86 and a vertical
+          gradient. The flat wash alone left the type sitting on whatever
+          happened to be behind it at that point in the frame; the gradient
+          guarantees the top and bottom edges stay dark regardless.
 
-          Reading order is fixed by the grid, not by source order — the copy
-          block is written first in the DOM so a screen reader and a phone
-          both get the heading before the photograph.
+          Losing the column also frees the three areas to run three-across
+          instead of stacking down one side.
           ============================================================ */}
-      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: PRIMARY_DEEP }}>
-        <div className="max-w-6xl mx-auto grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      <section className="relative overflow-hidden px-6 py-16 md:py-28">
+        <img
+          src="/images/fitness-training.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: 'center 12%' }}
+        />
+        <span
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{ backgroundColor: 'rgba(18,41,59,0.86)' }}
+        />
+        <span
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(180deg, rgba(18,41,59,0.75) 0%, rgba(18,41,59,0.25) 45%, rgba(18,41,59,0.8) 100%)' }}
+        />
 
-          {/* Photo. Order flipped on desktop so it sits left of the copy while
-              staying second in the document. */}
-          <div className="md:col-span-4 md:order-first mx-auto md:mx-0" style={{ maxWidth: 340, width: '100%' }}>
-            <div className="md:sticky" style={{ top: 104 }}>
-              <img
-                src="/images/fitness-training.jpg"
-                alt=""
-                aria-hidden="true"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </div>
-          </div>
+        <div className="relative max-w-6xl mx-auto">
+          <SectionHead
+            dark
+            align="center"
+            eyebrow="Rule of 5"
+            title="My Daily Routine"
+            intro="Five things a day, in each area. Not goals — the things that happen whether I feel like it or not."
+          />
 
-          <div className="md:col-span-8">
-            <SectionHead
-              dark
-              eyebrow="Rule of 5"
-              title="My Daily Routine"
-              intro="Five things a day, in each area. Not goals — the things that happen whether I feel like it or not."
-            />
-
-            <div className="mt-12 md:mt-14 space-y-12">
-              {RULE_OF_5.map((group) => (
-                <div key={group.area}>
-                  <div
-                    className="flex items-baseline gap-4 pb-4"
-                    style={{ borderBottom: '1px solid rgba(255,255,255,0.16)' }}
+          <div className="grid md:grid-cols-3 gap-10 md:gap-12 mt-14 md:mt-20">
+            {RULE_OF_5.map((group) => (
+              <div key={group.area}>
+                <div
+                  className="flex items-baseline gap-4 pb-4"
+                  style={{ borderBottom: '1px solid rgba(255,255,255,0.24)' }}
+                >
+                  <h3 className="display" style={{ color: SECONDARY, fontSize: 'clamp(1.3rem, 2.4vw, 1.8rem)' }}>
+                    {group.area}
+                  </h3>
+                  <span
+                    className="eyebrow-wide"
+                    style={{ color: 'rgba(255,255,255,0.5)', fontSize: 10, marginLeft: 'auto' }}
                   >
-                    <h3 className="display" style={{ color: SECONDARY, fontSize: 'clamp(1.3rem, 2.4vw, 1.8rem)' }}>
-                      {group.area}
-                    </h3>
-                    <span
-                      className="eyebrow-wide"
-                      style={{ color: 'rgba(255,255,255,0.38)', fontSize: 10, marginLeft: 'auto' }}
-                    >
-                      Five a day
-                    </span>
-                  </div>
-
-                  {/* Two columns on wide screens: five short lines in a single
-                      column beside a photo leaves a long empty gutter, and the
-                      whole block ran taller than the page needed. */}
-                  <ol
-                    className="grid sm:grid-cols-2 gap-x-10 gap-y-4"
-                    style={{ listStyle: 'none', marginTop: 20 }}
-                  >
-                    {group.items.map((item, i) => (
-                      <li key={item} className="flex gap-3.5">
-                        <span
-                          className="display"
-                          style={{
-                            color: SECONDARY,
-                            opacity: 0.55,
-                            fontSize: 12,
-                            letterSpacing: '0.1em',
-                            paddingTop: 4,
-                            flexShrink: 0
-                          }}
-                        >
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
-                        <span style={{ color: 'rgba(255,255,255,0.84)', fontSize: 15.5, lineHeight: 1.6 }}>
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ol>
+                    Five a day
+                  </span>
                 </div>
-              ))}
-            </div>
+
+                <ol className="space-y-4" style={{ listStyle: 'none', marginTop: 20 }}>
+                  {group.items.map((item, i) => (
+                    <li key={item} className="flex gap-3.5">
+                      <span
+                        className="display"
+                        style={{ color: SECONDARY, opacity: 0.6, fontSize: 12, letterSpacing: '0.1em', paddingTop: 4, flexShrink: 0 }}
+                      >
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 15.5, lineHeight: 1.6 }}>
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
           </div>
         </div>
       </section>

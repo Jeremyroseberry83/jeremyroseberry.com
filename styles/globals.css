@@ -248,34 +248,29 @@ body {
   display: none !important;
 }
 
-/* The latest-episode panel. A fixed 16:10 box is right on desktop, where the
-   card is wide and the copy sits comfortably inside it. On a phone the same
-   ratio gives a ~200px-tall box holding a headline, a paragraph and two
-   buttons — and the parent clips overflow, so the buttons simply vanish.
-   Below md the box takes its height from its contents instead. */
-.band-16x10 {
-  min-height: 0;
-}
+/* ============================================================
+   Latest-episode style panels. A fixed ratio is right on desktop, where the
+   card is wide; on a phone the same ratio gives a box too short for its own
+   contents and the parent clips the overflow.
+   ============================================================ */
+.band-16x10 { min-height: 0; }
 @media (min-width: 768px) {
-  .band-16x10 {
-    aspect-ratio: 16 / 10;
-  }
+  .band-16x10 { aspect-ratio: 16 / 10; }
 }
 
 /* ============================================================
-   Company thumbnails on Entrepreneurs.
+   Company thumbnails.
 
-   A flat square on a flat navy ground reads as a placeholder no matter what
-   photograph is in it — there is nothing separating the image plane from the
-   page. Depth here is three cheap things stacked: a rounded corner so it
-   reads as an object, a hairline light ring so the edge survives against a
-   dark ground (a drop shadow alone is nearly invisible navy-on-navy), and a
-   shadow with a large negative spread so it sits under the tile rather than
-   haloing it.
+   A flat square on a flat navy ground reads as a placeholder whatever
+   photograph is in it — nothing separates the image plane from the page.
+   Depth is three cheap things stacked: a rounded corner so it reads as an
+   object, a hairline light ring because a drop shadow alone is nearly
+   invisible navy-on-navy, and a shadow with a large negative spread so it
+   sits under the tile rather than haloing it.
 
-   The wrapper is a <span> with overflow hidden, not a border-radius on the
-   <img> itself: Safari still bleeds the corners of an object-fit image out
-   past its own radius during a transform.
+   The radius lives on a wrapper span with overflow hidden, not on the <img>:
+   Safari bleeds the corners of an object-fit image past its own radius
+   during a transform.
    ============================================================ */
 .venture-thumb {
   display: block;
@@ -299,8 +294,7 @@ body {
 }
 
 /* A soft top highlight — the edge a physical card catches from light above.
-   Without it the rounded corner reads as a cut-out rather than a raised
-   surface. */
+   Without it the rounded corner reads as a cut-out, not a raised surface. */
 .venture-thumb::after {
   content: '';
   position: absolute;
@@ -318,17 +312,8 @@ body {
     0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .venture-thumb,
-  .venture-row:hover .venture-thumb {
-    transition: none;
-    transform: none;
-  }
-}
-
 /* "Visit Website" on each company row. A span styled as a button — the row
-   itself is the anchor, so this must not be one. On hover the row inverts it
-   to gold, which is the same signal the thumbnail's ring gives. */
+   itself is the anchor, so this must not be one. */
 .venture-visit {
   display: inline-flex;
   align-items: center;
@@ -352,35 +337,10 @@ body {
   color: var(--charcoal);
 }
 
-/* ============================================================
-   The creed under the value statement — a marker-pen highlight that wipes
-   left to right as each line comes into view.
-
-   Drawn as a background-image on the inline text rather than a pseudo-element
-   behind it: the text wraps, and a positioned element cannot follow a line
-   break. A background gradient wraps with the text for free.
-
-   background-size animates; background-position does not need to. 0.34em is
-   about x-height, so the band sits under the letters like a highlighter
-   rather than covering them.
-   ============================================================ */
-.creed-line {
-  background-image: linear-gradient(var(--gold), var(--gold));
-  background-repeat: no-repeat;
-  background-position: 0 0.82em;
-  background-size: 0% 0.34em;
-  transition: background-size 820ms cubic-bezier(0.22, 1, 0.36, 1);
-  padding: 0 0.06em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-.creed-line.is-on {
-  background-size: 100% 0.34em;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .creed-line {
+  .venture-thumb,
+  .venture-row:hover .venture-thumb {
     transition: none;
+    transform: none;
   }
 }

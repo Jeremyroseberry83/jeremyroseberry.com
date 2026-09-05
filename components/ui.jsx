@@ -449,7 +449,7 @@ export function NumberStrip({ items, dark }) {
  * Uses gap-px over a colored parent to draw hairline rules without doubling
  * borders where cards meet.
  */
-export function TopicCards({ cards, dark }) {
+export function TopicCards({ cards, dark, numbered }) {
   // Column count follows the data: four cards go to quarters, everything else
   // to thirds — which gives three in one row and six in two clean rows.
   // Hardcoding thirds left a four-card set with an orphan on its own row.
@@ -458,6 +458,19 @@ export function TopicCards({ cards, dark }) {
     <div className={`grid ${cols} gap-px`} style={{ backgroundColor: dark ? 'rgba(255,255,255,0.14)' : '#e2e2e2' }}>
       {cards.map((c, i) => (
         <div key={c.title} className="p-9" style={{ backgroundColor: i === 0 ? PRIMARY : dark ? INK : '#ffffff' }}>
+          {numbered && (
+            <p
+              className="display"
+              style={{
+                color: i === 0 ? SECONDARY : SECONDARY_DEEP,
+                fontSize: 28,
+                lineHeight: 1,
+                marginBottom: 12
+              }}
+            >
+              {String(i + 1).padStart(2, '0')}
+            </p>
+          )}
           {c.eyebrow && (
             <p
               className="eyebrow-wide"
