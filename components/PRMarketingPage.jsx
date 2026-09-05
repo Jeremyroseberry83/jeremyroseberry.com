@@ -80,7 +80,8 @@ export default function PRMarketingPage({ onContactClick }) {
       <PageTopBand
         eyebrow="PR + Marketing"
         title="Are You Capital Ready?"
-        subtitle="Most companies lose the raise on the story, the communication, and not emphasizing their strengths."
+        subtitle="Most companies don’t have a bad product — they are missing a story, clear communication, and clarity about the problem they solve for their market."
+        subtitleWidth="58ch"
         image="/images/headers/pr-marketing.jpg"
         tone="ink"
       />
