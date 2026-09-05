@@ -59,8 +59,8 @@ export default function PRMarketingPage({ onContactClick }) {
     <div>
       <PageTopBand
         eyebrow="PR + Marketing"
-        title="Capital Ready"
-        subtitle="Most companies do not lose the raise on the numbers. They lose it on the story, the materials, and looking smaller than they are."
+        title="Are You Capital Ready?"
+        subtitle="Most companies lose the raise on the story, the communication, and not emphasizing their strengths."
         image="/images/headers/speaking.jpg"
         tone="ink"
       />
