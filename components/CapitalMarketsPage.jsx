@@ -68,11 +68,22 @@ const FOR_WHOM = {
   }
 };
 
-/** The shape of what crosses the desk. Categories, not opportunities. */
+/**
+ * The shape of what crosses the desk. Categories, not opportunities — see the
+ * file header. Introductions leads because it is the one Jeremy gives away.
+ *
+ * No company is named in these. The flow is described as his, which is what
+ * it is at the advisory layer; pointing each category at a platform made it
+ * read as a routing diagram rather than a desk.
+ */
 const FLOW = [
   {
+    label: 'Introductions',
+    body: 'Often the most valuable thing on the list, and the only one nobody charges for. Two people who should already know each other, finally in the same room.'
+  },
+  {
     label: 'Real assets',
-    body: 'Commercial real estate and infrastructure, largely through Access Global. Sponsors who have done it before, in markets they already know.'
+    body: 'Commercial real estate and infrastructure. Sponsors who have done it before, in markets they already know, with a basis that makes sense before the story does.'
   },
   {
     label: 'Private credit',
@@ -80,11 +91,7 @@ const FLOW = [
   },
   {
     label: 'Early venture',
-    body: 'Through 4IR — founders at the point where operating help matters more than the size of the cheque.'
-  },
-  {
-    label: 'Introductions',
-    body: 'Often the most valuable thing on the list, and the only one nobody charges for. Two people who should already know each other, finally in the same room.'
+    body: 'Founders at the point where operating help matters more than the size of the cheque. Usually the ones who did not need to be talked into the work.'
   }
 ];
 
@@ -186,8 +193,8 @@ export default function CapitalMarketsPage({ onContactClick }) {
           <SectionHead
             dark
             eyebrow="Deal flow"
-            title="What Crosses The Desk"
-            intro="Categories rather than a list. Live opportunities are shown to people in the room, not published on a website — and I would rather tell you the shape of it honestly than post something that looks impressive."
+            title="Pre-Vetted / Sector Agnostic"
+            intro="Quality flow crosses my desk across most asset classes, and my role in it is advisory — I consult, I tell you what I actually think, and I put you direct to the principal or the GP. No middle layer, and no live opportunities posted on a website."
           />
 
           <div className="grid md:grid-cols-2 gap-px mt-14" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
@@ -209,8 +216,8 @@ export default function CapitalMarketsPage({ onContactClick }) {
 
           <div className="text-center" style={{ marginTop: 48 }}>
             <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 17, lineHeight: 1.8, maxWidth: '52ch', margin: '0 auto 28px' }}>
-              If you are raising, allocating, or want to be in the room the next time it runs —
-              that is the conversation to have.
+              If you are raising, allocating, or simply want to be in the room — that is a
+              conversation I love to have.
             </p>
             <button
               onClick={() => onContactClick && onContactClick('Business / capital')}
