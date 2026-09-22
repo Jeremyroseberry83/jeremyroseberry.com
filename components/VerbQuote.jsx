@@ -8,22 +8,27 @@ import { SECONDARY, SECONDARY_DEEP, SLATE, BG } from './ui';
  *
  * Deliberately plain: a rule, the verb, a line. The hero already does the
  * typographic work; these are the echo, and an echo that shouts is noise.
+ *
+ * Every line is addressed to the reader and about their situation — their
+ * decision, their people, their company, their courage. An earlier set stated
+ * principles in the abstract, which made them things Jeremy believes rather
+ * than things the reader recognises about themselves. Keep the "you".
  */
 const QUOTES = {
   think: {
-    line: 'Clear thinking is not a talent. It is what is left once you stop reacting.',
+    line: 'Most of what is in your way is noise. Quiet it and the decision you keep circling is already made.',
     note: 'Think'
   },
   lead: {
-    line: 'Lead yourself first. Everything else you are trying to lead is downstream of that.',
+    line: 'Your people are not waiting on your strategy. They are watching how you carry the week you did not plan for.',
     note: 'Lead'
   },
   scale: {
-    line: 'Scale is systems, not effort. Effort is what you do until the system exists.',
+    line: 'Your company only outgrows you once you build something that runs when you are not in the room.',
     note: 'Scale'
   },
   try: {
-    line: 'Courage to try puts you in the top ten percent before you are any good at it.',
+    line: 'You do not have to be good at it yet. The courage to start puts you ahead of almost everyone still deciding.',
     note: 'Try'
   }
 };
