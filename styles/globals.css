@@ -390,59 +390,61 @@ body {
 /* ============================================================
    Banner portrait — the original photo as a right-hand panel.
 
-   Width is set here rather than inline so the two breakpoints can differ:
-   on a phone the figure needs to be a larger share of a narrow band to read
-   at all, on desktop a third of the width leaves the copy its room.
+   --panel is the single source of truth for the panel's width. Both the
+   photo and the wash read it, so the wash is guaranteed to be fully opaque
+   exactly where the photo's left edge falls. Setting the two independently
+   is what produced a visible vertical seam the first time round.
 
-   object-position places the head just under the nav. The panel is taller
-   than the band at every width, so this is choosing which slice of the
-   portrait shows — 12% on desktop, and lower on mobile where the band is
-   proportionally much taller and a high crop pushed the head off the top.
+   The desktop width is deliberately held under 0.75 x the band height at
+   every viewport. The sources are ~3:4 portraits, so below that ratio
+   object-fit cover scales by HEIGHT and crops only the sides — which means
+   the full height of the portrait survives and the head can never be cut
+   off the top. Above it, cover switches to scaling by width and starts
+   eating the crown of his head, which is exactly what happened when the
+   band was 620px tall on a wide monitor.
+
+   clamp() floor: on a narrow tablet a pure percentage left the figure a
+   sliver, so 180px is the minimum the panel may be.
    ============================================================ */
+.band-portrait,
+.band-wash {
+  --panel: 78%;
+}
+
+@media (min-width: 768px) {
+  .band-portrait,
+  .band-wash {
+    --panel: clamp(180px, 21vw, 320px);
+  }
+}
+
 .band-portrait {
-  width: 78%;
+  width: var(--panel);
+  /* Biased to the top so that if a width ever does fall outside the
+     height-driven range, what gets trimmed is the hem, not his head. */
   object-position: 50% 8%;
 }
 
 @media (min-width: 768px) {
   .band-portrait {
-    /* 26%, not 52%. The source is a 3:4 portrait; in a panel wider than it is
-       tall, object-fit cover scales by WIDTH and then crops the height away —
-       at 52% only 39% of the photo survived, which is why the face filled the
-       frame. At 26% the panel is narrower than 0.75 of the band height, so
-       scaling is height-driven and the whole portrait shows. */
-    width: 26%;
-    object-position: 50% 50%;
+    object-position: 50% 20%;
   }
 }
 
-/* The wash. Must be fully opaque where the photo's left edge falls, or that
-   edge shows as a hard line — which is exactly what happened at the first
-   attempt. The edge is at 22% on a phone and 74% on desktop, so the two need
-   different stops. */
+/* The wash. Stops are measured from the RIGHT edge in terms of --panel, so
+   the gradient reaches full opacity precisely at the photo's left edge no
+   matter how wide the viewport is. Percentage stops could not do this: the
+   edge sits anywhere from 76% to 84% across the desktop range, and a fixed
+   stop either washed out the photo or exposed its edge as a hard line. */
 .band-wash {
   background: linear-gradient(
-    90deg,
-    rgba(var(--band), 1) 0%,
-    rgba(var(--band), 1) 24%,
-    rgba(var(--band), 0.86) 42%,
-    rgba(var(--band), 0.45) 64%,
-    rgba(var(--band), 0.12) 84%,
-    rgba(var(--band), 0) 100%
+    to left,
+    rgba(var(--band), 0) 0,
+    rgba(var(--band), 0.18) calc(var(--panel) * 0.30),
+    rgba(var(--band), 0.62) calc(var(--panel) * 0.64),
+    rgba(var(--band), 1) var(--panel),
+    rgba(var(--band), 1) 100%
   );
-}
-
-@media (min-width: 768px) {
-  .band-wash {
-    background: linear-gradient(
-      90deg,
-      rgba(var(--band), 1) 0%,
-      rgba(var(--band), 1) 74%,
-      rgba(var(--band), 0.72) 82%,
-      rgba(var(--band), 0.24) 92%,
-      rgba(var(--band), 0) 100%
-    );
-  }
 }
 
 /* ============================================================

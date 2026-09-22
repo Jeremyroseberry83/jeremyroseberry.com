@@ -229,6 +229,17 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
   // 3.21:1, under the floor for 18px body text. Full strength is 5.27:1.
   const subInk = light ? PRIMARY : 'rgba(255,255,255,0.82)';
 
+  // Was 420/46vw/620 tall with 130/16vw/180 of top padding. At 620px on a wide
+  // monitor the band ran ~170px taller than its own content, and that surplus
+  // height pushed the portrait panel into width-driven cropping, which ate the
+  // crown of his head. Shortening the band and uncropping the head were the
+  // same fix. Lives out here because a comment cannot sit among JSX attributes.
+  const bandInset = {
+    paddingTop: 'clamp(112px, 12vw, 140px)',
+    paddingBottom: 'clamp(48px, 7vw, 72px)',
+    minHeight: video || portrait ? 'clamp(360px, 30vw, 460px)' : undefined
+  };
+
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: wash }}>
       {video ? (
@@ -353,7 +364,7 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
 
       <div
         className="relative max-w-6xl mx-auto px-6"
-        style={{ paddingTop: 'clamp(130px, 16vw, 180px)', paddingBottom: 'clamp(56px, 8vw, 88px)', minHeight: video || portrait ? 'clamp(420px, 46vw, 620px)' : undefined }}
+        style={bandInset}
       >
         {/* Half-width beside the photograph on desktop, full width on a phone
             where the image sits behind a vertical wash instead. */}
