@@ -16,15 +16,15 @@ import { SECONDARY, SECONDARY_DEEP, SLATE, BG } from './ui';
  */
 const QUOTES = {
   think: {
-    line: 'Most of what is in your way is noise. Quiet it and the decision you keep circling is already made.',
+    line: 'Most of what is in your way is debilitating noise. Dial it down and your decisions become more intentional and clear.',
     note: 'Think'
   },
   lead: {
-    line: 'Your people are not waiting on your strategy. They are watching how you carry the week you did not plan for.',
+    line: 'People crave certainty, but they follow real and clear. Be you, be real, lead clear.',
     note: 'Lead'
   },
   scale: {
-    line: 'Your company only outgrows you once you build something that runs when you are not in the room.',
+    line: 'Growth breeds complexity, and complexity overwhelms. You can calm that fear, and then solve it.',
     note: 'Scale'
   },
   try: {
