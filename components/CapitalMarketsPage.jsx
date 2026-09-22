@@ -145,7 +145,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
         eyebrow="Capital Markets"
         title="Scaling The Five Levels Of Capital"
         titleWidth="18ch"
-        subtitle="One goal — scale relational, socio-economical, organizational, time and monetary capital."
+        subtitle="Relational · socio-economical · organizational · time · monetary"
         portrait="/images/portraits/capital.jpg"
         tone="ink"
       />
@@ -225,6 +225,8 @@ export default function CapitalMarketsPage({ onContactClick }) {
         </div>
       </section>
 
+      <VerbQuote verb="lead" />
+
       {/* Deal flow, described by shape. See the file header for why there are
           no named opportunities here. */}
       <section className="px-6 py-16 md:py-28" style={{ backgroundColor: PRIMARY_DEEP }}>
@@ -283,8 +285,6 @@ export default function CapitalMarketsPage({ onContactClick }) {
         </div>
       </section>
 
-
-      <VerbQuote verb="lead" />
 
       <BookingCTA onContactClick={onContactClick} />
     </div>

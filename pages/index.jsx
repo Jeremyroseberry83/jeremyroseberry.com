@@ -110,7 +110,7 @@ const META = {
   const renderPage = () => {
     switch (currentPage) {
       case 'about':
-        return <EntrepreneursPage />;
+        return <EntrepreneursPage onContactClick={openContact} />;
       case 'motivation':
         return <MotivationPage onContactClick={openContact} />;
       case 'capital':

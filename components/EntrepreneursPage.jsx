@@ -6,6 +6,7 @@ import PodcastLaunch from './PodcastLaunch';
 import WhereIWork from './WhereIWork';
 import {
   PageTopBand,
+  BookingCTA,
   SectionHead,
   SECONDARY,
   SECONDARY_DEEP,
@@ -106,7 +107,7 @@ const PURSUITS = [
  */
 const FRIENDS = [];
 
-export default function EntrepreneursPage() {
+export default function EntrepreneursPage({ onContactClick }) {
   return (
     <div>
       <PageTopBand
@@ -119,6 +120,8 @@ export default function EntrepreneursPage() {
       />
 
       <ValueStatement />
+
+      <VerbQuote verb="think" />
 
       <WhereIWork variant="display" only="Capital Markets" />
 
@@ -311,7 +314,8 @@ export default function EntrepreneursPage() {
 
       <PodcastLaunch />
 
-      <VerbQuote verb="think" />
+      <BookingCTA onContactClick={onContactClick} />
+
     </div>
   );
 }
