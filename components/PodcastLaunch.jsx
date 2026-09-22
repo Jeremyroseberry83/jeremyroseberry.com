@@ -45,7 +45,7 @@ export default function PodcastLaunch() {
     <section className="px-6 py-16 md:py-24" style={{ backgroundColor: PRIMARY_DEEP }}>
       <div className="max-w-3xl mx-auto text-center">
         <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11, marginBottom: 18 }}>
-          January 2, 2027
+          Coming 2027
         </p>
         <h2
           className="display"
@@ -80,7 +80,7 @@ export default function PodcastLaunch() {
 
         {state === 'done' ? (
           <p style={{ color: SECONDARY, fontSize: 16, marginTop: 34 }}>
-            You’re on the list. First episode lands 2 January.
+            You’re on the list. I’ll let you know the moment it lands.
           </p>
         ) : (
           <form

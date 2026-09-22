@@ -81,7 +81,7 @@ export default function RealEstatePage({ onContactClick }) {
           <SectionHead
             eyebrow="What we run"
             title={<><CountUp end={3} duration={2200} /> Businesses</>}
-            intro="Different clients, same discipline. Each one exists because the last one kept running into a problem it could not solve."
+            intro="Referral to top brokers and agents, advisory to firms and family offices, and consulting on projects. All asset classes."
           />
 
           <div className="mt-14 md:mt-20 space-y-16 md:space-y-24">

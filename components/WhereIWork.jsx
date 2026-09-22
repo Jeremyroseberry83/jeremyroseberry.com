@@ -70,7 +70,7 @@ export const TIERS = [
         // DRAFT — recovered from the old Entrepreneur page.
         name: 'Premiere Home Watch',
         thumb: '/images/ventures/photos/premiere-home-watch.jpg',
-        role: 'Founder',
+        role: 'Founder / Palm Beach',
         url: 'https://roseberryproperties.com/premierehomewatch',
         logo: '',
         description: 'Lifestyle services and luxury home concierge for distinguished clientele. Recurring revenue, acquisition-ready.'

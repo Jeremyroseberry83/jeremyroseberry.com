@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Mail } from 'lucide-react';
-import { Button, SECONDARY, SECONDARY_DEEP, SLATE, MUTED, PRIMARY, INK } from './ui';
+import { Button, SECONDARY, SLATE, MUTED, PRIMARY, INK } from './ui';
 import { company } from '../site.config';
 
 // Netlify needs the payload url-encoded, not JSON.
@@ -140,15 +140,8 @@ export default function ContactForm({ onClose, initialType, initialMessage }) {
         <div style={{ padding: '32px 34px 36px' }}>
           {state === 'done' ? (
             <div>
-              <p style={{ color: SLATE, fontSize: 17, lineHeight: 1.75, marginBottom: 16 }}>
-                That has come straight through to me — not to an inbox somebody else checks.
-              </p>
-              <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.75, marginBottom: 28 }}>
-                You will hear back within one business day. If it is urgent, or the date is close, email{' '}
-                <a href={`mailto:${company.email}`} style={{ color: SECONDARY_DEEP, textDecoration: 'underline' }}>
-                  {company.email}
-                </a>{' '}
-                directly and mark it urgent.
+              <p style={{ color: SLATE, fontSize: 17, lineHeight: 1.75, marginBottom: 28 }}>
+                I’ll be in touch shortly.
               </p>
               <Button variant="navy" onClick={onClose}>
                 Close

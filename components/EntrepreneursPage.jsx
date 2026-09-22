@@ -42,52 +42,7 @@ import {
  * rather than printing a bracket on a live page.
  */
 
-/**
- * The Rule of 5 — five things a day in each area, in Jeremy's own words.
- *
- * This replaced a block of four abstractions (Heat / Consistency / Recovery /
- * Stewardship) that could have been written about anybody. A list this
- * specific — a five-second hug, an Off The Farm bar, finished eating by
- * eight — is the opposite: nobody else could have written it, which is the
- * only thing that makes a values section worth reading.
- *
- * So keep it concrete if you edit it. The moment an item becomes a principle
- * rather than an action, it belongs somewhere else on the page.
- */
-const RULE_OF_5 = [
-  {
-    area: 'Family',
-    items: [
-      'Make breakfast',
-      'Hug them for at least five seconds',
-      'Text them',
-      'Tell them I love them',
-      'Pray with them'
-    ]
-  },
-  {
-    area: 'Food',
-    items: [
-      'Big breakfast — eggs, avocado, toast, chicken sausage',
-      'Lean and green lunch',
-      'An Off The Farm bar',
-      'Lean and savoury dinner, finished by eight',
-      'Nothing artificial — water, coffee, the occasional whiskey'
-    ]
-  },
-  {
-    // DRAFT — written from Jeremy's old training block, turned from things he
-    // believes into things he does. Wants his sign-off or his own five.
-    area: 'Fitness',
-    items: [
-      'Train in the heat — 130 degrees, before the day gets a vote',
-      'Lift something heavy',
-      'Get outside on my feet',
-      'Ten minutes of stretching, usually at night',
-      'Asleep by ten, because the training only counts if you recover from it'
-    ]
-  }
-];
+
 
 /**
  * The six F's, in Jeremy's order. Faith, Family and Finances used to sit on
@@ -163,9 +118,9 @@ export default function EntrepreneursPage() {
         tone="taupe"
       />
 
-      <WhereIWork variant="display" only="Capital Markets" />
-
       <ValueStatement />
+
+      <WhereIWork variant="display" only="Capital Markets" />
 
       <WhereIWork variant="display" only="Real Estate" heading={false} />
 
@@ -233,89 +188,6 @@ export default function EntrepreneursPage() {
           </div>
         </section>
       )}
-
-      {/* ============================================================
-          3 — RULE OF 5
-
-          The photograph is the ground now, not a column. It is a 591x1537
-          portrait, so at full-bleed width it can only ever show a horizontal
-          slice — object-position is set high to make that slice his head and
-          shoulders rather than a band of torso.
-
-          Two layers over it: a near-solid navy at 0.86 and a vertical
-          gradient. The flat wash alone left the type sitting on whatever
-          happened to be behind it at that point in the frame; the gradient
-          guarantees the top and bottom edges stay dark regardless.
-
-          Losing the column also frees the three areas to run three-across
-          instead of stacking down one side.
-          ============================================================ */}
-      <section className="relative overflow-hidden px-6 py-16 md:py-28">
-        <img
-          src="/images/fitness-training.jpg"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: 'center 12%' }}
-        />
-        <span
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{ backgroundColor: 'rgba(18,41,59,0.86)' }}
-        />
-        <span
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{ background: 'linear-gradient(180deg, rgba(18,41,59,0.75) 0%, rgba(18,41,59,0.25) 45%, rgba(18,41,59,0.8) 100%)' }}
-        />
-
-        <div className="relative max-w-6xl mx-auto">
-          <SectionHead
-            dark
-            align="center"
-            eyebrow="My daily routine"
-            title="Daily Rule Of 5"
-            intro="Five things a day, in each area. Not goals — the things that happen whether I feel like it or not."
-          />
-
-          <div className="grid md:grid-cols-3 gap-10 md:gap-12 mt-14 md:mt-20">
-            {RULE_OF_5.map((group) => (
-              <div key={group.area}>
-                <div
-                  className="flex items-baseline gap-4 pb-4"
-                  style={{ borderBottom: '1px solid rgba(255,255,255,0.24)' }}
-                >
-                  <h3 className="display" style={{ color: SECONDARY, fontSize: 'clamp(1.3rem, 2.4vw, 1.8rem)' }}>
-                    {group.area}
-                  </h3>
-                  <span
-                    className="eyebrow-wide"
-                    style={{ color: 'rgba(255,255,255,0.5)', fontSize: 10, marginLeft: 'auto' }}
-                  >
-                    Five a day
-                  </span>
-                </div>
-
-                <ol className="space-y-4" style={{ listStyle: 'none', marginTop: 20 }}>
-                  {group.items.map((item, i) => (
-                    <li key={item} className="flex gap-3.5">
-                      <span
-                        className="display"
-                        style={{ color: SECONDARY, opacity: 0.6, fontSize: 12, letterSpacing: '0.1em', paddingTop: 4, flexShrink: 0 }}
-                      >
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 15.5, lineHeight: 1.6 }}>
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ============================================================
           4 — ADRENALINE

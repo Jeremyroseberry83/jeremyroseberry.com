@@ -655,10 +655,11 @@ export function BookingCTA({ onContactClick, eyebrow = 'Get in touch', title = '
         <h2 className="display" style={{ color: '#ffffff', fontSize: 'clamp(2rem, 4.6vw, 3.3rem)', marginBottom: 20 }}>
           {title}
         </h2>
-        <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 17, lineHeight: 1.75, maxWidth: '52ch', margin: '0 auto 36px' }}>
-          {body ||
-            'Most people reach out with something knotty attached. If I can help I will tell you how. If I cannot, I usually know who can. I read every message myself.'}
-        </p>
+        {body && (
+          <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 17, lineHeight: 1.75, maxWidth: '52ch', margin: '0 auto 36px' }}>
+            {body}
+          </p>
+        )}
         {/* One button. The second ("check availability") opened the same
             modal as the first, so it was a choice with no consequence — and a
             second option next to a primary action reliably lowers how many
