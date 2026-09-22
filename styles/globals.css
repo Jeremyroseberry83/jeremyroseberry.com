@@ -472,3 +472,18 @@ body {
     animation: none;
   }
 }
+
+/* The four verbs complete the sentence the headline starts — "Helping you /
+   think, lead, scale, try" — so they arrive last, after the rule that
+   separates the two halves has finished drawing. */
+.hero-verbs {
+  opacity: 0;
+  animation: heroFade 1.4s ease-out 3.4s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-verbs {
+    opacity: 1;
+    animation: none;
+  }
+}

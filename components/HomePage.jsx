@@ -77,10 +77,16 @@ export default function HomePage({ onContactClick }) {
             className="display hero-fade-3"
             style={{ color: '#ffffff', fontSize: '10.6vw', marginBottom: '1.8vw' }}
           >
-            <span className="block">Leader</span>
+            <span className="block">Helping</span>
             <span aria-hidden="true" className="hero-rule" />
-            <span className="block">Builder</span>
+            <span className="block">You</span>
           </h1>
+
+          <p className="eyebrow-wide hero-verbs" style={{ color: '#ffffff', fontSize: '1.32vw', marginBottom: '2.2vw' }}>
+            Think <span style={{ color: SECONDARY }}>&bull;</span> Lead{' '}
+            <span style={{ color: SECONDARY }}>&bull;</span> Scale{' '}
+            <span style={{ color: SECONDARY }}>&bull;</span> Try
+          </p>
 
           <div>
             <Button variant="navy" size="lg" borderColor="rgba(255,255,255,0.9)" onClick={() => onContactClick && onContactClick()}>
@@ -124,10 +130,16 @@ export default function HomePage({ onContactClick }) {
           </p>
 
           <h1 className="display hero-fade-3" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
-            <span className="block">Leader</span>
+            <span className="block">Helping</span>
             <span aria-hidden="true" className="hero-rule" />
-            <span className="block">Builder</span>
+            <span className="block">You</span>
           </h1>
+
+          <p className="eyebrow-wide hero-verbs" style={{ color: '#ffffff', fontSize: 11, marginBottom: 24 }}>
+            Think <span style={{ color: SECONDARY }}>&bull;</span> Lead{' '}
+            <span style={{ color: SECONDARY }}>&bull;</span> Scale{' '}
+            <span style={{ color: SECONDARY }}>&bull;</span> Try
+          </p>
 
           <div>
             <Button variant="navy" size="lg" full borderColor="rgba(255,255,255,0.9)" onClick={() => onContactClick && onContactClick()}>
