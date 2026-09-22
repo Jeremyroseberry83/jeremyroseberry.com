@@ -23,7 +23,11 @@ module.exports = {
     shortName: 'Roseberry',
     initials: 'JR',
     tagline: 'Adding value to every person by helping solve problems I didn’t make.',
-    domain: 'jeremyroseberry.com',
+    // The live domain. This string is the canonical URL, the og:url, the
+    // og:image host and the Person schema's url — if it does not match where
+    // the site actually answers, every page tells search engines the real
+    // version lives somewhere else.
+    domain: 'jeremyroseberry.net',
     email: 'jeremy@roseberrycapital.net',
     role: 'Entrepreneur & Investor'
   },
