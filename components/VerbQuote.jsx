@@ -63,7 +63,7 @@ export default function VerbQuote({ verb, ground = BG }) {
             color: dark ? '#ffffff' : SLATE,
             fontSize: 'clamp(1.3rem, 3vw, 2.1rem)',
             lineHeight: 1.28,
-            maxWidth: '26ch',
+            maxWidth: '34ch',
             margin: '0 auto'
           }}
         >
