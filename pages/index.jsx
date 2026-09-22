@@ -6,7 +6,7 @@ import HomePage from '../components/HomePage';
 import EntrepreneursPage from '../components/EntrepreneursPage';
 import RealEstatePage from '../components/RealEstatePage';
 import CapitalMarketsPage from '../components/CapitalMarketsPage';
-import PRMarketingPage from '../components/PRMarketingPage';
+import MotivationPage from '../components/MotivationPage';
 import ContactForm from '../components/ContactForm';
 import Translate from '../components/Translate';
 import { Button } from '../components/ui';
@@ -34,7 +34,7 @@ const META = {
   home: {
     title: `${company.name} — Entrepreneur & Investor`,
     description:
-      'Seven companies across real estate, capital markets and PR. Two decades of building, and a podcast launching January 2027.'
+      'Seven companies across real estate and capital markets. Two decades of building, and a podcast coming 2027.'
   },
   // Keys MUST match the nav ids in site.config.js. They fell out of sync once
   // already during a rename, and the symptom is silent: the page renders fine
@@ -42,7 +42,7 @@ const META = {
   about: {
     title: `${company.name} — About`,
     description:
-      'Husband and dad first. Then seven companies across two tiers, six foundations underneath them, a daily routine, and short-form video on starting before you feel ready.'
+      'Husband and dad first. Then seven companies across two tiers — real estate and capital markets — and what sits underneath all of it.'
   },
   realestate: {
     title: `${company.name} — Real Estate`,
@@ -54,10 +54,10 @@ const META = {
     description:
       'Private Investor Circle, Access Global and The 4IR Group. Where allocators meet operators, and what actually crosses the desk.'
   },
-  prmarketing: {
-    title: `${company.name} — PR & Marketing`,
+  motivation: {
+    title: `${company.name} — Motivation`,
     description:
-      '4IR Studios: capital markets PR, marketing and design. Investor-ready, financing-ready, acquisition-ready, IPO-ready.'
+      'Live grateful for everything. Lead entitled to nothing. Be faithful in the small things. Short-form video on courage, and the six foundations underneath it.'
   },
 };export default function Site() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -111,12 +111,12 @@ const META = {
     switch (currentPage) {
       case 'about':
         return <EntrepreneursPage />;
+      case 'motivation':
+        return <MotivationPage onContactClick={openContact} />;
       case 'capital':
         return <CapitalMarketsPage onContactClick={openContact} />;
       case 'realestate':
         return <RealEstatePage onContactClick={openContact} />;
-      case 'prmarketing':
-        return <PRMarketingPage onContactClick={openContact} />;
       default:
         return <HomePage onContactClick={openContact} onNavigate={handleNavClick} />;
     }

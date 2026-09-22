@@ -30,7 +30,7 @@ export const TIERS = [
         name: '4IR Studios',
         thumb: '/images/ventures/photos/four-ir-studios.jpg',
         role: 'Co-founder, CBO',
-        url: 'https://4irstudio.com',
+        url: 'https://4irg.com/studios/',
         logo: '/images/logos/four-ir-studios.png',
         description: 'A capital markets PR, marketing and design firm — helping companies get investor-ready, financing-ready, acquisition-ready and IPO-ready.'
       },
@@ -48,7 +48,7 @@ export const TIERS = [
         name: 'The 4IR Group',
         thumb: '/images/ventures/photos/four-ir-group.jpg',
         role: 'Co-founder, CBO',
-        url: 'https://secobio.com',
+        url: 'https://4irg.com',
         logo: '',
         description: 'Venture building at the edge of the Fourth Industrial Revolution. Seco Bio is the first.'
       }

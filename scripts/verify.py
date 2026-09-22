@@ -25,6 +25,14 @@ def strip_code(s):
 GLOBALS = {'JSON', 'Math', 'Object', 'Array', 'String', 'Number', 'Boolean',
            'Date', 'Intl', 'URL', 'NaN', 'Infinity'}
 
+JS_BUILTINS = {
+    'if', 'for', 'while', 'switch', 'catch', 'return', 'typeof', 'require',
+    'setTimeout', 'setInterval', 'parseInt', 'parseFloat', 'isNaN', 'fetch',
+    'encodeURIComponent', 'decodeURIComponent', 'alert', 'console', 'map',
+    'filter', 'find', 'includes', 'replace', 'split', 'join', 'padStart',
+    'toLocaleString', 'getFullYear', 'matchMedia', 'querySelector'
+}
+
 IMPORT_RE = re.compile(r"^import\s+[\s\S]*?from\s+'[^']+';\s*$", re.M)
 
 # Names ui.jsx exports. Anything used bare in a page must be imported from
@@ -144,6 +152,26 @@ for f in sorted(list(root.glob('components/*.jsx')) + list(root.glob('pages/*.js
     for tag in set(re.findall(r'<([A-Z][A-Za-z0-9_]*)[\s/>]', body)):
         if tag not in in_scope:
             problems.append(f"{f.name}: renders <{tag}> but nothing declares or imports it")
+
+    # A HELPER CALLED FROM JSX BUT NEVER DEFINED. Narrowed to {name()} inside
+    # markup, which is where this actually bit: a bad splice deleted
+    # renderPage from index.jsx and left {renderPage()} behind. Every check
+    # here passed, brace counting included, because the deletion was balanced.
+    #
+    # Deliberately not checking every call in the file — that flagged every
+    # destructured prop and every useState setter, and a checker people learn
+    # to ignore is worse than no checker.
+    defined = set(re.findall(r'(?:const|let|var|function)\s+([A-Za-z_][A-Za-z0-9_]*)', body))
+    for m in re.finditer(r'(?:const|let|var)\s*\[([^\]]*)\]', body):        # const [a, setA] =
+        defined |= {n.strip() for n in m.group(1).split(',') if n.strip()}
+    for m in re.finditer(r'\{([^{}]*)\}\s*(?:\)|=[^=])', body):             # ({ a }) and const { a } =
+        defined |= {n.strip().split(':')[-1].strip() for n in m.group(1).split(',') if n.strip()}
+    defined |= imported_all
+    defined |= set(re.findall(r"import\s+([A-Za-z_][A-Za-z0-9_]*)\s+from", src))
+
+    for m in re.finditer(r'\{\s*([a-z][A-Za-z0-9_]*)\(\)\s*\}', body):
+        if m.group(1) not in defined:
+            problems.append(f"{f.name}: JSX calls {m.group(1)}() but nothing defines it (line {body[:m.start()].count(chr(10)) + 1})")
 
     c = {ch: body.count(ch) for ch in '{}()[]'}
     if not (c['{']==c['}'] and c['(']==c[')'] and c['[']==c[']']):

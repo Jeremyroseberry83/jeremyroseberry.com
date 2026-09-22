@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Play } from 'lucide-react';
 import ValueStatement from './ValueStatement';
-import Creed from './Creed';
 import PodcastLaunch from './PodcastLaunch';
 import WhereIWork from './WhereIWork';
 import {
@@ -124,7 +123,6 @@ export default function EntrepreneursPage() {
 
       <WhereIWork variant="display" only="Real Estate" heading={false} />
 
-      <Creed />
 
 
 
