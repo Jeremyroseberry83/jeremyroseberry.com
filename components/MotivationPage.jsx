@@ -24,7 +24,7 @@ export default function MotivationPage({ onContactClick }) {
         eyebrow="Motivation"
         title="Thought Leadership"
         titleWidth="12ch"
-        subtitle="Helping people find motivation in life, thought leadership, relationships and business."
+        subtitle="Helping people find clarity and motivation in life, relationships and business."
         subtitleWidth="54ch"
         portrait="/images/portraits/pr.jpg"
         tone="ink"
