@@ -21,8 +21,9 @@ export default function MotivationPage({ onContactClick }) {
   return (
     <div>
       <PageTopBand
-        eyebrow="Leadership"
-        title="Motivation"
+        eyebrow="Motivation"
+        title="Thought Leadership"
+        titleWidth="12ch"
         subtitle="Helping people find motivation in life, thought leadership, relationships and business."
         subtitleWidth="54ch"
         portrait="/images/portraits/pr.jpg"

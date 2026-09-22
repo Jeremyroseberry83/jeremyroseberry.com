@@ -55,7 +55,7 @@ const META = {
       'Private Investor Circle, Access Global and The 4IR Group. Where allocators meet operators, and what actually crosses the desk.'
   },
   motivation: {
-    title: `${company.name} — Motivation`,
+    title: `${company.name} — Thought Leadership`,
     description:
       'Live grateful for everything. Lead entitled to nothing. Be faithful in the small things. Short-form video on courage, and the six foundations underneath it.'
   },
