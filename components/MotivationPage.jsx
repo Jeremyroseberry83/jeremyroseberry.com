@@ -23,7 +23,7 @@ export default function MotivationPage({ onContactClick }) {
       <PageTopBand
         eyebrow="Leadership"
         title="Motivation"
-        subtitle="Courage, the six foundations, and the handful of things I come back to when it gets hard."
+        subtitle="Helping people find motivation in life, thought leadership, relationships and business."
         subtitleWidth="54ch"
         portrait="/images/portraits/pr.jpg"
         tone="ink"

@@ -473,12 +473,12 @@ body {
   }
 }
 
-/* The four verbs complete the sentence the headline starts — "Helping you /
-   think, lead, scale, try" — so they arrive last, after the rule that
-   separates the two halves has finished drawing. */
+/* The four verbs complete the sentence the headline starts, so they follow
+   the rule rather than waiting for it to finish. 2.7s and a 1s fade: at 3.4s
+   they were arriving after the eye had already moved to the button. */
 .hero-verbs {
   opacity: 0;
-  animation: heroFade 1.4s ease-out 3.4s forwards;
+  animation: heroFade 1s ease-out 2.7s forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {

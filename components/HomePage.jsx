@@ -79,7 +79,7 @@ export default function HomePage({ onContactClick }) {
           >
             <span className="block">Helping</span>
             <span aria-hidden="true" className="hero-rule" />
-            <span className="block">You</span>
+            <span className="block">Others</span>
           </h1>
 
           <p className="eyebrow-wide hero-verbs" style={{ color: '#ffffff', fontSize: '1.32vw', marginBottom: '2.2vw' }}>
@@ -132,7 +132,7 @@ export default function HomePage({ onContactClick }) {
           <h1 className="display hero-fade-3" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
             <span className="block">Helping</span>
             <span aria-hidden="true" className="hero-rule" />
-            <span className="block">You</span>
+            <span className="block">Others</span>
           </h1>
 
           <p className="eyebrow-wide hero-verbs" style={{ color: '#ffffff', fontSize: 11, marginBottom: 24 }}>
