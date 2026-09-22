@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PodcastLaunch from './PodcastLaunch';
 import { Button, CountUp, PRIMARY, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
@@ -29,11 +29,47 @@ const SCALE_BROWN = '#413a37';
 
 /** Every figure is Jeremy's own claim. Nothing estimated or rounded up. */
 const SCALE = [
-  { value: '19', unit: 'yrs', label: 'Husband' },
+  { value: '19', unit: 'yrs', label: 'Married' },
   { value: '15', unit: 'yrs', label: 'Dad' },
-  { value: '20', unit: 'yrs', label: 'Investor' },
-  { value: '7', unit: '', label: 'Businesses' }
+  { value: '20', unit: 'yrs', label: 'Investing' },
+  // No number to count to. The point of the last one is that it does not stop.
+  { value: '\u221e', unit: '', label: 'Entrepreneur', endless: true }
 ];
+
+/**
+ * The infinity figure. Its own observer rather than CountUp's, because it
+ * fades over 2.4s against the numbers' 1.6s and then keeps breathing — a
+ * symbol that means "no end" should not settle the way a count does.
+ */
+function Endless() {
+  const ref = useRef(null);
+  const [on, setOn] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return undefined;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setOn(true);
+      return undefined;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        setOn(true);
+        io.disconnect();
+      },
+      { threshold: 0.5 }
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <span ref={ref} className={`endless${on ? ' is-on' : ''}`} aria-label="Always">
+      &#8734;
+    </span>
+  );
+}
 
 
 export default function HomePage({ onContactClick }) {
@@ -181,7 +217,7 @@ export default function HomePage({ onContactClick }) {
         {SCALE.map((s) => (
           <div key={s.label}>
             <div className="display" style={{ color: PRIMARY, fontSize: 'clamp(2.8rem, 6vw, 4.6rem)', lineHeight: 1 }}>
-              <CountUp end={Number(s.value)} duration={1600} />
+              {s.endless ? <Endless /> : <CountUp end={Number(s.value)} duration={1600} />}
               {s.unit && <span style={{ fontSize: '0.42em', marginLeft: 6, letterSpacing: '0.06em', color: SCALE_BROWN }}>{s.unit}</span>}
             </div>
             <span aria-hidden="true" style={{ display: 'block', width: 34, height: 2, backgroundColor: '#ffffff', margin: '16px 0' }} />

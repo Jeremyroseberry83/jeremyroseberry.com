@@ -487,3 +487,43 @@ body {
     animation: none;
   }
 }
+
+/* ============================================================
+   The infinity figure in the home page band.
+
+   Fades over 2.4s against the counting numbers' 1.6s, then breathes slowly
+   and without end. A count settles on its answer; this one should not, which
+   is the whole reason it is a symbol rather than a number.
+   ============================================================ */
+.endless {
+  display: inline-block;
+  opacity: 0;
+  line-height: 1;
+}
+
+.endless.is-on {
+  animation:
+    heroFade 2.4s ease-out forwards,
+    endlessBreathe 5s ease-in-out 2.4s infinite;
+}
+
+@keyframes endlessBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.07);
+    opacity: 0.82;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .endless,
+  .endless.is-on {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}
