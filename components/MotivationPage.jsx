@@ -13,9 +13,9 @@ import { PageTopBand, BookingCTA } from './ui';
  * capital-readiness closing ask. 4IR Studios itself still lives in TIERS and
  * so still appears on About; it just no longer has a page of its own.
  *
- * Order is the Try quote, the short-form clips, the six foundations, then
- * the creed — the invitation, the encouragement, the structure underneath
- * both, and the belief it all rests on last.
+ * Order is the short-form clips, the Think quote, the six foundations, then
+ * the creed — the encouragement, the idea it turns on, the structure
+ * underneath, and the belief it all rests on last.
  */
 export default function MotivationPage({ onContactClick }) {
   return (
@@ -29,9 +29,9 @@ export default function MotivationPage({ onContactClick }) {
         tone="ink"
       />
 
-      <VerbQuote verb="try" />
-
       <ShortForm />
+
+      <VerbQuote verb="think" />
 
       <SixFoundations />
 

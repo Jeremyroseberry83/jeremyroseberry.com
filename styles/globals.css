@@ -478,7 +478,7 @@ body {
    they were arriving after the eye had already moved to the button. */
 .hero-verbs {
   opacity: 0;
-  animation: heroFade 1s ease-out 2.7s forwards;
+  animation: heroFade 0.5s ease-out 2.7s forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {

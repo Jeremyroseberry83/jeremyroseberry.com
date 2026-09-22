@@ -225,7 +225,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
         </div>
       </section>
 
-      <VerbQuote verb="lead" />
+      <VerbQuote verb="scale" />
 
       {/* Deal flow, described by shape. See the file header for why there are
           no named opportunities here. */}
@@ -268,20 +268,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
             ))}
           </div>
 
-          <div className="text-center" style={{ marginTop: 48 }}>
-            <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 17, lineHeight: 1.8, maxWidth: '52ch', margin: '0 auto 28px' }}>
-              If you are raising, allocating, or simply want to be in the room — that is a
-              conversation I love to have.
-            </p>
-            <button
-              onClick={() => onContactClick && onContactClick('Business / capital')}
-              className="venture-visit"
-              style={{ cursor: 'pointer' }}
-            >
-              Let’s Connect
-              <ArrowUpRight size={14} />
-            </button>
-          </div>
+
         </div>
       </section>
 

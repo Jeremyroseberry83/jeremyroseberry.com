@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import TryBlock from './TryBlock';
 import PodcastLaunch from './PodcastLaunch';
 import { Button, CountUp, PRIMARY, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
@@ -232,6 +233,8 @@ export default function HomePage({ onContactClick }) {
         for it — a nav tab called Resources containing one unlaunched thing
         claimed more than exists. The capture starts building the list four
         months before launch, which is the point. */}
+    <TryBlock />
+
     <PodcastLaunch />
     </>
   );

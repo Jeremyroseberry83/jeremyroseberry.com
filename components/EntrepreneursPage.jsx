@@ -2,7 +2,6 @@ import React from 'react';
 import VerbQuote from './VerbQuote';
 import { ArrowUpRight, Play } from 'lucide-react';
 import ValueStatement from './ValueStatement';
-import PodcastLaunch from './PodcastLaunch';
 import WhereIWork from './WhereIWork';
 import {
   PageTopBand,
@@ -121,9 +120,9 @@ export default function EntrepreneursPage({ onContactClick }) {
 
       <ValueStatement />
 
-      <VerbQuote verb="think" />
-
       <WhereIWork variant="display" only="Capital Markets" />
+
+      <VerbQuote verb="lead" />
 
       <WhereIWork variant="display" only="Real Estate" heading={false} />
 
@@ -311,8 +310,6 @@ export default function EntrepreneursPage({ onContactClick }) {
         </section>
       )}
 
-
-      <PodcastLaunch />
 
       <BookingCTA onContactClick={onContactClick} />
 

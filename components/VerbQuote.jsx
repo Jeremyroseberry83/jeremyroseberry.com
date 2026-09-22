@@ -10,9 +10,11 @@ import { SECONDARY, SECONDARY_DEEP, SLATE, BG } from './ui';
  * typographic work; these are the echo, and an echo that shouts is noise.
  *
  * Every line is addressed to the reader and about their situation — their
- * decision, their people, their company, their courage. An earlier set stated
- * principles in the abstract, which made them things Jeremy believes rather
- * than things the reader recognises about themselves. Keep the "you".
+ * decision, their people, their company, their courage. Keep the "you".
+ *
+ * These are Jeremy's sentences in Jeremy's order. An earlier pass rearranged
+ * Scale to put the feeling first and it lost his rhythm; polish the wording,
+ * never the running order.
  */
 const QUOTES = {
   think: {
@@ -24,7 +26,7 @@ const QUOTES = {
     note: 'Lead'
   },
   scale: {
-    line: 'Growth breeds complexity, and complexity overwhelms. You can calm that fear, and then solve it.',
+    line: 'You can calm and solve the fear that growth breeds complexity that overwhelms.',
     note: 'Scale'
   },
   try: {

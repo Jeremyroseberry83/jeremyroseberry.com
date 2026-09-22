@@ -154,7 +154,7 @@ export default function RealEstatePage({ onContactClick }) {
       </section>
 
 
-      <VerbQuote verb="scale" />
+      <VerbQuote verb="try" />
 
       <BookingCTA onContactClick={onContactClick} />
     </div>
