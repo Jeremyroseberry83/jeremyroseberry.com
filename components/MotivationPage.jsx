@@ -1,4 +1,5 @@
 import React from 'react';
+import VerbQuote from './VerbQuote';
 import Creed from './Creed';
 import ShortForm from './ShortForm';
 import SixFoundations from './SixFoundations';
@@ -32,6 +33,8 @@ export default function MotivationPage({ onContactClick }) {
       <ShortForm />
 
       <SixFoundations />
+
+      <VerbQuote verb="try" />
 
       <BookingCTA onContactClick={onContactClick} />
     </div>

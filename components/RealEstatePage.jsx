@@ -1,4 +1,5 @@
 import React from 'react';
+import VerbQuote from './VerbQuote';
 import { ArrowUpRight } from 'lucide-react';
 import { TIERS } from './WhereIWork';
 import {
@@ -152,6 +153,8 @@ export default function RealEstatePage({ onContactClick }) {
         </div>
       </section>
 
+
+      <VerbQuote verb="scale" />
 
       <BookingCTA onContactClick={onContactClick} />
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import VerbQuote from './VerbQuote';
 import { ArrowUpRight, Play } from 'lucide-react';
 import ValueStatement from './ValueStatement';
 import PodcastLaunch from './PodcastLaunch';
@@ -310,6 +311,7 @@ export default function EntrepreneursPage() {
 
       <PodcastLaunch />
 
+      <VerbQuote verb="think" />
     </div>
   );
 }

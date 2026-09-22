@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import VerbQuote from './VerbQuote';
 import { ArrowUpRight } from 'lucide-react';
 import { TIERS } from './WhereIWork';
 import {
@@ -282,6 +283,8 @@ export default function CapitalMarketsPage({ onContactClick }) {
         </div>
       </section>
 
+
+      <VerbQuote verb="lead" />
 
       <BookingCTA onContactClick={onContactClick} />
     </div>
