@@ -75,9 +75,17 @@ const META = {
   const [showContactModal, setShowContactModal] = useState(false);
   const [contactContext, setContactContext] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+  // Separate from `scrolled`, which fires at 80px for the nav shadow. This one
+  // asks whether the home hero has left the viewport, so the floating contact
+  // button can stay out of the hero — one button there was the whole point —
+  // and still be within reach everywhere below it.
+  const [pastHero, setPastHero] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80);
+      setPastHero(window.scrollY > window.innerHeight * 0.8);
+    };
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
@@ -266,9 +274,11 @@ const META = {
 
       <main>{renderPage()}</main>
 
-      {/* Floating booking button on every page except home. Home deliberately
-          has exactly one button and the nav — nothing else to click. */}
-      {!isHome && (
+      {/* Floating booking button. On the interior pages it is always there.
+          On home it waits until the hero is off screen: the hero keeps its
+          single button, but everything below it still has contact one tap
+          away instead of a scroll back to the top. */}
+      {(!isHome || pastHero) && (
         <button
           onClick={() => openContact('Speaking')}
           className="fixed bottom-7 right-7 z-40"
@@ -294,94 +304,95 @@ const META = {
         />
       )}
 
-      {/* No footer on the home page — the hero is the whole page, and the only
-          ways forward are the nav and the single button. */}
-      {!isHome && (
-        <footer className="px-6 py-12" style={{ backgroundColor: colors.INK, borderTop: `3px solid ${colors.SECONDARY}` }}>
-          <div className="max-w-7xl mx-auto">
-            <div
-              className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left"
-              style={{ paddingBottom: 22, marginBottom: 22, borderBottom: '1px solid rgba(255,255,255,0.16)' }}
-            >
-              <Logo tone="dark" />
+      {/* The footer runs on every page including home. It was suppressed there
+          while the hero WAS the whole page; home has since grown three
+          sections past it, so leaving it off left the most visited page on
+          the site with no exit and no contact details anywhere below the
+          fold. */}
+      <footer className="px-6 py-12" style={{ backgroundColor: colors.INK, borderTop: `3px solid ${colors.SECONDARY}` }}>
+        <div className="max-w-7xl mx-auto">
+          <div
+            className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left"
+            style={{ paddingBottom: 22, marginBottom: 22, borderBottom: '1px solid rgba(255,255,255,0.16)' }}
+          >
+            <Logo tone="dark" />
 
-              <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavClick(item.id)}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      padding: 0,
-                      color: 'rgba(255,255,255,0.72)',
-                      fontSize: 12,
-                      fontWeight: 600,
-                      letterSpacing: '0.14em',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    {item.name}
-                  </button>
-                ))}
-              </div>
-
+            <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-3">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    color: 'rgba(255,255,255,0.72)',
+                    fontSize: 12,
+                    fontWeight: 600,
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  {item.name}
+                </button>
+              ))}
             </div>
 
-            {/* Contact. The name, a live mailto, and only the accounts that
-                site.config.js actually has a URL for — an account that does
-                not exist yet leaves no dead link behind, and adding one later
-                needs no code change. Hover lives in CSS rather than mouse
-                handlers so the chip and its label light together. */}
-            <div
-              className="flex flex-col md:flex-row md:items-end md:justify-between gap-9 text-center md:text-left"
-              style={{ marginBottom: 32 }}
-            >
-              <div className="flex flex-col items-center md:items-start">
-                <p className="display" style={{ color: '#ffffff', fontSize: 25, lineHeight: 1 }}>
-                  {company.name}
-                </p>
-                <span
-                  aria-hidden="true"
-                  style={{ display: 'block', width: 64, height: 3, backgroundColor: colors.SECONDARY, margin: '15px 0 17px' }}
-                />
-                <a href={`mailto:${company.email}`} className="footer-link flex items-center gap-2.5" style={{ fontSize: 15 }}>
-                  <Mail size={17} strokeWidth={1.7} />
-                  {company.email}
-                </a>
-              </div>
-
-              {socialLinks.length > 0 && (
-                <div className="flex flex-col items-center md:items-end gap-3">
-                  {socialLinks.map(([key, url]) => {
-                    const Icon = SOCIAL_ICONS[key];
-                    const label = SOCIAL_LABELS[key] || key;
-                    return (
-                      <a
-                        key={key}
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="footer-social"
-                        aria-label={label}
-                      >
-                        <span className="footer-social__chip">
-                          {Icon ? <Icon size={18} strokeWidth={1.7} /> : null}
-                        </span>
-                        <span style={{ fontSize: 14, letterSpacing: '0.04em' }}>{label}</span>
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
-            <div className="text-center" style={{ color: 'rgba(255,255,255,0.45)', fontSize: 12 }}>
-              © {new Date().getFullYear()} {company.name}. All rights reserved.
-            </div>
           </div>
-        </footer>
-      )}
+
+          {/* Contact. The name, a live mailto, and only the accounts that
+              site.config.js actually has a URL for — an account that does
+              not exist yet leaves no dead link behind, and adding one later
+              needs no code change. Hover lives in CSS rather than mouse
+              handlers so the chip and its label light together. */}
+          <div
+            className="flex flex-col md:flex-row md:items-end md:justify-between gap-9 text-center md:text-left"
+            style={{ marginBottom: 32 }}
+          >
+            <div className="flex flex-col items-center md:items-start">
+              <p className="display" style={{ color: '#ffffff', fontSize: 25, lineHeight: 1 }}>
+                {company.name}
+              </p>
+              <span
+                aria-hidden="true"
+                style={{ display: 'block', width: 64, height: 3, backgroundColor: colors.SECONDARY, margin: '15px 0 17px' }}
+              />
+              <a href={`mailto:${company.email}`} className="footer-link flex items-center gap-2.5" style={{ fontSize: 15 }}>
+                <Mail size={17} strokeWidth={1.7} />
+                {company.email}
+              </a>
+            </div>
+
+            {socialLinks.length > 0 && (
+              <div className="flex flex-col items-center md:items-end gap-3">
+                {socialLinks.map(([key, url]) => {
+                  const Icon = SOCIAL_ICONS[key];
+                  const label = SOCIAL_LABELS[key] || key;
+                  return (
+                    <a
+                      key={key}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="footer-social"
+                      aria-label={label}
+                    >
+                      <span className="footer-social__chip">
+                        {Icon ? <Icon size={18} strokeWidth={1.7} /> : null}
+                      </span>
+                      <span style={{ fontSize: 14, letterSpacing: '0.04em' }}>{label}</span>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <div className="text-center" style={{ color: 'rgba(255,255,255,0.45)', fontSize: 12 }}>
+            © {new Date().getFullYear()} {company.name}. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
