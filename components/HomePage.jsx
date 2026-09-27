@@ -76,7 +76,7 @@ function Endless() {
 export default function HomePage({ onContactClick }) {
   return (
     <>
-    <section className="relative" style={{ backgroundColor: INK }}>
+    <section className="relative overflow-hidden" style={{ backgroundColor: INK }}>
       {/* ---------- Desktop / tablet ----------
           Sits below the nav rather than under it: the artwork's top-left is
           light gray, so nav type laid over it washes out. */}
@@ -106,17 +106,19 @@ export default function HomePage({ onContactClick }) {
             <span className="hero-fade-2" style={{ color: SECONDARY }}>Roseberry</span>
           </p>
 
-          {/* Two words, full size. The name above is a fact, so the headline
-              reads as a description of a named person rather than a claim
-              floating on its own — which is what went wrong when ADDING VALUE
-              sat here with a claim above it and a claim below it. */}
+          {/* The audience word carries the size, not the verb. ENTREPRENEURS is
+              13 characters against HELPING's 7, so setting both at one size
+              would have forced the whole headline down to fit the long word —
+              paying for the specific word with the scale that makes the hero
+              work. Demoting HELPING buys the width back and puts the emphasis
+              where it belongs: on who this is for. */}
           <h1
             className="display hero-fade-3"
-            style={{ color: '#ffffff', fontSize: '10.6vw', marginBottom: '1.8vw' }}
+            style={{ color: '#ffffff', fontSize: '6.7vw', marginBottom: '1.8vw' }}
           >
-            <span className="block">Helping</span>
+            <span className="block hero-lede">Helping</span>
             <span aria-hidden="true" className="hero-rule" />
-            <span className="block">Others</span>
+            <span className="block">Entrepreneurs</span>
           </h1>
 
           <p className="eyebrow-wide hero-verbs" style={{ color: '#ffffff', fontSize: '1.32vw', marginBottom: '2.2vw' }}>
@@ -166,10 +168,10 @@ export default function HomePage({ onContactClick }) {
             <span className="hero-fade-2" style={{ color: SECONDARY }}>Roseberry</span>
           </p>
 
-          <h1 className="display hero-fade-3" style={{ color: '#ffffff', fontSize: 'clamp(3.2rem, 19vw, 6rem)', marginBottom: 20 }}>
-            <span className="block">Helping</span>
+          <h1 className="display hero-fade-3" style={{ color: '#ffffff', fontSize: 'clamp(2rem, 12vw, 4rem)', marginBottom: 20 }}>
+            <span className="block hero-lede">Helping</span>
             <span aria-hidden="true" className="hero-rule" />
-            <span className="block">Others</span>
+            <span className="block">Entrepreneurs</span>
           </h1>
 
           <p className="eyebrow-wide hero-verbs" style={{ color: '#ffffff', fontSize: 11, marginBottom: 24 }}>
