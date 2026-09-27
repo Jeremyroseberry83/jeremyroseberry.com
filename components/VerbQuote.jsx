@@ -26,7 +26,7 @@ const QUOTES = {
     note: 'Lead'
   },
   scale: {
-    line: 'You can calm and solve the fear that growth breeds complexity that overwhelms.',
+    line: 'You can calm and solve the fear that growth breeds overwhelming complexity.',
     note: 'Scale'
   },
   try: {
