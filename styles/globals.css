@@ -401,9 +401,11 @@ body {
    his hair on the top edge.
    ============================================================ */
 .band-art {
-  /* Low in the frame: the big ROSEBERRY letterforms sit below centre, and a
-     centred crop of a 16:9 artwork in a ~460px band lands on empty ground. */
-  object-position: 50% 62%;
+  /* band-mark.jpg is the home artwork cropped to x1140-2560 of 2560 — the
+     letterforms and the wedge, with the seated figure cut away. Using the
+     full artwork here put a second, different photo of him behind the type
+     on every page. */
+  object-position: 50% 30%;
 }
 
 /* White body type needs the composite under it at #777 or darker to clear
@@ -413,10 +415,10 @@ body {
 .band-art-wash {
   background: linear-gradient(
     90deg,
-    rgba(var(--band), 0.95) 0%,
-    rgba(var(--band), 0.93) 40%,
-    rgba(var(--band), 0.86) 66%,
-    rgba(var(--band), 0.78) 100%
+    rgba(var(--band), 0.97) 0%,
+    rgba(var(--band), 0.96) 40%,
+    rgba(var(--band), 0.93) 66%,
+    rgba(var(--band), 0.90) 100%
   );
 }
 

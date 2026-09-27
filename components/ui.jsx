@@ -301,7 +301,7 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
            pixels instead, so whatever is behind it shows through. */
         <>
           <img
-            src="/images/hero-honest-stories.jpg"
+            src="/images/band-mark.jpg"
             alt=""
             aria-hidden="true"
             className="band-art absolute inset-0 w-full h-full object-cover"
