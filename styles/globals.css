@@ -401,11 +401,15 @@ body {
    his hair on the top edge.
    ============================================================ */
 .band-art {
-  /* band-mark.jpg is the home artwork cropped to x1140-2560 of 2560 — the
-     letterforms and the wedge, with the seated figure cut away. Using the
-     full artwork here put a second, different photo of him behind the type
-     on every page. */
-  object-position: 50% 30%;
+  /* band-mark.jpg is Jeremy's own plate: the full ROSE / BERRY lockup with
+     no figure in it. Earlier builds pointed at the home artwork, which has
+     the seated photo composited into its left half and so put a second,
+     different photo of him behind the type on every page.
+
+     Centred, because the plate is 3.6:1 against a band near 3.13:1 — cover
+     scales by width, the full height survives, and only about 108px a side
+     is trimmed at desktop. */
+  object-position: 50% 50%;
 }
 
 /* White body type needs the composite under it at #777 or darker to clear
