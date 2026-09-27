@@ -629,3 +629,50 @@ body {
     transform: none;
   }
 }
+
+/* ============================================================
+   Footer contact — chip and label light together.
+
+   Done in CSS rather than onMouseOver/onMouseOut handlers because the
+   hover has to reach two elements at once: the bordered chip fills with
+   gold while the handle beside it changes colour. A handler would have to
+   reach into a child to do the same thing.
+   ============================================================ */
+.footer-link {
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 180ms ease;
+}
+
+.footer-link:hover {
+  color: var(--gold);
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 180ms ease;
+}
+
+.footer-social__chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.footer-social:hover {
+  color: var(--gold);
+}
+
+.footer-social:hover .footer-social__chip {
+  background-color: var(--gold);
+  border-color: var(--gold);
+  /* Ink, not white: gold at 8.2:1 on the footer's charcoal is fine for the
+     label, but an icon sitting ON gold needs to go dark. */
+  color: #2a2a2a;
+}

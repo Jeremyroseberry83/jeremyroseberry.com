@@ -30,6 +30,16 @@ const SOCIAL_ICONS = {
   x: Twitter
 };
 
+// A handle reads as a person; a bare icon reads as a button. LinkedIn has no
+// handle worth printing — the vanity slug is a string of digits — so it gets
+// the network name instead. Keys match SOCIAL_ICONS and site.config social.
+const SOCIAL_LABELS = {
+  instagram: '@jeremyroseberry_',
+  linkedin: 'LinkedIn',
+  youtube: 'YouTube',
+  x: 'X'
+};
+
 const META = {
   home: {
     title: `${company.name} — Entrepreneur & Investor`,
@@ -318,45 +328,53 @@ const META = {
 
             </div>
 
-            {/* Social. Each icon renders only when site.config.js has a URL for
-                it, so an account that does not exist yet leaves no dead link
-                behind — and adding one later needs no code change. */}
-            {socialLinks.length > 0 && (
-              <div className="flex justify-center gap-3 mb-7">
-                {socialLinks.map(([key, url]) => {
-                  const Icon = SOCIAL_ICONS[key];
-                  return (
-                    <a
-                      key={key}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={key.charAt(0).toUpperCase() + key.slice(1)}
-                      className="flex items-center justify-center"
-                      style={{
-                        width: 42,
-                        height: 42,
-                        border: '1px solid rgba(255,255,255,0.28)',
-                        color: 'rgba(255,255,255,0.85)',
-                        transition: 'background-color 180ms ease, border-color 180ms ease, color 180ms ease'
-                      }}
-                      onMouseOver={(e) => {
-                        e.currentTarget.style.backgroundColor = colors.SECONDARY;
-                        e.currentTarget.style.borderColor = colors.SECONDARY;
-                        e.currentTarget.style.color = colors.SLATE;
-                      }}
-                      onMouseOut={(e) => {
-                        e.currentTarget.style.backgroundColor = 'transparent';
-                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.28)';
-                        e.currentTarget.style.color = 'rgba(255,255,255,0.85)';
-                      }}
-                    >
-                      {Icon ? <Icon size={18} strokeWidth={1.7} /> : key}
-                    </a>
-                  );
-                })}
+            {/* Contact. The name, a live mailto, and only the accounts that
+                site.config.js actually has a URL for — an account that does
+                not exist yet leaves no dead link behind, and adding one later
+                needs no code change. Hover lives in CSS rather than mouse
+                handlers so the chip and its label light together. */}
+            <div
+              className="flex flex-col md:flex-row md:items-end md:justify-between gap-9 text-center md:text-left"
+              style={{ marginBottom: 32 }}
+            >
+              <div className="flex flex-col items-center md:items-start">
+                <p className="display" style={{ color: '#ffffff', fontSize: 25, lineHeight: 1 }}>
+                  {company.name}
+                </p>
+                <span
+                  aria-hidden="true"
+                  style={{ display: 'block', width: 64, height: 3, backgroundColor: colors.SECONDARY, margin: '15px 0 17px' }}
+                />
+                <a href={`mailto:${company.email}`} className="footer-link flex items-center gap-2.5" style={{ fontSize: 15 }}>
+                  <Mail size={17} strokeWidth={1.7} />
+                  {company.email}
+                </a>
               </div>
-            )}
+
+              {socialLinks.length > 0 && (
+                <div className="flex flex-col items-center md:items-end gap-3">
+                  {socialLinks.map(([key, url]) => {
+                    const Icon = SOCIAL_ICONS[key];
+                    const label = SOCIAL_LABELS[key] || key;
+                    return (
+                      <a
+                        key={key}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="footer-social"
+                        aria-label={label}
+                      >
+                        <span className="footer-social__chip">
+                          {Icon ? <Icon size={18} strokeWidth={1.7} /> : null}
+                        </span>
+                        <span style={{ fontSize: 14, letterSpacing: '0.04em' }}>{label}</span>
+                      </a>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
 
             <div className="text-center" style={{ color: 'rgba(255,255,255,0.45)', fontSize: 12 }}>
               © {new Date().getFullYear()} {company.name}. All rights reserved.
