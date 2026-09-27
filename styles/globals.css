@@ -460,9 +460,14 @@ body {
    ============================================================ */
 /* The small first line of the hero headline. Sized in em so it tracks
    whatever the h1 is set to at that breakpoint, and tracked out so it reads
-   as a deliberate lede rather than a headline that failed to fit. */
+   as a deliberate lede rather than a headline that failed to fit.
+
+   Half the size of the word below it, Jeremy's call. HELPING is 4.075em
+   wide tracked out, so at 0.5em it occupies about 2em against
+   ENTREPRENEURS' 6.889 — nowhere near the column edge at either
+   breakpoint, so the ratio costs nothing in fit. */
 .hero-lede {
-  font-size: 0.34em;
+  font-size: 0.5em;
   letter-spacing: 0.08em;
   margin-bottom: 0.12em;
 }
