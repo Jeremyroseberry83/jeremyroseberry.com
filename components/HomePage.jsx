@@ -29,6 +29,10 @@ import { company, cta } from '../site.config';
 const SCALE_BROWN = '#413a37';
 
 /** Every figure is Jeremy's own claim. Nothing estimated or rounded up. */
+// The four verbs, in Jeremy's order. They arrive one at a time, half a
+// second apart, starting once the gold rule has landed.
+const VERBS = ['Think', 'Lead', 'Scale', 'Try'];
+
 const SCALE = [
   { value: '19', unit: 'yrs', label: 'Married' },
   { value: '15', unit: 'yrs', label: 'Dad' },
@@ -134,10 +138,13 @@ export default function HomePage({ onContactClick }) {
             <span className="block">Entrepreneurs</span>
           </h1>
 
-          <p className="eyebrow-wide hero-verbs" style={{ color: '#ffffff', fontSize: '1.32vw', marginBottom: '2.2vw' }}>
-            Think <span style={{ color: SECONDARY }}>&bull;</span> Lead{' '}
-            <span style={{ color: SECONDARY }}>&bull;</span> Scale{' '}
-            <span style={{ color: SECONDARY }}>&bull;</span> Try
+          <p className="eyebrow-wide" style={{ color: '#ffffff', fontSize: '1.32vw', marginBottom: '2.2vw' }}>
+            {VERBS.map((v, i) => (
+              <span key={v} className="hero-verb" style={{ animationDelay: `${2.7 + i * 0.5}s` }}>
+                {i > 0 && <span aria-hidden="true" className="hero-verb-dot">&bull;</span>}
+                {v}
+              </span>
+            ))}
           </p>
 
           <div>
@@ -187,10 +194,13 @@ export default function HomePage({ onContactClick }) {
             <span className="block">Entrepreneurs</span>
           </h1>
 
-          <p className="eyebrow-wide hero-verbs" style={{ color: '#ffffff', fontSize: 11, marginBottom: 24 }}>
-            Think <span style={{ color: SECONDARY }}>&bull;</span> Lead{' '}
-            <span style={{ color: SECONDARY }}>&bull;</span> Scale{' '}
-            <span style={{ color: SECONDARY }}>&bull;</span> Try
+          <p className="eyebrow-wide" style={{ color: '#ffffff', fontSize: 11, marginBottom: 24 }}>
+            {VERBS.map((v, i) => (
+              <span key={v} className="hero-verb" style={{ animationDelay: `${2.7 + i * 0.5}s` }}>
+                {i > 0 && <span aria-hidden="true" className="hero-verb-dot">&bull;</span>}
+                {v}
+              </span>
+            ))}
           </p>
 
           <div>

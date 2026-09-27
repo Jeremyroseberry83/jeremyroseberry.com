@@ -492,14 +492,32 @@ body {
 /* The four verbs complete the sentence the headline starts, so they follow
    the rule rather than waiting for it to finish. 2.7s and a 1s fade: at 3.4s
    they were arriving after the eye had already moved to the button. */
-.hero-verbs {
+.hero-verb {
+  /* inline-block so translateY has something to move. The delay is set per
+     verb in HomePage.jsx: 2.7s, then half a second apart, so they arrive one
+     at a time rather than as a finished line. */
+  display: inline-block;
   opacity: 0;
-  animation: heroFade 0.5s ease-out 2.7s forwards;
+  animation: heroRise 0.5s ease-out forwards;
+}
+
+/* The gold separator travels with the verb it precedes, so a dot never
+   hangs on its own waiting for its word. Margins carry all the spacing —
+   the spans sit flush against each other with no text nodes between. */
+.hero-verb-dot {
+  color: var(--gold);
+  margin: 0 0.55em 0 0.2em;
+}
+
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(0.45em); }
+  to   { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-verbs {
+  .hero-verb {
     opacity: 1;
+    transform: none;
     animation: none;
   }
 }
