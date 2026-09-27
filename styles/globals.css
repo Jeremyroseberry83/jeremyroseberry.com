@@ -508,6 +508,29 @@ body {
   }
 }
 
+/* A composed banner — background and figure already one image. Right
+   aligned so cover trims the letterforms on the left rather than cutting
+   into him on the right: at desktop the 3.6:1 plate in a ~3.13:1 band has
+   about 216px to give up, and all of it should come off the type side. */
+.band-art--composed {
+  object-position: 100% 50%;
+}
+
+/* Much lighter than the wash over band-mark, and it clears entirely before
+   the figure. Measured on the artwork itself: white already holds 6.42:1 on
+   its brightest patch in the text zone, so the title needs no help — but the
+   gold eyebrow sits at 2.85:1 there, under the 4.5:1 floor for 11px type.
+   0.72 of the band tone brings gold to 4.84:1 and leaves his face untouched. */
+.band-art-wash--composed {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--band), 0.74) 0%,
+    rgba(var(--band), 0.72) 46%,
+    rgba(var(--band), 0.34) 64%,
+    rgba(var(--band), 0) 80%
+  );
+}
+
 /* Phone: the photo runs 78% of a narrow band, so the copy crosses it. The
    vertical pass carries legibility there and the horizontal one is light. */
 .band-mobile-wash {

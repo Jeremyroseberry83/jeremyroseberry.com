@@ -216,7 +216,7 @@ const BAND_TONES = {
  */
 const LIGHT_TONES = new Set(['gold']);
 
-export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video, poster, tone = 'ink', cta, onCta, titleWidth = '16ch', subtitleWidth = '46ch', portrait }) {
+export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video, poster, tone = 'ink', cta, onCta, titleWidth = '16ch', subtitleWidth = '46ch', portrait, art }) {
   const wash = BAND_TONES[tone] || INK;
   const rgb = {
     [PRIMARY]: '26,58,82',
@@ -292,7 +292,7 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
             style={{ background: `linear-gradient(180deg, rgba(${rgb},0.55) 0%, rgba(${rgb},0.92) 70%)` }}
           />
         </>
-      ) : portrait ? (
+      ) : portrait || art ? (
         /* Three layers: the ROSEBERRY artwork, a tone wash over it, then the
            portrait.
 
@@ -306,22 +306,27 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
            pixels instead, so whatever is behind it shows through. */
         <>
           <img
-            src="/images/band-mark.jpg"
+            src={art || '/images/band-mark.jpg'}
             alt=""
             aria-hidden="true"
-            className="band-art absolute inset-0 w-full h-full object-cover"
+            className={`band-art absolute inset-0 w-full h-full object-cover${art ? ' band-art--composed' : ''}`}
           />
           {/* Heavy enough over the type that white holds ~10:1 even where the
               artwork is at its lightest, which is the only reason the letter-
               forms can show at all. The band colour comes in as a property so
               one rule serves every tone. */}
-          <div className="band-art-wash absolute inset-0" style={{ '--band': rgb }} />
-          <img
-            src={portrait}
-            alt=""
-            aria-hidden="true"
-            className="band-portrait absolute right-0 object-cover"
-          />
+          <div className={`band-art-wash${art ? ' band-art-wash--composed' : ''} absolute inset-0`} style={{ '--band': rgb }} />
+          {/* Only when the figure is a separate layer. A composed `art` band
+              already has him in it; drawing the portrait again would stack two
+              of him on the same side. */}
+          {portrait && (
+            <img
+              src={portrait}
+              alt=""
+              aria-hidden="true"
+              className="band-portrait absolute right-0 object-cover"
+            />
+          )}
           {/* Phones put the copy across the full width, so the horizontal pass
               is not enough on its own. */}
           <div className="band-mobile-wash absolute inset-0 md:hidden" style={{ '--band': rgb }} />
