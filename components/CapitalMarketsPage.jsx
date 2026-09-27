@@ -147,7 +147,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
         titleWidth="18ch"
         subtitle="Relational · socio-economical · organizational · time · monetary"
         portrait="/images/portraits/capital.jpg"
-        tone="ink"
+        tone="primary"
       />
 
       <section className="px-6 py-16 md:py-28" style={{ backgroundColor: '#ffffff' }}>

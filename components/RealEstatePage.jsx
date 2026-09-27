@@ -67,7 +67,7 @@ export default function RealEstatePage({ onContactClick }) {
         subtitle="Businesses built around adding value. We advise and refer exclusively. No agents. No listings. Always looking for the best experts in every market."
         subtitleWidth="56ch"
         portrait="/images/portraits/real-estate.jpg"
-        tone="ink"
+        tone="bronze"
       />
 
       {/* ============================================================

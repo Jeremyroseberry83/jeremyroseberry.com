@@ -196,7 +196,11 @@ const BAND_TONES = {
   deep: PRIMARY_DEEP,
   ink: INK,
   taupe: TAUPE,
-  gold: SECONDARY
+  gold: SECONDARY,
+  // Deepened from SECONDARY rather than invented: the gold family taken far
+  // enough down to carry white type at 12.8:1. Gives the four page banners a
+  // fourth distinct tone without leaving the palette.
+  bronze: '#3a2e1a'
 };
 
 /**
@@ -219,7 +223,8 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
     [PRIMARY_DEEP]: '18,41,59',
     [INK]: '42,42,42',
     [TAUPE]: '107,107,107',
-    [SECONDARY]: '201,169,97'
+    [SECONDARY]: '201,169,97',
+    '#3a2e1a': '58,46,26'
   }[wash] || '42,42,42';
 
   const light = LIGHT_TONES.has(tone);
@@ -375,22 +380,25 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
             where the image sits behind a vertical wash instead. */}
         <div className={image || video || portrait ? 'w-full md:w-7/12' : undefined}>
           {eyebrow && (
-            <p className="eyebrow-wide" style={{ color: eyebrowInk, fontSize: 11, marginBottom: 18 }}>
+            <p className="eyebrow-wide band-eyebrow" style={{ color: eyebrowInk, fontSize: 11, marginBottom: 18 }}>
               {eyebrow}
             </p>
           )}
           {/* 16ch suits a two-or-three-word title. A longer one needs its
               own measure or the last line is left holding one word. */}
-          <h1 className="display" style={{ color: ink, fontSize: 'clamp(2.4rem, 6vw, 4.4rem)', maxWidth: titleWidth }}>
+          <h1 className="display band-title" style={{ color: ink, fontSize: 'clamp(2.4rem, 6vw, 4.4rem)', maxWidth: titleWidth }}>
             {title}
           </h1>
+          {/* The same gold rule the home hero carries under HELPING. Wipes in
+              from the left rather than fading, so it reads as drawn. */}
+          <span aria-hidden="true" className="band-rule" style={{ backgroundColor: eyebrowInk }} />
           {subtitle && (
-            <p style={{ color: subInk, fontSize: 18, lineHeight: 1.7, maxWidth: subtitleWidth, marginTop: 22 }}>
+            <p className="band-sub" style={{ color: subInk, fontSize: 18, lineHeight: 1.7, maxWidth: subtitleWidth, marginTop: 22 }}>
               {subtitle}
             </p>
           )}
           {cta && (
-            <div style={{ marginTop: 32 }}>
+            <div className="band-cta" style={{ marginTop: 32 }}>
               <Button variant={light ? 'navy' : 'gold'} onClick={onCta}>
                 {cta}
               </Button>
