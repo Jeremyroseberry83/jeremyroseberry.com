@@ -111,10 +111,23 @@ export default function HomePage({ onContactClick }) {
               would have forced the whole headline down to fit the long word —
               paying for the specific word with the scale that makes the hero
               work. Demoting HELPING buys the width back and puts the emphasis
-              where it belongs: on who this is for. */}
+              where it belongs: on who this is for.
+
+              6vw is set by the ARTWORK, not by this column. The taupe wedge
+              has a diagonal right edge, and sampling the source image across
+              the rows the glyphs actually occupy puts it at 88.87% of the
+              frame at its tightest — the top of the word, since the diagonal
+              leans right as it falls. Starting at 45.5%, that leaves 43.37vw,
+              so 6.295vw is where the word would touch the edge. 6vw holds a
+              ~2vw margin of taupe. 6.7 overhung it by 2.8vw, which is what
+              Jeremy saw bleeding onto the light panel.
+
+              The whole hero is scale-invariant — the artwork is an exact 16:9
+              against a 16:9 box, and the type is sized in vw off the same
+              origin — so this one figure holds at every desktop width. */}
           <h1
             className="display hero-fade-3"
-            style={{ color: '#ffffff', fontSize: '6.7vw', marginBottom: '1.8vw' }}
+            style={{ color: '#ffffff', fontSize: '6vw', marginBottom: '1.8vw' }}
           >
             <span className="block hero-lede">Helping</span>
             <span aria-hidden="true" className="hero-rule" />
