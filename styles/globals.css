@@ -401,28 +401,31 @@ body {
    his hair on the top edge.
    ============================================================ */
 .band-art {
-  /* band-mark.jpg is Jeremy's own plate: the full ROSE / BERRY lockup with
-     no figure in it. Earlier builds pointed at the home artwork, which has
-     the seated photo composited into its left half and so put a second,
-     different photo of him behind the type on every page.
+  /* Jeremy's plate at 2560x640: the full ROSE / BERRY lockup and the navy
+     diagonal, with no figure in it — the portraits are laid over it as their
+     own layer. An earlier build pointed at the home artwork, which has the
+     seated photo baked into its left half and so put a second, different
+     photo of him behind the type on every page.
 
-     Centred, because the plate is 3.6:1 against a band near 3.13:1 — cover
-     scales by width, the full height survives, and only about 108px a side
-     is trimmed at desktop. */
+     Centred. At 4:1 it out-runs the band below about 1900px wide, so nothing
+     is cropped vertically there at all; past that the trim is symmetrical and
+     lands on abstract letterforms. */
   object-position: 50% 50%;
 }
 
-/* White body type needs the composite under it at #777 or darker to clear
-   4.5:1. The artwork's lightest areas are around #c8c8c8, so anything below
-   about 0.52 alpha would fail there. These stops sit well clear of that and
-   still leave the letterforms visible as texture. */
+/* Set by the gold eyebrow, not the white title. On this plate's brightest
+   patch white already holds 4.77:1 unwashed, but 11px gold sits far lower.
+   Solving for 4.5:1 per tone gives deep 0.64, ink 0.68, bronze 0.74 and
+   primary 0.82 — navy is the binding case, so 0.84 under the type covers
+   all four with margin. It eases to 0.62 on the right, where there is no
+   type and the portrait needs the plate to read behind it. */
 .band-art-wash {
   background: linear-gradient(
     90deg,
-    rgba(var(--band), 0.97) 0%,
-    rgba(var(--band), 0.96) 40%,
-    rgba(var(--band), 0.93) 66%,
-    rgba(var(--band), 0.90) 100%
+    rgba(var(--band), 0.86) 0%,
+    rgba(var(--band), 0.84) 46%,
+    rgba(var(--band), 0.72) 70%,
+    rgba(var(--band), 0.62) 100%
   );
 }
 
