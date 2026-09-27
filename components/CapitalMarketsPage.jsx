@@ -90,22 +90,22 @@ const FOR_WHOM = {
  */
 const FLOW = [
   {
-    tint: '#0f2231',
+    tint: '#faf6ec',
     label: 'Real assets',
     body: 'Commercial real estate and infrastructure. Sponsors who have done it before, in markets they already know, with a basis that makes sense before the story does.'
   },
   {
-    tint: '#132a3d',
+    tint: '#f5edda',
     label: 'Private credit',
     body: 'Where the return is contractual rather than hoped for. The category most allocators say they want more of and see the least of.'
   },
   {
-    tint: '#173149',
+    tint: '#efe3c6',
     label: 'Private equity',
     body: 'Operating businesses with real cash flow and a reason to change hands. Sponsors who can say plainly what they intend to do differently after close.'
   },
   {
-    tint: '#1b3854',
+    tint: '#e8d8b0',
     label: 'Early venture',
     body: 'Founders at the point where operating help matters more than the size of the allocation. Usually the ones who did not need to be talked into the work.'
   }
@@ -238,15 +238,19 @@ export default function CapitalMarketsPage({ onContactClick }) {
             intro="Quality flow crosses my desk across most asset classes, and my role in it is advisory — I consult, I tell you what I actually think, and I put you direct to the principal or the GP. No middle layer, and no live opportunities posted on a website."
           />
 
-          <div ref={flowRef} className="grid md:grid-cols-2 gap-px mt-14" style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}>
+          <div ref={flowRef} className="grid md:grid-cols-2 gap-px mt-14" style={{ backgroundColor: 'transparent' }}>
             {FLOW.map((f, i) => (
               <article
                 key={f.label}
                 className="p-8 md:p-10"
                 style={{
-                  /* Each card a step lighter than the last. All four keep
-                     white at 12:1 or better, so the variation is visible
-                     without costing any legibility. */
+                  /* Cream stepping to champagne, on the navy section. Each
+                     card a step warmer than the last; navy type holds 7.2:1
+                     or better on all four, so the warmest card is still well
+                     clear of the 4.5:1 floor for 16px body. The 1px gaps run
+                     transparent so the section's own navy reads as the rule
+                     between cards — a white divider disappeared once the
+                     cards stopped being dark. */
                   backgroundColor: f.tint,
                   opacity: flowIn ? 1 : 0,
                   transform: flowIn ? 'none' : 'translateY(12px)',
@@ -256,14 +260,14 @@ export default function CapitalMarketsPage({ onContactClick }) {
               >
                 <span
                   className="display block"
-                  style={{ color: SECONDARY, opacity: 0.55, fontSize: 'clamp(1.5rem, 2.4vw, 2rem)', lineHeight: 1, marginBottom: 14 }}
+                  style={{ color: '#8a6a28', fontSize: 'clamp(1.5rem, 2.4vw, 2rem)', lineHeight: 1, marginBottom: 14 }}
                 >
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <h3 className="display" style={{ color: '#ffffff', fontSize: 'clamp(1.4rem, 2.4vw, 1.9rem)', marginBottom: 14 }}>
+                <h3 className="display" style={{ color: PRIMARY_DEEP, fontSize: 'clamp(1.4rem, 2.4vw, 1.9rem)', marginBottom: 14 }}>
                   {f.label}
                 </h3>
-                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 16, lineHeight: 1.75 }}>{f.body}</p>
+                <p style={{ color: '#2f4356', fontSize: 16, lineHeight: 1.75 }}>{f.body}</p>
               </article>
             ))}
           </div>
