@@ -288,33 +288,38 @@ export function PageTopBand({ eyebrow, title, subtitle, watermark, image, video,
           />
         </>
       ) : portrait ? (
-        /* The original photo as a right-hand panel, dissolved into the band by
-           a CSS gradient in the band's OWN colour.
+        /* Three layers: the ROSEBERRY artwork, a tone wash over it, then the
+           portrait.
 
-           This replaces baking the figure onto a synthetic backdrop in Python.
-           That approach always left a visible seam: the photo's background
-           never quite matched the generated one, and no amount of feathering
-           hid the tonal join. Here the left of the photo sits under a fully
-           opaque wash of the exact section colour, so there is nothing to
-           match and nothing to see. */
+           The artwork is the same frame the home hero uses, so every page
+           banner sits on the same surface instead of a flat colour.
+
+           The portrait is MASKED rather than washed. The old build laid an
+           opaque gradient over the photo's left edge to dissolve it, which
+           worked against a flat background but would now paint out the
+           artwork everywhere left of the photo. A mask fades the photo's own
+           pixels instead, so whatever is behind it shows through. */
         <>
+          <img
+            src="/images/hero-honest-stories.jpg"
+            alt=""
+            aria-hidden="true"
+            className="band-art absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Heavy enough over the type that white holds ~10:1 even where the
+              artwork is at its lightest, which is the only reason the letter-
+              forms can show at all. The band colour comes in as a property so
+              one rule serves every tone. */}
+          <div className="band-art-wash absolute inset-0" style={{ '--band': rgb }} />
           <img
             src={portrait}
             alt=""
             aria-hidden="true"
-            className="band-portrait absolute inset-y-0 right-0 h-full object-cover"
+            className="band-portrait absolute right-0 object-cover"
           />
-          {/* The wash lives in CSS so it can differ by breakpoint: the panel
-              is narrow on desktop and wide on a phone, so a single set of
-              stops cannot stay opaque past the photo's edge at both. The band
-              colour is handed over as a custom property. */}
-          <div className="band-wash absolute inset-0" style={{ '--band': rgb }} />
-          {/* Phones put the copy across the full width, so the horizontal wash
-              alone is not enough. */}
-          <div
-            className="absolute inset-0 md:hidden"
-            style={{ background: `linear-gradient(180deg, rgba(${rgb},0.55) 0%, rgba(${rgb},0.90) 58%, rgba(${rgb},0.97) 100%)` }}
-          />
+          {/* Phones put the copy across the full width, so the horizontal pass
+              is not enough on its own. */}
+          <div className="band-mobile-wash absolute inset-0 md:hidden" style={{ '--band': rgb }} />
         </>
       ) : image ? (
         <>

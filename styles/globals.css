@@ -388,62 +388,68 @@ body {
 }
 
 /* ============================================================
-   Banner portrait — the original photo as a right-hand panel.
+   Page banner — artwork, wash, portrait.
 
-   --panel is the single source of truth for the panel's width. Both the
-   photo and the wash read it, so the wash is guaranteed to be fully opaque
-   exactly where the photo's left edge falls. Setting the two independently
-   is what produced a visible vertical seam the first time round.
+   --panel is the single source of truth for the photo's width.
 
-   The desktop width is deliberately held under 0.75 x the band height at
-   every viewport. The sources are ~3:4 portraits, so below that ratio
-   object-fit cover scales by HEIGHT and crops only the sides — which means
-   the full height of the portrait survives and the head can never be cut
-   off the top. Above it, cover switches to scaling by width and starts
-   eating the crown of his head, which is exactly what happened when the
-   band was 620px tall on a wide monitor.
-
-   clamp() floor: on a narrow tablet a pure percentage left the figure a
-   sliver, so 180px is the minimum the panel may be.
+   The desktop panel is held under 0.75 x the photo BOX height at every
+   viewport. The sources are ~3:4 portraits, so below that ratio object-fit
+   cover scales by HEIGHT and crops only the sides, which means the whole
+   height of the portrait survives and his head can never be cut off. The
+   box is 93% of the band, not 100%, and that missing 7% is the headroom
+   above his head — the sources are framed tight, so filling the band put
+   his hair on the top edge.
    ============================================================ */
-.band-portrait,
-.band-wash {
-  --panel: 78%;
+.band-art {
+  /* Low in the frame: the big ROSEBERRY letterforms sit below centre, and a
+     centred crop of a 16:9 artwork in a ~460px band lands on empty ground. */
+  object-position: 50% 62%;
 }
 
-@media (min-width: 768px) {
-  .band-portrait,
-  .band-wash {
-    --panel: clamp(180px, 21vw, 320px);
-  }
+/* White body type needs the composite under it at #777 or darker to clear
+   4.5:1. The artwork's lightest areas are around #c8c8c8, so anything below
+   about 0.52 alpha would fail there. These stops sit well clear of that and
+   still leave the letterforms visible as texture. */
+.band-art-wash {
+  background: linear-gradient(
+    90deg,
+    rgba(var(--band), 0.95) 0%,
+    rgba(var(--band), 0.93) 40%,
+    rgba(var(--band), 0.86) 66%,
+    rgba(var(--band), 0.78) 100%
+  );
 }
 
 .band-portrait {
+  --panel: 78%;
+  top: 0;
+  height: 100%;
   width: var(--panel);
-  /* Biased to the top so that if a width ever does fall outside the
-     height-driven range, what gets trimmed is the hem, not his head. */
   object-position: 50% 8%;
 }
 
 @media (min-width: 768px) {
   .band-portrait {
+    --panel: clamp(180px, 20vw, 300px);
+    top: 7%;
+    height: 93%;
     object-position: 50% 20%;
+    /* Fades the photo's own left edge instead of covering it, so the artwork
+       behind stays visible. A gradient opaque enough to hide that edge would
+       have hidden the artwork with it. */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.3) 20%, #000 56%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.3) 20%, #000 56%);
   }
 }
 
-/* The wash. Stops are measured from the RIGHT edge in terms of --panel, so
-   the gradient reaches full opacity precisely at the photo's left edge no
-   matter how wide the viewport is. Percentage stops could not do this: the
-   edge sits anywhere from 76% to 84% across the desktop range, and a fixed
-   stop either washed out the photo or exposed its edge as a hard line. */
-.band-wash {
+/* Phone: the photo runs 78% of a narrow band, so the copy crosses it. The
+   vertical pass carries legibility there and the horizontal one is light. */
+.band-mobile-wash {
   background: linear-gradient(
-    to left,
-    rgba(var(--band), 0) 0,
-    rgba(var(--band), 0.18) calc(var(--panel) * 0.30),
-    rgba(var(--band), 0.62) calc(var(--panel) * 0.64),
-    rgba(var(--band), 1) var(--panel),
-    rgba(var(--band), 1) 100%
+    180deg,
+    rgba(var(--band), 0.55) 0%,
+    rgba(var(--band), 0.90) 58%,
+    rgba(var(--band), 0.97) 100%
   );
 }
 
