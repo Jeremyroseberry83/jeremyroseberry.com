@@ -29,16 +29,16 @@ import { SectionHead, SECONDARY, SECONDARY_DEEP, PRIMARY, SLATE, MUTED, BG } fro
  */
 const CLIPS = [
   {
-    id: 2,
-    title: 'Courage | Take The First Step',
-    point:
-      'Don’t let the climb overwhelm you or stop you from starting. The first step is the only one you have to see clearly.'
-  },
-  {
     id: 1,
     title: '49% Fear / 51% Courage',
     point:
       'Everything you are dreaming of attaining is on the other side of fear. It is never a clean split — you only need the courage to win by two.'
+  },
+  {
+    id: 2,
+    title: 'Courage | Take The First Step',
+    point:
+      'Don’t let the climb overwhelm you or stop you from starting. The first step is the only one you have to see clearly.'
   },
   {
     id: 3,
@@ -58,7 +58,9 @@ export default function ShortForm() {
   // Opens on 49% Fear / 51% Courage rather than the top of the list — it is
   // the most distinctive of the four and the one worth loading first. The list
   // order is unchanged, so row 02 is highlighted on arrival.
-  const [active, setActive] = useState(CLIPS[1].id);
+  // Whatever leads the list is what loads. Tied to position rather than a
+  // hardcoded index so reordering CLIPS moves the poster with it.
+  const [active, setActive] = useState(CLIPS[0].id);
   const [playing, setPlaying] = useState(false);
 
   const open = (id) => {

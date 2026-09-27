@@ -32,11 +32,11 @@ export default function MotivationPage({ onContactClick }) {
 
       <ShortForm />
 
-      <VerbQuote verb="think" />
+      <Creed />
 
       <SixFoundations />
 
-      <Creed />
+      <VerbQuote verb="think" />
 
       <BookingCTA onContactClick={onContactClick} />
     </div>
