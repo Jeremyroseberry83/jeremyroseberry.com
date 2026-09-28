@@ -224,7 +224,7 @@ const META = {
           <button
             className="xl:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{ color: colors.SLATE, background: 'none', border: 'none' }}
+            style={{ color: colors.SLATE, background: 'none', border: 'none', padding: 10, margin: -10 }}
             aria-label="Menu"
             aria-expanded={mobileMenuOpen}
           >
@@ -242,7 +242,7 @@ const META = {
                   style={{
                     background: 'none',
                     border: 'none',
-                    padding: 0,
+                    padding: '10px 0',
                     textAlign: 'left',
                     fontSize: 15,
                     fontWeight: 600,
@@ -325,7 +325,7 @@ const META = {
                   style={{
                     background: 'none',
                     border: 'none',
-                    padding: 0,
+                    padding: '8px 0',
                     color: 'rgba(255,255,255,0.72)',
                     fontSize: 12,
                     fontWeight: 600,
@@ -357,7 +357,7 @@ const META = {
                 aria-hidden="true"
                 style={{ display: 'block', width: 64, height: 3, backgroundColor: colors.SECONDARY, margin: '15px 0 17px' }}
               />
-              <a href={`mailto:${company.email}`} className="footer-link flex items-center gap-2.5" style={{ fontSize: 15 }}>
+              <a href={`mailto:${company.email}`} className="footer-link flex items-center gap-2.5" style={{ fontSize: 15, padding: '6px 0' }}>
                 <Mail size={17} strokeWidth={1.7} />
                 {company.email}
               </a>

@@ -478,18 +478,38 @@ body {
 .band-sub     { animation-name: bandRise; animation-duration: 0.60s; animation-delay: 0.78s; }
 .band-cta     { animation-name: bandRise; animation-duration: 0.60s; animation-delay: 0.96s; }
 
-/* Stops a last word stranding on its own line. `pretty` is the right
-   property for a paragraph — it only reflows the closing lines to clear a
-   widow, where `balance` would even out all four and can leave a short
-   first line. Browsers without it fall back to normal wrapping, which is
-   why the About subtitle also binds its final two words with a
-   non-breaking space: that one is deterministic. */
+/* ============================================================
+   Widow control, site wide.
+
+   Two different problems, two different properties.
+
+   `pretty` suits running text: it reflows only the CLOSING lines to stop a
+   last word stranding on its own, and leaves everything above untouched.
+   Using `balance` on a paragraph would even out every line and can hand you
+   a stunted first one instead.
+
+   `balance` suits headings and pull quotes: a few words read better split
+   evenly than filled line by line, which is what makes them look
+   symmetrical rather than ragged. Browsers cap it at a handful of lines, so
+   it quietly does nothing on long text — which is why it is safe to apply
+   this broadly.
+
+   Neither is universally supported yet, and both degrade to ordinary
+   wrapping. Where a specific break has to be guaranteed, the copy binds the
+   words with a non-breaking space instead — the About subtitle does this.
+   ============================================================ */
+p,
+li,
+blockquote,
 .band-sub {
   text-wrap: pretty;
 }
 
-/* A headline of two or three words reads better evenly split than filled
-   line by line, and it is short enough for `balance` to apply. */
+h1,
+h2,
+h3,
+h4,
+.display,
 .band-title {
   text-wrap: balance;
 }

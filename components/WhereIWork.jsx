@@ -234,7 +234,7 @@ function WhereIWorkDisplay({ only, heading = true }) {
                         </span>
                         <span
                           className="eyebrow-wide block"
-                          style={{ color: SECONDARY, fontSize: 10, marginTop: 8 }}
+                          style={{ color: SECONDARY, fontSize: 11.5, marginTop: 8 }}
                         >
                           {c.role}
                         </span>
