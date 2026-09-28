@@ -79,7 +79,7 @@ export default function Creed() {
 
         <footer
           className="eyebrow-wide"
-          style={{ color: CREED_DEEP, opacity: 0.75, fontSize: 10, marginTop: 34 }}
+          style={{ color: CREED_DEEP, opacity: 0.75, fontSize: 11.5, marginTop: 34 }}
         >
           How I try to live
         </footer>

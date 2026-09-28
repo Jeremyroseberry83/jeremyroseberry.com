@@ -575,7 +575,7 @@ export function TopicCards({ cards, dark, numbered }) {
           {c.eyebrow && (
             <p
               className="eyebrow-wide"
-              style={{ color: i === 0 ? SECONDARY : SECONDARY_DEEP, fontSize: 10, marginBottom: 14 }}
+              style={{ color: i === 0 ? SECONDARY : SECONDARY_DEEP, fontSize: 11.5, marginBottom: 14 }}
             >
               {c.eyebrow}
             </p>

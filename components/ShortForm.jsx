@@ -183,7 +183,7 @@ export default function ShortForm() {
                       </span>
                       <span
                         className="eyebrow-wide inline-flex items-center gap-2"
-                        style={{ color: PRIMARY, fontSize: 10, marginTop: 12, opacity: on ? 1 : 0.75 }}
+                        style={{ color: PRIMARY, fontSize: 11.5, marginTop: 12, opacity: on ? 1 : 0.75 }}
                       >
                         <Play size={11} fill={PRIMARY} color={PRIMARY} />
                         {on && playing ? 'Now playing' : 'Watch'}

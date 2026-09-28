@@ -159,14 +159,14 @@ export default function CapitalMarketsPage({ onContactClick }) {
                       )}
                     </span>
                     {KIND[c.name] && (
-                      <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 10 }}>
+                      <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11.5, marginBottom: 10 }}>
                         {KIND[c.name]}
                       </p>
                     )}
                     <h3 className="display" style={{ color: SLATE, fontSize: 'clamp(1.7rem, 3.4vw, 2.5rem)', marginBottom: 10 }}>
                       {c.name}
                     </h3>
-                    <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 10, marginBottom: 20 }}>
+                    <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 11.5, marginBottom: 20 }}>
                       {c.role}
                     </p>
                     <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.8, marginBottom: 22 }}>{c.description}</p>

@@ -297,7 +297,7 @@ export default function EntrepreneursPage({ onContactClick }) {
                     <h3 className="display" style={{ color: SLATE, fontSize: 20, marginBottom: 6 }}>
                       {f.name}
                     </h3>
-                    <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 10, marginBottom: 14 }}>
+                    <p className="eyebrow-wide" style={{ color: SECONDARY_DEEP, fontSize: 11.5, marginBottom: 14 }}>
                       {f.role}
                     </p>
                     <p style={{ color: MUTED, fontSize: 15, lineHeight: 1.75 }}>{f.note}</p>

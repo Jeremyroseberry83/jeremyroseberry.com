@@ -113,7 +113,7 @@ export default function ContactForm({ onClose, initialType, initialMessage }) {
 
           {state === 'done' ? (
             <>
-              <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 12 }}>
+              <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11.5, marginBottom: 12 }}>
                 Received
               </p>
               <h2 className="display" style={{ color: '#ffffff', fontSize: 28 }}>
@@ -122,7 +122,7 @@ export default function ContactForm({ onClose, initialType, initialMessage }) {
             </>
           ) : (
             <>
-              <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 10, marginBottom: 12 }}>
+              <p className="eyebrow-wide" style={{ color: SECONDARY, fontSize: 11.5, marginBottom: 12 }}>
                 Booking enquiry
               </p>
               {/* "Let's connect" rather than "Let's find a date": this modal

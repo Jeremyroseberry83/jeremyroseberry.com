@@ -79,8 +79,7 @@ export default function TryBlock() {
             transitionDelay: '1600ms'
           }}
         >
-          The courage to start is what puts you ahead of almost everyone still deciding — and
-          nobody is holding it back from you.
+          The courage to start is what puts you ahead of almost everyone still deciding.
         </p>
       </div>
     </section>
