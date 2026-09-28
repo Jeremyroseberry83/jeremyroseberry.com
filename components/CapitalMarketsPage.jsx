@@ -15,7 +15,9 @@ import {
 } from './ui';
 
 /**
- * Capital Markets — the three platforms, and who each one is for.
+ * Capital Markets — the three platforms, and who each one is for. The intro
+ * is a broad read across all of them; anything specific to one business
+ * belongs in that business's own block, as `lead` in FOR_WHOM.
  *
  * Company copy comes from TIERS so this page and the About directory cannot
  * describe the same business two different ways. 4IR Studios sits in the same
@@ -49,6 +51,8 @@ const KIND = {
 
 const FOR_WHOM = {
   'Private Investor Circle': {
+    lead:
+      'Firms rarely stall because the deal was bad or the strategy was wrong. They stall because the right thirty people never sat down together — the allocator whose mandate already fits, the advisor whose clients would care, the operator who has already solved it. That room takes years to build, and we still make every invitation ourselves.',
     who: 'Firms that want the room to themselves',
     points: [
       'One firm presents — yours. No competing pitches on either side of you',
@@ -135,7 +139,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
           <SectionHead
             eyebrow="Adding value"
             title="Private Gatherings / Investing / Advisory"
-            intro="Firms rarely stall because the deal was bad or the strategy was wrong. They stall because the right thirty people never sat down together — the allocator whose mandate already fits, the advisor whose clients would care, the operator who has already solved it. That room takes years to build, and we still make every invitation ourselves."
+            intro="One job across all of it: making a company easier to back. Rooms where the right people actually meet. Capital sourced through relationships built over years. Diligence and structure settled before a raise goes to market. And operating help where that is worth more than the money."
           />
 
           <div className="mt-14 md:mt-20 space-y-16 md:space-y-24">
@@ -170,6 +174,11 @@ export default function CapitalMarketsPage({ onContactClick }) {
                       {c.role}
                     </p>
                     <p style={{ color: MUTED, fontSize: 17, lineHeight: 1.8, marginBottom: 22 }}>{c.description}</p>
+                    {extra.lead && (
+                      <p style={{ color: MUTED, fontSize: 16, lineHeight: 1.8, marginBottom: 20 }}>
+                        {extra.lead}
+                      </p>
+                    )}
                     {extra.who && (
                       <p style={{ color: SLATE, fontSize: 15.5, lineHeight: 1.7, fontWeight: 500, marginBottom: 18 }}>
                         {extra.who}.
