@@ -27,12 +27,13 @@ export const TIERS = [
         description: 'A curated circle of investors, allocators and founders who meet in person. Small rooms, no pitch theatre.'
       },
       {
-        name: '4IR Studios',
-        thumb: '/images/ventures/photos/four-ir-studios.jpg',
+        // DRAFT — recovered from the old Entrepreneur page.
+        name: 'The 4IR Group',
+        thumb: '/images/ventures/photos/four-ir-group.jpg',
         role: 'Co-founder, CBO',
-        url: 'https://4irg.com/studios/',
-        logo: '/images/logos/four-ir-studios.png',
-        description: 'A capital markets PR, marketing and design firm — helping companies get investor-ready, financing-ready, acquisition-ready and IPO-ready.'
+        url: 'https://4irg.com',
+        logo: '',
+        description: 'Venture building at the edge of the Fourth Industrial Revolution. Seco Bio is the first.'
       },
       {
         // DRAFT — recovered from the old Entrepreneur page.
@@ -41,16 +42,15 @@ export const TIERS = [
         role: 'Strategic Partner',
         url: 'https://accessglobal.co',
         logo: '/images/logos/access-global.png',
-        description: 'A 30-country private markets platform. CRE, private credit, infrastructure. Sector agnostic.'
+        description: 'A 25-country private markets platform. CRE, private credit, infrastructure. Sector agnostic.'
       },
       {
-        // DRAFT — recovered from the old Entrepreneur page.
-        name: 'The 4IR Group',
-        thumb: '/images/ventures/photos/four-ir-group.jpg',
+        name: '4IR Studios',
+        thumb: '/images/ventures/photos/four-ir-studios.jpg',
         role: 'Co-founder, CBO',
-        url: 'https://4irg.com',
-        logo: '',
-        description: 'Venture building at the edge of the Fourth Industrial Revolution. Seco Bio is the first.'
+        url: 'https://4irg.com/studios/',
+        logo: '/images/logos/four-ir-studios.png',
+        description: 'A capital markets PR, marketing and design firm — helping companies get investor-ready, financing-ready, acquisition-ready and IPO-ready.'
       }
     ]
   },

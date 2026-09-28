@@ -112,7 +112,7 @@ export default function EntrepreneursPage({ onContactClick }) {
       <PageTopBand
         eyebrow="About"
         title="Jeremy"
-        subtitle="There are only two roles in my life that make me “unique” — husband and dad. I am not looking to replace myself in either one. Every other position, somebody else will eventually do."
+        subtitle="There are only two roles in my life that make me “unique” — husband and dad. I am not looking to replace myself in either one. Every other position, somebody else will eventually do."
         subtitleWidth="62ch"
         portrait="/images/portraits/about.jpg"
         tone="deep"

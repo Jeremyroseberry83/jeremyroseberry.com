@@ -478,6 +478,22 @@ body {
 .band-sub     { animation-name: bandRise; animation-duration: 0.60s; animation-delay: 0.78s; }
 .band-cta     { animation-name: bandRise; animation-duration: 0.60s; animation-delay: 0.96s; }
 
+/* Stops a last word stranding on its own line. `pretty` is the right
+   property for a paragraph — it only reflows the closing lines to clear a
+   widow, where `balance` would even out all four and can leave a short
+   first line. Browsers without it fall back to normal wrapping, which is
+   why the About subtitle also binds its final two words with a
+   non-breaking space: that one is deterministic. */
+.band-sub {
+  text-wrap: pretty;
+}
+
+/* A headline of two or three words reads better evenly split than filled
+   line by line, and it is short enough for `balance` to apply. */
+.band-title {
+  text-wrap: balance;
+}
+
 .band-rule {
   /* The hero rule is 0.055em on a 6vw headline — about 4px at desktop, and
      46% of the word above it. Matched here so the two read as one device:
