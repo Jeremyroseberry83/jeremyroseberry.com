@@ -64,7 +64,7 @@ export const TIERS = [
         role: 'Founder / Broker',
         url: 'https://roseberryproperties.com',
         logo: '/images/logos/roseberry-properties.png',
-        description: 'A real estate brokerage specializing in referral and advisory services across all asset classes.'
+        description: 'Referral and advisory for the companies I work with, investors and family offices. All asset classes, always alongside the expert in that market.'
       },
       {
         // DRAFT — recovered from the old Entrepreneur page.

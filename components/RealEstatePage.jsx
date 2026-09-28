@@ -29,11 +29,11 @@ const RE_TIER = TIERS.find((t) => t.label === 'Real Estate');
 /** The outward-facing half — who it is for, in Jeremy's words. */
 const FOR_WHOM = {
   'Roseberry Properties': {
-    who: 'Owners, buyers and investors who want an advisor before an agent',
+    who: 'The companies I work with, investors and family offices',
     points: [
-      'Referral and advisory across every asset class, not just the ones with a listing attached',
-      'A broker who will tell you when the deal in front of you is not the deal',
-      'The network to place something quietly when a public listing is the wrong move'
+      'Referral and advisory across every asset class',
+      'Every deal runs with the expert in that market, never around them',
+      'A straight read on whether the deal in front of you is the deal'
     ]
   },
   'Premiere Home Watch': {
@@ -81,7 +81,7 @@ export default function RealEstatePage({ onContactClick }) {
           <SectionHead
             eyebrow="What we run"
             title={<><CountUp end={3} duration={2200} /> Businesses</>}
-            intro="Referral to top brokers and agents, advisory to firms and family offices, and consulting on projects. All asset classes."
+            intro="Referral to the best expert in each market, advisory to firms and family offices, and consulting on projects. All asset classes."
           />
 
           <div className="mt-14 md:mt-20 space-y-16 md:space-y-24">
