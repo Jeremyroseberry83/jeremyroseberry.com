@@ -6,6 +6,7 @@ import {
   PageTopBand,
   SectionHead,
   BookingCTA,
+  useInView,
   SECONDARY,
   SECONDARY_DEEP,
   PRIMARY,
@@ -34,10 +35,8 @@ const CM_TIER = TIERS.find((t) => t.label === 'Capital Markets');
 // Global. Driven from this list rather than from TIERS, which orders by when
 // the businesses were added.
 //
-// NOTE: the headline runs Advisory / Investing / Private Gatherings, which is
-// the reverse of this. Each company still carries its own label correctly —
-// KIND is keyed by name, not by position — but the two sequences no longer
-// mirror each other. Flip one or the other if that matters.
+// The section headline runs in this same order, so the three words and the
+// three companies below them line up.
 const ON_THIS_PAGE = ['Private Investor Circle', 'The 4IR Group', 'Access Global'];
 
 /** The three words in the section intro, attached to the company each names. */
@@ -49,17 +48,19 @@ const KIND = {
 
 const FOR_WHOM = {
   'Private Investor Circle': {
-    who: 'Allocators and founders who would rather meet in a room than on a call',
+    who: 'Firms that want the room to themselves',
     points: [
-      'Small rooms, curated by hand, no pitch theatre',
-      'Founders meet allocators who are actually in their stage and sector',
-      'Every introduction comes from someone who knows both sides'
+      'One firm presents — yours. No competing pitches on either side of you',
+      'A room of 30–50 principals, family offices, wealth managers and RIAs, each invited personally',
+      'Introductions made in the room on the day, walked over rather than emailed afterwards',
+      'The guest list before the day, and everyone\u2019s details after it, with their permission',
+      'We will tell you plainly if we think the room would be wasted on you right now'
     ]
   },
   'Access Global': {
     who: 'Institutions and family offices deploying across borders',
     points: [
-      'Thirty countries of private markets access on one platform',
+      'Twenty-five countries of private markets access on one platform',
       'CRE, private credit and infrastructure — sector agnostic by design',
       'Built for allocators who need reach without building the desk themselves'
     ]
@@ -111,6 +112,40 @@ const FLOW = [
   }
 ];
 
+/**
+ * One company: the photograph, then the words beside it.
+ *
+ * Both halves move, 150ms apart, so the eye lands on the image and the copy
+ * arrives under it — the order someone reads the row in anyway. The image
+ * leads on a normal row and the text leads on a flipped one, so the motion
+ * always starts on whichever side sits left.
+ *
+ * 0.18 threshold rather than 0: on a phone these rows are taller than the
+ * viewport, and firing at first contact would run the whole reveal while the
+ * row is still below the fold.
+ */
+function CompanyRow({ flip, children }) {
+  const [ref, inView] = useInView(0.18);
+  const kids = React.Children.toArray(children);
+  return (
+    <div ref={ref} className="grid md:grid-cols-12 gap-8 md:gap-14 items-center">
+      {kids.map((child, i) => (
+        <React.Fragment key={i}>
+          {React.cloneElement(child, {
+            style: {
+              ...(child.props.style || {}),
+              opacity: inView ? 1 : 0,
+              transform: inView ? 'none' : 'translateY(22px)',
+              transition: 'opacity 700ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1)',
+              transitionDelay: `${(flip ? 1 - i : i) * 150}ms`
+            }
+          })}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
 export default function CapitalMarketsPage({ onContactClick }) {
   // Deal-flow cards arrive in order once the grid is in view.
   const flowRef = useRef(null);
@@ -154,8 +189,8 @@ export default function CapitalMarketsPage({ onContactClick }) {
         <div className="max-w-6xl mx-auto">
           <SectionHead
             eyebrow="Adding value"
-            title="Advisory / Investing / Private Gatherings"
-            intro="Three ways of being useful in capital markets: putting the right people in one room, backing founders with more than capital, and giving a straight read to anyone raising or allocating. Most of the value lands long before anything closes."
+            title="Private Gatherings / Investing / Advisory"
+            intro="Firms rarely stall because the deal was bad or the strategy was wrong. They stall because the right thirty people never sat down together — the allocator whose mandate already fits, the advisor whose clients would care, the operator who has already solved it. That room takes years to build, and we still make every invitation ourselves."
           />
 
           <div className="mt-14 md:mt-20 space-y-16 md:space-y-24">
@@ -163,7 +198,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
               const extra = FOR_WHOM[c.name] || {};
               const flip = i % 2 === 1;
               return (
-                <div key={c.name} className="grid md:grid-cols-12 gap-8 md:gap-14 items-center">
+                <CompanyRow key={c.name} flip={flip}>
                   <div className={`md:col-span-5 ${flip ? 'md:order-last' : ''}`}>
                     {c.thumb && (
                       <span className="venture-thumb" style={{ borderRadius: 14 }}>
@@ -218,7 +253,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
                       </a>
                     )}
                   </div>
-                </div>
+                </CompanyRow>
               );
             })}
           </div>

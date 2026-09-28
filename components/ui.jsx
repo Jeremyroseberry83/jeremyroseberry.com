@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { colors, cta } from '../site.config';
 
 // Re-exported from site.config so every page imports colors from one place
@@ -23,6 +23,41 @@ export const GRAY_ACCENT = colors.GRAY_ACCENT;
  * gold to clear contrast minimums. That's the whole reason this takes a tone
  * instead of hardcoding one hex.
  */
+/**
+ * Reveal-on-scroll, shared. Four components had grown their own copy of this
+ * observer; this is the same behaviour in one place.
+ *
+ * Fires once and disconnects — a section that re-animates every time it
+ * scrolls back into view reads as a glitch, not as motion. Anyone who has
+ * asked their system for reduced motion is handed the finished state
+ * immediately and no observer is created at all.
+ */
+export function useInView(threshold = 0.18) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return undefined;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInView(true);
+      return undefined;
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        setInView(true);
+        io.disconnect();
+      },
+      { threshold }
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, [threshold]);
+
+  return [ref, inView];
+}
+
 export function Accent({ children, tone = 'light' }) {
   return <span style={{ color: tone === 'dark' ? SECONDARY : SECONDARY_DEEP }}>{children}</span>;
 }
