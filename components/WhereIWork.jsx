@@ -81,7 +81,7 @@ export const TIERS = [
         role: 'Founder',
         url: 'https://www.privateinvestorcircle.com/',
         logo: '',
-        description: 'Capital advisory and strategy — direct relationships with sponsors and allocators.'
+        description: 'Deal flow, diligence, capital sourcing and stack strategy — through direct relationships with sponsors and allocators.'
       }
     ]
   }

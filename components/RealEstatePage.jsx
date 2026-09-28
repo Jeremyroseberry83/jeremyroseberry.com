@@ -46,11 +46,12 @@ const FOR_WHOM = {
     ]
   },
   'Roseberry Capital': {
-    who: 'Sponsors raising and allocators deploying, across twenty-five countries',
+    who: 'Sponsors raising and allocators deploying',
     points: [
-      'Capital advisory for people who need the introduction, not the pitch deck',
-      'Relationships built over time. Not bought off a list',
-      'Honest consulting on whether a raise is ready before it goes to market'
+      'Deal flow, and a straight read on which of it is worth the time',
+      'Diligence done before a raise goes to market, not after',
+      'Capital sourcing through direct relationships with sponsors and allocators',
+      'Capital stack strategy — what sits where, and on what terms'
     ]
   }
 };
