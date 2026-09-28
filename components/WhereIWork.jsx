@@ -9,8 +9,11 @@ import { SectionHead, SECONDARY, PRIMARY, PRIMARY_DEEP } from './ui';
  *
  * Descriptions are deliberately one sentence. These are cards in a grid, not
  * a portfolio page: enough for a reader to know what the company is, and the
- * link carries anyone who wants more. Anything marked DRAFT below is recovered
- * from the old Entrepreneur page and still wants Jeremy's sign-off.
+ * link carries anyone who wants more.
+ *
+ * The capital markets three are Jeremy's own words. Premiere Home Watch is
+ * still marked DRAFT — recovered from the old Entrepreneur page and not yet
+ * signed off.
  */
 export const TIERS = [
   {
@@ -18,13 +21,12 @@ export const TIERS = [
     blurb: 'Advisory, allocation, and the rooms where allocators actually meet founders.',
     companies: [
       {
-        // DRAFT — recovered from the old Entrepreneur page.
         name: 'Private Investor Circle',
         thumb: '/images/ventures/photos/private-investor-circle.jpg',
         role: 'Founder',
         url: 'https://www.privateinvestorcircle.com/',
         logo: '/images/logos/private-investor-circle.png',
-        description: 'A curated circle of investors, allocators and founders who meet in person. Small rooms, no pitch theatre.'
+        description: 'The warm relational introduction is how we do business. Small rooms, and every invitation made personally.'
       },
       {
         name: 'The 4IR Group',
@@ -35,13 +37,12 @@ export const TIERS = [
         description: 'A private capital ecosphere for the companies and infrastructure transforming physical industry — the factories, power and supply chains everything else runs on.'
       },
       {
-        // DRAFT — recovered from the old Entrepreneur page.
         name: 'Access Global',
         thumb: '/images/ventures/photos/access-global.jpg',
         role: 'Strategic Partner',
         url: 'https://accessglobal.co',
         logo: '/images/logos/access-global.png',
-        description: 'A 25-country private markets platform. CRE, private credit, infrastructure. Sector agnostic.'
+        description: 'The full alternative spectrum across twenty-five countries. All asset classes, all directions.'
       },
       {
         name: '4IR Studios',

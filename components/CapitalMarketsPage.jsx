@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import VerbQuote from './VerbQuote';
 import { ArrowUpRight } from 'lucide-react';
 import { TIERS } from './WhereIWork';
@@ -10,24 +10,25 @@ import {
   SECONDARY,
   SECONDARY_DEEP,
   PRIMARY,
-  PRIMARY_DEEP,
   SLATE,
   MUTED
 } from './ui';
 
 /**
- * Capital Markets — the three platforms, then what actually moves through them.
+ * Capital Markets — the three platforms, and who each one is for.
  *
- * Company copy comes from TIERS so this page and the Entrepreneurs directory
- * cannot describe the same business two different ways. 4IR Studios sits in
- * the same tier in the data but is deliberately excluded here — it has its own
- * page, because PR and marketing is a different buyer.
+ * Company copy comes from TIERS so this page and the About directory cannot
+ * describe the same business two different ways. 4IR Studios sits in the same
+ * tier in the data but is deliberately excluded here — PR and marketing is a
+ * different buyer.
  *
- * NOTHING ON THIS PAGE NAMES A DEAL, A RETURN, OR AN ALLOCATION. Deal flow is
- * described by shape — sectors, stages, ticket sizes — never by example.
- * Publishing live opportunities on an open web page is a securities question as much
- * as a design one, and a fabricated example would be worse than both. If real
- * flow ever goes here it belongs behind the Circle, not in front of it.
+ * NOTHING ON THIS PAGE NAMES A DEAL, A RETURN, OR AN ALLOCATION. The rule
+ * outlived the Deal Flow section it was written for: it now governs the
+ * company copy, which describes capability by shape — asset classes,
+ * geographies, who is in the room — never by example. Publishing live
+ * opportunities on an open web page is a securities question as much as a
+ * design one, and a fabricated example would be worse than both. If real flow
+ * ever appears, it belongs behind the Circle rather than in front of it.
  */
 
 const CM_TIER = TIERS.find((t) => t.label === 'Capital Markets');
@@ -60,9 +61,10 @@ const FOR_WHOM = {
   'Access Global': {
     who: 'Institutions and family offices deploying across borders',
     points: [
+      'All asset classes, all countries, all directions',
+      'Private equity, private credit, real estate, venture, hedge funds, structured products, M&A and digital assets',
       'Twenty-five countries of private markets access on one platform',
-      'CRE, private credit and infrastructure — sector agnostic by design',
-      'Built for allocators who need reach without building the desk themselves'
+      'The more complex the asset class or the geography, the more valuable we become'
     ]
   },
   'The 4IR Group': {
@@ -77,42 +79,6 @@ const FOR_WHOM = {
   }
 };
 
-/**
- * What crosses the desk, as the four categories a private-markets desk
- * actually splits into. Introductions came out because it was the odd one —
- * a service rather than an asset class, sitting in a list of asset classes.
- * The intro paragraph already carries that promise ("direct to the principal
- * or the GP"), which is where it belongs.
- *
- * DRAFT: private equity is my addition — it is the standard fourth alongside
- * real assets, credit and venture, and its absence was the reason the list
- * needed a service to round it out. Order is strongest first. Both want
- * Jeremy's confirmation.
- *
- * No named deal, return or allocation appears here. See the file header.
- */
-const FLOW = [
-  {
-    tint: '#faf6ec',
-    label: 'Real assets',
-    body: 'Commercial real estate and infrastructure. Sponsors who have done it before, in markets they already know, with a basis that makes sense before the story does.'
-  },
-  {
-    tint: '#f5edda',
-    label: 'Private credit',
-    body: 'Where the return is contractual rather than hoped for. The category most allocators say they want more of and see the least of.'
-  },
-  {
-    tint: '#efe3c6',
-    label: 'Private equity',
-    body: 'Operating businesses with real cash flow and a reason to change hands. Sponsors who can say plainly what they intend to do differently after close.'
-  },
-  {
-    tint: '#e8d8b0',
-    label: 'Early venture',
-    body: 'Founders at the point where operating help matters more than the size of the allocation. Usually the ones who did not need to be talked into the work.'
-  }
-];
 
 /**
  * One company: the photograph, then the words beside it.
@@ -149,29 +115,6 @@ function CompanyRow({ flip, children }) {
 }
 
 export default function CapitalMarketsPage({ onContactClick }) {
-  // Deal-flow cards arrive in order once the grid is in view.
-  const flowRef = useRef(null);
-  const [flowIn, setFlowIn] = useState(false);
-
-  useEffect(() => {
-    const node = flowRef.current;
-    if (!node) return undefined;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setFlowIn(true);
-      return undefined;
-    }
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (!e.isIntersecting) return;
-        setFlowIn(true);
-        io.disconnect();
-      },
-      { threshold: 0.2 }
-    );
-    io.observe(node);
-    return () => io.disconnect();
-  }, []);
-
   const companies = CM_TIER
     ? ON_THIS_PAGE.map((n) => CM_TIER.companies.find((c) => c.name === n)).filter(Boolean)
     : [];
@@ -264,54 +207,6 @@ export default function CapitalMarketsPage({ onContactClick }) {
 
       <VerbQuote verb="scale" />
 
-      {/* Deal flow, described by shape. See the file header for why there are
-          no named opportunities here. */}
-      <section className="px-6 py-16 md:py-28" style={{ backgroundColor: PRIMARY_DEEP }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            dark
-            eyebrow="Deal flow"
-            title="Pre-Vetted / Sector Agnostic"
-            intro="Quality flow crosses my desk across most asset classes, and my role in it is advisory — I consult, I tell you what I actually think, and I put you direct to the principal or the GP. No middle layer, and no live opportunities posted on a website."
-          />
-
-          <div ref={flowRef} className="grid md:grid-cols-2 gap-px mt-14" style={{ backgroundColor: 'transparent' }}>
-            {FLOW.map((f, i) => (
-              <article
-                key={f.label}
-                className="p-8 md:p-10"
-                style={{
-                  /* Cream stepping to champagne, on the navy section. Each
-                     card a step warmer than the last; navy type holds 7.2:1
-                     or better on all four, so the warmest card is still well
-                     clear of the 4.5:1 floor for 16px body. The 1px gaps run
-                     transparent so the section's own navy reads as the rule
-                     between cards — a white divider disappeared once the
-                     cards stopped being dark. */
-                  backgroundColor: f.tint,
-                  opacity: flowIn ? 1 : 0,
-                  transform: flowIn ? 'none' : 'translateY(12px)',
-                  transition: 'opacity 620ms ease, transform 620ms cubic-bezier(0.22, 1, 0.36, 1)',
-                  transitionDelay: `${i * 160}ms`
-                }}
-              >
-                <span
-                  className="display block"
-                  style={{ color: '#8a6a28', fontSize: 'clamp(1.5rem, 2.4vw, 2rem)', lineHeight: 1, marginBottom: 14 }}
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="display" style={{ color: PRIMARY_DEEP, fontSize: 'clamp(1.4rem, 2.4vw, 1.9rem)', marginBottom: 14 }}>
-                  {f.label}
-                </h3>
-                <p style={{ color: '#2f4356', fontSize: 16, lineHeight: 1.75 }}>{f.body}</p>
-              </article>
-            ))}
-          </div>
-
-
-        </div>
-      </section>
 
 
       <BookingCTA onContactClick={onContactClick} />
