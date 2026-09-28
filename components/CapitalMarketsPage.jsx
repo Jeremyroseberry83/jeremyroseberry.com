@@ -66,10 +66,12 @@ const FOR_WHOM = {
     ]
   },
   'The 4IR Group': {
-    who: 'Founders building at the front edge, and the capital that backs them',
+    who: 'Founders with real companies solving real problems, taken from founder to exit',
     points: [
-      'Venture building rather than passive capital deployment',
-      'Operating help where it is scarcest — story, structure and the first raise',
+      'Not all capital is money — we grow every kind that moves a company forward',
+      'AI is the intelligence: what decides, routes and optimises, faster than any control room',
+      'Robotics is the execution: what moves, welds, picks and builds. Intelligence with nothing to act through is a demo',
+      'Infrastructure is the foundation: power, plants, networks, grid. Everything above it is theory without this',
       'Seco Bio was the first one out'
     ]
   }

@@ -27,13 +27,12 @@ export const TIERS = [
         description: 'A curated circle of investors, allocators and founders who meet in person. Small rooms, no pitch theatre.'
       },
       {
-        // DRAFT — recovered from the old Entrepreneur page.
         name: 'The 4IR Group',
         thumb: '/images/ventures/photos/four-ir-group.jpg',
         role: 'Co-founder, CBO',
         url: 'https://4irg.com',
         logo: '',
-        description: 'Venture building at the edge of the Fourth Industrial Revolution. Seco Bio is the first.'
+        description: 'A private capital ecosphere for the companies and infrastructure transforming physical industry — the factories, power and supply chains everything else runs on.'
       },
       {
         // DRAFT — recovered from the old Entrepreneur page.
