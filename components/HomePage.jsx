@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import TryBlock from './TryBlock';
 import PodcastLaunch from './PodcastLaunch';
-import { Button, BookingCTA, CountUp, PRIMARY, SECONDARY, INK } from './ui';
+import { Button, CountUp, PRIMARY, SECONDARY, INK } from './ui';
 import { company, cta } from '../site.config';
 
 /**
  * HomePage — the brand artwork with live type laid over it, then the band,
- * the Try block, the podcast note, and the same closing ask every other page
- * ends on. It carries the site footer like the rest of them.
+ * the Try block and the podcast note, which closes on its own email capture
+ * — a second ask under it was one too many. It carries the site footer like
+ * the rest of them.
  *
  * The artwork at /images/hero-honest-stories.jpg is the TYPELESS version:
  * portrait, taupe wedge and ROSEBERRY watermark are baked in, the headline is
@@ -262,8 +263,6 @@ export default function HomePage({ onContactClick }) {
     <TryBlock />
 
     <PodcastLaunch />
-
-    <BookingCTA onContactClick={onContactClick} />
     </>
   );
 }
