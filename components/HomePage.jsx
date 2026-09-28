@@ -169,8 +169,23 @@ export default function HomePage({ onContactClick }) {
             frame, so 22% put it a fifth of the way across the screen rather
             than in the middle. 12% centres it, and the figure comes out the
             same at 375, 390 and 430 wide. */}
+        {/* A phone-specific copy of the artwork: the same file with 100px of
+            its own top edge replicated above it. The desktop frame is 16:9
+            and keeps the original.
+
+            Position could not fix this. A phone box is far taller in
+            proportion than the 16:9 artwork, so cover scales by HEIGHT and
+            the vertical overflow is zero — the whole image is already on
+            screen and object-position has nothing left to move. The artwork
+            simply has almost no room above his head: his hair starts at y=28
+            of 1440, which lands as about 16px on a phone.
+
+            Extending the canvas is safe here because that strip is flat —
+            every column's top 26 rows vary by under 2 levels across the full
+            width, so a clamped edge is invisible. 100px takes the headroom to
+            roughly 70px on a 390-wide phone. */}
         <img
-          src="/images/hero-honest-stories.jpg"
+          src="/images/hero-mobile.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
