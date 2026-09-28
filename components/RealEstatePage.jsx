@@ -37,11 +37,12 @@ const FOR_WHOM = {
     ]
   },
   'Premiere Home Watch': {
-    who: 'Second-home and seasonal owners who are not there most of the year',
+    who: 'High-end clientele who want themselves and their residences looked after while they are away',
     points: [
-      'Eyes on the property when you are eleven hundred miles away',
-      'Vendors managed, problems caught while they are still small and cheap',
-      'Recurring, documented, and built so the business runs without me in it'
+      'White glove, discreet, and full service',
+      'Concierge lifestyle services for the household, not only the property',
+      'Eyes on the residence for as long as you are away',
+      'Vendors managed and problems caught while they are still small'
     ]
   },
   'Roseberry Capital': {

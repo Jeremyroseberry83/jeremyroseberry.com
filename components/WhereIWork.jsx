@@ -11,9 +11,7 @@ import { SectionHead, SECONDARY, PRIMARY, PRIMARY_DEEP } from './ui';
  * a portfolio page: enough for a reader to know what the company is, and the
  * link carries anyone who wants more.
  *
- * The capital markets three are Jeremy's own words. Premiere Home Watch is
- * still marked DRAFT — recovered from the old Entrepreneur page and not yet
- * signed off.
+ * Every description here is Jeremy's own. Nothing is reconstructed.
  */
 export const TIERS = [
   {
@@ -67,13 +65,12 @@ export const TIERS = [
         description: 'Referral and advisory for the companies I work with, investors and family offices. All asset classes, always alongside the expert in that market.'
       },
       {
-        // DRAFT — recovered from the old Entrepreneur page.
         name: 'Premiere Home Watch',
         thumb: '/images/ventures/photos/premiere-home-watch.jpg',
         role: 'Founder / Palm Beach',
         url: 'https://roseberryproperties.com/premierehomewatch',
         logo: '',
-        description: 'Lifestyle services and luxury home concierge for distinguished clientele. Recurring revenue, acquisition-ready.'
+        description: 'White-glove, discreet, full-service concierge for high-end clientele — lifestyle services for themselves and their residences while they are away.'
       },
       {
         // Shares the Circle's address for now — Roseberry Capital has no site
