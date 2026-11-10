@@ -2,7 +2,7 @@ import React from 'react';
 import { SECONDARY, SECONDARY_DEEP, SLATE, BG } from './ui';
 
 /**
- * One of the four verbs from the hero — Think, Lead, Scale, Try — set as a
+ * One of the four verbs from the hero — Think, Try, Lead, Grow — set as a
  * quote box. One per page, in that order, so a visitor walking the nav
  * finishes the sentence the home page started.
  *
@@ -27,7 +27,7 @@ const QUOTES = {
   },
   scale: {
     line: 'Growth breeds complexity. The right systems solve that so you continue to scale.',
-    note: 'Scale'
+    note: 'Grow'
   },
   try: {
     line: 'You do not have to be good at it yet. The courage to start puts you ahead of almost everyone still deciding.',

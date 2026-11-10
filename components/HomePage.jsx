@@ -32,14 +32,14 @@ const SCALE_BROWN = '#413a37';
 
 /** Every figure is Jeremy's own claim. Nothing estimated or rounded up. */
 // The four verbs, in sequence rather than as a list: think is your own head,
-// try is your own action, lead is other people, scale is the organisation.
+// try is your own action, lead is other people, grow is the organisation.
 // Each step widens the circle and none doubles back — the previous order ran
 // Think, Lead, Scale, Try, which escalated and then dropped back to the self.
 //
 // The order matters more now than it did when these faded in together. They
 // arrive one at a time, half a second apart, which turns the line into
 // something the eye follows in order.
-const VERBS = ['Think', 'Try', 'Lead', 'Scale'];
+const VERBS = ['Think', 'Try', 'Lead', 'Grow'];
 
 const SCALE = [
   { value: '19', unit: 'yrs', label: 'Married' },
