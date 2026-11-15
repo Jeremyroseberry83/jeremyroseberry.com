@@ -156,7 +156,7 @@ const META = {
         <meta property="og:url" content={`https://${company.domain}`} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:description" content={meta.description} />
-        <meta property="og:image" content={`https://${company.domain}/images/og-card-v2.jpg`} />
+        <meta property="og:image" content={`https://${company.domain}/images/og-card-v3.jpg`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         {/* The filename is versioned on purpose. LinkedIn, Facebook and
@@ -168,7 +168,7 @@ const META = {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={`https://${company.domain}/images/og-card-v2.jpg`} />
+        <meta name="twitter:image" content={`https://${company.domain}/images/og-card-v3.jpg`} />
       </Head>
 
       <nav
