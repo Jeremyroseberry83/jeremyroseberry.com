@@ -33,7 +33,7 @@ const QUOTES = {
   // Jeremy's line, typos only. It is the reason the verb is Stay: if the help
   // someone needs is not growth, what they need is a reason to stay in it.
   stay: {
-    line: 'Sometimes the best help entrepreneurs need isn\u2019t growth. It\u2019s just confidence that what they\u2019re doing is worth it, regardless of growth.',
+    line: 'Entrepreneurs need confidence that what they\u2019re doing is worth it, regardless of growth. That confidence is staying confidence.',
     note: 'Stay'
   },
   try: {

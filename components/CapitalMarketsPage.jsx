@@ -125,11 +125,17 @@ export default function CapitalMarketsPage({ onContactClick }) {
 
   return (
     <div>
+      {/* subtitleWidth is 36rem rather than the 46ch default. Measured in
+          Inter at 18px the five terms run 544px, and the banner copy column
+          is 569px at 1024 and 644px above it, so the line fits. The default
+          cap lands near 391px, which is what was breaking it in two. Below
+          1024 it still wraps — that is the column running out, not this. */}
       <PageTopBand
         eyebrow="Capital Markets"
         title="Scaling The Five Levels Of Capital"
         titleWidth="18ch"
-        subtitle="Relational · socio-economical · organizational · time · monetary"
+        subtitle="Relational · Socio-economical · Organizational · Time · Monetary"
+        subtitleWidth="36rem"
         portrait="/images/portraits/capital.jpg"
         tone="primary"
       />
