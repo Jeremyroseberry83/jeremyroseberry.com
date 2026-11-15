@@ -156,14 +156,19 @@ const META = {
         <meta property="og:url" content={`https://${company.domain}`} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:description" content={meta.description} />
-        <meta property="og:image" content={`https://${company.domain}/images/og-card.jpg`} />
+        <meta property="og:image" content={`https://${company.domain}/images/og-card-v2.jpg`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+        {/* The filename is versioned on purpose. LinkedIn, Facebook and
+            iMessage cache an OG image against its URL and will keep serving a
+            stale one for weeks; a new path is the only reliable way to force a
+            re-fetch. Bump the suffix whenever the card art changes. */}
+        <meta property="og:image:alt" content={`${company.name} — helping entrepreneurs`} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={`https://${company.domain}/images/og-card.jpg`} />
+        <meta name="twitter:image" content={`https://${company.domain}/images/og-card-v2.jpg`} />
       </Head>
 
       <nav
