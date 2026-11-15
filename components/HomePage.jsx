@@ -31,15 +31,14 @@ import { company, cta } from '../site.config';
 const SCALE_BROWN = '#413a37';
 
 /** Every figure is Jeremy's own claim. Nothing estimated or rounded up. */
-// The four verbs, in sequence rather than as a list: think is your own head,
-// try is your own action, lead is other people, grow is the organisation.
-// Each step widens the circle and none doubles back — the previous order ran
-// Think, Lead, Scale, Try, which escalated and then dropped back to the self.
+// Three, down from four. Grow came out: it was the one that described an
+// outcome rather than something the reader does, and three short words hold
+// the line better than four on a phone.
 //
-// The order matters more now than it did when these faded in together. They
-// arrive one at a time, half a second apart, which turns the line into
-// something the eye follows in order.
-const VERBS = ['Think', 'Try', 'Lead', 'Grow'];
+// They arrive one at a time, half a second apart, so the order is read rather
+// than scanned. Think and Lead widen outward; Try closes on an ask, which is
+// the one verb here that is also an instruction.
+const VERBS = ['Think', 'Lead', 'Try'];
 
 const SCALE = [
   { value: '19', unit: 'yrs', label: 'Married' },
