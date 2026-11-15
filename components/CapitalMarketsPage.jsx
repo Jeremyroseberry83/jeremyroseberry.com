@@ -214,7 +214,7 @@ export default function CapitalMarketsPage({ onContactClick }) {
         </div>
       </section>
 
-      <VerbQuote verb="scale" />
+      <VerbQuote verb="stay" />
 
 
 

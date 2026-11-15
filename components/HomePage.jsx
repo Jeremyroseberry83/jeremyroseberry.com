@@ -31,14 +31,23 @@ import { company, cta } from '../site.config';
 const SCALE_BROWN = '#413a37';
 
 /** Every figure is Jeremy's own claim. Nothing estimated or rounded up. */
-// Three, down from four. Grow came out: it was the one that described an
-// outcome rather than something the reader does, and three short words hold
-// the line better than four on a phone.
+// Think, Lead, Try, Stay. The fourth slot was Scale, then Grow, then Learn —
+// the first two were buzzwords promising growth as the point, which argues
+// with Jeremy's own view that the help an entrepreneur needs often is not
+// growth at all. Learn was safe but said nothing.
 //
-// They arrive one at a time, half a second apart, so the order is read rather
-// than scanned. Think and Lead widen outward; Try closes on an ask, which is
-// the one verb here that is also an instruction.
-const VERBS = ['Think', 'Lead', 'Try'];
+// Stay is the verb form of that view: if what you need is not growth, what
+// you need is a reason to stay in it. Nobody else in capital markets says it;
+// the category sells exit and velocity.
+//
+// It also works as a stem rather than a full stop — stay committed, stay
+// curious, stay humble, stay small — so the word can carry writing well past
+// this line. That is why it won over Finish, which closes instead of opens.
+//
+// Order is Jeremy's, from the way he writes it himself: "stay thinking,
+// leading, trying". They arrive one at a time, half a second apart, so the
+// order is read rather than scanned.
+const VERBS = ['Think', 'Lead', 'Try', 'Stay'];
 
 const SCALE = [
   { value: '19', unit: 'yrs', label: 'Married' },

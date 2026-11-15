@@ -2,18 +2,23 @@ import React from 'react';
 import { SECONDARY, SECONDARY_DEEP, SLATE, BG } from './ui';
 
 /**
- * One of the four verbs from the hero — Think, Try, Lead, Grow — set as a
- * quote box. One per page, in that order, so a visitor walking the nav
- * finishes the sentence the home page started.
+ * A short quote box, one per page, echoing the hero's verbs — Think, Lead,
+ * Try, Stay — so a visitor walking the nav finishes the sentence the home
+ * page started.
  *
- * Deliberately plain: a rule, the verb, a line. The hero already does the
+ * The fourth slot was Scale, then Grow — both buzzwords promising growth as
+ * the point, when Jeremy's view is that the help an entrepreneur needs often
+ * is not growth at all. Stay is the verb form of that, and the line under it
+ * is the sentence that produced the word.
+ *
+ * Deliberately plain: a rule, the word, a line. The hero already does the
  * typographic work; these are the echo, and an echo that shouts is noise.
  *
  * Every line is addressed to the reader and about their situation — their
- * decision, their people, their company, their courage. Keep the "you".
+ * decision, their people, their courage, their worth. Keep the "you".
  *
  * These are Jeremy's sentences in Jeremy's order. An earlier pass rearranged
- * Scale to put the feeling first and it lost his rhythm; polish the wording,
+ * one to put the feeling first and it lost his rhythm; polish the wording,
  * never the running order.
  */
 const QUOTES = {
@@ -25,9 +30,11 @@ const QUOTES = {
     line: 'People crave certainty, but they follow real and clear. Be you, be real, lead clear.',
     note: 'Lead'
   },
-  scale: {
-    line: 'Growth breeds complexity. The right systems solve that so you continue to scale.',
-    note: 'Grow'
+  // Jeremy's line, typos only. It is the reason the verb is Stay: if the help
+  // someone needs is not growth, what they need is a reason to stay in it.
+  stay: {
+    line: 'Sometimes the best help entrepreneurs need isn\u2019t growth. It\u2019s just confidence that what they\u2019re doing is worth it, regardless of growth.',
+    note: 'Stay'
   },
   try: {
     line: 'You do not have to be good at it yet. The courage to start puts you ahead of almost everyone still deciding.',
