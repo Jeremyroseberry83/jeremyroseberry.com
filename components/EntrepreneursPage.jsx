@@ -9,11 +9,9 @@ import {
   SectionHead,
   SECONDARY,
   SECONDARY_DEEP,
-  PRIMARY_DEEP,
   SLATE,
   MUTED,
-  INK,
-  BG
+  INK
 } from './ui';
 
 /**
@@ -72,30 +70,6 @@ const MEDIA = [];
  * FILL — the adrenaline list. These are real and specific, which is the whole
  * point; add photos as they exist and swap `image` in.
  */
-const PURSUITS = [
-  {
-    name: 'Jet surfing',
-    body: 'Just another big-kid toy that goes 42 MPH on the water. Like a magic carpet on glass, and so exhilarating.',
-    image: '/images/pursuits/jet-surfing.jpg'
-  },
-  {
-    name: 'Skydiving',
-    body: 'Yes, jumping out of a perfectly good plane. Pure adrenaline and a view like no other. Ask me why I can’t do it more than twice a year.',
-    image: '/images/pursuits/skydiving.jpg'
-  },
-  {
-    name: 'Base jumping into water',
-    body: 'A cliff, a countdown, and about four seconds where nothing else in your life exists.',
-    image: '/images/pursuits/base-jumping.jpg'
-  },
-  {
-    // DRAFT copy — replaced 130-degree training, which now lives in the Rule
-    // of 5 as something he does rather than somewhere he goes.
-    name: 'Coffee shops',
-    body: 'Honestly my second preferred office, other than the beach or the backyard. The opposite of the other three. A corner table, three hours, and time to think and create.',
-    image: '/images/pursuits/coffee-shops.jpg'
-  }
-];
 
 
 /**
@@ -191,88 +165,7 @@ export default function EntrepreneursPage({ onContactClick }) {
       )}
 
       {/* ============================================================
-          4 — ADRENALINE
-          ============================================================ */}
-      <section className="py-16 md:py-28 px-6" style={{ backgroundColor: SECONDARY }}>
-        <div className="max-w-6xl mx-auto">
-          <SectionHead
-            tone="gold"
-            eyebrow="Fun"
-            title="Where I Have Fun"
-            intro="Not a bucket list. These are the things that fill me up and help me re-create — yes, I enjoy quiet, intentional, slow days. But a good dose of adrenaline is also a tank I keep filled."
-          />
-
-          {/* gap-px over the section's own navy, so the dividing lines read
-              as thin navy rules between cream cards rather than the pale
-              hairline that worked when the cards were dark. */}
-          <div className="mt-14 grid md:grid-cols-2 gap-px" style={{ backgroundColor: PRIMARY_DEEP }}>
-            {PURSUITS.map((p, i) => (
-              <article key={p.name} className="relative overflow-hidden" style={{ backgroundColor: BG, minHeight: 300 }}>
-                {/* The photos are phone portraits. Stretching one across the
-                    full card means cover-cropping a wide band out of a tall
-                    frame, which cuts the head off every time. So the image
-                    takes a portrait-shaped panel on the right and dissolves
-                    left into the card, with the copy in the clear half. */}
-                {p.image && (
-                  <>
-                    {/* Phone: the card is one column and only ~340px wide, so a
-                        46% side panel would leave the copy about 140px to live
-                        in. Full bleed with a vertical wash instead, same as the
-                        page banners do. */}
-                    <img
-                      src={p.image}
-                      alt=""
-                      aria-hidden="true"
-                      className="md:hidden absolute inset-0 w-full h-full object-cover"
-                      style={{ objectPosition: 'center 22%' }}
-                    />
-                    <span
-                      aria-hidden="true"
-                      className="md:hidden absolute inset-0"
-                      style={{ background: 'linear-gradient(180deg, rgba(245,245,245,0.55) 0%, rgba(245,245,245,0.92) 52%, rgba(245,245,245,0.99) 100%)' }}
-                    />
-
-                    <img
-                      src={p.image}
-                      alt=""
-                      aria-hidden="true"
-                      className="hidden md:block absolute inset-y-0 right-0 h-full object-cover"
-                      style={{ width: '46%', objectPosition: 'center 28%' }}
-                    />
-                    <span
-                      aria-hidden="true"
-                      className="hidden md:block absolute inset-y-0 right-0"
-                      style={{
-                        width: '52%',
-                        background: 'linear-gradient(90deg, rgba(245,245,245,1) 0%, rgba(245,245,245,0.6) 42%, rgba(245,245,245,0.1) 100%)'
-                      }}
-                    />
-                  </>
-                )}
-                <div className={`relative p-9 h-full flex flex-col${p.image ? ' md:max-w-[62%]' : ''}`}>
-                  {/* Set large deliberately. SECONDARY_DEEP on #f5f5f5 is
-                      3.11:1 — under the 4.5:1 floor for small text, over the
-                      3:1 floor for large. At 15px the old size it would have
-                      failed; at this size it passes and reads better. */}
-                  <span
-                    className="display"
-                    style={{ color: SECONDARY_DEEP, fontSize: 'clamp(1.6rem, 2.4vw, 2rem)', letterSpacing: '0.06em', marginBottom: 16, lineHeight: 1 }}
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="display" style={{ color: SLATE, fontSize: 'clamp(1.5rem, 2.8vw, 2.1rem)', marginBottom: 14 }}>
-                    {p.name}
-                  </h3>
-                  <p style={{ color: MUTED, fontSize: 16, lineHeight: 1.75 }}>{p.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          5 — FRIENDS
+          3 — FRIENDS
           Renders nothing while FRIENDS is empty. Naming someone in public
           is their decision as much as his, so this stays opt-in.
           ============================================================ */}
