@@ -28,7 +28,7 @@ const QUOTES = {
   },
   lead: {
     line: 'People crave certainty, but they follow real and clear. Be you, be real, lead clear.',
-    note: 'Lead'
+    note: 'Lead well'
   },
   // Jeremy's line, typos only. It is the reason the verb is Stay: if the help
   // someone needs is not growth, what they need is a reason to stay in it.
@@ -38,7 +38,7 @@ const QUOTES = {
   },
   try: {
     line: 'You do not have to be good at it yet. The courage to start puts you ahead of almost everyone still deciding.',
-    note: 'Try'
+    note: 'Try again'
   }
 };
 

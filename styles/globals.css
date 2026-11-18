@@ -603,7 +603,24 @@ h4,
 .hero-lede {
   font-size: 0.5em;
   letter-spacing: 0.08em;
-  margin-bottom: 0.12em;
+  /* Tight to the word below it. Measured at a 77px headline the two sat 30px
+     apart — 39% of the cap height — which read as two separate lines rather
+     than one lockup. Now 14px.
+
+     Three things were making the gap, and all three had to go: the lede's
+     own bottom margin, the rule's margins, and the half-leading above
+     ENTREPRENEURS, which at .display's 0.92 line-height is about 7px on its
+     own. The lede also needs a tighter line-height than it inherits — at
+     half the size, 0.92 of leading is proportionally twice as loose. */
+  line-height: 0.8;
+  margin-bottom: 0;
+}
+
+/* Pulls the big word up through its own half-leading. Leading is space the
+   font reserves, not space anyone chose, and in a two-line lockup it reads
+   as a gap rather than as breathing room. */
+.hero-word {
+  margin-top: -0.06em;
 }
 
 .hero-rule {
@@ -611,7 +628,7 @@ h4,
   width: 46%;
   height: 0.055em;
   background-color: var(--gold);
-  margin: 0.10em 0 0.07em;
+  margin: 0.035em 0 0.02em;
   opacity: 0;
   animation: heroFade 1.8s ease-out 2.4s forwards;
 }

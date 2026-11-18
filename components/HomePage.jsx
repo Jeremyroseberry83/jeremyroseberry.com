@@ -151,7 +151,7 @@ export default function HomePage({ onContactClick }) {
           >
             <span className="block hero-lede">Helping</span>
             <span aria-hidden="true" className="hero-rule" />
-            <span className="block">Entrepreneurs</span>
+            <span className="block hero-word">Entrepreneurs</span>
           </h1>
 
           <p className="eyebrow-wide" style={{ color: '#ffffff', fontSize: '1.32vw', marginBottom: '2.2vw' }}>
@@ -222,7 +222,7 @@ export default function HomePage({ onContactClick }) {
           <h1 className="display hero-fade-3" style={{ color: '#ffffff', fontSize: 'clamp(2rem, 12vw, 4rem)', marginBottom: 20 }}>
             <span className="block hero-lede">Helping</span>
             <span aria-hidden="true" className="hero-rule" />
-            <span className="block">Entrepreneurs</span>
+            <span className="block hero-word">Entrepreneurs</span>
           </h1>
 
           <p className="eyebrow-wide" style={{ color: '#ffffff', fontSize: 11, marginBottom: 24 }}>
